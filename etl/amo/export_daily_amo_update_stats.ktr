@@ -9,9 +9,10 @@
     <extended_description>
 The contents of this file are subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http://mozilla.org/MPL/2.0/.
+You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </extended_description>
     <trans_version/>
+    <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
     <directory>&#47;</directory>
     <parameters>
@@ -22,18 +23,29 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
         </parameter>
     </parameters>
     <log>
-      <read>Merge Join 3</read>
-      <write>Select values</write>
-      <input/>
-      <output>Output to AMO</output>
-      <update>Output to AMO</update>
-      <rejected>Output to AMO</rejected>
-      <connection>metrics mysql</connection>
-      <table>log_trans</table>
-      <step_performance_table/>
-      <use_batchid>Y</use_batchid>
-      <use_logfield>Y</use_logfield>
-      <size_limit_lines>5000</size_limit_lines>
+<trans-log-table><connection>metrics mysql</connection>
+<schema/>
+<table>log_trans</table>
+<size_limit_lines>5000</size_limit_lines>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject>Merge Join 3</subject></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>Select values</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject>Output to AMO</subject></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject>Output to AMO</subject></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject>Output to AMO</subject></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<perf-log-table><connection>metrics mysql</connection>
+<schema/>
+<table/>
+<interval/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
+<channel-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>LOGGING_OBJECT_TYPE</id><enabled>Y</enabled><name>LOGGING_OBJECT_TYPE</name></field><field><id>OBJECT_NAME</id><enabled>Y</enabled><name>OBJECT_NAME</name></field><field><id>OBJECT_COPY</id><enabled>Y</enabled><name>OBJECT_COPY</name></field><field><id>REPOSITORY_DIRECTORY</id><enabled>Y</enabled><name>REPOSITORY_DIRECTORY</name></field><field><id>FILENAME</id><enabled>Y</enabled><name>FILENAME</name></field><field><id>OBJECT_ID</id><enabled>Y</enabled><name>OBJECT_ID</name></field><field><id>OBJECT_REVISION</id><enabled>Y</enabled><name>OBJECT_REVISION</name></field><field><id>PARENT_CHANNEL_ID</id><enabled>Y</enabled><name>PARENT_CHANNEL_ID</name></field><field><id>ROOT_CHANNEL_ID</id><enabled>Y</enabled><name>ROOT_CHANNEL_ID</name></field></channel-log-table>
+<step-log-table><connection/>
+<schema/>
+<table/>
+<timeout_days/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
     </log>
     <maxdate>
       <connection/>
@@ -52,12 +64,17 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
     <shared_objects_file/>
     <capture_step_performance>N</capture_step_performance>
     <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <step_performance_capturing_size_limit/>
     <dependencies>
     </dependencies>
     <partitionschemas>
     </partitionschemas>
+    <slaveservers>
+    </slaveservers>
     <clusterschemas>
     </clusterschemas>
+  <created_user/>
+  <created_date>2012&#47;03&#47;26 15:43:30.787</created_date>
   <modified_user>-</modified_user>
   <modified_date>2009&#47;02&#47;04 10:21:47.657</modified_date>
   </info>
@@ -81,8 +98,33 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${AMO_MASTER_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>metrics</name>
+    <server>${VERTICA_HOST}</server>
+    <type>VERTICA</type>
+    <access>Native</access>
+    <database>${VERTICA_DB}</database>
+    <port>${VERTICA_PORT}</port>
+    <username>${VERTICA_USER}</username>
+    <password>${VERTICA_PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${VERTICA_PORT}</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION 
+ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
@@ -108,31 +150,9 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>metrics</name>
-    <server>${VERTICA_HOST}</server>
-    <type>VERTICA</type>
-    <access>Native</access>
-    <database>${VERTICA_DB}</database>
-    <port>${VERTICA_PORT}</port>
-    <username>${VERTICA_USER}</username>
-    <password>${VERTICA_PASS}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION 
-ISOLATION LEVEL READ COMMITTED</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
@@ -186,6 +206,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
            </partitioning>
     <connection>amo master</connection>
     <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
     <replace_variables>Y</replace_variables>
     <sql>DELETE FROM update_counts
 WHERE date ${DATE}</sql>
@@ -517,6 +538,7 @@ WHERE date ${DATE}</sql>
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
+    <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>writeToLog(&quot;m&quot;, &quot;Deleted &quot;+update_deletes+&quot; records from AMO master DB table update_counts for date &quot;+getVariable(&quot;DATE&quot;,&quot;uninitialized&quot;));
@@ -540,6 +562,7 @@ WHERE date ${DATE}</sql>
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
+    <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>writeToLog(&quot;m&quot;, &quot;Inserted &quot;+num_inserts+&quot; records to AMO master DB table update_counts matching criteria date &quot;+getVariable(&quot;DATE&quot;,&quot;uninitialized&quot;));
@@ -767,6 +790,7 @@ WHERE date ${DATE}</sql>
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
+    <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var keys = addon_statuses.split(&apos;~~~&apos;);
@@ -906,6 +930,7 @@ function serialize( mixed_value ) {
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
+    <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var keys = addon_versions.split(&apos;~~~&apos;);
@@ -1051,6 +1076,7 @@ function serialize( mixed_value ) {
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
+    <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var keys = product_guids.split(&apos;~~~&apos;);
@@ -1200,6 +1226,7 @@ function serialize( mixed_value ) {
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
+    <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var keys = locales.split(&apos;~~~&apos;);
@@ -1339,6 +1366,7 @@ function serialize( mixed_value ) {
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
+    <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var keys = oses.split(&apos;~~~&apos;);
