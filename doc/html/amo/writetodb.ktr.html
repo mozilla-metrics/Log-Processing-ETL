@@ -1,0 +1,1115 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/writetodb.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/writetodb.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/amo"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "write to db"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (0)</th>
+               <th>Transform</th>
+               <th>Output (2)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td></td>
+               <td></td>
+               <td>
+                  <div>collections output</div>
+                  <div>share output</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 928px;&#xA;            height: 228px;&#xA;        "><a name="amo_downloads bulk_loader-icon"></a><div id="amo_downloads bulk_loader" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:450px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#amo_downloads bulk_loader-text" style="&#xA;                    top:182px;&#xA;                    left:416.6666666666667px;                    &#xA;                ">amo_downloads bulk_loader</a><a name="amo_downloads input-icon"></a><div id="amo_downloads input" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:450px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#amo_downloads bulk_loader"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#amo_downloads input-text" style="&#xA;                    top:82px;&#xA;                    left:424.6666666666667px;                    &#xA;                ">amo_downloads input</a><a name="blocklist bulk_loader-icon"></a><div id="blocklist bulk_loader" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:250px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#blocklist bulk_loader-text" style="&#xA;                    top:182px;&#xA;                    left:222px;                    &#xA;                ">blocklist bulk_loader</a><a name="blocklist input-icon"></a><div id="blocklist input" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#blocklist bulk_loader"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#blocklist input-text" style="&#xA;                    top:82px;&#xA;                    left:230px;                    &#xA;                ">blocklist input</a><a name="collections input-icon"></a><div id="collections input" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:650px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#collections output"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#collections input-text" style="&#xA;                    top:82px;&#xA;                    left:627.3333333333334px;                    &#xA;                ">collections input</a><a name="collections output-icon"></a><div id="collections output" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:650px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#collections output-text" style="&#xA;                    top:182px;&#xA;                    left:626px;                    &#xA;                ">collections output</a><a name="share input-icon"></a><div id="share input" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:850px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#share output"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#share input-text" style="&#xA;                    top:82px;&#xA;                    left:835.3333333333334px;                    &#xA;                ">share input</a><a name="share output-icon"></a><div id="share output" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:850px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#share output-text" style="&#xA;                    top:182px;&#xA;                    left:834px;                    &#xA;                ">share output</a><a name="versioncheck bulk_loader-icon"></a><div id="versioncheck bulk_loader" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#versioncheck bulk_loader-text" style="&#xA;                    top:182px;&#xA;                    left:18px;                    &#xA;                ">versioncheck bulk_loader</a><a name="versioncheck input-icon"></a><div id="versioncheck input" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#versioncheck bulk_loader"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#versioncheck input-text" style="&#xA;                    top:82px;&#xA;                    left:26px;                    &#xA;                ">versioncheck input</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_HOST</th>
+               <td></td>
+               <td>, , </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_DB</th>
+               <td></td>
+               <td>, , </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PORT</th>
+               <td></td>
+               <td>, , </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_USER</th>
+               <td></td>
+               <td>, , </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PASS</th>
+               <td></td>
+               <td>, , </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>raw_table_suffix</th>
+               <td></td>
+               <td></td>
+               <td><a href="#amo_downloads bulk_loader">amo_downloads bulk_loader</a>, <a href="#blocklist bulk_loader">blocklist bulk_loader</a>, <a href="#versioncheck bulk_loader">versioncheck bulk_loader</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 4 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">collections output</a>, <a href="#metrics mysql">share output</a></td>
+            </tr>
+            <tr>
+               <th><a href="#connection.metrics db1">metrics db1</a></th>
+               <td>VERTICA</td>
+               <td>Native</td>
+               <td>${VERTICA_HOST}</td>
+               <td>${VERTICA_PORT}</td>
+               <td>${VERTICA_USER}</td>
+               <td><a href="#metrics db1">amo_downloads bulk_loader</a></td>
+            </tr>
+            <tr>
+               <th><a href="#connection.metrics db2">metrics db2</a></th>
+               <td>VERTICA</td>
+               <td>Native</td>
+               <td>${VERTICA_HOST}</td>
+               <td>${VERTICA_PORT}</td>
+               <td>${VERTICA_USER}</td>
+               <td><a href="#metrics db2">versioncheck bulk_loader</a></td>
+            </tr>
+            <tr>
+               <th><a href="#connection.metrics db3">metrics db3</a></th>
+               <td>VERTICA</td>
+               <td>Native</td>
+               <td>${VERTICA_HOST}</td>
+               <td>${VERTICA_PORT}</td>
+               <td>${VERTICA_USER}</td>
+               <td><a href="#metrics db3">blocklist bulk_loader</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4><a name="connection.metrics db1">metrics db1</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics db1</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${VERTICA_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>VERTICA</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${VERTICA_DB}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${VERTICA_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${VERTICA_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${VERTICA_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4><a name="connection.metrics db2">metrics db2</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics db2</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${VERTICA_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>VERTICA</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${VERTICA_DB}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${VERTICA_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${VERTICA_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${VERTICA_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4><a name="connection.metrics db3">metrics db3</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics db3</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${VERTICA_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>VERTICA</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${VERTICA_DB}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${VERTICA_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${VERTICA_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${VERTICA_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-VerticaBulkLoader"></div>
+      <h3 class="step-heading"><a name="amo_downloads bulk_loader-text" href="#amo_downloads bulk_loader-icon">amo_downloads bulk_loader</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>datacenter</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>source_site</td>
+               <td>site</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>source_server</td>
+               <td>server</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>source_filename</td>
+               <td>filename</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>source_timestamp</td>
+               <td>timestamp</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>utc_date</td>
+               <td>utc_date</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>utc_hour</td>
+               <td>utc_hour</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>utc_minute</td>
+               <td>utc_minute</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>utc_date_id</td>
+               <td>utc_date_id</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>product</td>
+               <td>product</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>file_id</td>
+               <td>file_id</td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>addon_id</td>
+               <td>addon_id</td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>addon_guid</td>
+               <td>addon_guid</td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>addon_version</td>
+               <td>addon_version</td>
+            </tr>
+            <tr>
+               <th>15</th>
+               <td>addon_name</td>
+               <td>addon_name</td>
+            </tr>
+            <tr>
+               <th>16</th>
+               <td>location_id</td>
+               <td>location_id</td>
+            </tr>
+            <tr>
+               <th>17</th>
+               <td>user_agent_os_id</td>
+               <td>user_agent_os_id</td>
+            </tr>
+            <tr>
+               <th>18</th>
+               <td>user_agent_browser_id</td>
+               <td>user_agent_browser_id</td>
+            </tr>
+            <tr>
+               <th>19</th>
+               <td>user_agent_locale_id</td>
+               <td>user_agent_locale_id</td>
+            </tr>
+            <tr>
+               <th>20</th>
+               <td>request_locale_id</td>
+               <td>request_locale_id</td>
+            </tr>
+            <tr>
+               <th>21</th>
+               <td>src</td>
+               <td>src</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="amo_downloads input-text" href="#amo_downloads input-icon">amo_downloads input</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      Y
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-VerticaBulkLoader"></div>
+      <h3 class="step-heading"><a name="blocklist bulk_loader-text" href="#blocklist bulk_loader-icon">blocklist bulk_loader</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>datacenter</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>source_site</td>
+               <td>site</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>source_server</td>
+               <td>server</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>source_filename</td>
+               <td>filename</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>source_timestamp</td>
+               <td>timestamp</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>utc_date</td>
+               <td>utc_date</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>utc_hour</td>
+               <td>utc_hour</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>utc_minute</td>
+               <td>utc_minute</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>utc_date_id</td>
+               <td>utc_date_id</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>product_id</td>
+               <td>product_id</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>os_id</td>
+               <td>os_id</td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>locale_id</td>
+               <td>locale_id</td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>location_id</td>
+               <td>location_id</td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>product_channel_id</td>
+               <td>product_channel_id</td>
+            </tr>
+            <tr>
+               <th>15</th>
+               <td>product_distribution_id</td>
+               <td>product_distribution_id</td>
+            </tr>
+            <tr>
+               <th>16</th>
+               <td>gecko_version</td>
+               <td>gecko_version</td>
+            </tr>
+            <tr>
+               <th>17</th>
+               <td>product_build_target</td>
+               <td>product_build_target</td>
+            </tr>
+            <tr>
+               <th>18</th>
+               <td>product_build_number</td>
+               <td>product_build_number</td>
+            </tr>
+            <tr>
+               <th>19</th>
+               <td>ping_count_raw</td>
+               <td>ping_count_raw</td>
+            </tr>
+            <tr>
+               <th>20</th>
+               <td>ping_count</td>
+               <td>ping_count</td>
+            </tr>
+            <tr>
+               <th>21</th>
+               <td>total_ping_count_raw</td>
+               <td>total_ping_count_raw</td>
+            </tr>
+            <tr>
+               <th>22</th>
+               <td>total_ping_count</td>
+               <td>total_ping_count</td>
+            </tr>
+            <tr>
+               <th>23</th>
+               <td>days_since_last_ping_raw</td>
+               <td>days_since_last_ping_raw</td>
+            </tr>
+            <tr>
+               <th>24</th>
+               <td>days_since_last_ping</td>
+               <td>days_since_last_ping</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="blocklist input-text" href="#blocklist input-icon">blocklist input</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      Y
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="collections input-text" href="#collections input-icon">collections input</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>timestamp</td>
+               <td>String</td>
+               <td>13</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>utc_date_id</td>
+               <td>Integer</td>
+               <td>4</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>location_id</td>
+               <td>Integer</td>
+               <td>9</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>request_locale</td>
+               <td>String</td>
+               <td>15</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>product</td>
+               <td>String</td>
+               <td>20</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>collection_id</td>
+               <td>String</td>
+               <td>40</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>request_id</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>addon_ids</td>
+               <td>String</td>
+               <td>500</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="collections output-text" href="#collections output-icon">collections output</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>source_timestamp</td>
+               <td>timestamp</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>utc_date_id</td>
+               <td>utc_date_id</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>location_id</td>
+               <td>location_id</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>request_locale</td>
+               <td>request_locale</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>product</td>
+               <td>product</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>collection_id</td>
+               <td>collection_id</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>request_id</td>
+               <td>request_id</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>addon_ids</td>
+               <td>addon_ids</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="share input-text" href="#share input-icon">share input</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>timestamp</td>
+               <td>String</td>
+               <td>13</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>utc_date_id</td>
+               <td>Integer</td>
+               <td>4</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>utc_hour</td>
+               <td>Integer</td>
+               <td>2</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>location_id</td>
+               <td>Integer</td>
+               <td>9</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>request_locale</td>
+               <td>String</td>
+               <td>15</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>product</td>
+               <td>String</td>
+               <td>20</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>addon_id</td>
+               <td>Integer</td>
+               <td>9</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>service</td>
+               <td>String</td>
+               <td>50</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>user_agent</td>
+               <td>String</td>
+               <td>1024</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="share output-text" href="#share output-icon">share output</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>source_timestamp</td>
+               <td>timestamp</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>utc_date_id</td>
+               <td>utc_date_id</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>utc_hour</td>
+               <td>utc_hour</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>location_id</td>
+               <td>location_id</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>request_locale</td>
+               <td>request_locale</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>product</td>
+               <td>product</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>addon_id</td>
+               <td>addon_id</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>service</td>
+               <td>service</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>user_agent</td>
+               <td>user_agent</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-VerticaBulkLoader"></div>
+      <h3 class="step-heading"><a name="versioncheck bulk_loader-text" href="#versioncheck bulk_loader-icon">versioncheck bulk_loader</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>datacenter</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>source_site</td>
+               <td>site</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>source_server</td>
+               <td>server</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>source_filename</td>
+               <td>filename</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>source_timestamp</td>
+               <td>timestamp</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>utc_date</td>
+               <td>utc_date</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>utc_hour</td>
+               <td>utc_hour</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>utc_minute</td>
+               <td>utc_minute</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>utc_date_id</td>
+               <td>utc_date_id</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>product_id</td>
+               <td>product_id</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>location_id</td>
+               <td>location_id</td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>addon_id</td>
+               <td>addon_id</td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>addon_guid</td>
+               <td>addon_guid</td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>addon_version</td>
+               <td>addon_version</td>
+            </tr>
+            <tr>
+               <th>15</th>
+               <td>addon_name</td>
+               <td>addon_name</td>
+            </tr>
+            <tr>
+               <th>16</th>
+               <td>max_app_version</td>
+               <td>max_app_version</td>
+            </tr>
+            <tr>
+               <th>17</th>
+               <td>addon_status</td>
+               <td>addon_status</td>
+            </tr>
+            <tr>
+               <th>18</th>
+               <td>addon_locale</td>
+               <td>product_locale</td>
+            </tr>
+            <tr>
+               <th>19</th>
+               <td>product_os</td>
+               <td>product_os</td>
+            </tr>
+            <tr>
+               <th>20</th>
+               <td>product_build_target</td>
+               <td>product_build_target</td>
+            </tr>
+            <tr>
+               <th>21</th>
+               <td>update_type</td>
+               <td>update_type</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="versioncheck input-text" href="#versioncheck input-icon">versioncheck input</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      Y
+      <script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

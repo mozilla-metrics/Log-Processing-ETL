@@ -1,0 +1,481 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/eod_processing.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/eod_processing.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: eod_processing
+            relative-path: "/timestamped_log_manager"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: job "eod_processing"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "eod_processing"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2010/03/10 17:06:21.241</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2010/03/10 17:06:21.241</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job does not define any parameters.
+         
+      </p>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 1078px;&#xA;            height: 328px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Get dates"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:43.333333333333336px;&#xA;                " href="#START-text">START</a><a name="Run daily aggregates-icon"></a><div id="Run daily aggregates" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:650px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail error condition"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Advance epoch"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:623.3333333333334px;&#xA;                " href="run_daily_aggregates.kjb.html">Run daily aggregates</a><a name="Run Vertica GAH-icon"></a><div id="Run Vertica GAH" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:850px;&#xA;                    top:100px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail error condition"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#export_daily_amo_stats"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Set Successful flag for EOD"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:132px;&#xA;                    left:830px;&#xA;                " href="/etl/gah_vertica/kettle/GenericAggHandler.kjb.html">Run Vertica GAH</a><a name="Export to Socorro-icon"></a><div id="Export to Socorro" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:850px;&#xA;                    top:200px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Export to Socorro Staging"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail export error"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:232px;&#xA;                    left:827.3333333333334px;&#xA;                " href="/etl/socorro/extract_adu.ktr.html">Export to Socorro</a><a name="export_daily_amo_stats-icon"></a><div id="export_daily_amo_stats" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:850px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Export to Socorro"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail export error"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:820.6666666666666px;&#xA;                " href="/etl/amo/export_daily_amo_stats.kjb.html">export_daily_amo_stats</a><a name="Abort if error-icon"></a><div id="Abort if error" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-ABORT" style="&#xA;                    left:650px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:631.3333333333334px;&#xA;                " href="#Abort if error-text">Abort if error</a><a name="Mail error condition-icon"></a><div id="Mail error condition" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:550px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Set Failed flag for EOD"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:523.3333333333334px;&#xA;                " href="#Mail error condition-text">Mail error condition</a><a name="Set Successful flag for EOD-icon"></a><div id="Set Successful flag for EOD" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SQL" style="&#xA;                    left:1000px;&#xA;                    top:100px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Mail success"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:132px;&#xA;                    left:964px;&#xA;                " href="#Set Successful flag for EOD-text">Set Successful flag for EOD</a><a name="Set Failed flag for EOD-icon"></a><div id="Set Failed flag for EOD" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SQL" style="&#xA;                    left:550px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Abort if error"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:519.3333333333334px;&#xA;                " href="#Set Failed flag for EOD-text">Set Failed flag for EOD</a><a name="Set Running flag for EOD-icon"></a><div id="Set Running flag for EOD" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SQL" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#audit_server_traffic"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail error condition"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:118px;&#xA;                " href="#Set Running flag for EOD-text">Set Running flag for EOD</a><a name="Already has successful eod?-icon"></a><div id="Already has successful eod?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-EVAL_TABLE_CONTENT" style="&#xA;                    left:50px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Set Running flag for EOD"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Success 1"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:14px;&#xA;                " href="#Already has successful eod?-text">Already has successful eod?</a><a name="Success 1-icon"></a><div id="Success 1" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SUCCESS" style="&#xA;                    left:150px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:138px;&#xA;                " href="#Success 1-text">Success 1</a><a name="audit_server_traffic-icon"></a><div id="audit_server_traffic" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:150px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail error condition"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Wait for no required"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:123.33333333333333px;&#xA;                " href="audit_server_traffic.ktr.html">audit_server_traffic</a><a name="Mail missing logs-icon"></a><div id="Mail missing logs" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:250px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Wait for no required"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Set Failed flag for EOD"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:227.33333333333334px;&#xA;                " href="#Mail missing logs-text">Mail missing logs</a><a name="Run dimension update-icon"></a><div id="Run dimension update" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:550px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail error condition"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Run daily aggregates"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:523.3333333333334px;&#xA;                " href="/etl/dimensions/update.kjb.html">Run dimension update</a><a name="Mail success-icon"></a><div id="Mail success" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:1000px;&#xA;                    top:200px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:232px;&#xA;                    left:984px;&#xA;                " href="#Mail success-text">Mail success</a><a name="Wait for no required-icon"></a><div id="Wait for no required" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-WAIT_FOR_SQL" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail missing logs"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Guard for race"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail missing logs"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Guard for race"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:223.33333333333334px;&#xA;                " href="#Wait for no required-text">Wait for no required</a><a name="Run product dimension update-icon"></a><div id="Run product dimension update" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:450px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Run dimension update"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail error condition"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:412.6666666666667px;&#xA;                " href="/etl/dimensions/product_version_management.kjb.html">Run product dimension update</a><a name="Advance epoch-icon"></a><div id="Advance epoch" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SQL" style="&#xA;                    left:750px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Run Vertica GAH"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:732.6666666666666px;&#xA;                " href="#Advance epoch-text">Advance epoch</a><a name="Get dates-icon"></a><div id="Get dates" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Already has successful eod?"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:38px;&#xA;                " href="get_dates.ktr.html">Get dates</a><a name="Export to Socorro Staging-icon"></a><div id="Export to Socorro Staging" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:850px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail export error"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:816.6666666666666px;&#xA;                " href="/etl/socorro/extract_adu.ktr.html">Export to Socorro Staging</a><a name="Guard for race-icon"></a><div id="Guard for race" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-EVAL_TABLE_CONTENT" style="&#xA;                    left:350px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Run product dimension update"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:331.3333333333333px;&#xA;                " href="#Guard for race-text">Guard for race</a><a name="Wait for no required-icon"></a><div id="Wait for no required" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-WAIT_FOR_SQL" style="&#xA;                    left:350px;&#xA;                    top:200px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail missing logs"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Guard for race"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail missing logs"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Guard for race"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:232px;&#xA;                    left:323.3333333333333px;&#xA;                " href="#Wait for no required-text">Wait for no required</a><a name="Mail missing logs-icon"></a><div id="Mail missing logs" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:350px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Wait for no required"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Set Failed flag for EOD"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:327.3333333333333px;&#xA;                " href="#Mail missing logs-text">Mail missing logs</a><a name="Mail export error-icon"></a><div id="Mail export error" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:750px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:727.3333333333334px;&#xA;                " href="#Mail export error-text">Mail export error</a></div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>VERTICA_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_DB</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Run daily aggregates">Run daily aggregates</a>, <a href="#audit_server_traffic">audit_server_traffic</a>, <a href="#Get dates">Get dates</a></td>
+            </tr>
+            <tr>
+               <th>PREVIOUS_UTC_DATE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Export to Socorro">Export to Socorro</a>, <a href="#export_daily_amo_stats">export_daily_amo_stats</a>, <a href="#Set Successful flag for EOD">Set Successful flag for EOD</a>, <a href="#Set Failed flag for EOD">Set Failed flag for EOD</a>, <a href="#Set Running flag for EOD">Set Running flag for EOD</a>, <a href="#Already has successful eod?">Already has successful eod?</a>, <a href="#Mail success">Mail success</a>, <a href="#Export to Socorro Staging">Export to Socorro Staging</a></td>
+            </tr>
+            <tr>
+               <th>EOD_LAST_HOUR</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Wait for no required">Wait for no required</a>, <a href="#Guard for race">Guard for race</a>, <a href="#Wait for no required">Wait for no required</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job defines 2 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Job Entries
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics">metrics</a></th>
+               <td>VERTICA</td>
+               <td>Native</td>
+               <td>${VERTICA_HOST}</td>
+               <td>${VERTICA_PORT}</td>
+               <td>${VERTICA_USER}</td>
+               <td><a href="#metrics">Advance epoch</a></td>
+            </tr>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Set Successful flag for EOD</a>, <a href="#metrics mysql">Set Failed flag for EOD</a>, <a href="#metrics mysql">Set Running flag for EOD</a>, <a href="#metrics mysql">Already has successful eod?</a>, <a href="#metrics mysql">Wait for no required</a>, <a href="#metrics mysql">Guard for race</a>, <a href="#metrics mysql">Wait for no required</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics">metrics</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${VERTICA_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>VERTICA</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${VERTICA_DB}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${VERTICA_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${VERTICA_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${VERTICA_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>Special entries</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="Run daily aggregates-text" href="#Run daily aggregates-icon">Run daily aggregates</a></h3>
+      <p>Job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="Run Vertica GAH-text" href="#Run Vertica GAH-icon">Run Vertica GAH</a></h3>
+      <p>Job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Export to Socorro-text" href="#Export to Socorro-icon">Export to Socorro</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="export_daily_amo_stats-text" href="#export_daily_amo_stats-icon">export_daily_amo_stats</a></h3>
+      <p>Job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-ABORT"></div>
+      <h3 class="entry-heading"><a name="Abort if error-text" href="#Abort if error-icon">Abort if error</a></h3>
+      <p>Abort job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-MAIL"></div>
+      <h3 class="entry-heading"><a name="Mail error condition-text" href="#Mail error condition-icon">Mail error condition</a></h3>
+      <p>Mail</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SQL"></div>
+      <h3 class="entry-heading"><a name="Set Successful flag for EOD-text" href="#Set Successful flag for EOD-icon">Set Successful flag for EOD</a></h3>
+      <p>SQL</p>
+      <h4>SQL</h4><pre class="brush: sql;">REPLACE INTO eod_status SET `utc_date_string` = '${PREVIOUS_UTC_DATE}', `status` = 'Successful', `audit_snapshot` = (
+	SELECT CONCAT(site,'\t',servers,'\t',timestamps) AS results
+	FROM (
+		SELECT
+		  site
+		, GROUP_CONCAT(server ORDER BY server SEPARATOR ', ') AS servers
+		, timestamps
+		FROM (
+			SELECT
+			  site
+			, CONCAT(datacenter,'-',server) AS server
+			, GROUP_CONCAT(timestamp ORDER BY timestamp SEPARATOR ', ') AS timestamps
+			FROM `server_timestamps_to_process`
+			WHERE required = 'Y'
+			GROUP BY 1,2
+		) a
+		GROUP BY 1,3
+	) b
+	ORDER BY site, timestamps
+	LIMIT 1
+);</pre><div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SQL"></div>
+      <h3 class="entry-heading"><a name="Set Failed flag for EOD-text" href="#Set Failed flag for EOD-icon">Set Failed flag for EOD</a></h3>
+      <p>SQL</p>
+      <h4>SQL</h4><pre class="brush: sql;">REPLACE INTO eod_status SET `utc_date_string` = '${PREVIOUS_UTC_DATE}', `status` = 'Failed', `audit_snapshot` = (
+	SELECT CONCAT(site,'\t',servers,'\t',timestamps) AS results
+	FROM (
+		SELECT
+		  site
+		, GROUP_CONCAT(server ORDER BY server SEPARATOR ', ') AS servers
+		, timestamps
+		FROM (
+			SELECT
+			  site
+			, CONCAT(datacenter,'-',server) AS server
+			, GROUP_CONCAT(timestamp ORDER BY timestamp SEPARATOR ', ') AS timestamps
+			FROM `server_timestamps_to_process`
+			WHERE required = 'Y'
+			GROUP BY 1,2
+		) a
+		GROUP BY 1,3
+	) b
+	ORDER BY site, timestamps
+	LIMIT 1
+);</pre><div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SQL"></div>
+      <h3 class="entry-heading"><a name="Set Running flag for EOD-text" href="#Set Running flag for EOD-icon">Set Running flag for EOD</a></h3>
+      <p>SQL</p>
+      <h4>SQL</h4><pre class="brush: sql;">REPLACE INTO eod_status SET `utc_date_string` = '${PREVIOUS_UTC_DATE}', `status` = 'Running'</pre><div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-EVAL_TABLE_CONTENT"></div>
+      <h3 class="entry-heading"><a name="Already has successful eod?-text" href="#Already has successful eod?-icon">Already has successful eod?</a></h3>
+      <p>Evaluate rows number in a table</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SUCCESS"></div>
+      <h3 class="entry-heading"><a name="Success 1-text" href="#Success 1-icon">Success 1</a></h3>
+      <p>Success</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="audit_server_traffic-text" href="#audit_server_traffic-icon">audit_server_traffic</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-MAIL"></div>
+      <h3 class="entry-heading"><a name="Mail missing logs-text" href="#Mail missing logs-icon">Mail missing logs</a></h3>
+      <p>Mail</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="Run dimension update-text" href="#Run dimension update-icon">Run dimension update</a></h3>
+      <p>Job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-MAIL"></div>
+      <h3 class="entry-heading"><a name="Mail success-text" href="#Mail success-icon">Mail success</a></h3>
+      <p>Mail</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-WAIT_FOR_SQL"></div>
+      <h3 class="entry-heading"><a name="Wait for no required-text" href="#Wait for no required-icon">Wait for no required</a></h3>
+      <p>Wait for SQL</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="Run product dimension update-text" href="#Run product dimension update-icon">Run product dimension update</a></h3>
+      <p>Job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SQL"></div>
+      <h3 class="entry-heading"><a name="Advance epoch-text" href="#Advance epoch-icon">Advance epoch</a></h3>
+      <p>SQL</p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT ADVANCE_EPOCH();</pre><div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Get dates-text" href="#Get dates-icon">Get dates</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Export to Socorro Staging-text" href="#Export to Socorro Staging-icon">Export to Socorro Staging</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-EVAL_TABLE_CONTENT"></div>
+      <h3 class="entry-heading"><a name="Guard for race-text" href="#Guard for race-icon">Guard for race</a></h3>
+      <p>Evaluate rows number in a table</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-WAIT_FOR_SQL"></div>
+      <h3 class="entry-heading"><a name="Wait for no required-text" href="#Wait for no required-icon">Wait for no required</a></h3>
+      <p>Wait for SQL</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-MAIL"></div>
+      <h3 class="entry-heading"><a name="Mail missing logs-text" href="#Mail missing logs-icon">Mail missing logs</a></h3>
+      <p>Mail</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-MAIL"></div>
+      <h3 class="entry-heading"><a name="Mail export error-text" href="#Mail export error-icon">Mail export error</a></h3>
+      <p>Mail</p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

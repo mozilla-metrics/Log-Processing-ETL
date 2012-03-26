@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file are subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+<job>
+  <name>product_version_management</name>
+    <description/>
+    <extended_description>
+The contents of this file are subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this file,
+You can obtain one at http://mozilla.org/MPL/2.0/.
+    </extended_description>
+    <job_version/>
+    <job_status>0</job_status>
+  <directory>&#47;</directory>
+  <created_user>-</created_user>
+  <created_date>2010&#47;03&#47;05 01:16:06.046</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2010&#47;03&#47;05 01:16:06.046</modified_date>
+    <parameters>
+        <parameter>
+            <name>input</name>
+            <default_value>&#47;etl&#47;dimensions&#47;product_versions_to_check.csv</default_value>
+            <description>CSV file containing a list of specific product versions to manage</description>
+        </parameter>
+        <parameter>
+            <name>mode</name>
+            <default_value>check</default_value>
+            <description>&quot;check&quot; to report only or &quot;update&quot; to modify database</description>
+        </parameter>
+        <parameter>
+            <name>output</name>
+            <default_value>&#47;etl&#47;dimensions&#47;product_versions_result</default_value>
+            <description>Results of the transformation tests (omit extension)</description>
+        </parameter>
+        <parameter>
+            <name>smtp</name>
+            <default_value>localhost</default_value>
+            <description>Default server to use for sending e-mail notification</description>
+        </parameter>
+        <parameter>
+            <name>to</name>
+            <default_value>metrics-mozilla@webdetails.pt</default_value>
+            <description>Default address which will receive e-mail notification</description>
+        </parameter>
+    </parameters>
+  <connection>
+    <name>metrics mysql</name>
+    <server>${METRICS_MYSQL_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${METRICS_MYSQL_NAME}</database>
+    <port>${METRICS_MYSQL_PORT}</port>
+    <username>${METRICS_MYSQL_USER}</username>
+    <password>${METRICS_MYSQL_PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>UTF-8</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useServerPrepStmts</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useUnicode</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <logconnection>metrics mysql</logconnection>
+  <logtable>log_job</logtable>
+  <size_limit_lines>1000</size_limit_lines>
+   <use_batchid>Y</use_batchid>
+   <pass_batchid>Y</pass_batchid>
+   <use_logfield>Y</use_logfield>
+   <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description>Special entries</description>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>100</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>product_version_management</name>
+      <description>Transformation</description>
+      <type>TRANS</type>
+      <filename>${Internal.Job.Filename.Directory}&#47;product_version_management.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>Y</set_logfile>
+      <logfile>&#47;etl&#47;logs&#47;product_version_management</logfile>
+      <logext>log</logext>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>100</xloc>
+      <yloc>250</yloc>
+      </entry>
+    <entry>
+      <name>Mail results</name>
+      <description>Mail</description>
+      <type>MAIL</type>
+      <server>${smtp}</server>
+      <port>25</port>
+      <destination>${to}</destination>
+      <destinationCc>metrics-alerts@mozilla.org</destinationCc>
+      <destinationBCc/>
+      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replytoname>Metrics</replytoname>
+      <subject>Product Version Management ${mode} mode results</subject>
+      <include_date>N</include_date>
+      <contact_person/>
+      <contact_phone/>
+      <comment>Please review the attached results.  If this run was only &quot;check&quot; mode, then you can prevent these updates from happening during the End of Day processing by running the following command:
+ssh cm-metricsetl01 touch &#47;etl&#47;dimensions&#47;kill_product_version_management_update
+
+Otherwise, the updates will be performed at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portugal</comment>
+      <include_files>Y</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>N</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user/>
+      <auth_password>Encrypted </auth_password>
+      <only_comment>Y</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>N</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>normal</priority>
+      <importance>normal</importance>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>        <filetype>GENERAL</filetype>
+        <filetype>LOG</filetype>
+      </filetypes>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>200</xloc>
+      <yloc>350</yloc>
+      </entry>
+    <entry>
+      <name>Checks if kill file exists</name>
+      <description>Checks if files exist</description>
+      <type>FILES_EXIST</type>
+      <filename/>
+      <fields>
+        <field>
+          <name>&#47;etl&#47;dimensions&#47;kill_product_version_management_update</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>100</xloc>
+      <yloc>150</yloc>
+      </entry>
+    <entry>
+      <name>Mail kill notice</name>
+      <description>Mail</description>
+      <type>MAIL</type>
+      <server>${smtp}</server>
+      <port>25</port>
+      <destination>${to}</destination>
+      <destinationCc>metrics-alerts@mozilla.org</destinationCc>
+      <destinationBCc/>
+      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replytoname>Metrics</replytoname>
+      <subject>Product Version Management is halted due to kill file</subject>
+      <include_date>N</include_date>
+      <contact_person/>
+      <contact_phone/>
+      <comment>Currently, the file cm-metricsetl01:&#47;etl&#47;dimensions&#47;kill_product_version_management_update exists, so the Product Version Management process will not check or update product version descriptions for the dashboard.
+Please verify why the file was created and remove it in order to resume normal processing.
+
+Check mode normally runs at 19:30 Pacific &#47; 22:30 Eastern &#47; 03:30 Portugal
+Update mode normally runs at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portugal</comment>
+      <include_files>Y</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>N</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user/>
+      <auth_password>Encrypted </auth_password>
+      <only_comment>Y</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>Y</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>high</priority>
+      <importance>high</importance>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>        <filetype>GENERAL</filetype>
+      </filetypes>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>200</xloc>
+      <yloc>150</yloc>
+      </entry>
+    <entry>
+      <name>Simple evaluation 1</name>
+      <description>Simple evaluation</description>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>field</valuetype>
+      <fieldname>num_results</fieldname>
+      <variablename/>
+      <fieldtype>number</fieldtype>
+      <mask/>
+      <comparevalue>0</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>equal</successcondition>
+      <successnumbercondition>greater</successnumbercondition>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>100</xloc>
+      <yloc>350</yloc>
+      </entry>
+    <entry>
+      <name>Mail error notice</name>
+      <description>Mail</description>
+      <type>MAIL</type>
+      <server>${smtp}</server>
+      <port>25</port>
+      <destination>${to}</destination>
+      <destinationCc>metrics-alerts@mozilla.org</destinationCc>
+      <destinationBCc/>
+      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replytoname>Metrics</replytoname>
+      <subject>Product Version Management execution returned an error</subject>
+      <include_date>N</include_date>
+      <contact_person/>
+      <contact_phone/>
+      <comment>Please  correct the error in order to resume normal processing.
+
+Check mode normally runs at 19:30 Pacific &#47; 22:30 Eastern &#47; 03:30 Portugal
+Update mode normally runs at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portugal</comment>
+      <include_files>Y</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>N</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user/>
+      <auth_password>Encrypted </auth_password>
+      <only_comment>Y</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>Y</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>high</priority>
+      <importance>high</importance>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>        <filetype>LOG</filetype>
+      </filetypes>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>200</xloc>
+      <yloc>250</yloc>
+      </entry>
+    <entry>
+      <name>Nothing to do</name>
+      <description>Success</description>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>100</xloc>
+      <yloc>450</yloc>
+      </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>START</from>
+      <to>Checks if kill file exists</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Checks if kill file exists</from>
+      <to>product_version_management</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Checks if kill file exists</from>
+      <to>Mail kill notice</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>product_version_management</from>
+      <to>Simple evaluation 1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>product_version_management</from>
+      <to>Mail error notice</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation 1</from>
+      <to>Mail results</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Simple evaluation 1</from>
+      <to>Nothing to do</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+</job>

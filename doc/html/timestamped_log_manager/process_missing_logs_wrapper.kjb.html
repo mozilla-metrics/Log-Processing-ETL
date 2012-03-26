@@ -1,0 +1,287 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/process_missing_logs_wrapper.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/process_missing_logs_wrapper.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: process_missing_logs_wrapper
+            relative-path: "/timestamped_log_manager"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: job "process_missing_logs_wrapper"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "process_missing_logs_wrapper"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2010/03/18 12:17:35.379</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2010/03/18 12:17:35.379</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job defines 1 parameters.
+         
+      </p>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  Name
+                  
+               </th>
+               <th>
+                  Default Value
+                  
+               </th>
+               <th>
+                  Description
+                  
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>allowedLogLagHours</th>
+               <td>-2</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 428px;&#xA;            height: 428px;&#xA;        "><a name="process_missing_logs-icon"></a><div id="process_missing_logs" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:50px;&#xA;                    top:350px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Get log"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Rename log"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:382px;&#xA;                    left:23.333333333333332px;&#xA;                " href="/etl/timestamped_log_manager/process_missing_logs.kjb.html">process_missing_logs</a><a name="Calculate age of current_run log-icon"></a><div id="Calculate age of current_run log" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SHELL" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Get log"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Success 1"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:107.33333333333334px;&#xA;                " href="#Calculate age of current_run log-text">Calculate age of current_run log</a><a name="Send mail for lingering run-icon"></a><div id="Send mail for lingering run" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:314px;&#xA;                " href="#Send mail for lingering run-text">Send mail for lingering run</a><a name="Get log-icon"></a><div id="Get log" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-ADD_RESULT_FILENAMES" style="&#xA;                    left:250px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Send mail for lingering run"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Send error run mail"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:240.66666666666666px;&#xA;                " href="#Get log-text">Get log</a><a name="Success 1-icon"></a><div id="Success 1" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SUCCESS" style="&#xA;                    left:300px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:288px;&#xA;                " href="#Success 1-text">Success 1</a><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Check existing log?"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:43.333333333333336px;&#xA;                " href="#START-text">START</a><a name="Get log-icon"></a><div id="Get log" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-ADD_RESULT_FILENAMES" style="&#xA;                    left:150px;&#xA;                    top:350px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Send mail for lingering run"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Send error run mail"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:382px;&#xA;                    left:140.66666666666666px;&#xA;                " href="#Get log-text">Get log</a><a name="Send error run mail-icon"></a><div id="Send error run mail" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:250px;&#xA;                    top:350px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:382px;&#xA;                    left:224.66666666666666px;&#xA;                " href="#Send error run mail-text">Send error run mail</a><a name="Rename log-icon"></a><div id="Rename log" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SHELL" style="&#xA;                    left:150px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Success 1"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:136.66666666666666px;&#xA;                " href="#Rename log-text">Rename log</a><a name="Check existing log?-icon"></a><div id="Check existing log?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SHELL" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Calculate age of current_run log"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#process_missing_logs"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:24.666666666666668px;&#xA;                " href="#Check existing log?-text">Check existing log?</a></div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Job Entries
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="process_missing_logs-text" href="#process_missing_logs-icon">process_missing_logs</a></h3>
+      <p>Job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SHELL"></div>
+      <h3 class="entry-heading"><a name="Calculate age of current_run log-text" href="#Calculate age of current_run log-icon">Calculate age of current_run log</a></h3>
+      <p>Shell</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-MAIL"></div>
+      <h3 class="entry-heading"><a name="Send mail for lingering run-text" href="#Send mail for lingering run-icon">Send mail for lingering run</a></h3>
+      <p>Mail</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-ADD_RESULT_FILENAMES"></div>
+      <h3 class="entry-heading"><a name="Get log-text" href="#Get log-icon">Get log</a></h3>
+      <p>Add filenames to result</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SUCCESS"></div>
+      <h3 class="entry-heading"><a name="Success 1-text" href="#Success 1-icon">Success 1</a></h3>
+      <p>Success</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>Special entries</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-ADD_RESULT_FILENAMES"></div>
+      <h3 class="entry-heading"><a name="Get log-text" href="#Get log-icon">Get log</a></h3>
+      <p>Add filenames to result</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-MAIL"></div>
+      <h3 class="entry-heading"><a name="Send error run mail-text" href="#Send error run mail-icon">Send error run mail</a></h3>
+      <p>Mail</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SHELL"></div>
+      <h3 class="entry-heading"><a name="Rename log-text" href="#Rename log-icon">Rename log</a></h3>
+      <p>Shell</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SHELL"></div>
+      <h3 class="entry-heading"><a name="Check existing log?-text" href="#Check existing log?-icon">Check existing log?</a></h3>
+      <p>Shell</p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

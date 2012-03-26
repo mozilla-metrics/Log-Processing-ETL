@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file are subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+<job>
+  <name>backprocess_file_glob</name>
+    <description/>
+    <extended_description>
+The contents of this file are subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this file,
+You can obtain one at http://mozilla.org/MPL/2.0/.
+    </extended_description>
+    <job_version/>
+    <job_status>0</job_status>
+  <directory>&#47;</directory>
+  <created_user>-</created_user>
+  <created_date>2010&#47;03&#47;18 10:31:24.958</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2010&#47;03&#47;18 10:31:24.958</modified_date>
+    <parameters>
+        <parameter>
+            <name>DATACENTER</name>
+            <default_value>xxx</default_value>
+            <description>Required: Datacenter code for the logfiles (i.e. sjc ams phx)</description>
+        </parameter>
+        <parameter>
+            <name>DIRECTORY</name>
+            <default_value>xxx</default_value>
+            <description>Required: The directory to look for files matching PATTERN</description>
+        </parameter>
+        <parameter>
+            <name>PATTERN</name>
+            <default_value>xxx</default_value>
+            <description>Required: The Java RegEx pattern to filter for files</description>
+        </parameter>
+        <parameter>
+            <name>SERVER</name>
+            <default_value>xxx</default_value>
+            <description>Required: Server name for the logfiles (i.e. zlb01 ams-zlb01 netscaler) Can&apos;t process more than one server at a time.</description>
+        </parameter>
+        <parameter>
+            <name>SITE</name>
+            <default_value>xxx</default_value>
+            <description>Required: Site code for the logfiles (i.e. amo vamo dmo aus)</description>
+        </parameter>
+        <parameter>
+            <name>SITE_TRANSFORMATION</name>
+            <default_value>xxx</default_value>
+            <description>Required: The transformation to execute</description>
+        </parameter>
+        <parameter>
+            <name>raw_table_suffix</name>
+            <default_value/>
+            <description>_back for back processing</description>
+        </parameter>
+    </parameters>
+  <logconnection/>
+  <logtable/>
+  <size_limit_lines/>
+   <use_batchid>Y</use_batchid>
+   <pass_batchid>N</pass_batchid>
+   <use_logfield>Y</use_logfield>
+   <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description>Special entries</description>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>50</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Get filenames by glob</name>
+      <description>Transformation</description>
+      <type>TRANS</type>
+      <filename>${Internal.Job.Filename.Directory}&#47;get_filenames_by_glob.ktr</filename>
+      <transname/>
+      <directory/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>800</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Process site</name>
+      <description>Transformation</description>
+      <type>TRANS</type>
+      <filename>${SITE_TRANSFORMATION}</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>900</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Check DATACENTER</name>
+      <description>Simple evaluation</description>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${DATACENTER}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>xxx</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>different</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>150</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Abort job 1</name>
+      <description>Abort job</description>
+      <type>ABORT</type>
+      <message>DATACENTER parameter required</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>150</xloc>
+      <yloc>100</yloc>
+      </entry>
+    <entry>
+      <name>Check SITE</name>
+      <description>Simple evaluation</description>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${SITE}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>xxx</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>different</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>250</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Abort job 2</name>
+      <description>Abort job</description>
+      <type>ABORT</type>
+      <message>SITE parameter required</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>250</xloc>
+      <yloc>100</yloc>
+      </entry>
+    <entry>
+      <name>Check SERVER</name>
+      <description>Simple evaluation</description>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${SERVER}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>xxx</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>different</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>352</xloc>
+      <yloc>51</yloc>
+      </entry>
+    <entry>
+      <name>Abort job 3</name>
+      <description>Abort job</description>
+      <type>ABORT</type>
+      <message>SERVER parameter required</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>352</xloc>
+      <yloc>101</yloc>
+      </entry>
+    <entry>
+      <name>Check DIRECTORY</name>
+      <description>Simple evaluation</description>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${DIRECTORY}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>xxx</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>different</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>450</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Abort job 4</name>
+      <description>Abort job</description>
+      <type>ABORT</type>
+      <message>DIRECTORY parameter required</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>450</xloc>
+      <yloc>100</yloc>
+      </entry>
+    <entry>
+      <name>Check PATTERN</name>
+      <description>Simple evaluation</description>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${PATTERN}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>xxx</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>different</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>551</xloc>
+      <yloc>49</yloc>
+      </entry>
+    <entry>
+      <name>Abort job 5</name>
+      <description>Abort job</description>
+      <type>ABORT</type>
+      <message>PATTERN parameter required</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>551</xloc>
+      <yloc>99</yloc>
+      </entry>
+    <entry>
+      <name>Check SITE_TRANSFORMATION</name>
+      <description>Simple evaluation</description>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>${SITE_TRANSFORMATION}</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>xxx</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>different</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>651</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Abort job 6</name>
+      <description>Abort job</description>
+      <type>ABORT</type>
+      <message>SITE_TRANSFORMATION parameter required</message>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>651</xloc>
+      <yloc>100</yloc>
+      </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>Get filenames by glob</from>
+      <to>Process site</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Check DATACENTER</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Check DATACENTER</from>
+      <to>Abort job 1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check DATACENTER</from>
+      <to>Check SITE</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check SITE</from>
+      <to>Check SERVER</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check SERVER</from>
+      <to>Check DIRECTORY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check DIRECTORY</from>
+      <to>Check PATTERN</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check PATTERN</from>
+      <to>Check SITE_TRANSFORMATION</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check SITE</from>
+      <to>Abort job 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check SERVER</from>
+      <to>Abort job 3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check DIRECTORY</from>
+      <to>Abort job 4</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check PATTERN</from>
+      <to>Abort job 5</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check SITE_TRANSFORMATION</from>
+      <to>Abort job 6</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Check SITE_TRANSFORMATION</from>
+      <to>Get filenames by glob</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+  </notepads>
+</job>

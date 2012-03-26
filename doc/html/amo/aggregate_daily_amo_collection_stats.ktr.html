@@ -1,0 +1,482 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/aggregate_daily_amo_collection_stats.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/aggregate_daily_amo_collection_stats.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/amo"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "aggregate_daily_amo_collection_stats"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (1)</th>
+               <th>Transform</th>
+               <th>Output (1)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Retrieve collection request facts</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>Aggregate fact table output</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 728px;&#xA;            height: 328px;&#xA;        "><a name="Aggregate fact table output-icon"></a><div id="Aggregate fact table output" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:350px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Count inserts"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Aggregate fact table output-text" style="&#xA;                    top:282px;&#xA;                    left:314px;                    &#xA;                ">Aggregate fact table output</a><a name="Count addons per request-icon"></a><div id="Count addons per request" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:200px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Split addon_ids to rows again"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Count addons per request-text" style="&#xA;                    top:82px;&#xA;                    left:168px;                    &#xA;                ">Count addons per request</a><a name="Count inserts-icon"></a><div id="Count inserts" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:500px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log inserts"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Count inserts-text" style="&#xA;                    top:82px;&#xA;                    left:482.6666666666667px;                    &#xA;                ">Count inserts</a><a name="Count num_addon_requests-icon"></a><div id="Count num_addon_requests" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Aggregate fact table output"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Count num_addon_requests-text" style="&#xA;                    top:182px;&#xA;                    left:318px;                    &#xA;                ">Count num_addon_requests</a><a name="Delete aggregate collection records-icon"></a><div id="Delete aggregate collection records" class="&#xA;                    step-icon&#xA;                    step-icon-ExecSQL" style="&#xA;                    left:650px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log deletes"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Delete aggregate collection records-text" style="&#xA;                    top:82px;&#xA;                    left:603.3333333333334px;                    &#xA;                ">Delete aggregate collection records</a><a name="Log deletes-icon"></a><div id="Log deletes" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:650px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log deletes-text" style="&#xA;                    top:182px;&#xA;                    left:635.3333333333334px;                    &#xA;                ">Log deletes</a><a name="Log inserts-icon"></a><div id="Log inserts" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:500px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log inserts-text" style="&#xA;                    top:182px;&#xA;                    left:485.3333333333333px;                    &#xA;                ">Log inserts</a><a name="Retrieve collection request facts-icon"></a><div id="Retrieve collection request facts" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Split addon_ids to rows"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Retrieve collection request facts-text" style="&#xA;                    top:82px;&#xA;                    left:6px;                    &#xA;                ">Retrieve collection request facts</a><a name="Sort by addon_id num_addon_requests-icon"></a><div id="Sort by addon_id num_addon_requests" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:350px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Count num_addon_requests"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort by addon_id num_addon_requests-text" style="&#xA;                    top:82px;&#xA;                    left:303.3333333333333px;                    &#xA;                ">Sort by addon_id num_addon_requests</a><a name="Split addon_ids to rows-icon"></a><div id="Split addon_ids to rows" class="&#xA;                    step-icon&#xA;                    step-icon-SplitFieldToRows3" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter empty addon_ids"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Split addon_ids to rows-text" style="&#xA;                    top:182px;&#xA;                    left:19.333333333333332px;                    &#xA;                ">Split addon_ids to rows</a><a name="Split addon_ids to rows again-icon"></a><div id="Split addon_ids to rows again" class="&#xA;                    step-icon&#xA;                    step-icon-SplitFieldToRows3" style="&#xA;                    left:200px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter empty addon_ids 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Split addon_ids to rows again-text" style="&#xA;                    top:182px;&#xA;                    left:161.33333333333334px;                    &#xA;                ">Split addon_ids to rows again</a><a name="Filter empty addon_ids-icon"></a><div id="Filter empty addon_ids" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:50px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Count addons per request"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter empty addon_ids-text" style="&#xA;                    top:282px;&#xA;                    left:20.666666666666668px;                    &#xA;                ">Filter empty addon_ids</a><a name="Filter empty addon_ids 2-icon"></a><div id="Filter empty addon_ids 2" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:200px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Sort by addon_id num_addon_requests"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter empty addon_ids 2-text" style="&#xA;                    top:282px;&#xA;                    left:168px;                    &#xA;                ">Filter empty addon_ids 2</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>DATE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Delete aggregate collection records">Delete aggregate collection records</a>, <a href="#Retrieve collection request facts">Retrieve collection request facts</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Aggregate fact table output</a>, <a href="#metrics mysql">Delete aggregate collection records</a>, <a href="#metrics mysql">Retrieve collection request facts</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="Aggregate fact table output-text" href="#Aggregate fact table output-icon">Aggregate fact table output</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>utc_date_str</td>
+               <td>utc_date_str</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>collection_id</td>
+               <td>collection_id</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>addon_id</td>
+               <td>addon_id</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>num_addons_requested</td>
+               <td>num_addons_requested</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>num_addon_requests</td>
+               <td>num_addon_requests</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>num_collection_requests</td>
+               <td>num_collection_requests</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Count addons per request-text" href="#Count addons per request-icon">Count addons per request</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>num_addons_requested</td>
+               <td>addon_id</td>
+               <td>COUNT_ALL</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Count inserts-text" href="#Count inserts-icon">Count inserts</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>num_inserts</td>
+               <td>addon_id</td>
+               <td>COUNT_ALL</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Count num_addon_requests-text" href="#Count num_addon_requests-icon">Count num_addon_requests</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>num_addon_requests</td>
+               <td>addon_id</td>
+               <td>COUNT_ALL</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>num_collection_requests</td>
+               <td>num_collection_requests</td>
+               <td>FIRST_INCL_NULL</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ExecSQL"></div>
+      <h3 class="step-heading"><a name="Delete aggregate collection records-text" href="#Delete aggregate collection records-icon">Delete aggregate collection records</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">DELETE FROM a_addon_collection_request_totals
+WHERE utc_date_str ${DATE}</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Log deletes-text" href="#Log deletes-icon">Log deletes</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">writeToLog("m", "Deleted "+aggregate_deletes+" records from aggregate table a_addon_collection_request_totals for date "+getVariable("DATE","uninitialized"));
+</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Log inserts-text" href="#Log inserts-icon">Log inserts</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">writeToLog("m", "Inserted "+num_inserts+" records to aggregate table a_addon_collection_request_totals matching criteria date "+getVariable("DATE","uninitialized"));
+</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Retrieve collection request facts-text" href="#Retrieve collection request facts-icon">Retrieve collection request facts</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT d1.date	AS utc_date_str
+, f1.collection_id
+, f1.request_id
+, f1.addon_ids
+, f3.num_collection_requests
+FROM f_addon_collection_requests f1
+JOIN dates d1 ON f1.utc_date_id = d1.date_id
+JOIN (
+	SELECT utc_date_id, collection_id, COUNT(*) AS num_collection_requests
+	FROM f_addon_collection_requests f2
+	JOIN dates d2 ON f2.utc_date_id = d2.date_id
+	WHERE date ${DATE}
+	GROUP BY utc_date_id, collection_id
+	) f3 ON f1.utc_date_id = f3.utc_date_id AND f1.collection_id = f3.collection_id
+WHERE d1.date ${DATE}
+ORDER BY d1.date, f1.collection_id</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort by addon_id num_addon_requests-text" href="#Sort by addon_id num_addon_requests-icon">Sort by addon_id num_addon_requests</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>utc_date_str</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>collection_id</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>addon_id</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>num_addons_requested</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SplitFieldToRows3"></div>
+      <h3 class="step-heading"><a name="Split addon_ids to rows-text" href="#Split addon_ids to rows-icon">Split addon_ids to rows</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SplitFieldToRows3"></div>
+      <h3 class="step-heading"><a name="Split addon_ids to rows again-text" href="#Split addon_ids to rows again-icon">Split addon_ids to rows again</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter empty addon_ids-text" href="#Filter empty addon_ids-icon">Filter empty addon_ids</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter empty addon_ids 2-text" href="#Filter empty addon_ids 2-icon">Filter empty addon_ids 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

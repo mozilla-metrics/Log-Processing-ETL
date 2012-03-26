@@ -1,0 +1,257 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/gah_vertica/kettle/_databaseProcessing.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/gah_vertica/kettle/_databaseProcessing.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: _databaseProcessing
+            relative-path: "/gah_vertica/kettle"
+            documentation-root: "../../.."
+        -->
+      <title>Kettle Documentation: job "_databaseProcessing"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "_databaseProcessing"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2009/05/29 16:07:11.974</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2009/05/29 16:07:11.974</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job does not define any parameters.
+         
+      </p>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 687px;&#xA;            height: 261px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:122px;&#xA;                    top:142px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Table Exist?"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:174px;&#xA;                    left:115.33333333333333px;&#xA;                " href="#START-text">START</a><a name="Create Table-icon"></a><div id="Create Table" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SQL" style="&#xA;                    left:280px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#DUMMY 1"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:264px;&#xA;                " href="#Create Table-text">Create Table</a><a name="Truncate mode?-icon"></a><div id="Truncate mode?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:549px;&#xA;                    top:145px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Handle Truncates"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Handle Increments"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:177px;&#xA;                    left:530.3333333333334px;&#xA;                " href="#Truncate mode?-text">Truncate mode?</a><a name="DUMMY 1-icon"></a><div id="DUMMY 1" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-DUMMY 1" style="&#xA;                    left:418px;&#xA;                    top:143px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Truncate mode?"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:175px;&#xA;                    left:408.6666666666667px;&#xA;                " href="#DUMMY 1-text">DUMMY 1</a><a name="Handle Truncates-icon"></a><div id="Handle Truncates" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:681px;&#xA;                    top:144px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:176px;&#xA;                    left:659.6666666666666px;&#xA;                " href="_handleTruncate.kjb.html">Handle Truncates</a><a name="Handle Increments-icon"></a><div id="Handle Increments" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:550px;&#xA;                    top:275px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:307px;&#xA;                    left:527.3333333333334px;&#xA;                " href="_handleIncrements.kjb.html">Handle Increments</a><a name="Table Exist?-icon"></a><div id="Table Exist?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-EVAL_TABLE_CONTENT" style="&#xA;                    left:279px;&#xA;                    top:143px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#DUMMY 1"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Create Table"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:175px;&#xA;                    left:263px;&#xA;                " href="#Table Exist?-text">Table Exist?</a></div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>GAH_DBUSER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DBPASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DBCLASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DBURL</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_CREATETABLE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Create Table">Create Table</a></td>
+            </tr>
+            <tr>
+               <th>GAH_AGGREGATEMODE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Truncate mode?">Truncate mode?</a></td>
+            </tr>
+            <tr>
+               <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Handle Truncates">Handle Truncates</a>, <a href="#Handle Increments">Handle Increments</a></td>
+            </tr>
+            <tr>
+               <th>GAH_TABLEEXISTS</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Table Exist?">Table Exist?</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Job Entries
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.connection">connection</a></th>
+               <td>GENERIC</td>
+               <td>Native</td>
+               <td></td>
+               <td>1521</td>
+               <td>${GAH_DBUSER}</td>
+               <td><a href="#connection">Create Table</a>, <a href="#connection">Table Exist?</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.connection">connection</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>connection</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>GENERIC</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>1521</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${GAH_DBUSER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${GAH_DBPASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>Special entries</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SQL"></div>
+      <h3 class="entry-heading"><a name="Create Table-text" href="#Create Table-icon">Create Table</a></h3>
+      <p>SQL</p>
+      <h4>SQL</h4><pre class="brush: sql;">${GAH_CREATETABLE}</pre><div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SIMPLE_EVAL"></div>
+      <h3 class="entry-heading"><a name="Truncate mode?-text" href="#Truncate mode?-icon">Truncate mode?</a></h3>
+      <p>Simple evaluation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-DUMMY 1"></div>
+      <h3 class="entry-heading"><a name="DUMMY 1-text" href="#DUMMY 1-icon">DUMMY 1</a></h3>
+      <p>Special entries</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="Handle Truncates-text" href="#Handle Truncates-icon">Handle Truncates</a></h3>
+      <p>Job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="Handle Increments-text" href="#Handle Increments-icon">Handle Increments</a></h3>
+      <p>Job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-EVAL_TABLE_CONTENT"></div>
+      <h3 class="entry-heading"><a name="Table Exist?-text" href="#Table Exist?-icon">Table Exist?</a></h3>
+      <p>Evaluate rows number in a table</p><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

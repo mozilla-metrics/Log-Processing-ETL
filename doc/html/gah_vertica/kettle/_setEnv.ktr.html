@@ -1,0 +1,546 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/gah_vertica/kettle/_setEnv.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/gah_vertica/kettle/_setEnv.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/gah_vertica/kettle"
+            documentation-root: "../../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "_setEnv"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (1)</th>
+               <th>Transform</th>
+               <th>Output (0)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Get data from XML</div>
+               </td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 645px;&#xA;            height: 129px;&#xA;        "><a name="Get data from XML-icon"></a><div id="Get data from XML" class="&#xA;                    step-icon&#xA;                    step-icon-getXMLData" style="&#xA;                    left:381px;&#xA;                    top:149px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Set Variables"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get data from XML-text" style="&#xA;                    top:181px;&#xA;                    left:358.3333333333333px;                    &#xA;                ">Get data from XML</a><a name="Get rows from result-icon"></a><div id="Get rows from result" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:81px;&#xA;                    top:149px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log info"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get rows from result-text" style="&#xA;                    top:181px;&#xA;                    left:54.33333333333333px;                    &#xA;                ">Get rows from result</a><a name="Log info-icon"></a><div id="Log info" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:219px;&#xA;                    top:149px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get data from XML"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log info-text" style="&#xA;                    top:181px;&#xA;                    left:208.33333333333334px;                    &#xA;                ">Log info</a><a name="Set Variables-icon"></a><div id="Set Variables" class="&#xA;                    step-icon&#xA;                    step-icon-SetVariable" style="&#xA;                    left:598px;&#xA;                    top:148px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Set Variables-text" style="&#xA;                    top:180px;&#xA;                    left:580.6666666666666px;                    &#xA;                ">Set Variables</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation does not read any variables.</p>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation does not define any database connections.</p>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-getXMLData"></div>
+      <h3 class="step-heading"><a name="Get data from XML-text" href="#Get data from XML-icon">Get data from XML</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>xpath</th>
+               <th>element_type</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>trim_type</th>
+               <th>repeat</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>DatabaseUrl</td>
+               <td>Database/Url</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>DatabaseClass</td>
+               <td>Database/Class</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>DatabaseSchema</td>
+               <td>Database/Schema</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>DatabaseUser</td>
+               <td>Database/User</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>DatabasePass</td>
+               <td>Database/Pass</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>Table</td>
+               <td>AggregateInfo/Table</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>TableExists</td>
+               <td>AggregateInfo/TableExistsStatement</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>DropTable</td>
+               <td>AggregateInfo/DropTableStatement</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>CreateTable</td>
+               <td>AggregateInfo/CreateTableStatement</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>AggregateMode</td>
+               <td>AggregateInfo/AggregateMode</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>InsertQuery</td>
+               <td>AggregateInfo/InsertQuery</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>QueryOnFact</td>
+               <td>AggregateInfo/QueryOnFact</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>QueryOnAggregate</td>
+               <td>AggregateInfo/QueryOnAggregate</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>IncrementQuery</td>
+               <td>AggregateInfo/IncrementQuery</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>15</th>
+               <td>QuoteValue</td>
+               <td>AggregateInfo/QuoteValue</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>16</th>
+               <td>IncrementConditionFrom</td>
+               <td>AggregateInfo/IncrementConditionFrom</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>17</th>
+               <td>IncrementConditionWhere</td>
+               <td>AggregateInfo/IncrementConditionWhere</td>
+               <td>node</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsFromResult"></div>
+      <h3 class="step-heading"><a name="Get rows from result-text" href="#Get rows from result-icon">Get rows from result</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>short_filename</td>
+               <td>String</td>
+               <td>500</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>filename</td>
+               <td>String</td>
+               <td>500</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Log info-text" href="#Log info-icon">Log info</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">//Script here
+
+writeToLog("m","GAH: Processing Config file: " + filename);</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SetVariable"></div>
+      <h3 class="step-heading"><a name="Set Variables-text" href="#Set Variables-icon">Set Variables</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>field_name</th>
+               <th>variable_name</th>
+               <th>variable_type</th>
+               <th>default_value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>DatabaseClass</td>
+               <td>GAH_DBCLASS</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>DatabasePass</td>
+               <td>GAH_DBPASS</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>DatabaseSchema</td>
+               <td>GAH_DBSCHEMA</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>DatabaseUrl</td>
+               <td>GAH_DBURL</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>DatabaseUser</td>
+               <td>GAH_DBUSER</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>Table</td>
+               <td>GAH_TABLE</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>CreateTable</td>
+               <td>GAH_CREATETABLE</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>DropTable</td>
+               <td>GAH_DROPTABLE</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>TableExists</td>
+               <td>GAH_TABLEEXISTS</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>AggregateMode</td>
+               <td>GAH_AGGREGATEMODE</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>InsertQuery</td>
+               <td>GAH_INSERTQUERY</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>QueryOnFact</td>
+               <td>GAH_QUERYONFACT</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>QueryOnAggregate</td>
+               <td>GAH_QUERYONAGGREGATE</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>IncrementQuery</td>
+               <td>GAH_INCREMENTQUERY</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>15</th>
+               <td>QuoteValue</td>
+               <td>GAH_QUOTEVALUE</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>16</th>
+               <td>IncrementConditionFrom</td>
+               <td>GAH_INCREMENTCONDITIONFROM</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>17</th>
+               <td>IncrementConditionWhere</td>
+               <td>GAH_INCREMENTCONDITIONWHERE</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

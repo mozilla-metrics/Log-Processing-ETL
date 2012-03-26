@@ -1,0 +1,303 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/update.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/update.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: Update Vertica dimensions
+            relative-path: "/dimensions"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: job "Update Vertica dimensions"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "Update Vertica dimensions"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2008/08/29 08:40:20.826</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2008/08/29 08:40:20.826</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job does not define any parameters.
+         
+      </p>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 328px;&#xA;            height: 728px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Update operating_systems"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:93.33333333333333px;&#xA;                " href="#START-text">START</a><a name="Update operating_systems-icon"></a><div id="Update operating_systems" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:100px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Update product_channels"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:68px;&#xA;                " href="copy_metrics_mysqlmetricsoperating_systems_to_metrics.ktr.html">Update operating_systems</a><a name="Update product_channels-icon"></a><div id="Update product_channels" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:100px;&#xA;                    top:250px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Update product_distributions"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:69.33333333333333px;&#xA;                " href="copy_metrics_mysqlmetricsproduct_channels_to_metrics.ktr.html">Update product_channels</a><a name="Update product_distributions-icon"></a><div id="Update product_distributions" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:100px;&#xA;                    top:350px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Update user_agent_operating_systems"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:382px;&#xA;                    left:62.666666666666664px;&#xA;                " href="copy_metrics_mysqlmetricsproduct_distributions_to_metrics.ktr.html">Update product_distributions</a><a name="Update products-icon"></a><div id="Update products" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:300px;&#xA;                    top:500px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Update download_products"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:532px;&#xA;                    left:280px;&#xA;                " href="copy_metrics_mysqlmetricsproducts_to_metrics.ktr.html">Update products</a><a name="Update download_products-icon"></a><div id="Update download_products" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:300px;&#xA;                    top:400px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Update locations"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:432px;&#xA;                    left:268px;&#xA;                " href="copy_metrics_mysqlmetricsdownload_products_to_metrics.ktr.html">Update download_products</a><a name="Update user_agent_browsers-icon"></a><div id="Update user_agent_browsers" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:100px;&#xA;                    top:550px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Update locales"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:582px;&#xA;                    left:65.33333333333334px;&#xA;                " href="copy_metrics_mysqlmetricsuser_agent_browsers_to_metrics.ktr.html">Update user_agent_browsers</a><a name="Update user_agent_operating_systems-icon"></a><div id="Update user_agent_operating_systems" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:100px;&#xA;                    top:450px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Update user_agent_browsers"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:482px;&#xA;                    left:53.333333333333336px;&#xA;                " href="copy_metrics_mysqlmetricsuser_agent_operating_systems_to_metrics.ktr.html">Update user_agent_operating_systems</a><a name="Update locales-icon"></a><div id="Update locales" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:100px;&#xA;                    top:650px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Update amo_hosted_addons"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:682px;&#xA;                    left:81.33333333333333px;&#xA;                " href="copy_metrics_mysqlmetricslocales_to_metrics.ktr.html">Update locales</a><a name="Update amo_hosted_addons-icon"></a><div id="Update amo_hosted_addons" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:300px;&#xA;                    top:600px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Update products"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:632px;&#xA;                    left:268px;&#xA;                " href="copy_mysql_amo_hosted_addons_to_vertica.ktr.html">Update amo_hosted_addons</a><a name="Update locations-icon"></a><div id="Update locations" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:300px;&#xA;                    top:300px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:332px;&#xA;                    left:278.6666666666667px;&#xA;                " href="copy_metrics_mysqlmetricslocations_to_metrics.ktr.html">Update locations</a></div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Update operating_systems">Update operating_systems</a>, <a href="#Update product_channels">Update product_channels</a>, <a href="#Update product_distributions">Update product_distributions</a>, <a href="#Update products">Update products</a>, <a href="#Update download_products">Update download_products</a>, <a href="#Update user_agent_browsers">Update user_agent_browsers</a>, <a href="#Update user_agent_operating_systems">Update user_agent_operating_systems</a>, <a href="#Update locales">Update locales</a>, <a href="#Update amo_hosted_addons">Update amo_hosted_addons</a>, <a href="#Update locations">Update locations</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Job Entries
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>A job starts to process here.</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update operating_systems-text" href="#Update operating_systems-icon">Update operating_systems</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.operating_systems]
+         to:   [metrics].[metrics.operating_systems]
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update product_channels-text" href="#Update product_channels-icon">Update product_channels</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.product_channels]
+         to:   [metrics].[metrics.product_channels]
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update product_distributions-text" href="#Update product_distributions-icon">Update product_distributions</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.product_distributions]
+         to:   [metrics].[metrics.product_distributions]
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update products-text" href="#Update products-icon">Update products</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.products]
+         to:   [metrics].[metrics.products]
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update download_products-text" href="#Update download_products-icon">Update download_products</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.products]
+         to:   [metrics].[metrics.products]
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update user_agent_browsers-text" href="#Update user_agent_browsers-icon">Update user_agent_browsers</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.products]
+         to:   [metrics].[metrics.products]
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update user_agent_operating_systems-text" href="#Update user_agent_operating_systems-icon">Update user_agent_operating_systems</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.products]
+         to:   [metrics].[metrics.products]
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update locales-text" href="#Update locales-icon">Update locales</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.locales]
+         to:   [metrics].[metrics.locales]
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update amo_hosted_addons-text" href="#Update amo_hosted_addons-icon">Update amo_hosted_addons</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.products]
+         to:   [metrics].[metrics.products]
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Update locations-text" href="#Update locations-icon">Update locations</a></h3>
+      <p>This job entry executes the transformation to copy data
+         from: [metrics mysql].[metrics.products]
+         to:   [metrics].[metrics.products]
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

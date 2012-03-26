@@ -1,0 +1,270 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/get_filenames_by_glob.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/get_filenames_by_glob.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/timestamped_log_manager"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "get_filenames_by_glob"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (1)</th>
+               <th>Transform</th>
+               <th>Output (0)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Get File Names</div>
+               </td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 128px;&#xA;            height: 628px;&#xA;        "><a name="Get File Names-icon"></a><div id="Get File Names" class="&#xA;                    step-icon&#xA;                    step-icon-GetFileNames" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get Variables"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get File Names-text" style="&#xA;                    top:82px;&#xA;                    left:31.333333333333332px;                    &#xA;                ">Get File Names</a><a name="Get Variables-icon"></a><div id="Get Variables" class="&#xA;                    step-icon&#xA;                    step-icon-GetVariable" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Extract timestamp"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get Variables-text" style="&#xA;                    top:182px;&#xA;                    left:32.66666666666667px;                    &#xA;                ">Get Variables</a><a name="Extract timestamp-icon"></a><div id="Extract timestamp" class="&#xA;                    step-icon&#xA;                    step-icon-Janino" style="&#xA;                    left:50px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log filenames"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Extract timestamp-text" style="&#xA;                    top:282px;&#xA;                    left:27.333333333333332px;                    &#xA;                ">Extract timestamp</a><a name="Log filenames-icon"></a><div id="Log filenames" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:50px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Select values"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log filenames-text" style="&#xA;                    top:382px;&#xA;                    left:32.66666666666667px;                    &#xA;                ">Log filenames</a><a name="Select values-icon"></a><div id="Select values" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:50px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Copy rows to result"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Select values-text" style="&#xA;                    top:482px;&#xA;                    left:32.66666666666667px;                    &#xA;                ">Select values</a><a name="Copy rows to result-icon"></a><div id="Copy rows to result" class="&#xA;                    step-icon&#xA;                    step-icon-RowsToResult" style="&#xA;                    left:50px;&#xA;                    top:550px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Copy rows to result-text" style="&#xA;                    top:582px;&#xA;                    left:24.666666666666668px;                    &#xA;                ">Copy rows to result</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>DIRECTORY</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get File Names">Get File Names</a></td>
+            </tr>
+            <tr>
+               <th>PATTERN</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get File Names">Get File Names</a></td>
+            </tr>
+            <tr>
+               <th>DATACENTER</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get Variables">Get Variables</a></td>
+            </tr>
+            <tr>
+               <th>SITE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get Variables">Get Variables</a></td>
+            </tr>
+            <tr>
+               <th>SERVER</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get Variables">Get Variables</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation does not define any database connections.</p>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GetFileNames"></div>
+      <h3 class="step-heading"><a name="Get File Names-text" href="#Get File Names-icon">Get File Names</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GetVariable"></div>
+      <h3 class="step-heading"><a name="Get Variables-text" href="#Get Variables-icon">Get Variables</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>variable</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>trim_type</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>${DATACENTER}</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td>${SITE}</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td>${SERVER}</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Janino"></div>
+      <h3 class="step-heading"><a name="Extract timestamp-text" href="#Extract timestamp-icon">Extract timestamp</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Log filenames-text" href="#Log filenames-icon">Log filenames</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>ConcatFilenames</h5><pre class="brush: js;">stringToLog += rpad(datacenter, " ", 3) + " - " + rpad(site, " ", 10) + " - " + rpad(server, " ", 20) + " - " + timestamp + " - " + rpad(filename, " ", 122) + " - " + lpad(size, " ", 10) + "\n";</pre><h5>InitVariable</h5><pre class="brush: js;">var stringToLog = "\n";</pre><h5>LogOutput</h5><pre class="brush: js;">writeToLog("m",stringToLog);</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Select values-text" href="#Select values-icon">Select values</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>filename</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsToResult"></div>
+      <h3 class="step-heading"><a name="Copy rows to result-text" href="#Copy rows to result-icon">Copy rows to result</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

@@ -1,0 +1,958 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file are subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+<transformation>
+  <info>
+    <name>audit_server_traffic</name>
+    <description/>
+    <extended_description>
+The contents of this file are subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this file,
+You can obtain one at http://mozilla.org/MPL/2.0/.
+    </extended_description>
+    <trans_version/>
+    <trans_status>0</trans_status>
+    <directory>&#47;</directory>
+    <parameters>
+<parameter><name>allowedLogLagHours</name><default_value>-2</default_value><description/></parameter>
+    </parameters>
+    <log>
+      <read>Sort by table</read>
+      <write>Group no table</write>
+      <input>Get server list</input>
+      <output>Output results</output>
+      <update/>
+      <rejected/>
+      <connection>metrics mysql</connection>
+      <table>log_trans</table>
+      <step_performance_table/>
+      <use_batchid>Y</use_batchid>
+      <use_logfield>Y</use_logfield>
+      <size_limit_lines>1000</size_limit_lines>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>Y</unique_connections>
+    <feedback_shown>Y</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <clusterschemas>
+    </clusterschemas>
+  <modified_user>-</modified_user>
+  <modified_date>2010&#47;03&#47;07 19:13:03.828</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>metrics mysql</name>
+    <server>${METRICS_MYSQL_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${METRICS_MYSQL_NAME}</database>
+    <port>${METRICS_MYSQL_PORT}</port>
+    <username>${METRICS_MYSQL_USER}</username>
+    <password>${METRICS_MYSQL_PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>UTF-8</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useServerPrepStmts</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useUnicode</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>metrics</name>
+    <server>${VERTICA_HOST}</server>
+    <type>VERTICA</type>
+    <access>Native</access>
+    <database>${VERTICA_DB}</database>
+    <port>${VERTICA_PORT}</port>
+    <username>${VERTICA_USER}</username>
+    <password>${VERTICA_PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION 
+ISOLATION LEVEL READ COMMITTED</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Sort by table</from><to>Group by table</to><enabled>Y</enabled> </hop>  <hop> <from>Group by table</from><to>Build SQL</to><enabled>Y</enabled> </hop>  <hop> <from>Join audit&#47;results</from><to>Filter for missing data</to><enabled>Y</enabled> </hop>  <hop> <from>Build SQL</from><to>Dynamic SQL row</to><enabled>Y</enabled> </hop>  <hop> <from>Group by server&#47;timestamp</from><to>Join audit&#47;results</to><enabled>Y</enabled> </hop>  <hop> <from>Dynamic SQL row</from><to>Sort by server&#47;timestamp</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by server&#47;timestamp</from><to>Group by server&#47;timestamp</to><enabled>Y</enabled> </hop>  <hop> <from>Group no table</from><to>Join audit&#47;results</to><enabled>Y</enabled> </hop>  <hop> <from>Filter for missing data</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Output results</to><enabled>Y</enabled> </hop>  <hop> <from>Output results</from><to>Group results for logging</to><enabled>Y</enabled> </hop>  <hop> <from>Group results for logging</from><to>Log results</to><enabled>Y</enabled> </hop>  <hop> <from>Sort no table</from><to>Join exceptions</to><enabled>Y</enabled> </hop>  <hop> <from>Get exceptions list</from><to>Join exceptions</to><enabled>Y</enabled> </hop>  <hop> <from>Join exceptions</from><to>Filter exceptions</to><enabled>Y</enabled> </hop>  <hop> <from>Filter exceptions</from><to>Sort by table</to><enabled>Y</enabled> </hop>  <hop> <from>Filter exceptions</from><to>Group no table</to><enabled>Y</enabled> </hop>  <hop> <from>Get server list</from><to>Get timestamps to audit</to><enabled>Y</enabled> </hop>  <hop> <from>Get timestamps to audit</from><to>Sort no table</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Advance Epoch</name>
+    <type>ExecSQL</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>metrics</connection>
+    <execute_each_row>N</execute_each_row>
+    <single_statement>N</single_statement>
+    <replace_variables>N</replace_variables>
+    <sql>SELECT ADVANCE_EPOCH();</sql>
+    <insert_field/>
+    <update_field/>
+    <delete_field/>
+    <read_field/>
+    <arguments>
+    </arguments>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Build SQL</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>sql</field_name>
+<formula_string>String.format(&quot;SELECT datacenter, source_site, source_server, source_timestamp, COUNT(*) AS requests FROM %s_requests_raw WHERE source_timestamp BETWEEN &apos;%s&apos; AND &apos;%s&apos; GROUP BY 1,2,3,4 ORDER BY 1,2,3,4&quot;, new Object[] { destination_table, min_timestamp, max_timestamp })</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field/>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>550</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Dynamic SQL row</name>
+    <type>DynamicSQLRow</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>metrics</connection>
+    <rowlimit>0</rowlimit>
+    <sql>SELECT datacenter, source_site, source_server, source_timestamp, COUNT(*) AS requests
+FROM blocklist_requests_raw
+WHERE 1 = 0
+GROUP BY 1,2,3,4
+ORDER BY 1,2,3,4</sql>
+    <outer_join>Y</outer_join>
+    <replace_vars>N</replace_vars>
+    <sql_fieldname>sql</sql_fieldname>
+    <query_only_on_change>N</query_only_on_change>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>650</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter exceptions</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to/>
+<send_false_to/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>timestamp_1</leftvalue>
+ <function>IS NULL</function>
+ <rightvalue/>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter for missing data</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to/>
+<send_false_to/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>source_timestamp</leftvalue>
+   <function>IS NULL</function>
+   <rightvalue/>
+   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <conditions>
+    <condition>
+     <negated>N</negated>
+     <operator>AND</operator>
+     <leftvalue>active</leftvalue>
+     <function>=</function>
+     <rightvalue/>
+     <value><name>constant</name><type>String</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
+    <condition>
+     <negated>N</negated>
+     <operator>OR</operator>
+     <leftvalue>required</leftvalue>
+     <function>=</function>
+     <rightvalue/>
+     <value><name>constant</name><type>Boolean</type><text>N</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>     </condition>
+    </conditions>
+   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>450</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get exceptions list</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>metrics mysql</connection>
+    <sql>SELECT
+  datacenter
+, site
+, server
+, timestamp
+FROM server_timestamps_exceptions
+ORDER BY 1,2,3,4</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>N</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>150</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get server list</name>
+    <type>TableInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>metrics mysql</connection>
+    <sql>SELECT DISTINCT
+  destination_table
+, datacenter
+, site
+, server
+, active
+FROM servers
+ORDER BY 2,3,4</sql>
+    <limit>0</limit>
+    <lookup/>
+    <execute_each_row>N</execute_each_row>
+    <variables_active>Y</variables_active>
+    <lazy_conversion_active>N</lazy_conversion_active>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get timestamps to audit</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>var lastInputRowIdx = getInputRowMeta().size();
+
+var logTimestampTimeZone = java.util.TimeZone.getTimeZone(getVariable(&quot;logTimestampTimeZone&quot;, &quot;PST8PDT&quot;));
+var gmtTimeZone = java.util.TimeZone.getTimeZone(&quot;GMT&quot;);
+
+var sdf = new java.text.SimpleDateFormat(&quot;yyyy-MM-dd-HH&quot;);
+sdf.setTimeZone(logTimestampTimeZone);
+
+&#47;&#47; Get the current time truncated to hour of day
+var cal = java.util.Calendar.getInstance(gmtTimeZone);
+cal.set(java.util.Calendar.MINUTE, 0);
+cal.set(java.util.Calendar.SECOND, 0);
+cal.set(java.util.Calendar.MILLISECOND, 0);
+
+&#47;&#47; Subtract one hour for the most recently completed hour
+cal.add(java.util.Calendar.HOUR_OF_DAY, -1);
+&#47;&#47; Subtract one more hour to prevent finding possibly incomplete files that just rolled over
+cal.add(java.util.Calendar.HOUR_OF_DAY, -1);
+var lastCompleteHour = cal.clone();
+
+&#47;&#47; Subtract the allowed lag hours for logs to appear
+cal.add(java.util.Calendar.HOUR_OF_DAY, str2num(getVariable(&quot;allowedLogLagHours&quot;, &quot;-2&quot;)));
+var hourLogsRequired = cal.clone();
+
+&#47;&#47; Get beginning of day, GMT as of 8 hours ago (in case we are late processing)
+cal.add(java.util.Calendar.HOUR_OF_DAY, -8);
+cal.set(java.util.Calendar.HOUR_OF_DAY, 0);
+
+while (cal.compareTo(lastCompleteHour) &lt;= 0)
+{
+	var idx = lastInputRowIdx;
+	var required = cal.compareTo(hourLogsRequired) &lt;= 0;
+	var timestamp = sdf.format(cal.getTime());
+	writeToLog(&quot;r&quot;, &quot;Current row date-hour: &quot;+timestamp);
+
+	newRow = createRowCopy(getOutputRowMeta().size());
+	newRow[idx++] = timestamp;
+	newRow[idx++] = required;
+	putRow(newRow);
+
+	cal.add(java.util.Calendar.HOUR_OF_DAY, 1);
+}
+
+
+trans_Status = SKIP_TRANSFORMATION;</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>      <field>        <name>timestamp</name>
+        <rename>timestamp</rename>
+        <type>String</type>
+        <length>13</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>      <field>        <name>required</name>
+        <rename>required</rename>
+        <type>Boolean</type>
+        <length>-1</length>
+        <precision>-1</precision>
+        <replace>N</replace>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>150</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Group by server&#47;timestamp</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>datacenter</name>
+        </field>
+        <field>
+          <name>source_site</name>
+        </field>
+        <field>
+          <name>source_server</name>
+        </field>
+        <field>
+          <name>source_timestamp</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>requests</aggregate>
+          <subject>requests</subject>
+          <type>SUM</type>
+          <valuefield/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>650</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Group by table</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>destination_table</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>min_timestamp</aggregate>
+          <subject>timestamp</subject>
+          <type>MIN</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>max_timestamp</aggregate>
+          <subject>timestamp</subject>
+          <type>MAX</type>
+          <valuefield/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>450</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Group no table</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>datacenter</name>
+        </field>
+        <field>
+          <name>site</name>
+        </field>
+        <field>
+          <name>server</name>
+        </field>
+        <field>
+          <name>timestamp</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>required</aggregate>
+          <subject>required</subject>
+          <type>MAX</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>active</aggregate>
+          <subject>active</subject>
+          <type>MAX</type>
+          <valuefield/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>550</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Group results for logging</name>
+    <type>GroupBy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <all_rows>N</all_rows>
+      <ignore_aggregate>N</ignore_aggregate>
+      <field_ignore/>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>grp</prefix>
+      <add_linenr>N</add_linenr>
+      <linenr_fieldname/>
+      <give_back_row>N</give_back_row>
+      <group>
+        <field>
+          <name>datacenter</name>
+        </field>
+        <field>
+          <name>site</name>
+        </field>
+        <field>
+          <name>server</name>
+        </field>
+        <field>
+          <name>required</name>
+        </field>
+      </group>
+      <fields>
+        <field>
+          <aggregate>active</aggregate>
+          <subject>active</subject>
+          <type>MAX</type>
+          <valuefield/>
+        </field>
+        <field>
+          <aggregate>timestamps</aggregate>
+          <subject>timestamp</subject>
+          <type>CONCAT_COMMA</type>
+          <valuefield/>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>150</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join audit&#47;results</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>LEFT OUTER</join_type>
+<step1>Group no table</step1>
+<step2>Group by server&#47;timestamp</step2>
+    <keys_1>
+      <key>datacenter</key>
+      <key>site</key>
+      <key>server</key>
+      <key>timestamp</key>
+    </keys_1>
+    <keys_2>
+      <key>datacenter</key>
+      <key>source_site</key>
+      <key>source_server</key>
+      <key>source_timestamp</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>550</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Join exceptions</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<join_type>LEFT OUTER</join_type>
+<step1>Sort no table</step1>
+<step2>Get exceptions list</step2>
+    <keys_1>
+      <key>datacenter</key>
+      <key>site</key>
+      <key>server</key>
+      <key>timestamp</key>
+    </keys_1>
+    <keys_2>
+      <key>datacenter</key>
+      <key>site</key>
+      <key>server</key>
+      <key>timestamp</key>
+    </keys_2>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>250</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Log results</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>N</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>ConcatFilenames</jsScript_name>
+        <jsScript_script>results += rpad(datacenter + &quot; - &quot; + site, &quot; &quot;, 17) + &quot; - &quot; + rpad(server, &quot; &quot;, 20) + &quot; - &quot; + rpad(((required==true?&quot;Y&quot;:&quot;N&quot;) + &quot; - &quot; + active), &quot; &quot;, 17) + &quot; - &quot; + timestamps +&quot;\n&quot;;
+if (required == true &amp;&amp; active == &quot;Y&quot;) {
+	requiredResults += rpad(datacenter + &quot; - &quot; + site, &quot; &quot;, 17) + &quot; - &quot; + rpad(server, &quot; &quot;, 20) + &quot; - &quot; + timestamps +&quot;\n&quot;;;
+}</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
+        <jsScript_name>InitVariable</jsScript_name>
+        <jsScript_script>var results = &quot;\ndatacenter - site -   server   - required - active -   timestamps\n&quot;;
+var requiredResults = &quot;\ndatacenter - site -   server   -   timestamps\n&quot;;</jsScript_script>
+      </jsScript>      <jsScript>        <jsScript_type>2</jsScript_type>
+        <jsScript_name>LogOutput</jsScript_name>
+        <jsScript_script>writeToLog(&quot;m&quot;,results);
+setVariable(&quot;AUDIT_RESULTS&quot;, requiredResults+&quot;\n&quot;, &quot;r&quot;);</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Output results</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>metrics mysql</connection>
+    <schema/>
+    <table>server_timestamps_to_process</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+        <field>
+          <column_name>datacenter</column_name>
+          <stream_name>datacenter</stream_name>
+        </field>
+        <field>
+          <column_name>site</column_name>
+          <stream_name>site</stream_name>
+        </field>
+        <field>
+          <column_name>server</column_name>
+          <stream_name>server</stream_name>
+        </field>
+        <field>
+          <column_name>timestamp</column_name>
+          <stream_name>timestamp</stream_name>
+        </field>
+        <field>
+          <column_name>required</column_name>
+          <stream_name>required</stream_name>
+        </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>250</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort by server&#47;timestamp</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out</prefix>
+      <sort_size/>
+      <free_memory>25</free_memory>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>datacenter</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>source_site</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>source_server</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>source_timestamp</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>650</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort by table</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out</prefix>
+      <sort_size/>
+      <free_memory>25</free_memory>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>destination_table</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort no table</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out</prefix>
+      <sort_size/>
+      <free_memory>25</free_memory>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>datacenter</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>site</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>server</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>250</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out</prefix>
+      <sort_size/>
+      <free_memory>25</free_memory>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>required</name>
+        <ascending>N</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>datacenter</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>site</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>server</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+      <field>
+        <name>timestamp</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>

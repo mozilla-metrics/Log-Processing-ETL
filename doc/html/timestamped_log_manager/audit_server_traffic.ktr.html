@@ -1,0 +1,824 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/audit_server_traffic.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/audit_server_traffic.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/timestamped_log_manager"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "audit_server_traffic"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (2)</th>
+               <th>Transform</th>
+               <th>Output (1)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Get exceptions list</div>
+                  <div>Get server list</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>Output results</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 728px;&#xA;            height: 328px;&#xA;        "><a name="Advance Epoch-icon"></a><div id="Advance Epoch" class="&#xA;                    step-icon&#xA;                    step-icon-ExecSQL" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Advance Epoch-text" style="&#xA;                    top:82px;&#xA;                    left:32.66666666666667px;                    &#xA;                ">Advance Epoch</a><a name="Build SQL-icon"></a><div id="Build SQL" class="&#xA;                    step-icon&#xA;                    step-icon-Janino" style="&#xA;                    left:550px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Dynamic SQL row"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Build SQL-text" style="&#xA;                    top:82px;&#xA;                    left:538px;                    &#xA;                ">Build SQL</a><a name="Dynamic SQL row-icon"></a><div id="Dynamic SQL row" class="&#xA;                    step-icon&#xA;                    step-icon-DynamicSQLRow" style="&#xA;                    left:650px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Sort by server/timestamp"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Dynamic SQL row-text" style="&#xA;                    top:82px;&#xA;                    left:630px;                    &#xA;                ">Dynamic SQL row</a><a name="Filter exceptions-icon"></a><div id="Filter exceptions" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Sort by table"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Group no table"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter exceptions-text" style="&#xA;                    top:182px;&#xA;                    left:327.3333333333333px;                    &#xA;                ">Filter exceptions</a><a name="Filter for missing data-icon"></a><div id="Filter for missing data" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:450px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Sort rows"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter for missing data-text" style="&#xA;                    top:282px;&#xA;                    left:419.3333333333333px;                    &#xA;                ">Filter for missing data</a><a name="Get exceptions list-icon"></a><div id="Get exceptions list" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:150px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Join exceptions"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get exceptions list-text" style="&#xA;                    top:82px;&#xA;                    left:124.66666666666667px;                    &#xA;                ">Get exceptions list</a><a name="Get server list-icon"></a><div id="Get server list" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get timestamps to audit"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get server list-text" style="&#xA;                    top:182px;&#xA;                    left:30px;                    &#xA;                ">Get server list</a><a name="Get timestamps to audit-icon"></a><div id="Get timestamps to audit" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Sort no table"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get timestamps to audit-text" style="&#xA;                    top:182px;&#xA;                    left:119.33333333333333px;                    &#xA;                ">Get timestamps to audit</a><a name="Group by server/timestamp-icon"></a><div id="Group by server/timestamp" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:650px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Join audit/results"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Group by server/timestamp-text" style="&#xA;                    top:282px;&#xA;                    left:616.6666666666666px;                    &#xA;                ">Group by server/timestamp</a><a name="Group by table-icon"></a><div id="Group by table" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:450px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Build SQL"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Group by table-text" style="&#xA;                    top:82px;&#xA;                    left:431.3333333333333px;                    &#xA;                ">Group by table</a><a name="Group no table-icon"></a><div id="Group no table" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:550px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Join audit/results"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Group no table-text" style="&#xA;                    top:182px;&#xA;                    left:531.3333333333334px;                    &#xA;                ">Group no table</a><a name="Group results for logging-icon"></a><div id="Group results for logging" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:150px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log results"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Group results for logging-text" style="&#xA;                    top:282px;&#xA;                    left:116.66666666666666px;                    &#xA;                ">Group results for logging</a><a name="Join audit/results-icon"></a><div id="Join audit/results" class="&#xA;                    step-icon&#xA;                    step-icon-MergeJoin" style="&#xA;                    left:550px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter for missing data"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Join audit/results-text" style="&#xA;                    top:282px;&#xA;                    left:526px;                    &#xA;                ">Join audit/results</a><a name="Join exceptions-icon"></a><div id="Join exceptions" class="&#xA;                    step-icon&#xA;                    step-icon-MergeJoin" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter exceptions"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Join exceptions-text" style="&#xA;                    top:82px;&#xA;                    left:230px;                    &#xA;                ">Join exceptions</a><a name="Log results-icon"></a><div id="Log results" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:50px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log results-text" style="&#xA;                    top:282px;&#xA;                    left:35.333333333333336px;                    &#xA;                ">Log results</a><a name="Output results-icon"></a><div id="Output results" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:250px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Group results for logging"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Output results-text" style="&#xA;                    top:282px;&#xA;                    left:231.33333333333334px;                    &#xA;                ">Output results</a><a name="Sort by server/timestamp-icon"></a><div id="Sort by server/timestamp" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:650px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Group by server/timestamp"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort by server/timestamp-text" style="&#xA;                    top:182px;&#xA;                    left:618px;                    &#xA;                ">Sort by server/timestamp</a><a name="Sort by table-icon"></a><div id="Sort by table" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:350px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Group by table"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort by table-text" style="&#xA;                    top:82px;&#xA;                    left:332.6666666666667px;                    &#xA;                ">Sort by table</a><a name="Sort no table-icon"></a><div id="Sort no table" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:250px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Join exceptions"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort no table-text" style="&#xA;                    top:182px;&#xA;                    left:232.66666666666666px;                    &#xA;                ">Sort no table</a><a name="Sort rows-icon"></a><div id="Sort rows" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:350px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Output results"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort rows-text" style="&#xA;                    top:282px;&#xA;                    left:338px;                    &#xA;                ">Sort rows</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_DB</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 2 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Get exceptions list</a>, <a href="#metrics mysql">Get server list</a>, <a href="#metrics mysql">Output results</a></td>
+            </tr>
+            <tr>
+               <th><a href="#connection.metrics">metrics</a></th>
+               <td>VERTICA</td>
+               <td>Native</td>
+               <td>${VERTICA_HOST}</td>
+               <td>${VERTICA_PORT}</td>
+               <td>${VERTICA_USER}</td>
+               <td><a href="#metrics">Advance Epoch</a>, <a href="#metrics">Dynamic SQL row</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4><a name="connection.metrics">metrics</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${VERTICA_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>VERTICA</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${VERTICA_DB}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${VERTICA_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${VERTICA_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${VERTICA_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ExecSQL"></div>
+      <h3 class="step-heading"><a name="Advance Epoch-text" href="#Advance Epoch-icon">Advance Epoch</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT ADVANCE_EPOCH();</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Janino"></div>
+      <h3 class="step-heading"><a name="Build SQL-text" href="#Build SQL-icon">Build SQL</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DynamicSQLRow"></div>
+      <h3 class="step-heading"><a name="Dynamic SQL row-text" href="#Dynamic SQL row-icon">Dynamic SQL row</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT datacenter, source_site, source_server, source_timestamp, COUNT(*) AS requests
+FROM blocklist_requests_raw
+WHERE 1 = 0
+GROUP BY 1,2,3,4
+ORDER BY 1,2,3,4</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter exceptions-text" href="#Filter exceptions-icon">Filter exceptions</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter for missing data-text" href="#Filter for missing data-icon">Filter for missing data</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Get exceptions list-text" href="#Get exceptions list-icon">Get exceptions list</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT
+  datacenter
+, site
+, server
+, timestamp
+FROM server_timestamps_exceptions
+ORDER BY 1,2,3,4</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Get server list-text" href="#Get server list-icon">Get server list</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT DISTINCT
+  destination_table
+, datacenter
+, site
+, server
+, active
+FROM servers
+ORDER BY 2,3,4</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Get timestamps to audit-text" href="#Get timestamps to audit-icon">Get timestamps to audit</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">var lastInputRowIdx = getInputRowMeta().size();
+
+var logTimestampTimeZone = java.util.TimeZone.getTimeZone(getVariable("logTimestampTimeZone", "PST8PDT"));
+var gmtTimeZone = java.util.TimeZone.getTimeZone("GMT");
+
+var sdf = new java.text.SimpleDateFormat("yyyy-MM-dd-HH");
+sdf.setTimeZone(logTimestampTimeZone);
+
+// Get the current time truncated to hour of day
+var cal = java.util.Calendar.getInstance(gmtTimeZone);
+cal.set(java.util.Calendar.MINUTE, 0);
+cal.set(java.util.Calendar.SECOND, 0);
+cal.set(java.util.Calendar.MILLISECOND, 0);
+
+// Subtract one hour for the most recently completed hour
+cal.add(java.util.Calendar.HOUR_OF_DAY, -1);
+// Subtract one more hour to prevent finding possibly incomplete files that just rolled over
+cal.add(java.util.Calendar.HOUR_OF_DAY, -1);
+var lastCompleteHour = cal.clone();
+
+// Subtract the allowed lag hours for logs to appear
+cal.add(java.util.Calendar.HOUR_OF_DAY, str2num(getVariable("allowedLogLagHours", "-2")));
+var hourLogsRequired = cal.clone();
+
+// Get beginning of day, GMT as of 8 hours ago (in case we are late processing)
+cal.add(java.util.Calendar.HOUR_OF_DAY, -8);
+cal.set(java.util.Calendar.HOUR_OF_DAY, 0);
+
+while (cal.compareTo(lastCompleteHour) &lt;= 0)
+{
+	var idx = lastInputRowIdx;
+	var required = cal.compareTo(hourLogsRequired) &lt;= 0;
+	var timestamp = sdf.format(cal.getTime());
+	writeToLog("r", "Current row date-hour: "+timestamp);
+
+	newRow = createRowCopy(getOutputRowMeta().size());
+	newRow[idx++] = timestamp;
+	newRow[idx++] = required;
+	putRow(newRow);
+
+	cal.add(java.util.Calendar.HOUR_OF_DAY, 1);
+}
+
+
+trans_Status = SKIP_TRANSFORMATION;</pre><h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>replace</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>timestamp</td>
+               <td>timestamp</td>
+               <td>String</td>
+               <td>13</td>
+               <td>-1</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>required</td>
+               <td>required</td>
+               <td>Boolean</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Group by server/timestamp-text" href="#Group by server/timestamp-icon">Group by server/timestamp</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>requests</td>
+               <td>requests</td>
+               <td>SUM</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Group by table-text" href="#Group by table-icon">Group by table</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>min_timestamp</td>
+               <td>timestamp</td>
+               <td>MIN</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>max_timestamp</td>
+               <td>timestamp</td>
+               <td>MAX</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Group no table-text" href="#Group no table-icon">Group no table</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>required</td>
+               <td>required</td>
+               <td>MAX</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>active</td>
+               <td>active</td>
+               <td>MAX</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Group results for logging-text" href="#Group results for logging-icon">Group results for logging</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>active</td>
+               <td>active</td>
+               <td>MAX</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>timestamps</td>
+               <td>timestamp</td>
+               <td>CONCAT_COMMA</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MergeJoin"></div>
+      <h3 class="step-heading"><a name="Join audit/results-text" href="#Join audit/results-icon">Join audit/results</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MergeJoin"></div>
+      <h3 class="step-heading"><a name="Join exceptions-text" href="#Join exceptions-icon">Join exceptions</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Log results-text" href="#Log results-icon">Log results</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>ConcatFilenames</h5><pre class="brush: js;">results += rpad(datacenter + " - " + site, " ", 17) + " - " + rpad(server, " ", 20) + " - " + rpad(((required==true?"Y":"N") + " - " + active), " ", 17) + " - " + timestamps +"\n";
+if (required == true &amp;&amp; active == "Y") {
+	requiredResults += rpad(datacenter + " - " + site, " ", 17) + " - " + rpad(server, " ", 20) + " - " + timestamps +"\n";;
+}</pre><h5>InitVariable</h5><pre class="brush: js;">var results = "\ndatacenter - site -   server   - required - active -   timestamps\n";
+var requiredResults = "\ndatacenter - site -   server   -   timestamps\n";</pre><h5>LogOutput</h5><pre class="brush: js;">writeToLog("m",results);
+setVariable("AUDIT_RESULTS", requiredResults+"\n", "r");</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="Output results-text" href="#Output results-icon">Output results</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>datacenter</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td>site</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td>server</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td>timestamp</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>required</td>
+               <td>required</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort by server/timestamp-text" href="#Sort by server/timestamp-icon">Sort by server/timestamp</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>source_site</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>source_server</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>source_timestamp</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort by table-text" href="#Sort by table-icon">Sort by table</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>destination_table</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort no table-text" href="#Sort no table-icon">Sort no table</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort rows-text" href="#Sort rows-icon">Sort rows</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>required</td>
+               <td>N</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>datacenter</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>site</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>server</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>timestamp</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

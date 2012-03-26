@@ -1,0 +1,893 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/get_filenames.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/get_filenames.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/timestamped_log_manager"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "get_filenames"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (2)</th>
+               <th>Transform</th>
+               <th>Output (1)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Get File Names</div>
+                  <div>Get subfolders</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>Output unparsable_files</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 928px;&#xA;            height: 528px;&#xA;        "><a name="Add filename-icon"></a><div id="Add filename" class="&#xA;                    step-icon&#xA;                    step-icon-Constant&#xA;                        step-error&#xA;                    " style="&#xA;                    left:650px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Output unparsable_files"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Add filename-text" style="&#xA;                    top:482px;&#xA;                    left:634px;                    &#xA;                ">Add filename</a><a name="Add okay=0-icon"></a><div id="Add okay=0" class="&#xA;                    step-icon&#xA;                    step-icon-Constant" style="&#xA;                    left:350px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Sort rows"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Add okay=0-text" style="&#xA;                    top:482px;&#xA;                    left:336.6666666666667px;                    &#xA;                ">Add okay=0</a><a name="Add okay=1-icon"></a><div id="Add okay=1" class="&#xA;                    step-icon&#xA;                    step-icon-Constant" style="&#xA;                    left:350px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Sort rows"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Add okay=1-text" style="&#xA;                    top:382px;&#xA;                    left:336.6666666666667px;                    &#xA;                ">Add okay=1</a><a name="Build test cmd-icon"></a><div id="Build test cmd" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:150px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Execute a process"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Build test cmd-text" style="&#xA;                    top:382px;&#xA;                    left:131.33333333333334px;                    &#xA;                ">Build test cmd</a><a name="Calc all_okay_to_process-icon"></a><div id="Calc all_okay_to_process" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:450px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter servers with bad files"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Calc all_okay_to_process-text" style="&#xA;                    top:482px;&#xA;                    left:418px;                    &#xA;                ">Calc all_okay_to_process</a><a name="Clean fields 2-icon"></a><div id="Clean fields 2" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log patterns"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Clean fields 2-text" style="&#xA;                    top:182px;&#xA;                    left:31.333333333333332px;                    &#xA;                ">Clean fields 2</a><a name="Concat wildcard-icon"></a><div id="Concat wildcard" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:200px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Special case subdirs"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Concat wildcard-text" style="&#xA;                    top:82px;&#xA;                    left:180px;                    &#xA;                ">Concat wildcard</a><a name="Copy rows to result-icon"></a><div id="Copy rows to result" class="&#xA;                    step-icon&#xA;                    step-icon-RowsToResult" style="&#xA;                    left:850px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Copy rows to result-text" style="&#xA;                    top:382px;&#xA;                    left:824.6666666666666px;                    &#xA;                ">Copy rows to result</a><a name="Execute a process-icon"></a><div id="Execute a process" class="&#xA;                    step-icon&#xA;                    step-icon-ExecProcess" style="&#xA;                    left:250px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter bad files"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Execute a process-text" style="&#xA;                    top:382px;&#xA;                    left:227.33333333333334px;                    &#xA;                ">Execute a process</a><a name="Filter bad files-icon"></a><div id="Filter bad files" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:250px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Add okay=1"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Add okay=0"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter bad files-text" style="&#xA;                    top:482px;&#xA;                    left:228.66666666666666px;                    &#xA;                ">Filter bad files</a><a name="Filter out good files-icon"></a><div id="Filter out good files" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:550px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                step-hop-error&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Add filename"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter out good files-text" style="&#xA;                    top:482px;&#xA;                    left:522px;                    &#xA;                ">Filter out good files</a><a name="Filter servers with bad files-icon"></a><div id="Filter servers with bad files" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:550px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Sort by size"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Filter out good files"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter servers with bad files-text" style="&#xA;                    top:382px;&#xA;                    left:511.3333333333333px;                    &#xA;                ">Filter servers with bad files</a><a name="Get File Names-icon"></a><div id="Get File Names" class="&#xA;                    step-icon&#xA;                    step-icon-GetFileNames" style="&#xA;                    left:50px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log filenames"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get File Names-text" style="&#xA;                    top:382px;&#xA;                    left:31.333333333333332px;                    &#xA;                ">Get File Names</a><a name="Get rows from result-icon"></a><div id="Get rows from result" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:300px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Concat wildcard"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get rows from result-text" style="&#xA;                    top:82px;&#xA;                    left:273.3333333333333px;                    &#xA;                ">Get rows from result</a><a name="Get subfolders-icon"></a><div id="Get subfolders" class="&#xA;                    step-icon&#xA;                    step-icon-GetFileNames" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Rename directory"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get subfolders-text" style="&#xA;                    top:182px;&#xA;                    left:131.33333333333334px;                    &#xA;                ">Get subfolders</a><a name="Log filenames-icon"></a><div id="Log filenames" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:50px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Build test cmd"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log filenames-text" style="&#xA;                    top:482px;&#xA;                    left:32.66666666666667px;                    &#xA;                ">Log filenames</a><a name="Output unparsable_files-icon"></a><div id="Output unparsable_files" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileOutput" style="&#xA;                    left:750px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Set files in result"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Output unparsable_files-text" style="&#xA;                    top:482px;&#xA;                    left:719.3333333333334px;                    &#xA;                ">Output unparsable_files</a><a name="Rename directory-icon"></a><div id="Rename directory" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:150px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log patterns"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Rename directory-text" style="&#xA;                    top:282px;&#xA;                    left:128.66666666666666px;                    &#xA;                ">Rename directory</a><a name="Select filenames-icon"></a><div id="Select filenames" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:750px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Copy rows to result"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Select filenames-text" style="&#xA;                    top:382px;&#xA;                    left:728.6666666666666px;                    &#xA;                ">Select filenames</a><a name="Set files in result-icon"></a><div id="Set files in result" class="&#xA;                    step-icon&#xA;                    step-icon-FilesToResult" style="&#xA;                    left:850px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Set files in result-text" style="&#xA;                    top:482px;&#xA;                    left:824.6666666666666px;                    &#xA;                ">Set files in result</a><a name="Sort by size-icon"></a><div id="Sort by size" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:650px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Select filenames"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort by size-text" style="&#xA;                    top:382px;&#xA;                    left:634px;                    &#xA;                ">Sort by size</a><a name="Sort rows-icon"></a><div id="Sort rows" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:450px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Calc all_okay_to_process"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort rows-text" style="&#xA;                    top:382px;&#xA;                    left:438px;                    &#xA;                ">Sort rows</a><a name="Special case subdirs-icon"></a><div id="Special case subdirs" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Get subfolders"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Clean fields 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Special case subdirs-text" style="&#xA;                    top:82px;&#xA;                    left:73.33333333333333px;                    &#xA;                ">Special case subdirs</a><a name="Log patterns-icon"></a><div id="Log patterns" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:50px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get File Names"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get File Names"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log patterns-text" style="&#xA;                    top:282px;&#xA;                    left:34px;                    &#xA;                ">Log patterns</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Constant"></div>
+      <h3 class="step-heading"><a name="Add filename-text" href="#Add filename-icon">Add filename</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>results_filename</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>/etl/output/unparsable_filenames.txt</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Constant"></div>
+      <h3 class="step-heading"><a name="Add okay=0-text" href="#Add okay=0-icon">Add okay=0</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>okay_to_process</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>0</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Constant"></div>
+      <h3 class="step-heading"><a name="Add okay=1-text" href="#Add okay=1-icon">Add okay=1</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>okay_to_process</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>1</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Calculator"></div>
+      <h3 class="step-heading"><a name="Build test cmd-text" href="#Build test cmd-icon">Build test cmd</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Calc all_okay_to_process-text" href="#Calc all_okay_to_process-icon">Calc all_okay_to_process</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>all_okay_to_process</td>
+               <td>okay_to_process</td>
+               <td>MIN</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Clean fields 2-text" href="#Clean fields 2-icon">Clean fields 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>basedir</td>
+               <td>directory</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>filename_pattern</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Calculator"></div>
+      <h3 class="step-heading"><a name="Concat wildcard-text" href="#Concat wildcard-icon">Concat wildcard</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsToResult"></div>
+      <h3 class="step-heading"><a name="Copy rows to result-text" href="#Copy rows to result-icon">Copy rows to result</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ExecProcess"></div>
+      <h3 class="step-heading"><a name="Execute a process-text" href="#Execute a process-icon">Execute a process</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter bad files-text" href="#Filter bad files-icon">Filter bad files</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
+      <h3 class="step-heading"><a name="Filter out good files-text" href="#Filter out good files-icon">Filter out good files</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter servers with bad files-text" href="#Filter servers with bad files-icon">Filter servers with bad files</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GetFileNames"></div>
+      <h3 class="step-heading"><a name="Get File Names-text" href="#Get File Names-icon">Get File Names</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsFromResult"></div>
+      <h3 class="step-heading"><a name="Get rows from result-text" href="#Get rows from result-icon">Get rows from result</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>basedir</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>subdir_pattern</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>filename_prefix</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>filename_suffix</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GetFileNames"></div>
+      <h3 class="step-heading"><a name="Get subfolders-text" href="#Get subfolders-icon">Get subfolders</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Log filenames-text" href="#Log filenames-icon">Log filenames</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>ConcatFilenames</h5><pre class="brush: js;">stringToLog += rpad(datacenter, " ", 3) + " - " + rpad(site, " ", 10) + " - " + rpad(server, " ", 20) + " - " + rpad(filename, " ", 122) + " - " + lpad(size, " ", 10) + "\n";
+</pre><h5>InitVariable</h5><pre class="brush: js;">var stringToLog = "\n";
+</pre><h5>LogOutput</h5><pre class="brush: js;">writeToLog("m",stringToLog);</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TextFileOutput"></div>
+      <h3 class="step-heading"><a name="Output unparsable_files-text" href="#Output unparsable_files-icon">Output unparsable_files</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>trim_type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>3</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>10</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>20</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>13</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>filename</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>500</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>result</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>500</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Rename directory-text" href="#Rename directory-icon">Rename directory</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>filename</td>
+               <td>directory</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>filename_pattern</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Select filenames-text" href="#Select filenames-icon">Select filenames</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>filename</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilesToResult"></div>
+      <h3 class="step-heading"><a name="Set files in result-text" href="#Set files in result-icon">Set files in result</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort by size-text" href="#Sort by size-icon">Sort by size</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>size</td>
+               <td>N</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort rows-text" href="#Sort rows-icon">Sort rows</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>filename</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Special case subdirs-text" href="#Special case subdirs-icon">Special case subdirs</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Log patterns-text" href="#Log patterns-icon">Log patterns</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>ConcatFilenames</h5><pre class="brush: js;">stringToLog += directory + "/" + filename_pattern + "\n";</pre><h5>InitVariable</h5><pre class="brush: js;">var stringToLog = "\n";
+</pre><h5>LogOutput</h5><pre class="brush: js;">writeToLog("m",stringToLog);</pre>    <script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

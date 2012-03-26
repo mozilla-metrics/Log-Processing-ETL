@@ -1,0 +1,662 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/parse_amo_download_requests.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/parse_amo_download_requests.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/amo"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "parse_amo_download_requests"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (0)</th>
+               <th>Transform</th>
+               <th>Output (0)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 828px;&#xA;            height: 428px;&#xA;        "><a name="Add src constants-icon"></a><div id="Add src constants" class="&#xA;                    step-icon&#xA;                    step-icon-Constant" style="&#xA;                    left:650px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#NVL addon_name"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Add src constants-text" style="&#xA;                    top:82px;&#xA;                    left:627.3333333333334px;                    &#xA;                ">Add src constants</a><a name="Audit invalid src-icon"></a><div id="Audit invalid src" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:650px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Write to log"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Audit invalid src-text" style="&#xA;                    top:282px;&#xA;                    left:627.3333333333334px;                    &#xA;                ">Audit invalid src</a><a name="Filter invalid rows-icon"></a><div id="Filter invalid rows" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:50px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#process_gecko_user_agent"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter invalid rows-text" style="&#xA;                    top:282px;&#xA;                    left:24.666666666666668px;                    &#xA;                ">Filter invalid rows</a><a name="Filter null src-icon"></a><div id="Filter null src" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:500px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Validate src"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Add src constants"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter null src-text" style="&#xA;                    top:182px;&#xA;                    left:480px;                    &#xA;                ">Filter null src</a><a name="Lookup addon-icon"></a><div id="Lookup addon" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:350px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Split url_params"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup addon-text" style="&#xA;                    top:282px;&#xA;                    left:334px;                    &#xA;                ">Lookup addon</a><a name="Lookup request_locale_id-icon"></a><div id="Lookup request_locale_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup addon"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup request_locale_id-text" style="&#xA;                    top:182px;&#xA;                    left:318px;                    &#xA;                ">Lookup request_locale_id</a><a name="Lookup user_agent_browser_id-icon"></a><div id="Lookup user_agent_browser_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:200px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup user_agent_locale_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup user_agent_browser_id-text" style="&#xA;                    top:182px;&#xA;                    left:162.66666666666666px;                    &#xA;                ">Lookup user_agent_browser_id</a><a name="Lookup user_agent_locale_id-icon"></a><div id="Lookup user_agent_locale_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:200px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup user_agent_os_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup user_agent_locale_id-text" style="&#xA;                    top:282px;&#xA;                    left:164px;                    &#xA;                ">Lookup user_agent_locale_id</a><a name="Lookup user_agent_os_id-icon"></a><div id="Lookup user_agent_os_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:350px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup request_locale_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup user_agent_os_id-text" style="&#xA;                    top:82px;&#xA;                    left:319.3333333333333px;                    &#xA;                ">Lookup user_agent_os_id</a><a name="Mapping input specification-icon"></a><div id="Mapping input specification" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex download requests"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Mapping input specification-text" style="&#xA;                    top:82px;&#xA;                    left:14px;                    &#xA;                ">Mapping input specification</a><a name="Mapping output specification-icon"></a><div id="Mapping output specification" class="&#xA;                    step-icon&#xA;                    step-icon-MappingOutput" style="&#xA;                    left:750px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Mapping output specification-text" style="&#xA;                    top:282px;&#xA;                    left:712.6666666666666px;                    &#xA;                ">Mapping output specification</a><a name="NVL addon_name-icon"></a><div id="NVL addon_name" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:650px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Rename locale_ids"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#NVL addon_name-text" style="&#xA;                    top:182px;&#xA;                    left:631.3333333333334px;                    &#xA;                ">NVL addon_name</a><a name="Regex download requests-icon"></a><div id="Regex download requests" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter invalid rows"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex download requests-text" style="&#xA;                    top:182px;&#xA;                    left:19.333333333333332px;                    &#xA;                ">Regex download requests</a><a name="Rename locale_ids-icon"></a><div id="Rename locale_ids" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:750px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Mapping output specification"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Rename locale_ids-text" style="&#xA;                    top:182px;&#xA;                    left:727.3333333333334px;                    &#xA;                ">Rename locale_ids</a><a name="Split url_params-icon"></a><div id="Split url_params" class="&#xA;                    step-icon&#xA;                    step-icon-FieldSplitter" style="&#xA;                    left:500px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter null src"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Split url_params-text" style="&#xA;                    top:82px;&#xA;                    left:478.6666666666667px;                    &#xA;                ">Split url_params</a><a name="Validate src-icon"></a><div id="Validate src" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:500px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#NVL addon_name"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Audit invalid src"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Validate src-text" style="&#xA;                    top:282px;&#xA;                    left:484px;                    &#xA;                ">Validate src</a><a name="Write to log-icon"></a><div id="Write to log" class="&#xA;                    step-icon&#xA;                    step-icon-WriteToLog" style="&#xA;                    left:650px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Write to log-text" style="&#xA;                    top:382px;&#xA;                    left:634px;                    &#xA;                ">Write to log</a><a name="process_gecko_user_agent-icon"></a><div id="process_gecko_user_agent" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:200px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup user_agent_browser_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#process_gecko_user_agent-text" style="&#xA;                    top:82px;&#xA;                    left:168px;                    &#xA;                ">process_gecko_user_agent</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>Internal.Transformation.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#process_gecko_user_agent">process_gecko_user_agent</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Lookup addon</a>, <a href="#metrics mysql">Lookup request_locale_id</a>, <a href="#metrics mysql">Lookup user_agent_browser_id</a>, <a href="#metrics mysql">Lookup user_agent_locale_id</a>, <a href="#metrics mysql">Lookup user_agent_os_id</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Constant"></div>
+      <h3 class="step-heading"><a name="Add src constants-text" href="#Add src constants-icon">Add src constants</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>src_parse_result</td>
+               <td>Boolean</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>N</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>src</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>70</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Audit invalid src-text" href="#Audit invalid src-icon">Audit invalid src</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter invalid rows-text" href="#Filter invalid rows-icon">Filter invalid rows</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter null src-text" href="#Filter null src-icon">Filter null src</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
+      <h3 class="step-heading"><a name="Lookup addon-text" href="#Lookup addon-icon">Lookup addon</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="Lookup request_locale_id-text" href="#Lookup request_locale_id-icon">Lookup request_locale_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      request_locale
+      code
+      
+      
+      locale_id
+      autoinc
+      Y
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="Lookup user_agent_browser_id-text" href="#Lookup user_agent_browser_id-icon">Lookup user_agent_browser_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      browser_category
+      browser_category
+      
+      
+      browser_name
+      browser_name
+      
+      
+      browser_version
+      browser_version
+      
+      
+      engine_1
+      engine_1
+      
+      
+      engine_2
+      engine_2
+      
+      
+      user_agent_browser_id
+      autoinc
+      Y
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="Lookup user_agent_locale_id-text" href="#Lookup user_agent_locale_id-icon">Lookup user_agent_locale_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      user_agent_locale
+      code
+      
+      
+      locale_id
+      autoinc
+      Y
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="Lookup user_agent_os_id-text" href="#Lookup user_agent_os_id-icon">Lookup user_agent_os_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      os_category
+      os_category
+      
+      
+      os
+      os
+      
+      
+      platform
+      platform
+      
+      
+      user_agent_os_id
+      autoinc
+      Y
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="Mapping input specification-text" href="#Mapping input specification-icon">Mapping input specification</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>url</td>
+               <td>String</td>
+               <td>1024</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>url_params</td>
+               <td>String</td>
+               <td>1024</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>user_agent</td>
+               <td>String</td>
+               <td>1024</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingOutput"></div>
+      <h3 class="step-heading"><a name="Mapping output specification-text" href="#Mapping output specification-icon">Mapping output specification</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Calculator"></div>
+      <h3 class="step-heading"><a name="NVL addon_name-text" href="#NVL addon_name-icon">NVL addon_name</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RegexEval"></div>
+      <h3 class="step-heading"><a name="Regex download requests-text" href="#Regex download requests-icon">Regex download requests</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>group</th>
+               <th>decimal</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>trimtype</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>request_locale</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>15</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>product</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>20</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>file_id</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>file_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>500</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Rename locale_ids-text" href="#Rename locale_ids-icon">Rename locale_ids</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>        N
+              locale_id_1
+      request_locale_id
+      -
+      -2
+      -2
+      
+      
+      
+      
+      
+                    locale_id
+      user_agent_locale_id
+      -
+      -2
+      -2
+      
+      
+      
+      
+      
+          <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FieldSplitter"></div>
+      <h3 class="step-heading"><a name="Split url_params-text" href="#Split url_params-icon">Split url_params</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>id</th>
+               <th>idrem</th>
+               <th>type</th>
+               <th>format</th>
+               <th>group</th>
+               <th>decimal</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>trimtype</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>raw_src</td>
+               <td>src=</td>
+               <td>Y</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>70</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RegexEval"></div>
+      <h3 class="step-heading"><a name="Validate src-text" href="#Validate src-icon">Validate src</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>group</th>
+               <th>decimal</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>trimtype</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>src</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>70</td>
+               <td>-1</td>
+               <td></td>
+               <td>invalid</td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-WriteToLog"></div>
+      <h3 class="step-heading"><a name="Write to log-text" href="#Write to log-icon">Write to log</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>url</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Mapping"></div>
+      <h3 class="step-heading"><a name="process_gecko_user_agent-text" href="#process_gecko_user_agent-icon">process_gecko_user_agent</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

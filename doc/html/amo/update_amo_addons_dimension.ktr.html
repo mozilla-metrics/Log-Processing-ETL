@@ -1,0 +1,647 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/update_amo_addons_dimension.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/update_amo_addons_dimension.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/amo"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "update_amo_addons_dimension"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (2)</th>
+               <th>Transform</th>
+               <th>Output (3)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Get existing addon records</div>
+                  <div>Get updated addon records</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>Table output</div>
+                  <div>Update</div>
+                  <div>Update deleted</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 478px;&#xA;            height: 428px;&#xA;        "><a name="Add delete flag-icon"></a><div id="Add delete flag" class="&#xA;                    step-icon&#xA;                    step-icon-Constant" style="&#xA;                    left:400px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Update deleted"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Add delete flag-text" style="&#xA;                    top:282px;&#xA;                    left:380px;                    &#xA;                ">Add delete flag</a><a name="Calculator-icon"></a><div id="Calculator" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:250px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Select values"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Calculator-text" style="&#xA;                    top:182px;&#xA;                    left:236.66666666666666px;                    &#xA;                ">Calculator</a><a name="Compare tables-icon"></a><div id="Compare tables" class="&#xA;                    step-icon&#xA;                    step-icon-MergeRows" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Switch / Case"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Compare tables-text" style="&#xA;                    top:182px;&#xA;                    left:31.333333333333332px;                    &#xA;                ">Compare tables</a><a name="Get existing addon records-icon"></a><div id="Get existing addon records" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Compare tables"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get existing addon records-text" style="&#xA;                    top:82px;&#xA;                    left:15.333333333333336px;                    &#xA;                ">Get existing addon records</a><a name="Get updated addon records-icon"></a><div id="Get updated addon records" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Calculator"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get updated addon records-text" style="&#xA;                    top:82px;&#xA;                    left:216.66666666666666px;                    &#xA;                ">Get updated addon records</a><a name="Select values-icon"></a><div id="Select values" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Compare tables"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Select values-text" style="&#xA;                    top:182px;&#xA;                    left:132.66666666666666px;                    &#xA;                ">Select values</a><a name="Switch / Case-icon"></a><div id="Switch / Case" class="&#xA;                    step-icon&#xA;                    step-icon-SwitchCase" style="&#xA;                    left:200px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Table output"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Update"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter null guids"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Switch / Case-text" style="&#xA;                    top:282px;&#xA;                    left:182.66666666666666px;                    &#xA;                ">Switch / Case</a><a name="Table output-icon"></a><div id="Table output" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:100px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Table output-text" style="&#xA;                    top:382px;&#xA;                    left:84px;                    &#xA;                ">Table output</a><a name="Update-icon"></a><div id="Update" class="&#xA;                    step-icon&#xA;                    step-icon-Update" style="&#xA;                    left:200px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Update-text" style="&#xA;                    top:382px;&#xA;                    left:192px;                    &#xA;                ">Update</a><a name="Update deleted-icon"></a><div id="Update deleted" class="&#xA;                    step-icon&#xA;                    step-icon-Update" style="&#xA;                    left:400px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Update deleted-text" style="&#xA;                    top:382px;&#xA;                    left:381.3333333333333px;                    &#xA;                ">Update deleted</a><a name="Filter null guids-icon"></a><div id="Filter null guids" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:300px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Add delete flag"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter null guids-text" style="&#xA;                    top:282px;&#xA;                    left:277.3333333333333px;                    &#xA;                ">Filter null guids</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>AMO_SLAVE_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>AMO_SLAVE_DATABASE</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>AMO_SLAVE_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>AMO_SLAVE_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>AMO_SLAVE_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 2 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.Live addons slave">Live addons slave</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${AMO_SLAVE_HOST}</td>
+               <td>${AMO_SLAVE_PORT}</td>
+               <td>${AMO_SLAVE_USER}</td>
+               <td><a href="#Live addons slave">Get updated addon records</a></td>
+            </tr>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Get existing addon records</a>, <a href="#metrics mysql">Table output</a>, <a href="#metrics mysql">Update</a>, <a href="#metrics mysql">Update deleted</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.Live addons slave">Live addons slave</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>Live addons slave</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${AMO_SLAVE_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${AMO_SLAVE_DATABASE}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${AMO_SLAVE_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${AMO_SLAVE_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${AMO_SLAVE_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Constant"></div>
+      <h3 class="step-heading"><a name="Add delete flag-text" href="#Add delete flag-icon">Add delete flag</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>is_deleted</td>
+               <td>Boolean</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>Y</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Calculator"></div>
+      <h3 class="step-heading"><a name="Calculator-text" href="#Calculator-icon">Calculator</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MergeRows"></div>
+      <h3 class="step-heading"><a name="Compare tables-text" href="#Compare tables-icon">Compare tables</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Get existing addon records-text" href="#Get existing addon records-icon">Get existing addon records</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT
+  file_id
+, version_id
+, addon_id
+, guid
+, version
+, english_name
+, native_name
+, addon_type
+, null as file_creation_date
+, null as file_modification_date
+, null as addon_creation_date
+, null as addon_modification_date
+, null as version_creation_date
+, null as version_modification_date
+FROM amo_hosted_addons
+WHERE is_deleted IS NULL
+ORDER BY addon_id, version_id, file_id</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Get updated addon records-text" href="#Get updated addon records-icon">Get updated addon records</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT
+  IFNULL(f.id,0) AS file_id
+, IFNULL(v.id,0) AS version_id
+, a.id AS addon_id
+, guid
+, LOWER(version) AS version
+, IFNULL(LEFT(t1.localized_string, 255), LEFT(t2.localized_string, 255)) AS raw_name
+, LEFT(t2.localized_string, 255) AS native_name
+, LEFT(t3.localized_string, 30) AS addon_type
+, NULL AS file_creation_date
+, NULL AS file_modification_date
+, NULL AS addon_creation_date
+, NULL AS addon_modification_date
+, NULL AS version_creation_date
+, NULL AS version_modification_date
+FROM addons a
+LEFT JOIN versions v ON a.id = v.addon_id
+LEFT JOIN files f ON v.id = f.version_id
+LEFT JOIN addontypes at ON a.addontype_id = at.id
+LEFT JOIN translations t1 ON a.name = t1.id AND t1.locale = 'en-US'
+LEFT JOIN translations t2 ON a.name = t2.id AND t2.locale = a.defaultlocale
+LEFT JOIN translations t3 ON at.name = t3.id AND t3.locale = 'en-US'
+ORDER BY a.id, v.id, f.id
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Select values-text" href="#Select values-icon">Select values</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>file_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>version_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>addon_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>guid</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>version</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>english_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>native_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>addon_type</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>file_creation_date</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>file_modification_date</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>addon_creation_date</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>addon_modification_date</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>version_creation_date</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>version_modification_date</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SwitchCase"></div>
+      <h3 class="step-heading"><a name="Switch / Case-text" href="#Switch / Case-icon">Switch / Case</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="Table output-text" href="#Table output-icon">Table output</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>addon_id</td>
+               <td>addon_id</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>version_id</td>
+               <td>version_id</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>file_id</td>
+               <td>file_id</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>guid</td>
+               <td>guid</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>version</td>
+               <td>version</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>english_name</td>
+               <td>english_name</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>native_name</td>
+               <td>native_name</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>addon_type</td>
+               <td>addon_type</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>file_creation_date</td>
+               <td>file_creation_date</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>file_modification_date</td>
+               <td>file_modification_date</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>addon_creation_date</td>
+               <td>addon_creation_date</td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>addon_modification_date</td>
+               <td>addon_modification_date</td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>version_creation_date</td>
+               <td>version_creation_date</td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>version_modification_date</td>
+               <td>version_modification_date</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Update"></div>
+      <h3 class="step-heading"><a name="Update-text" href="#Update-icon">Update</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Update"></div>
+      <h3 class="step-heading"><a name="Update deleted-text" href="#Update deleted-icon">Update deleted</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter null guids-text" href="#Filter null guids-icon">Filter null guids</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

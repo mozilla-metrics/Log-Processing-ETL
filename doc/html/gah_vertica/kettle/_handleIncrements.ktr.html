@@ -1,0 +1,538 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/gah_vertica/kettle/_handleIncrements.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/gah_vertica/kettle/_handleIncrements.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/gah_vertica/kettle"
+            documentation-root: "../../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "_handleIncrements"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (2)</th>
+               <th>Transform</th>
+               <th>Output (0)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Query on facts</div>
+                  <div>Query on aggregates</div>
+               </td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 783px;&#xA;            height: 343px;&#xA;        "><a name="Query on facts-icon"></a><div id="Query on facts" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:64px;&#xA;                    top:35px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Merge Rows (diff)"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Query on facts-text" style="&#xA;                    top:67px;&#xA;                    left:45.33333333333333px;                    &#xA;                ">Query on facts</a><a name="Query on aggregates-icon"></a><div id="Query on aggregates" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:65px;&#xA;                    top:130px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Merge Rows (diff)"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Query on aggregates-text" style="&#xA;                    top:162px;&#xA;                    left:39.66666666666667px;                    &#xA;                ">Query on aggregates</a><a name="Merge Rows (diff)-icon"></a><div id="Merge Rows (diff)" class="&#xA;                    step-icon&#xA;                    step-icon-MergeRows" style="&#xA;                    left:183px;&#xA;                    top:78px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Remove identical ones"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Merge Rows (diff)-text" style="&#xA;                    top:110px;&#xA;                    left:160.33333333333334px;                    &#xA;                ">Merge Rows (diff)</a><a name="Remove identical ones-icon"></a><div id="Remove identical ones" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:302px;&#xA;                    top:76px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Ignore"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Get only new rows"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Remove identical ones-text" style="&#xA;                    top:108px;&#xA;                    left:274px;                    &#xA;                ">Remove identical ones</a><a name="Ignore-icon"></a><div id="Ignore" class="&#xA;                    step-icon&#xA;                    step-icon-Dummy" style="&#xA;                    left:302px;&#xA;                    top:173px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Ignore-text" style="&#xA;                    top:205px;&#xA;                    left:294px;                    &#xA;                ">Ignore</a><a name="Get only new rows-icon"></a><div id="Get only new rows" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:433px;&#xA;                    top:76px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Serialize"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Group by"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get only new rows-text" style="&#xA;                    top:108px;&#xA;                    left:410.3333333333333px;                    &#xA;                ">Get only new rows</a><a name="Group by-icon"></a><div id="Group by" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:433px;&#xA;                    top:164px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log info"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Group by-text" style="&#xA;                    top:196px;&#xA;                    left:422.3333333333333px;                    &#xA;                ">Group by</a><a name="Log info-icon"></a><div id="Log info" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:435px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log info-text" style="&#xA;                    top:282px;&#xA;                    left:424.3333333333333px;                    &#xA;                ">Log info</a><a name="Serialize-icon"></a><div id="Serialize" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:535px;&#xA;                    top:76px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Join"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Serialize-text" style="&#xA;                    top:108px;&#xA;                    left:523px;                    &#xA;                ">Serialize</a><a name="Get SQL to Execute-icon"></a><div id="Get SQL to Execute" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:719px;&#xA;                    top:75px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Set Variables"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get SQL to Execute-text" style="&#xA;                    top:107px;&#xA;                    left:695px;                    &#xA;                ">Get SQL to Execute</a><a name="Get Variables-icon"></a><div id="Get Variables" class="&#xA;                    step-icon&#xA;                    step-icon-GetVariable" style="&#xA;                    left:621px;&#xA;                    top:188px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Join"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get Variables-text" style="&#xA;                    top:220px;&#xA;                    left:603.6666666666666px;                    &#xA;                ">Get Variables</a><a name="Join-icon"></a><div id="Join" class="&#xA;                    step-icon&#xA;                    step-icon-JoinRows" style="&#xA;                    left:621px;&#xA;                    top:75px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get SQL to Execute"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Join-text" style="&#xA;                    top:107px;&#xA;                    left:615.6666666666666px;                    &#xA;                ">Join</a><a name="Set Variables-icon"></a><div id="Set Variables" class="&#xA;                    step-icon&#xA;                    step-icon-SetVariable" style="&#xA;                    left:719px;&#xA;                    top:188px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Set Variables-text" style="&#xA;                    top:220px;&#xA;                    left:701.6666666666666px;                    &#xA;                ">Set Variables</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>GAH_DBUSER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DBPASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DBCLASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DBURL</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_QUERYONFACT</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Query on facts">Query on facts</a></td>
+            </tr>
+            <tr>
+               <th>GAH_QUERYONAGGREGATE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Query on aggregates">Query on aggregates</a></td>
+            </tr>
+            <tr>
+               <th>INCREMENT_CONDITION_FROM</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get SQL to Execute">Get SQL to Execute</a></td>
+            </tr>
+            <tr>
+               <th>INCREMENT_CONDITION_WHERE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get SQL to Execute">Get SQL to Execute</a></td>
+            </tr>
+            <tr>
+               <th>INCREMENT_LIST</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get SQL to Execute">Get SQL to Execute</a></td>
+            </tr>
+            <tr>
+               <th>GAH_QUOTEVALUE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get Variables">Get Variables</a></td>
+            </tr>
+            <tr>
+               <th>GAH_INCREMENTQUERY</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get Variables">Get Variables</a></td>
+            </tr>
+            <tr>
+               <th>GAH_INCREMENTCONDITIONWHERE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get Variables">Get Variables</a></td>
+            </tr>
+            <tr>
+               <th>GAH_INCREMENTCONDITIONFROM</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get Variables">Get Variables</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.connection">connection</a></th>
+               <td>GENERIC</td>
+               <td>Native</td>
+               <td></td>
+               <td>1521</td>
+               <td>${GAH_DBUSER}</td>
+               <td><a href="#connection">Query on facts</a>, <a href="#connection">Query on aggregates</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.connection">connection</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>connection</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>GENERIC</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>1521</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${GAH_DBUSER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${GAH_DBPASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Query on facts-text" href="#Query on facts-icon">Query on facts</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">${GAH_QUERYONFACT}</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Query on aggregates-text" href="#Query on aggregates-icon">Query on aggregates</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">${GAH_QUERYONAGGREGATE}</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MergeRows"></div>
+      <h3 class="step-heading"><a name="Merge Rows (diff)-text" href="#Merge Rows (diff)-icon">Merge Rows (diff)</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Remove identical ones-text" href="#Remove identical ones-icon">Remove identical ones</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Dummy"></div>
+      <h3 class="step-heading"><a name="Ignore-text" href="#Ignore-icon">Ignore</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Get only new rows-text" href="#Get only new rows-icon">Get only new rows</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Group by-text" href="#Group by-icon">Group by</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>Count</td>
+               <td>value</td>
+               <td>COUNT_ALL</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Log info-text" href="#Log info-icon">Log info</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">//Script here
+
+writeToLog("e","GAH: WARNING: Found unexpect rows while comparing fact and aggregate values: Number of unexpected rows: " + Count);</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Serialize-text" href="#Serialize-icon">Serialize</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>parameter</td>
+               <td>value</td>
+               <td>CONCAT_STRING</td>
+               <td>XXXSEPXXX</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Get SQL to Execute-text" href="#Get SQL to Execute-icon">Get SQL to Execute</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">
+var quoteValue = QuoteValue.toLowerCase() == "true";
+
+IncrementQuery = IncrementQuery.replace( /\${INCREMENT_CONDITION_FROM}/gi,eval(IncrementConditionFrom+"") || "");  
+IncrementQuery = IncrementQuery.replace( /\${INCREMENT_CONDITION_WHERE}/gi,eval(IncrementConditionWhere+"") || "");  
+
+if(quoteValue){
+
+	parameter = "'" + parameter.replace("/'/g","''").replace(/XXXSEPXXX/g,"','") + "'";
+
+}
+else{
+
+	parameter = parameter.replace(/XXXSEPXXX/g,",");
+}
+
+IncrementQuery = IncrementQuery.replace(/\${INCREMENT_LIST}/gi,parameter);
+
+writeToLog("m","INCREMENT QUERY: " + IncrementQuery);
+
+</pre><h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>replace</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>parameter</td>
+               <td>parameter</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>Y</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>IncrementQuery</td>
+               <td>IncrementQuery</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>Y</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GetVariable"></div>
+      <h3 class="step-heading"><a name="Get Variables-text" href="#Get Variables-icon">Get Variables</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>variable</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>trim_type</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>QuoteValue</td>
+               <td>${GAH_QUOTEVALUE}</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>IncrementQuery</td>
+               <td>${GAH_INCREMENTQUERY}</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>IncrementConditionWhere</td>
+               <td>${GAH_INCREMENTCONDITIONWHERE}</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>IncrementConditionFrom</td>
+               <td>${GAH_INCREMENTCONDITIONFROM}</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-JoinRows"></div>
+      <h3 class="step-heading"><a name="Join-text" href="#Join-icon">Join</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SetVariable"></div>
+      <h3 class="step-heading"><a name="Set Variables-text" href="#Set Variables-icon">Set Variables</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>field_name</th>
+               <th>variable_name</th>
+               <th>variable_type</th>
+               <th>default_value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>IncrementQuery</td>
+               <td>GAH_INCREMENT_QUERY_RESULT</td>
+               <td>PARENT_JOB</td>
+               <td>DEFAULT</td>
+            </tr>
+         </tbody>
+      </table><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

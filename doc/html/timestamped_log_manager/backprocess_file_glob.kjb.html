@@ -1,0 +1,261 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/backprocess_file_glob.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/backprocess_file_glob.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: backprocess_file_glob
+            relative-path: "/timestamped_log_manager"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: job "backprocess_file_glob"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "backprocess_file_glob"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2010/03/18 10:31:24.958</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2010/03/18 10:31:24.958</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job defines 7 parameters.
+         
+      </p>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  Name
+                  
+               </th>
+               <th>
+                  Default Value
+                  
+               </th>
+               <th>
+                  Description
+                  
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>DATACENTER</th>
+               <td>xxx</td>
+               <td>Required: Datacenter code for the logfiles (i.e. sjc ams phx)</td>
+            </tr>
+            <tr>
+               <th>DIRECTORY</th>
+               <td>xxx</td>
+               <td>Required: The directory to look for files matching PATTERN</td>
+            </tr>
+            <tr>
+               <th>PATTERN</th>
+               <td>xxx</td>
+               <td>Required: The Java RegEx pattern to filter for files</td>
+            </tr>
+            <tr>
+               <th>SERVER</th>
+               <td>xxx</td>
+               <td>Required: Server name for the logfiles (i.e. zlb01 ams-zlb01 netscaler) Can't process more than one server at a time.</td>
+            </tr>
+            <tr>
+               <th>SITE</th>
+               <td>xxx</td>
+               <td>Required: Site code for the logfiles (i.e. amo vamo dmo aus)</td>
+            </tr>
+            <tr>
+               <th>SITE_TRANSFORMATION</th>
+               <td>xxx</td>
+               <td>Required: The transformation to execute</td>
+            </tr>
+            <tr>
+               <th>raw_table_suffix</th>
+               <td></td>
+               <td>_back for back processing</td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 978px;&#xA;            height: 180px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Check DATACENTER"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:43.333333333333336px;&#xA;                " href="#START-text">START</a><a name="Get filenames by glob-icon"></a><div id="Get filenames by glob" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:800px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process site"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:772px;&#xA;                " href="get_filenames_by_glob.ktr.html">Get filenames by glob</a><a name="Process site-icon"></a><div id="Process site" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:900px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:884px;&#xA;                " href="${SITE_TRANSFORMATION}.html">Process site</a><a name="Check DATACENTER-icon"></a><div id="Check DATACENTER" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:150px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Abort job 1"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Check SITE"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:128.66666666666666px;&#xA;                " href="#Check DATACENTER-text">Check DATACENTER</a><a name="Abort job 1-icon"></a><div id="Abort job 1" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-ABORT" style="&#xA;                    left:150px;&#xA;                    top:100px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:132px;&#xA;                    left:135.33333333333334px;&#xA;                " href="#Abort job 1-text">Abort job 1</a><a name="Check SITE-icon"></a><div id="Check SITE" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Check SERVER"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Abort job 2"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:236.66666666666666px;&#xA;                " href="#Check SITE-text">Check SITE</a><a name="Abort job 2-icon"></a><div id="Abort job 2" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-ABORT" style="&#xA;                    left:250px;&#xA;                    top:100px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:132px;&#xA;                    left:235.33333333333334px;&#xA;                " href="#Abort job 2-text">Abort job 2</a><a name="Check SERVER-icon"></a><div id="Check SERVER" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:352px;&#xA;                    top:51px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Check DIRECTORY"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Abort job 3"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:83px;&#xA;                    left:336px;&#xA;                " href="#Check SERVER-text">Check SERVER</a><a name="Abort job 3-icon"></a><div id="Abort job 3" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-ABORT" style="&#xA;                    left:352px;&#xA;                    top:101px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:133px;&#xA;                    left:337.3333333333333px;&#xA;                " href="#Abort job 3-text">Abort job 3</a><a name="Check DIRECTORY-icon"></a><div id="Check DIRECTORY" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:450px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Check PATTERN"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Abort job 4"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:430px;&#xA;                " href="#Check DIRECTORY-text">Check DIRECTORY</a><a name="Abort job 4-icon"></a><div id="Abort job 4" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-ABORT" style="&#xA;                    left:450px;&#xA;                    top:100px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:132px;&#xA;                    left:435.3333333333333px;&#xA;                " href="#Abort job 4-text">Abort job 4</a><a name="Check PATTERN-icon"></a><div id="Check PATTERN" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:551px;&#xA;                    top:49px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Check SITE_TRANSFORMATION"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Abort job 5"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:81px;&#xA;                    left:533.6666666666666px;&#xA;                " href="#Check PATTERN-text">Check PATTERN</a><a name="Abort job 5-icon"></a><div id="Abort job 5" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-ABORT" style="&#xA;                    left:551px;&#xA;                    top:99px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:131px;&#xA;                    left:536.3333333333334px;&#xA;                " href="#Abort job 5-text">Abort job 5</a><a name="Check SITE_TRANSFORMATION-icon"></a><div id="Check SITE_TRANSFORMATION" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:651px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Abort job 6"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Get filenames by glob"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:617.6666666666666px;&#xA;                " href="#Check SITE_TRANSFORMATION-text">Check SITE_TRANSFORMATION</a><a name="Abort job 6-icon"></a><div id="Abort job 6" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-ABORT" style="&#xA;                    left:651px;&#xA;                    top:100px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:132px;&#xA;                    left:636.3333333333334px;&#xA;                " href="#Abort job 6-text">Abort job 6</a></div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get filenames by glob">Get filenames by glob</a></td>
+            </tr>
+            <tr>
+               <th>SITE_TRANSFORMATION</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Process site">Process site</a>, <a href="#Check SITE_TRANSFORMATION">Check SITE_TRANSFORMATION</a></td>
+            </tr>
+            <tr>
+               <th>DATACENTER</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Check DATACENTER">Check DATACENTER</a></td>
+            </tr>
+            <tr>
+               <th>SITE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Check SITE">Check SITE</a></td>
+            </tr>
+            <tr>
+               <th>SERVER</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Check SERVER">Check SERVER</a></td>
+            </tr>
+            <tr>
+               <th>DIRECTORY</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Check DIRECTORY">Check DIRECTORY</a></td>
+            </tr>
+            <tr>
+               <th>PATTERN</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Check PATTERN">Check PATTERN</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job does not define any database connections.</p>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>Special entries</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Get filenames by glob-text" href="#Get filenames by glob-icon">Get filenames by glob</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Process site-text" href="#Process site-icon">Process site</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SIMPLE_EVAL"></div>
+      <h3 class="entry-heading"><a name="Check DATACENTER-text" href="#Check DATACENTER-icon">Check DATACENTER</a></h3>
+      <p>Simple evaluation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-ABORT"></div>
+      <h3 class="entry-heading"><a name="Abort job 1-text" href="#Abort job 1-icon">Abort job 1</a></h3>
+      <p>Abort job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SIMPLE_EVAL"></div>
+      <h3 class="entry-heading"><a name="Check SITE-text" href="#Check SITE-icon">Check SITE</a></h3>
+      <p>Simple evaluation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-ABORT"></div>
+      <h3 class="entry-heading"><a name="Abort job 2-text" href="#Abort job 2-icon">Abort job 2</a></h3>
+      <p>Abort job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SIMPLE_EVAL"></div>
+      <h3 class="entry-heading"><a name="Check SERVER-text" href="#Check SERVER-icon">Check SERVER</a></h3>
+      <p>Simple evaluation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-ABORT"></div>
+      <h3 class="entry-heading"><a name="Abort job 3-text" href="#Abort job 3-icon">Abort job 3</a></h3>
+      <p>Abort job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SIMPLE_EVAL"></div>
+      <h3 class="entry-heading"><a name="Check DIRECTORY-text" href="#Check DIRECTORY-icon">Check DIRECTORY</a></h3>
+      <p>Simple evaluation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-ABORT"></div>
+      <h3 class="entry-heading"><a name="Abort job 4-text" href="#Abort job 4-icon">Abort job 4</a></h3>
+      <p>Abort job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SIMPLE_EVAL"></div>
+      <h3 class="entry-heading"><a name="Check PATTERN-text" href="#Check PATTERN-icon">Check PATTERN</a></h3>
+      <p>Simple evaluation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-ABORT"></div>
+      <h3 class="entry-heading"><a name="Abort job 5-text" href="#Abort job 5-icon">Abort job 5</a></h3>
+      <p>Abort job</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SIMPLE_EVAL"></div>
+      <h3 class="entry-heading"><a name="Check SITE_TRANSFORMATION-text" href="#Check SITE_TRANSFORMATION-icon">Check SITE_TRANSFORMATION</a></h3>
+      <p>Simple evaluation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-ABORT"></div>
+      <h3 class="entry-heading"><a name="Abort job 6-text" href="#Abort job 6-icon">Abort job 6</a></h3>
+      <p>Abort job</p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

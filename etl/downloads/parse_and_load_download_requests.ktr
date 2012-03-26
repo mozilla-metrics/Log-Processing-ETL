@@ -1,0 +1,1660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file are subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+<transformation>
+  <info>
+    <name>parse_and_load_download_requests</name>
+    <description/>
+    <extended_description>
+The contents of this file are subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this file,
+You can obtain one at http://mozilla.org/MPL/2.0/.
+    </extended_description>
+    <trans_version/>
+    <trans_status>0</trans_status>
+    <directory>&#47;</directory>
+    <parameters>
+        <parameter>
+            <name>directory</name>
+            <default_value>&#47;mnt&#47;stats_im-log03&#47;stats&#47;logs&#47;im-log01&#47;download.mozilla.org</default_value>
+            <description>Can be overridden to point at im-log02</description>
+        </parameter>
+        <parameter>
+            <name>raw_table_suffix</name>
+            <default_value/>
+            <description>_back for back processing</description>
+        </parameter>
+        <parameter>
+            <name>wildcard</name>
+            <default_value>xxx</default_value>
+            <description>If specified, the transformation can be run directly on a specific fileset</description>
+        </parameter>
+    </parameters>
+    <log>
+      <read>Regex Capture</read>
+      <write>Postfilter and Date Parse</write>
+      <input>Text file input</input>
+      <output>Load download_requests_raw</output>
+      <update/>
+      <rejected>Validate product fields</rejected>
+      <connection>metrics mysql</connection>
+      <table>log_trans</table>
+      <step_performance_table/>
+      <use_batchid>Y</use_batchid>
+      <use_logfield>Y</use_logfield>
+      <size_limit_lines>1000</size_limit_lines>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>N</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>Y</capture_step_performance>
+    <step_performance_capturing_delay>1000</step_performance_capturing_delay>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <clusterschemas>
+        <clusterschema>
+          <name>3 node</name>
+          <base_port>40010</base_port>
+          <sockets_buffer_size>262144</sockets_buffer_size>
+          <sockets_flush_interval>2000</sockets_flush_interval>
+          <sockets_compressed>N</sockets_compressed>
+          <dynamic>N</dynamic>
+        </clusterschema>
+        <clusterschema>
+          <name>4 node</name>
+          <base_port>40010</base_port>
+          <sockets_buffer_size>262144</sockets_buffer_size>
+          <sockets_flush_interval>2000</sockets_flush_interval>
+          <sockets_compressed>N</sockets_compressed>
+          <dynamic>N</dynamic>
+        </clusterschema>
+    </clusterschemas>
+  <modified_user>-</modified_user>
+  <modified_date>2008&#47;09&#47;08 14:42:57.434</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>metrics</name>
+    <server>${VERTICA_HOST}</server>
+    <type>VERTICA</type>
+    <access>Native</access>
+    <database>${VERTICA_DB}</database>
+    <port>${VERTICA_PORT}</port>
+    <username>${VERTICA_USER}</username>
+    <password>${VERTICA_PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION 
+ISOLATION LEVEL READ COMMITTED</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <connection>
+    <name>metrics mysql</name>
+    <server>${METRICS_MYSQL_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${METRICS_MYSQL_NAME}</database>
+    <port>${METRICS_MYSQL_PORT}</port>
+    <username>${METRICS_MYSQL_USER}</username>
+    <password>${METRICS_MYSQL_PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>UTF-8</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useServerPrepStmts</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useUnicode</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Map request_type values</from><to>Map request_result values</to><enabled>Y</enabled> </hop>  <hop> <from>Map request_result values</from><to>Split URL</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup download_product_id</from><to>Lookup product_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Regex product capture</from><to>Validate product fields</to><enabled>Y</enabled> </hop>  <hop> <from>Validate product fields</from><to>Lookup download_product_id</to><enabled>Y</enabled> </hop>  <hop> <from>Validate product fields</from><to>Flag invalid product strings</to><enabled>Y</enabled> </hop>  <hop> <from>Flag invalid product strings</from><to>Lookup download_product_id</to><enabled>Y</enabled> </hop>  <hop> <from>Generate filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_locale_id</from><to>Lookup location_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup date_id</from><to>Map request_type values</to><enabled>Y</enabled> </hop>  <hop> <from>Split URL</from><to>Fixup Fennec beta 5</to><enabled>Y</enabled> </hop>  <hop> <from>Fixup Fennec beta 5</from><to>Regex product capture</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex Capture</to><enabled>Y</enabled> </hop>  <hop> <from>Regex Capture</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>Lookup date_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup location_id</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Load download_requests_raw</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Add constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>user_agent_browser_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>41</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>user_agent_os_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>1456</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>locale_id_1</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>52</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>350</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Data Validator</name>
+    <type>Validator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<validate_all>N</validate_all>
+<concat_errors>N</concat_errors>
+<concat_separator>|</concat_separator>
+       <validator_field><name>filename</name>
+<validation_name>Is gzipped</validation_name>
+<max_length>-1</max_length>
+<min_length>-1</min_length>
+<null_allowed>Y</null_allowed>
+<only_null_allowed>N</only_null_allowed>
+<only_numeric_allowed>N</only_numeric_allowed>
+<data_type>-</data_type>
+<data_type_verified>N</data_type_verified>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<max_value/>
+<min_value/>
+<start_string/>
+<end_string>.gz</end_string>
+<start_string_not_allowed/>
+<end_string_not_allowed/>
+<regular_expression/>
+<regular_expression_not_allowed/>
+<error_code/>
+<error_description/>
+<is_sourcing_values>N</is_sourcing_values>
+<sourcing_step/>
+<sourcing_field/>
+<allowed_value></allowed_value></validator_field>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>150</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Fixup Fennec beta 5</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>RowProcessor</class_name>
+
+        <class_source><![CDATA[public static class Fields {
+	public static class In  { public static FieldHelper product; }
+}
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+        data.outputRowMeta = getInputRowMeta().clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
+		Fields.In.product = new FieldHelper(data.inputRowMeta, "product");
+    }
+
+    String product = Fields.In.product.getString(r);
+    if ("firefox".equals(product)) {
+        Fields.In.product.setValue(r, "fennec-1.0b5");
+    incrementLinesUpdated();
+    } else if (product.indexOf("-") > 20) {
+        Fields.In.product.setValue(r, "invalid-invalid");
+    }
+
+    putRow(data.outputRowMeta, r);
+	return true;
+}
+
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Flag invalid product strings</name>
+    <type>ScriptValueMod</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <compatible>Y</compatible>
+    <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
+        <jsScript_name>Script 1</jsScript_name>
+        <jsScript_script>
+writeToLog(&quot;m&quot;, &quot;line: &quot;+line.getString());
+if (product_version_suffix.getString() != null &amp;&amp; product_version_suffix.getString().length() &gt; 20) {
+	writeToLog(&quot;m&quot;, &quot;version: &quot;+product_version_suffix.getString());
+	product_version_suffix.setValue(&quot;Invalid&quot;);
+}
+if (str2RegExp(product_platform.getString(), &quot;^(None|win(ce|mo)?|android|linux(64)?|osx(ppc)?|maemo|(open)?solaris-(sparc|i38x))$&quot;) == null) {
+	writeToLog(&quot;m&quot;, &quot;platform: &quot;+product_platform.getString());
+	product_platform.setValue(&quot;Invalid&quot;);
+}
+if (str2RegExp(product_locale.getString(), &quot;^(None|all|multi|[a-z]{2,3}(?&gt;-[A-Za-z]{2}(?&gt;-[a-z]{2,8})?)?)$&quot;) == null) {
+	writeToLog(&quot;m&quot;, &quot;locale: &quot;+product_locale.getString());
+	product_locale.setValue(&quot;Invalid&quot;);
+}</jsScript_script>
+      </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>150</xloc>
+      <yloc>350</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate filenames</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>RowProcessor</class_name>
+
+        <class_source><![CDATA[import java.io.*;
+
+public static class Fields {
+	public static class In  { }
+	public static class Out { public static FieldHelper filename; }
+}
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	data.outputRowMeta = new RowMeta();
+	meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
+
+	if (getVariable("wildcard") != null && !"xxx".equals(getVariable("wildcard"))) {
+		Fields.Out.filename = new FieldHelper(data.outputRowMeta, "filename");
+		String cmd = "find " + getVariable("directory") + " -name 'access_" + getVariable("wildcard") + "*' | sort";
+		try {
+			logMinimal("Running command: "+cmd);
+			Process p = new ProcessBuilder(new String[] {"bash", "-c", cmd}).start();
+			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+			p.waitFor();
+			String filename = null;
+			while ((filename = in.readLine()) != null) {
+				logMinimal(filename);
+				Object[] rowData = RowDataUtil.allocateRowData(data.outputRowMeta.size());
+				Fields.Out.filename.setValue(rowData, filename);
+				putRow(data.outputRowMeta, rowData);
+			}
+			in.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+			setErrors(1);
+			stopAll();
+		}
+	}
+
+	setOutputDone();
+	return false;
+}]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+        <field>
+        <field_name>filename</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>500</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get filenames</name>
+    <type>RowsFromResult</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>      <field>        <name>datacenter</name>
+        <type>String</type>
+        <length>3</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>site</name>
+        <type>String</type>
+        <length>10</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>server</name>
+        <type>String</type>
+        <length>20</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>timestamp</name>
+        <type>String</type>
+        <length>13</length>
+        <precision>-1</precision>
+        </field>      <field>        <name>filename</name>
+        <type>String</type>
+        <length>500</length>
+        <precision>-1</precision>
+        </field>      </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Load download_requests_raw</name>
+    <type>VerticaBulkLoader</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>metrics</connection>
+    <schema/>
+    <table>download_requests_raw${raw_table_suffix}</table>
+    <specify_fields>Y</specify_fields>
+    <fields>
+        <field>
+          <column_name>datacenter</column_name>
+          <stream_name>datacenter</stream_name>
+        </field>
+        <field>
+          <column_name>source_site</column_name>
+          <stream_name>site</stream_name>
+        </field>
+        <field>
+          <column_name>source_server</column_name>
+          <stream_name>server</stream_name>
+        </field>
+        <field>
+          <column_name>source_filename</column_name>
+          <stream_name>filename</stream_name>
+        </field>
+        <field>
+          <column_name>source_timestamp</column_name>
+          <stream_name>timestamp</stream_name>
+        </field>
+        <field>
+          <column_name>utc_date_id</column_name>
+          <stream_name>utc_date_id</stream_name>
+        </field>
+        <field>
+          <column_name>utc_date</column_name>
+          <stream_name>utc_date</stream_name>
+        </field>
+        <field>
+          <column_name>utc_hour</column_name>
+          <stream_name>utc_hour</stream_name>
+        </field>
+        <field>
+          <column_name>utc_minute</column_name>
+          <stream_name>utc_minute</stream_name>
+        </field>
+        <field>
+          <column_name>request_type</column_name>
+          <stream_name>request_type</stream_name>
+        </field>
+        <field>
+          <column_name>download_product_id</column_name>
+          <stream_name>download_product_id</stream_name>
+        </field>
+        <field>
+          <column_name>product_platform</column_name>
+          <stream_name>product_platform</stream_name>
+        </field>
+        <field>
+          <column_name>product_locale_id</column_name>
+          <stream_name>locale_id</stream_name>
+        </field>
+        <field>
+          <column_name>download_type</column_name>
+          <stream_name>download_type</stream_name>
+        </field>
+        <field>
+          <column_name>upgrade_version</column_name>
+          <stream_name>upgrade_version</stream_name>
+        </field>
+        <field>
+          <column_name>request_result</column_name>
+          <stream_name>request_result</stream_name>
+        </field>
+        <field>
+          <column_name>location_id</column_name>
+          <stream_name>location_id</stream_name>
+        </field>
+        <field>
+          <column_name>user_agent_browser_id</column_name>
+          <stream_name>user_agent_browser_id</stream_name>
+        </field>
+        <field>
+          <column_name>user_agent_os_id</column_name>
+          <stream_name>user_agent_os_id</stream_name>
+        </field>
+        <field>
+          <column_name>user_agent_locale_id</column_name>
+          <stream_name>locale_id_1</stream_name>
+        </field>
+    </fields>
+    <delimiter>\t</delimiter>
+    <null_string/>
+    <record_terminator/>
+    <exceptions_filename/>
+    <rejected_data_filename/>
+    <abort_on_error>Y</abort_on_error>
+    <direct>Y</direct>
+    <stream_name/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>450</xloc>
+      <yloc>350</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup date_id</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>metrics mysql</connection>
+    <cache>Y</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>31</cache_size>
+    <lookup>
+      <schema/>
+      <table>dates</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>Y</eat_row_on_failure>
+      <key>
+        <name>utc_date</name>
+        <field>date</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>date_id</name>
+        <rename>utc_date_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup download_product_id</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <schema/>
+      <table>download_products</table>
+      <connection>metrics mysql</connection>
+      <commit>100</commit>
+      <cache_size>9999</cache_size>
+      <replace>N</replace>
+      <crc>Y</crc>
+      <crcfield>hashcode</crcfield>
+      <fields>
+        <key>
+          <name>product_name</name>
+          <lookup>name</lookup>
+        </key>
+        <key>
+          <name>product_version</name>
+          <lookup>version</lookup>
+        </key>
+        <key>
+          <name>product_version_major</name>
+          <lookup>major</lookup>
+        </key>
+        <key>
+          <name>product_version_minor</name>
+          <lookup>minor</lookup>
+        </key>
+        <key>
+          <name>product_version_minor_suffix</name>
+          <lookup>minor_suffix</lookup>
+        </key>
+        <key>
+          <name>product_version_sub_a</name>
+          <lookup>sub_a</lookup>
+        </key>
+        <key>
+          <name>product_version_sub_a_suffix</name>
+          <lookup>sub_a_suffix</lookup>
+        </key>
+        <key>
+          <name>product_version_sub_b</name>
+          <lookup>sub_b</lookup>
+        </key>
+        <key>
+          <name>product_version_sub_b_suffix</name>
+          <lookup>sub_b_suffix</lookup>
+        </key>
+        <key>
+          <name>product_version_suffix</name>
+          <lookup>suffix</lookup>
+        </key>
+        <return>
+          <name>download_product_id</name>
+          <creation_method>autoinc</creation_method>
+          <use_autoinc>Y</use_autoinc>
+        </return>
+      </fields>
+      <sequence/>
+      <last_update_field/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>250</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup location_id</name>
+    <type>Mapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <trans_name>process_location_dimension</trans_name>
+    <filename>${Internal.Transformation.Filename.Directory}&#47;process_location_dimension.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step>Lookup product_locale_id</input_step>
+    <output_step>Mapping input specification</output_step>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step>Mapping output specification</input_step>
+    <output_step>Add constants</output_step>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>N</inherit_all_vars>
+    </parameters>
+    </mappings>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup product_locale_id</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <schema/>
+      <table>locales</table>
+      <connection>metrics mysql</connection>
+      <commit>100</commit>
+      <cache_size>9999</cache_size>
+      <replace>N</replace>
+      <crc>N</crc>
+      <crcfield>hashcode</crcfield>
+      <fields>
+        <key>
+          <name>product_locale</name>
+          <lookup>code</lookup>
+        </key>
+        <return>
+          <name>locale_id</name>
+          <creation_method>autoinc</creation_method>
+          <use_autoinc>Y</use_autoinc>
+        </return>
+      </fields>
+      <sequence/>
+      <last_update_field/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>250</xloc>
+      <yloc>350</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Map request_result values</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>request_result</field_to_use>
+    <target_field/>
+    <non_match_default>Invalid</non_match_default>
+    <fields>
+      <field>
+        <source_value>302</source_value>
+        <target_value>Success</target_value>
+      </field>
+      <field>
+        <source_value>404</source_value>
+        <target_value>Not Found</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>450</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Map request_type values</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <field_to_use>request_type</field_to_use>
+    <target_field/>
+    <non_match_default>Invalid</non_match_default>
+    <fields>
+      <field>
+        <source_value>GET</source_value>
+        <target_value>Download</target_value>
+      </field>
+      <field>
+        <source_value>HEAD</source_value>
+        <target_value>Check</target_value>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Postfilter and Date Parse</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>2</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>RowProcessor</class_name>
+
+        <class_source><![CDATA[import java.util.*;
+
+private static final Map timeZones = Collections.synchronizedMap(new HashMap());
+private static final Map months;
+static
+{
+    Map tmp = new HashMap();
+    tmp.put("Jan", new Integer(0));
+    tmp.put("Feb", new Integer(1));
+    tmp.put("Mar", new Integer(2));
+    tmp.put("Apr", new Integer(3));
+    tmp.put("May", new Integer(4));
+    tmp.put("Jun", new Integer(5));
+    tmp.put("Jul", new Integer(6));
+    tmp.put("Aug", new Integer(7));
+    tmp.put("Sep", new Integer(8));
+    tmp.put("Oct", new Integer(9));
+    tmp.put("Nov", new Integer(10));
+    tmp.put("Dec", new Integer(11));
+    months = Collections.unmodifiableMap(tmp);
+}
+
+public static class Fields {
+	public static class In  { public static FieldHelper match_result, date; }
+	public static class Out { public static FieldHelper dom, month, year, hour, minute, second, date; }
+}
+
+private final Calendar calIn = Calendar.getInstance();
+private final Calendar calOut = Calendar.getInstance();
+private TimeZone timeZone;
+private String lastTimeZoneString;
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+	    calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
+        data.outputRowMeta = getInputRowMeta().clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
+		Fields.In.match_result = new FieldHelper(data.inputRowMeta, "match_result");
+		Fields.In.date = new FieldHelper(data.inputRowMeta, "date");
+		Fields.Out.dom = new FieldHelper(data.outputRowMeta, "utc_day_of_month");
+		Fields.Out.month = new FieldHelper(data.outputRowMeta, "utc_month");
+		Fields.Out.year = new FieldHelper(data.outputRowMeta, "utc_year");
+		Fields.Out.hour = new FieldHelper(data.outputRowMeta, "utc_hour");
+		Fields.Out.minute = new FieldHelper(data.outputRowMeta, "utc_minute");
+		Fields.Out.second = new FieldHelper(data.outputRowMeta, "utc_second");
+		Fields.Out.date = new FieldHelper(data.outputRowMeta, "utc_date");
+    }
+
+	if (Boolean.TRUE.equals(Fields.In.match_result.getObject(r))) {
+		String date = Fields.In.date.getString(r);
+
+        int dom = Integer.parseInt(date.substring(0, 2));
+        int month = ((Integer)months.get(date.substring(3, 6))).intValue();
+        int year = Integer.parseInt(date.substring(7, 11));
+        int hour = Integer.parseInt(date.substring(12, 14));
+        int minute = Integer.parseInt(date.substring(15, 17));
+
+        String tzs = date.substring(21, 26);
+        if (!tzs.equals(lastTimeZoneString)) {
+			lastTimeZoneString = tzs;
+	        timeZone = (TimeZone)timeZones.get(tzs);
+			if (timeZone == null) {
+            	timeZone = TimeZone.getTimeZone("GMT"+tzs);
+            	timeZones.put(tzs, timeZone);
+			}
+        }
+        
+        calIn.setTimeZone(timeZone);
+        calIn.set(year, month, dom, hour, minute, 0);
+        calOut.setTime(calIn.getTime());
+
+        Long domParse = Long.valueOf(calOut.get(Calendar.DAY_OF_MONTH));
+        Long monthParse = Long.valueOf(calOut.get(Calendar.MONTH)+1);
+        Long yearParse = Long.valueOf(calOut.get(Calendar.YEAR));
+
+		Fields.Out.dom.setValue(r, domParse);
+		Fields.Out.month.setValue(r, monthParse);
+		Fields.Out.year.setValue(r, yearParse);
+		Fields.Out.hour.setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
+		Fields.Out.minute.setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
+		Fields.Out.second.setValue(r, 0L);
+
+		String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
+		Fields.Out.date.setValue(r, dateString);
+
+        putRow(data.outputRowMeta, r);
+	} else {
+        incrementLinesRejected();
+	}
+	return true;
+}
+
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+        <field>
+        <field_name>utc_day_of_month</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>utc_month</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>utc_year</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>utc_hour</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>utc_minute</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>utc_second</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>utc_date</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>10</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>250</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Regex Capture</name>
+    <type>RegexEval</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>2</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <script><![CDATA[^(?>([^\s]{7,15}))              # client_ip
+\s-\s                       # unused IDENT field
+(?>-|([^-](?:[^\[\s]++(?:(?!\s\[)[\[\s])?)++))\s      # Cookies field (unquoted so harder to parse)
+\[\[?(\d{2}/\w{3}/\d{4} # request date dd/MMM/yyyy
+:\d{2}:\d{2}:\d{2}\s[-+ ]\d{4})\]?\]
+                            # request time :HH:mm:ss -0800
+\s"(GET|HEAD)\s             # HTTP request type
+(?>/\?([^%\s]+))                 # URL
+\sHTTP/1\.[01]"\s           # end of the request method/uri/version
+
+(302|404)\s                 # HTTP status code
+\d+\s                       # bytes returned
+(?>"([^"]++))"\s                 # referrer field sometimes a redirect from https://aus2.mozilla.org
+
+"                              # User agent parsing, always quoted.
+"?                             # If people spoof the user agent, they sometimes put in extra quotes.
+(.*)                           # UA string
+"?"                            # Closing quotes for UA string
+]]></script>    <matcher>line</matcher>
+    <resultfieldname>match_result</resultfieldname>
+    <usevar>N</usevar>
+    <allowcapturegroups>Y</allowcapturegroups>
+    <canoneq>N</canoneq>
+    <caseinsensitive>N</caseinsensitive>
+    <comment>Y</comment>
+    <dotall>N</dotall>
+    <multiline>N</multiline>
+    <unicode>N</unicode>
+    <unix>N</unix>
+    <fields>
+      <field>
+        <name>client_ip_address</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>15</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>client_cookies</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>1024</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>date</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>26</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>request_type</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>4</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>url</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>request_result</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>10</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>referrer</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>1024</length>
+        <precision>-1</precision>
+        <nullif>-</nullif>
+        <ifnull>None</ifnull>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>user_agent</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>1024</length>
+        <precision>-1</precision>
+        <nullif>-</nullif>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>250</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Regex product capture</name>
+    <type>RegexEval</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <script><![CDATA[^([a-z]{4,30}(?>-mobile)?)-
+(
+ (?>
+    alpha\d
+   |
+    (\d{1,2})                          #   major numeric
+    \.(\d{1,2}+)                       #   minor numeric
+    (?>
+       ((?:[a-z]+\d{1,2})?(?:pre|esr)?)    #   minor a/b/rc/pre
+       (?=-|$)
+      |
+       \.(\d{1,2})                     #   sub_a numeric
+       (?>
+          ((?:[a-z]+\d{1,2})?(?:pre|esr)?) #   sub_a a/b/rc/pre
+          (?=-|$)
+         |
+          \.(\d{1,2})                  #   sub_b numeric
+          ((?:[a-z]+\d{1,2})?(?:pre|esr)?) #   sub_b a/b/rc/pre
+          (?=-|$)
+       )
+    )
+ )
+)
+#(?>-([^-]++(?<!-complete|-partial|-update)(?>-[^-]++(?<!-complete|-partial|-update))*))?
+(?>(?!-complete|-partial|-update)-([^-]++(?>(?!-complete|-partial|-update)-[^-]++)*+))?
+
+(?>-(complete|partial|update)(?>(?<=partial)-(alpha\d|[.0-9abcepr]++))?)?
+$]]></script>    <matcher>product</matcher>
+    <resultfieldname>product_result</resultfieldname>
+    <usevar>N</usevar>
+    <allowcapturegroups>Y</allowcapturegroups>
+    <canoneq>N</canoneq>
+    <caseinsensitive>N</caseinsensitive>
+    <comment>Y</comment>
+    <dotall>N</dotall>
+    <multiline>N</multiline>
+    <unicode>N</unicode>
+    <unix>N</unix>
+    <fields>
+      <field>
+        <name>product_name</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>20</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>Invalid</ifnull>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product_version</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>30</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>Invalid</ifnull>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product_version_major</name>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product_version_minor</name>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product_version_minor_suffix</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>15</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product_version_sub_a</name>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product_version_sub_a_suffix</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>15</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product_version_sub_b</name>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product_version_sub_b_suffix</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>15</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product_version_suffix</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>20</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>download_type</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>10</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>manual</ifnull>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>upgrade_version</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>20</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>350</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Split URL</name>
+    <type>FieldSplitter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <splitfield>url</splitfield>
+   <delimiter>&amp;</delimiter>
+    <fields>      <field>        <name>product</name>
+        <id>product=</id>
+        <idrem>Y</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>30</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>Invalid</ifnull>
+        <trimtype>none</trimtype>
+      </field>      <field>        <name>product_platform</name>
+        <id>os=</id>
+        <idrem>Y</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>10</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>None</ifnull>
+        <trimtype>none</trimtype>
+      </field>      <field>        <name>product_locale</name>
+        <id>lang=</id>
+        <idrem>Y</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>15</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>None</ifnull>
+        <trimtype>none</trimtype>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>450</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Text file input</name>
+    <type>TextFileInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>2</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <accept_filenames>Y</accept_filenames>
+    <passing_through_fields>Y</passing_through_fields>
+    <accept_field>filename</accept_field>
+    <accept_stepname>Data Validator</accept_stepname>
+    <separator>	</separator>
+    <enclosure/>
+    <enclosure_breaks>N</enclosure_breaks>
+    <escapechar/>
+    <header>N</header>
+    <nr_headerlines>1</nr_headerlines>
+    <footer>N</footer>
+    <nr_footerlines>1</nr_footerlines>
+    <line_wrapped>N</line_wrapped>
+    <nr_wraps>1</nr_wraps>
+    <layout_paged>N</layout_paged>
+    <nr_lines_per_page>80</nr_lines_per_page>
+    <nr_lines_doc_header>0</nr_lines_doc_header>
+    <noempty>Y</noempty>
+    <include>N</include>
+    <include_field/>
+    <rownum>N</rownum>
+    <rownumByFile>N</rownumByFile>
+    <rownum_field/>
+    <format>Unix</format>
+    <encoding/>
+    <add_to_result_filenames>N</add_to_result_filenames>
+    <file>
+      <name/>
+      <filemask/>
+      <file_required/>
+      <type>CSV</type>
+      <compression>GZip</compression>
+    </file>
+    <filters>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIwOA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIwOQ==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIx</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIyMA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIyMQ==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIyMg==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIyMw==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: MTgwLjkyLjE4NA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NTkuMTUxLjUw</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NzIuMjYuMjIxLjY2</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NzIuMjYuMjIxLjY3</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: MjA5LjEwLjIxNy4yMjY=</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+    </filters>
+    <fields>
+      <field>
+        <name>line</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+    </fields>
+    <limit>0</limit>
+    <error_ignored>N</error_ignored>
+    <error_line_skipped>N</error_line_skipped>
+    <error_count_field/>
+    <error_fields_field/>
+    <error_text_field/>
+    <bad_line_files_destination_directory/>
+    <bad_line_files_extension>warning</bad_line_files_extension>
+    <error_line_files_destination_directory/>
+    <error_line_files_extension>error</error_line_files_extension>
+    <line_number_files_destination_directory/>
+    <line_number_files_extension>line</line_number_files_extension>
+    <date_format_lenient>Y</date_format_lenient>
+    <date_format_locale>en_us</date_format_locale>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>150</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Validate product fields</name>
+    <type>Validator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<validate_all>N</validate_all>
+<concat_errors>N</concat_errors>
+<concat_separator/>
+       <validator_field><name>product_version_suffix</name>
+<validation_name>product_version_suffix size</validation_name>
+<max_length>20</max_length>
+<min_length>-1</min_length>
+<null_allowed>Y</null_allowed>
+<only_null_allowed>N</only_null_allowed>
+<only_numeric_allowed>N</only_numeric_allowed>
+<data_type>String</data_type>
+<data_type_verified>N</data_type_verified>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<max_value/>
+<min_value/>
+<start_string/>
+<end_string/>
+<start_string_not_allowed/>
+<end_string_not_allowed/>
+<regular_expression/>
+<regular_expression_not_allowed/>
+<error_code/>
+<error_description>value too long</error_description>
+<is_sourcing_values>N</is_sourcing_values>
+<sourcing_step/>
+<sourcing_field/>
+<allowed_value></allowed_value></validator_field>
+       <validator_field><name>product_platform</name>
+<validation_name>product_platform in list</validation_name>
+<max_length>-1</max_length>
+<min_length>-1</min_length>
+<null_allowed>N</null_allowed>
+<only_null_allowed>N</only_null_allowed>
+<only_numeric_allowed>N</only_numeric_allowed>
+<data_type>String</data_type>
+<data_type_verified>N</data_type_verified>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<max_value/>
+<min_value/>
+<start_string/>
+<end_string/>
+<start_string_not_allowed/>
+<end_string_not_allowed/>
+<regular_expression/>
+<regular_expression_not_allowed/>
+<error_code/>
+<error_description>value not in list</error_description>
+<is_sourcing_values>N</is_sourcing_values>
+<sourcing_step/>
+<sourcing_field/>
+<allowed_value><value>None</value>
+<value>win</value>
+<value>android</value>
+<value>linux</value>
+<value>linux64</value>
+<value>maemo</value>
+<value>osx</value>
+<value>osxppc</value>
+<value>opensolaris-i386</value>
+<value>opensolaris-sparc</value>
+<value>solaris-i386</value>
+<value>solaris-sparc</value>
+</allowed_value></validator_field>
+       <validator_field><name>product_locale</name>
+<validation_name>product_locale regex</validation_name>
+<max_length>-1</max_length>
+<min_length>-1</min_length>
+<null_allowed>N</null_allowed>
+<only_null_allowed>N</only_null_allowed>
+<only_numeric_allowed>N</only_numeric_allowed>
+<data_type>String</data_type>
+<data_type_verified>N</data_type_verified>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<max_value/>
+<min_value/>
+<start_string/>
+<end_string/>
+<start_string_not_allowed/>
+<end_string_not_allowed/>
+<regular_expression>^(?&gt;None|all|multi|[a-z]{2,3}(?&gt;-[A-Za-z]{2}(?&gt;-[a-z]{2,8})?)?)$</regular_expression>
+<regular_expression_not_allowed/>
+<error_code/>
+<error_description>invalid format</error_description>
+<is_sourcing_values>N</is_sourcing_values>
+<sourcing_step/>
+<sourcing_field/>
+<allowed_value></allowed_value></validator_field>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>150</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+      <error>
+        <source_step>Validate product fields</source_step>
+        <target_step>Flag invalid product strings</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename/>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors>-1</max_errors>
+        <max_pct_errors>1</max_pct_errors>
+        <min_pct_rows>1000</min_pct_rows>
+      </error>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>

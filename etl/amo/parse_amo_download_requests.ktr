@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file are subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+<transformation>
+  <info>
+    <name>parse_amo_download_requests</name>
+    <description/>
+    <extended_description>
+The contents of this file are subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this file,
+You can obtain one at http://mozilla.org/MPL/2.0/.
+    </extended_description>
+    <trans_version/>
+    <trans_status>0</trans_status>
+    <directory>&#47;</directory>
+    <parameters>
+    </parameters>
+    <log>
+      <read>Mapping input specification</read>
+      <write>Mapping output specification</write>
+      <input/>
+      <output/>
+      <update/>
+      <rejected>process_gecko_user_agent</rejected>
+      <connection/>
+      <table/>
+      <step_performance_table>log_trans_perf</step_performance_table>
+      <use_batchid>Y</use_batchid>
+      <use_logfield>N</use_logfield>
+      <size_limit_lines/>
+    </log>
+    <maxdate>
+      <connection/>
+      <table/>
+      <field/>
+      <offset>0.0</offset>
+      <maxdiff>0.0</maxdiff>
+    </maxdate>
+    <size_rowset>10000</size_rowset>
+    <sleep_time_empty>50</sleep_time_empty>
+    <sleep_time_full>50</sleep_time_full>
+    <unique_connections>N</unique_connections>
+    <feedback_shown>N</feedback_shown>
+    <feedback_size>50000</feedback_size>
+    <using_thread_priorities>Y</using_thread_priorities>
+    <shared_objects_file/>
+    <capture_step_performance>N</capture_step_performance>
+    <step_performance_capturing_delay>10000</step_performance_capturing_delay>
+    <dependencies>
+    </dependencies>
+    <partitionschemas>
+    </partitionschemas>
+    <clusterschemas>
+        <clusterschema>
+          <name>tmp</name>
+          <base_port>40010</base_port>
+          <sockets_buffer_size>20000</sockets_buffer_size>
+          <sockets_flush_interval>10000</sockets_flush_interval>
+          <sockets_compressed>Y</sockets_compressed>
+          <dynamic>N</dynamic>
+        </clusterschema>
+        <clusterschema>
+          <name>local</name>
+          <base_port>40010</base_port>
+          <sockets_buffer_size>2000</sockets_buffer_size>
+          <sockets_flush_interval>5000</sockets_flush_interval>
+          <sockets_compressed>Y</sockets_compressed>
+          <dynamic>N</dynamic>
+        </clusterschema>
+        <clusterschema>
+          <name>3 node</name>
+          <base_port>40010</base_port>
+          <sockets_buffer_size>262144</sockets_buffer_size>
+          <sockets_flush_interval>2000</sockets_flush_interval>
+          <sockets_compressed>N</sockets_compressed>
+          <dynamic>N</dynamic>
+        </clusterschema>
+        <clusterschema>
+          <name>4 node</name>
+          <base_port>40010</base_port>
+          <sockets_buffer_size>262144</sockets_buffer_size>
+          <sockets_flush_interval>2000</sockets_flush_interval>
+          <sockets_compressed>N</sockets_compressed>
+          <dynamic>N</dynamic>
+        </clusterschema>
+    </clusterschemas>
+  <modified_user>-</modified_user>
+  <modified_date>2008&#47;09&#47;29 13:44:50.351</modified_date>
+  </info>
+  <notepads>
+  </notepads>
+  <connection>
+    <name>metrics mysql</name>
+    <server>${METRICS_MYSQL_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${METRICS_MYSQL_NAME}</database>
+    <port>${METRICS_MYSQL_PORT}</port>
+    <username>${METRICS_MYSQL_USER}</username>
+    <password>${METRICS_MYSQL_PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>UTF-8</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useServerPrepStmts</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useUnicode</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <order>
+  <hop> <from>Regex download requests</from><to>Filter invalid rows</to><enabled>Y</enabled> </hop>  <hop> <from>process_gecko_user_agent</from><to>Lookup user_agent_browser_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_browser_id</from><to>Lookup user_agent_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_locale_id</from><to>Lookup user_agent_os_id</to><enabled>Y</enabled> </hop>  <hop> <from>Filter invalid rows</from><to>process_gecko_user_agent</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_os_id</from><to>Lookup request_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping input specification</from><to>Regex download requests</to><enabled>Y</enabled> </hop>  <hop> <from>Rename locale_ids</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup request_locale_id</from><to>Lookup addon</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup addon</from><to>Split url_params</to><enabled>Y</enabled> </hop>  <hop> <from>Split url_params</from><to>Filter null src</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null src</from><to>Validate src</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null src</from><to>Add src constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add src constants</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>  <hop> <from>Validate src</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>  <hop> <from>Validate src</from><to>Audit invalid src</to><enabled>Y</enabled> </hop>  <hop> <from>NVL addon_name</from><to>Rename locale_ids</to><enabled>Y</enabled> </hop>  <hop> <from>Audit invalid src</from><to>Write to log</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Add src constants</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>src_parse_result</name>
+        <type>Boolean</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>N</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>src</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <length>70</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>650</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Audit invalid src</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to/>
+<send_false_to/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>src_parse_result</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Boolean</type><text>N</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>650</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter invalid rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to/>
+<send_false_to/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>downloads_url_result</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter null src</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Add src constants</send_true_to>
+<send_false_to>Validate src</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>raw_src</leftvalue>
+ <function>IS NULL</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Boolean</type><text/><length>-1</length><precision>-1</precision><isnull>Y</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>500</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup addon</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <connection>metrics mysql</connection>
+    <cache>Y</cache>
+    <cache_load_all>Y</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema/>
+      <table>amo_hosted_addons</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>file_id</name>
+        <field>file_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>addon_id</name>
+        <rename>addon_id</rename>
+        <default>0</default>
+        <type>Integer</type>
+      </value>
+      <value>
+        <name>guid</name>
+        <rename>addon_guid</rename>
+        <default/>
+        <type>String</type>
+      </value>
+      <value>
+        <name>version</name>
+        <rename>addon_version</rename>
+        <default>Unknown</default>
+        <type>String</type>
+      </value>
+      <value>
+        <name>english_name</name>
+        <rename>english_name</rename>
+        <default/>
+        <type>String</type>
+      </value>
+    </lookup>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup request_locale_id</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <schema/>
+      <table>locales</table>
+      <connection>metrics mysql</connection>
+      <commit>100</commit>
+      <cache_size>0</cache_size>
+      <replace>N</replace>
+      <crc>N</crc>
+      <crcfield>hashcode</crcfield>
+      <fields>
+        <key>
+          <name>request_locale</name>
+          <lookup>code</lookup>
+        </key>
+        <return>
+          <name>locale_id</name>
+          <creation_method>autoinc</creation_method>
+          <use_autoinc>Y</use_autoinc>
+        </return>
+      </fields>
+      <sequence/>
+      <last_update_field/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup user_agent_browser_id</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <schema/>
+      <table>user_agent_browsers</table>
+      <connection>metrics mysql</connection>
+      <commit>100</commit>
+      <cache_size>0</cache_size>
+      <replace>N</replace>
+      <crc>Y</crc>
+      <crcfield>hashcode</crcfield>
+      <fields>
+        <key>
+          <name>browser_category</name>
+          <lookup>browser_category</lookup>
+        </key>
+        <key>
+          <name>browser_name</name>
+          <lookup>browser_name</lookup>
+        </key>
+        <key>
+          <name>browser_version</name>
+          <lookup>browser_version</lookup>
+        </key>
+        <key>
+          <name>engine_1</name>
+          <lookup>engine_1</lookup>
+        </key>
+        <key>
+          <name>engine_2</name>
+          <lookup>engine_2</lookup>
+        </key>
+        <return>
+          <name>user_agent_browser_id</name>
+          <creation_method>autoinc</creation_method>
+          <use_autoinc>Y</use_autoinc>
+        </return>
+      </fields>
+      <sequence/>
+      <last_update_field/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>200</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup user_agent_locale_id</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <schema/>
+      <table>locales</table>
+      <connection>metrics mysql</connection>
+      <commit>100</commit>
+      <cache_size>0</cache_size>
+      <replace>N</replace>
+      <crc>N</crc>
+      <crcfield>hashcode</crcfield>
+      <fields>
+        <key>
+          <name>user_agent_locale</name>
+          <lookup>code</lookup>
+        </key>
+        <return>
+          <name>locale_id</name>
+          <creation_method>autoinc</creation_method>
+          <use_autoinc>Y</use_autoinc>
+        </return>
+      </fields>
+      <sequence/>
+      <last_update_field/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>200</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Lookup user_agent_os_id</name>
+    <type>CombinationLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <schema/>
+      <table>user_agent_operating_systems</table>
+      <connection>metrics mysql</connection>
+      <commit>100</commit>
+      <cache_size>0</cache_size>
+      <replace>N</replace>
+      <crc>Y</crc>
+      <crcfield>hashcode</crcfield>
+      <fields>
+        <key>
+          <name>os_category</name>
+          <lookup>os_category</lookup>
+        </key>
+        <key>
+          <name>os</name>
+          <lookup>os</lookup>
+        </key>
+        <key>
+          <name>platform</name>
+          <lookup>platform</lookup>
+        </key>
+        <return>
+          <name>user_agent_os_id</name>
+          <creation_method>autoinc</creation_method>
+          <use_autoinc>Y</use_autoinc>
+        </return>
+      </fields>
+      <sequence/>
+      <last_update_field/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Mapping input specification</name>
+    <type>MappingInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>
+      <field>
+        <name>url</name>
+        <type>String</type>
+        <length>1024</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>url_params</name>
+        <type>String</type>
+        <length>1024</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>user_agent</name>
+        <type>String</type>
+        <length>1024</length>
+        <precision>-1</precision>
+      </field>
+        <select_unspecified>Y</select_unspecified>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Mapping output specification</name>
+    <type>MappingOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>750</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>NVL addon_name</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>addon_name</field_name>
+<calc_type>NVL</calc_type>
+<field_a>english_name</field_a>
+<field_b>file_id</field_b>
+<field_c/>
+<value_type>String</value_type>
+<value_length>255</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>650</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Regex download requests</name>
+    <type>RegexEval</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <script><![CDATA[^(?>/([a-z]{2,3}(?:-[A-Za-z]{2}(?:-[A-Za-z]{3,8})?)?))?/(?:([a-z]+))?/downloads/file/(\d+)/([^\s]+).*]]></script>    <matcher>url</matcher>
+    <resultfieldname>downloads_url_result</resultfieldname>
+    <usevar>N</usevar>
+    <allowcapturegroups>Y</allowcapturegroups>
+    <canoneq>N</canoneq>
+    <caseinsensitive>N</caseinsensitive>
+    <comment>Y</comment>
+    <dotall>N</dotall>
+    <multiline>N</multiline>
+    <unicode>N</unicode>
+    <unix>N</unix>
+    <fields>
+      <field>
+        <name>request_locale</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>15</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>Unknown</ifnull>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>product</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>20</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>Unknown</ifnull>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>file_id</name>
+        <type>Integer</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>file_name</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>500</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Rename locale_ids</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <meta>        <name>locale_id_1</name>
+        <rename>request_locale_id</rename>
+        <type>-</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>      <meta>        <name>locale_id</name>
+        <rename>user_agent_locale_id</rename>
+        <type>-</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>750</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Split url_params</name>
+    <type>FieldSplitter</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <splitfield>url_params</splitfield>
+   <delimiter>&amp;</delimiter>
+    <fields>      <field>        <name>raw_src</name>
+        <id>src=</id>
+        <idrem>Y</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>70</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>500</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Validate src</name>
+    <type>RegexEval</type>
+    <description/>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <script><![CDATA[^((?>[\p{Alnum}[-._~*+]]*(?>%\p{XDigit}{2})*){1,70}).*]]></script>    <matcher>raw_src</matcher>
+    <resultfieldname>src_parse_result</resultfieldname>
+    <usevar>N</usevar>
+    <allowcapturegroups>Y</allowcapturegroups>
+    <canoneq>N</canoneq>
+    <caseinsensitive>N</caseinsensitive>
+    <comment>N</comment>
+    <dotall>N</dotall>
+    <multiline>N</multiline>
+    <unicode>N</unicode>
+    <unix>N</unix>
+    <fields>
+      <field>
+        <name>src</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>70</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>invalid</ifnull>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>500</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_minimal</loglevel>
+      <displayHeader>N</displayHeader>
+    <fields>
+      <field>
+        <name>url</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>650</xloc>
+      <yloc>350</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>process_gecko_user_agent</name>
+    <type>Mapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <trans_name>process_user_agent_string</trans_name>
+    <filename>${Internal.Transformation.Filename.Directory}&#47;process_gecko_only_user_agent_string.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step>Filter invalid rows</input_step>
+    <output_step>Mapping input specification</output_step>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step>Mapping output specification</input_step>
+    <output_step>Lookup user_agent_browser_id</output_step>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+       <connector><parent>locale</parent><child>user_agent_locale</child></connector>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>N</inherit_all_vars>
+    </parameters>
+    </mappings>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>200</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step_error_handling>
+  </step_error_handling>
+   <slave-step-copy-partition-distribution>
+</slave-step-copy-partition-distribution>
+   <slave_transformation>N</slave_transformation>
+</transformation>

@@ -1,0 +1,929 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/product_version_management.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/product_version_management.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/dimensions"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "product_version_management"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (1)</th>
+               <th>Transform</th>
+               <th>Output (4)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>CSV file input</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>Output results</div>
+                  <div>Output results 2</div>
+                  <div>Update download_products</div>
+                  <div>Update products</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 728px;&#xA;            height: 528px;&#xA;        "><a name="CSV file input-icon"></a><div id="CSV file input" class="&#xA;                    step-icon&#xA;                    step-icon-CsvInput" style="&#xA;                    left:100px;&#xA;                    top:300px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Query products"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Query download_products"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#CSV file input-text" style="&#xA;                    top:332px;&#xA;                    left:81.33333333333333px;                    &#xA;                ">CSV file input</a><a name="Copy row to result as flag-icon"></a><div id="Copy row to result as flag" class="&#xA;                    step-icon&#xA;                    step-icon-RowsToResult" style="&#xA;                    left:700px;&#xA;                    top:300px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Copy row to result as flag-text" style="&#xA;                    top:332px;&#xA;                    left:665.3333333333334px;                    &#xA;                ">Copy row to result as flag</a><a name="Debug log UP TO DATE-icon"></a><div id="Debug log UP TO DATE" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:300px;&#xA;                    top:200px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Wait for finish"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Mismatches or Updates"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Debug log UP TO DATE-text" style="&#xA;                    top:232px;&#xA;                    left:273.3333333333333px;                    &#xA;                ">Debug log UP TO DATE</a><a name="Debug log UP TO DATE 2-icon"></a><div id="Debug log UP TO DATE 2" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:300px;&#xA;                    top:400px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Mismatches or Updates 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Debug log UP TO DATE 2-text" style="&#xA;                    top:432px;&#xA;                    left:270.6666666666667px;                    &#xA;                ">Debug log UP TO DATE 2</a><a name="Debug log results-icon"></a><div id="Debug log results" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:600px;&#xA;                    top:300px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Copy row to result as flag"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Debug log results-text" style="&#xA;                    top:332px;&#xA;                    left:577.3333333333334px;                    &#xA;                ">Debug log results</a><a name="Group by-icon"></a><div id="Group by" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:500px;&#xA;                    top:300px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Debug log results"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Group by-text" style="&#xA;                    top:332px;&#xA;                    left:489.3333333333333px;                    &#xA;                ">Group by</a><a name="Mismatches or Updates-icon"></a><div id="Mismatches or Updates" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:400px;&#xA;                    top:200px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Output results"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Mismatches or Updates-text" style="&#xA;                    top:232px;&#xA;                    left:372px;                    &#xA;                ">Mismatches or Updates</a><a name="Mismatches or Updates 2-icon"></a><div id="Mismatches or Updates 2" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:400px;&#xA;                    top:400px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Output results 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Mismatches or Updates 2-text" style="&#xA;                    top:432px;&#xA;                    left:369.3333333333333px;                    &#xA;                ">Mismatches or Updates 2</a><a name="Output results-icon"></a><div id="Output results" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileOutput" style="&#xA;                    left:500px;&#xA;                    top:200px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Group by"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Output results-text" style="&#xA;                    top:232px;&#xA;                    left:481.3333333333333px;                    &#xA;                ">Output results</a><a name="Output results 2-icon"></a><div id="Output results 2" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileOutput" style="&#xA;                    left:500px;&#xA;                    top:400px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Group by"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Output results 2-text" style="&#xA;                    top:432px;&#xA;                    left:478.6666666666667px;                    &#xA;                ">Output results 2</a><a name="Pass empty row-icon"></a><div id="Pass empty row" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:300px;&#xA;                    top:300px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Serialize execution"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Pass empty row-text" style="&#xA;                    top:332px;&#xA;                    left:281.3333333333333px;                    &#xA;                ">Pass empty row</a><a name="Query download_products-icon"></a><div id="Query download_products" class="&#xA;                    step-icon&#xA;                    step-icon-DBJoin" style="&#xA;                    left:100px;&#xA;                    top:100px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Test download_products"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Query download_products-text" style="&#xA;                    top:132px;&#xA;                    left:69.33333333333333px;                    &#xA;                ">Query download_products</a><a name="Query products-icon"></a><div id="Query products" class="&#xA;                    step-icon&#xA;                    step-icon-DBJoin" style="&#xA;                    left:100px;&#xA;                    top:500px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Test products"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Query products-text" style="&#xA;                    top:532px;&#xA;                    left:81.33333333333333px;                    &#xA;                ">Query products</a><a name="Serialize execution-icon"></a><div id="Serialize execution" class="&#xA;                    step-icon&#xA;                    step-icon-JoinRows" style="&#xA;                    left:200px;&#xA;                    top:300px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Debug log UP TO DATE 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Serialize execution-text" style="&#xA;                    top:332px;&#xA;                    left:174.66666666666666px;                    &#xA;                ">Serialize execution</a><a name="Sort rows-icon"></a><div id="Sort rows" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:200px;&#xA;                    top:200px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Debug log UP TO DATE"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort rows-text" style="&#xA;                    top:232px;&#xA;                    left:188px;                    &#xA;                ">Sort rows</a><a name="Sort rows 2-icon"></a><div id="Sort rows 2" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:200px;&#xA;                    top:400px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Serialize execution"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort rows 2-text" style="&#xA;                    top:432px;&#xA;                    left:185.33333333333334px;                    &#xA;                ">Sort rows 2</a><a name="Test download_products-icon"></a><div id="Test download_products" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:200px;&#xA;                    top:100px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#download_products mode"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Sort rows"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Test download_products-text" style="&#xA;                    top:132px;&#xA;                    left:170.66666666666666px;                    &#xA;                ">Test download_products</a><a name="Test products-icon"></a><div id="Test products" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:200px;&#xA;                    top:500px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#products mode"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Sort rows 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Test products-text" style="&#xA;                    top:532px;&#xA;                    left:182.66666666666666px;                    &#xA;                ">Test products</a><a name="Update download_products-icon"></a><div id="Update download_products" class="&#xA;                    step-icon&#xA;                    step-icon-Update" style="&#xA;                    left:400px;&#xA;                    top:100px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Update download_products-text" style="&#xA;                    top:132px;&#xA;                    left:368px;                    &#xA;                ">Update download_products</a><a name="Update products-icon"></a><div id="Update products" class="&#xA;                    step-icon&#xA;                    step-icon-Update" style="&#xA;                    left:400px;&#xA;                    top:500px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Update products-text" style="&#xA;                    top:532px;&#xA;                    left:380px;                    &#xA;                ">Update products</a><a name="Wait for finish-icon"></a><div id="Wait for finish" class="&#xA;                    step-icon&#xA;                    step-icon-BlockingStep" style="&#xA;                    left:400px;&#xA;                    top:300px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Pass empty row"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Wait for finish-text" style="&#xA;                    top:332px;&#xA;                    left:380px;                    &#xA;                ">Wait for finish</a><a name="download_products mode-icon"></a><div id="download_products mode" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:300px;&#xA;                    top:100px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Update download_products"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#download_products mode-text" style="&#xA;                    top:132px;&#xA;                    left:270.6666666666667px;                    &#xA;                ">download_products mode</a><a name="products mode-icon"></a><div id="products mode" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:300px;&#xA;                    top:500px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Update products"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#products mode-text" style="&#xA;                    top:532px;&#xA;                    left:282.6666666666667px;                    &#xA;                ">products mode</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>input</th>
+               <td></td>
+               <td></td>
+               <td><a href="#CSV file input">CSV file input</a></td>
+            </tr>
+            <tr>
+               <th>output</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Output results">Output results</a>, <a href="#Output results 2">Output results 2</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Query download_products</a>, <a href="#metrics mysql">Query products</a>, <a href="#metrics mysql">Update download_products</a>, <a href="#metrics mysql">Update products</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CsvInput"></div>
+      <h3 class="step-heading"><a name="CSV file input-text" href="#CSV file input-icon">CSV file input</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>trim_type</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>20</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>download_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>20</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>new_formatted_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>20</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>15</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>new_formatted_version_major</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>7</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsToResult"></div>
+      <h3 class="step-heading"><a name="Copy row to result as flag-text" href="#Copy row to result as flag-icon">Copy row to result as flag</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Debug log UP TO DATE-text" href="#Debug log UP TO DATE-icon">Debug log UP TO DATE</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">if (result == "UP TO DATE" || result == "NOT FOUND") {
+	if (isBasicLogLevel) {
+		println(java.lang.String.format("%20s | %15s | %15s | %6s | %20s | %20s | %7s | %7s", [
+			download_name, version, 
+			result, id, 
+			formatted_name, new_formatted_name, 
+			formatted_version_major, new_formatted_version_major]));
+	}
+} else {
+	println(java.lang.String.format("%20s | %15s | %15s | %6s | %20s | %20s | %7s | %7s", [
+			download_name, version, 
+			result, id, 
+			formatted_name, new_formatted_name, 
+			formatted_version_major, new_formatted_version_major]));
+}</pre><h5>Item_0</h5><pre class="brush: js;">var isBasicLogLevel = org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
+
+println(java.lang.String.format("%20s | %15s | %15s | %6s | %20s | %20s | %7s | %7s", [
+"download_name", "version"
+, "result", "id"
+, "formatted_name", "new_formatted_name"
+, "MVer", "newMVer"]));</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Debug log UP TO DATE 2-text" href="#Debug log UP TO DATE 2-icon">Debug log UP TO DATE 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">if (result == "UP TO DATE" || result == "NOT FOUND") {
+	if (isBasicLogLevel) {
+		println(java.lang.String.format("%20s | %15s | %15s | %6s | %7s | %7s", [
+			product_name, version, result, id, formatted_version_major, new_formatted_version_major]));
+	}
+} else {
+	println(java.lang.String.format("%20s | %15s | %15s | %6s | %7s | %7s", [
+			product_name, version, result, id, formatted_version_major, new_formatted_version_major]));
+}</pre><h5>Item_0</h5><pre class="brush: js;">var isBasicLogLevel = org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
+
+println(java.lang.String.format("\n\n%20s | %15s | %15s | %6s | %7s | %7s", [
+"product_name", "version", "result", "id", "MVer", "newMVer"]));</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Debug log results-text" href="#Debug log results-icon">Debug log results</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">println(num_results+" entries to be updated");</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Group by-text" href="#Group by-icon">Group by</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>num_results</td>
+               <td>result</td>
+               <td>COUNT_ALL</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Mismatches or Updates-text" href="#Mismatches or Updates-icon">Mismatches or Updates</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Mismatches or Updates 2-text" href="#Mismatches or Updates 2-icon">Mismatches or Updates 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TextFileOutput"></div>
+      <h3 class="step-heading"><a name="Output results-text" href="#Output results-icon">Output results</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>trim_type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>download_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>20</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>15</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>result</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>15</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>id</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>6</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>formatted_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>20</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>new_formatted_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>20</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>formatted_version_major</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>7</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>new_formatted_version_major</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>7</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TextFileOutput"></div>
+      <h3 class="step-heading"><a name="Output results 2-text" href="#Output results 2-icon">Output results 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>trim_type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>20</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>15</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>result</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>15</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>id</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>6</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>formatted_version_major</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>7</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>new_formatted_version_major</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>7</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Pass empty row-text" href="#Pass empty row-icon">Pass empty row</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>        N
+              product_name
+                    download_name
+                    new_formatted_name
+                    version
+                    new_formatted_version_major
+                    id
+                    formatted_name
+                    formatted_version_major
+                    result
+          <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBJoin"></div>
+      <h3 class="step-heading"><a name="Query download_products-text" href="#Query download_products-icon">Query download_products</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT download_product_id AS id
+, formatted_name
+, formatted_version_major
+FROM download_products
+WHERE name = ?
+AND version = ?
+AND (
+	suffix IS NULL
+	OR suffix = 'euballot'
+	)</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBJoin"></div>
+      <h3 class="step-heading"><a name="Query products-text" href="#Query products-icon">Query products</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT product_id AS id
+, 'N/A' AS formatted_name
+, formatted_version_major
+FROM products
+WHERE product_name = ?
+AND product_version = ?</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-JoinRows"></div>
+      <h3 class="step-heading"><a name="Serialize execution-text" href="#Serialize execution-icon">Serialize execution</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort rows-text" href="#Sort rows-icon">Sort rows</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>result</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>new_formatted_version_major</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort rows 2-text" href="#Sort rows 2-icon">Sort rows 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>result</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>new_formatted_version_major</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Test download_products-text" href="#Test download_products-icon">Test download_products</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">var result;
+
+if (id == null) {
+	result = "NOT FOUND";
+} else if (trim(new_formatted_name) == trim(formatted_name) &amp;&amp; trim(new_formatted_version_major) == trim(formatted_version_major)) {
+	result = "UP TO DATE";
+} else if ("Other" == trim(formatted_version_major) &amp;&amp;
+	(trim(new_formatted_name) == trim(formatted_name) || "Other" == trim(formatted_name))) {
+	result = "UPDATE";
+} else {
+	result = "ERROR MISMATCH";
+}
+</pre><h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>replace</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>result</td>
+               <td>result</td>
+               <td>String</td>
+               <td>15</td>
+               <td>-1</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Test products-text" href="#Test products-icon">Test products</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">var result;
+
+if (id == null) {
+	result = "NOT FOUND";
+} else if (trim(new_formatted_version_major) == trim(formatted_version_major)) {
+	result = "UP TO DATE";
+} else if ("Other" == trim(formatted_version_major)) {
+	result = "UPDATE";
+} else {
+	result = "ERROR MISMATCH";
+}
+</pre><h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>replace</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>result</td>
+               <td>result</td>
+               <td>String</td>
+               <td>15</td>
+               <td>-1</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Update"></div>
+      <h3 class="step-heading"><a name="Update download_products-text" href="#Update download_products-icon">Update download_products</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Update"></div>
+      <h3 class="step-heading"><a name="Update products-text" href="#Update products-icon">Update products</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-BlockingStep"></div>
+      <h3 class="step-heading"><a name="Wait for finish-text" href="#Wait for finish-icon">Wait for finish</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="download_products mode-text" href="#download_products mode-icon">download_products mode</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">if (mode == "check") {
+	trans_Status = SKIP_TRANSFORMATION;
+} else if (mode == "update" &amp;&amp; (result == "UPDATE" || result == "ERROR MISMATCH")) {
+	trans_Status = CONTINUE_TRANSFORMATION
+}</pre><h5>Item_0</h5><pre class="brush: js;">var mode = getVariable("mode", "check");</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="products mode-text" href="#products mode-icon">products mode</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">if (mode == "check") {
+	trans_Status = SKIP_TRANSFORMATION;
+} else if (mode == "update" &amp;&amp; (result == "UPDATE" || result == "ERROR MISMATCH")) {
+	trans_Status = CONTINUE_TRANSFORMATION
+}</pre><h5>Item_0</h5><pre class="brush: js;">var mode = getVariable("mode", "check");</pre>    <script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

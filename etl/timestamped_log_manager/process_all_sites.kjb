@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file are subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+<job>
+  <name>Process all sites</name>
+    <description/>
+    <extended_description>
+The contents of this file are subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this file,
+You can obtain one at http://mozilla.org/MPL/2.0/.
+    </extended_description>
+    <job_version/>
+    <job_status>0</job_status>
+  <directory>&#47;</directory>
+  <created_user>-</created_user>
+  <created_date>2010&#47;03&#47;16 10:11:46.620</created_date>
+  <modified_user>-</modified_user>
+  <modified_date>2010&#47;03&#47;16 10:11:46.620</modified_date>
+    <parameters>
+        <parameter>
+            <name>ONLY_REQUIRED</name>
+            <default_value>Y</default_value>
+            <description>Will the job process only files that are old enough to be required</description>
+        </parameter>
+        <parameter>
+            <name>TIMESTAMP</name>
+            <default_value>not specified</default_value>
+            <description/>
+        </parameter>
+    </parameters>
+  <connection>
+    <name>metrics mysql</name>
+    <server>${METRICS_MYSQL_HOST}</server>
+    <type>MYSQL</type>
+    <access>Native</access>
+    <database>${METRICS_MYSQL_NAME}</database>
+    <port>${METRICS_MYSQL_PORT}</port>
+    <username>${METRICS_MYSQL_USER}</username>
+    <password>${METRICS_MYSQL_PASS}</password>
+    <servername/>
+    <data_tablespace/>
+    <index_tablespace/>
+    <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>UTF-8</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useServerPrepStmts</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useUnicode</code><attribute>true</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
+      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
+      <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
+      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
+    </attributes>
+  </connection>
+  <logconnection>metrics mysql</logconnection>
+  <logtable>log_job</logtable>
+  <size_limit_lines>1000</size_limit_lines>
+   <use_batchid>Y</use_batchid>
+   <pass_batchid>Y</pass_batchid>
+   <use_logfield>Y</use_logfield>
+   <shared_objects_file/>
+  <entries>
+    <entry>
+      <name>START</name>
+      <description>Special entries</description>
+      <type>SPECIAL</type>
+      <start>Y</start>
+      <dummy>N</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>50</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Process AMO</name>
+      <description>Job</description>
+      <type>JOB</type>
+      <filename>&#47;etl&#47;timestamped_log_manager&#47;process_site_logs.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile>&#47;etl&#47;logs&#47;auto_amo</logfile>
+      <logext>log</logext>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <loglevel>Detailed</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>SITE_CONDITION</name>
+            <stream_name/>
+            <value>IN (&apos;amo&apos;, &apos;vamo&apos;)</value>
+            </parameter>            <parameter>            <name>SITE_TRANSFORMATION</name>
+            <stream_name/>
+            <value>&#47;etl&#47;amo&#47;parse_and_load_amo.ktr</value>
+            </parameter>            <parameter>            <name>SITE_INIT_TRANS</name>
+            <stream_name/>
+            <value>&#47;etl&#47;amo&#47;update_amo_addons_dimension.ktr</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>50</xloc>
+      <yloc>150</yloc>
+      </entry>
+    <entry>
+      <name>Process DMO</name>
+      <description>Job</description>
+      <type>JOB</type>
+      <filename>&#47;etl&#47;timestamped_log_manager&#47;process_site_logs.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>SITE_CONDITION</name>
+            <stream_name/>
+            <value>= &apos;dmo&apos;</value>
+            </parameter>            <parameter>            <name>SITE_TRANSFORMATION</name>
+            <stream_name/>
+            <value>&#47;etl&#47;downloads&#47;parse_and_load_download_requests.ktr</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>50</xloc>
+      <yloc>250</yloc>
+      </entry>
+    <entry>
+      <name>Process AUS</name>
+      <description>Job</description>
+      <type>JOB</type>
+      <filename>&#47;etl&#47;timestamped_log_manager&#47;process_site_logs.kjb</filename>
+      <jobname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <slave_server_name/>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+            <parameter>            <name>SITE_CONDITION</name>
+            <stream_name/>
+            <value>= &apos;aus&apos;</value>
+            </parameter>            <parameter>            <name>SITE_TRANSFORMATION</name>
+            <stream_name/>
+            <value>&#47;etl&#47;aus&#47;parse_and_load_aus_requests.ktr</value>
+            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>50</xloc>
+      <yloc>350</yloc>
+      </entry>
+    <entry>
+      <name>Log timestamp</name>
+      <description>Write To Log</description>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>Running for timestamp ${TIMESTAMP}</logmessage>
+      <loglevel>Error</loglevel>
+      <logsubject/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>150</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Any required left?</name>
+      <description>Evaluate rows number in a table</description>
+      <type>EVAL_TABLE_CONTENT</type>
+      <connection>metrics mysql</connection>
+      <schemaname/>
+      <tablename/>
+      <success_condition>rows_count_greater</success_condition>
+      <limit>0</limit>
+      <is_custom_sql>Y</is_custom_sql>
+      <is_usevars>Y</is_usevars>
+      <custom_sql>SELECT DISTINCT
+  s.datacenter
+, s.site
+, s.server
+, timestamp
+FROM server_timestamps_to_process sttp
+JOIN servers s ON sttp.site = s.site AND sttp.server = s.server
+WHERE required = &apos;Y&apos;
+AND &apos;${ONLY_REQUIRED}&apos; = &apos;Y&apos;
+AND active = &apos;Y&apos;
+AND timestamp = &apos;${TIMESTAMP}&apos;
+ORDER BY 1,2,3,4</custom_sql>
+      <add_rows_result>N</add_rows_result>
+      <clear_result_rows>Y</clear_result_rows>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>250</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>audit_server_traffic</name>
+      <description>Transformation</description>
+      <type>TRANS</type>
+      <filename>&#47;etl&#47;timestamped_log_manager&#47;audit_server_traffic.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Nothing</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>1</nr>
+      <xloc>150</xloc>
+      <yloc>150</yloc>
+      </entry>
+    <entry>
+      <name>Email unparsable_files</name>
+      <description>Mail</description>
+      <type>MAIL</type>
+      <server>localhost</server>
+      <port>25</port>
+      <destination>metrics-alerts@mozilla.org</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replytoname>Metrics log ETL processor</replytoname>
+      <subject>CRITICAL WARNING: unreadable log files found during processing</subject>
+      <include_date>N</include_date>
+      <contact_person>Daniel Einspanjer</contact_person>
+      <contact_phone>(603) 438-5731</contact_phone>
+      <comment>Processing for the following data is deferred until this problem is resolved.</comment>
+      <include_files>Y</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>N</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user/>
+      <auth_password>Encrypted </auth_password>
+      <only_comment>Y</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>Y</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>high</priority>
+      <importance>high</importance>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>        <filetype>ERROR</filetype>
+      </filetypes>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>450</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Checks if unparsable_files</name>
+      <description>Checks if files exist</description>
+      <type>FILES_EXIST</type>
+      <filename/>
+      <fields>
+        <field>
+          <name>&#47;etl&#47;output&#47;unparsable_filenames.txt</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>350</xloc>
+      <yloc>50</yloc>
+      </entry>
+    <entry>
+      <name>Mail missing logs</name>
+      <description>Mail</description>
+      <type>MAIL</type>
+      <server>localhost</server>
+      <port>25</port>
+      <destination>metrics-alerts@mozilla.org</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replytoname>Metrics log ETL processor</replytoname>
+      <subject>Missing logs alert</subject>
+      <include_date>N</include_date>
+      <contact_person>Daniel Einspanjer</contact_person>
+      <contact_phone>(603) 438-5731</contact_phone>
+      <comment>The ETL processor was unable to find any log files for the following servers and times.
+Please check log file synchronization processes.  The processor will pick up new files on the next run.
+
+These files must be in place before 7:45 PM PST or the nightly reports will be delayed.
+
+${AUDIT_RESULTS}</comment>
+      <include_files>N</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>N</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user/>
+      <auth_password>Encrypted </auth_password>
+      <only_comment>Y</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>Y</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>high</priority>
+      <importance>high</importance>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>        <filetype>WARNING</filetype>
+      </filetypes>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>450</xloc>
+      <yloc>150</yloc>
+      </entry>
+    <entry>
+      <name>Critical window?</name>
+      <description>JavaScript</description>
+      <type>EVAL</type>
+      <script>var logTimestampTimeZone = java.util.TimeZone.getTimeZone(&quot;GMT-8:00&quot;);
+
+var sdf = new java.text.SimpleDateFormat(&quot;yyyy-MM-dd-HH&quot;);
+sdf.setTimeZone(logTimestampTimeZone);
+
+&#47;&#47; Get the current time truncated to hour of day
+var cal = java.util.Calendar.getInstance(logTimestampTimeZone);
+var now = cal.clone();
+
+cal.set(java.util.Calendar.HOUR, 19);
+cal.set(java.util.Calendar.MINUTE, 0);
+cal.set(java.util.Calendar.SECOND, 0);
+cal.set(java.util.Calendar.MILLISECOND, 0);
+
+
+cal.compareTo(now) &lt;= 0</script>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>350</xloc>
+      <yloc>150</yloc>
+      </entry>
+    <entry>
+      <name>End of hour?</name>
+      <description>JavaScript</description>
+      <type>EVAL</type>
+      <script>var logTimestampTimeZone = java.util.TimeZone.getTimeZone(&quot;GMT-8:00&quot;);
+
+var sdf = new java.text.SimpleDateFormat(&quot;yyyy-MM-dd-HH&quot;);
+sdf.setTimeZone(logTimestampTimeZone);
+
+&#47;&#47; Get the current time truncated to hour of day
+var cal = java.util.Calendar.getInstance(logTimestampTimeZone);
+var now = cal.clone();
+
+cal.set(java.util.Calendar.MINUTE, 45);
+cal.set(java.util.Calendar.SECOND, 0);
+cal.set(java.util.Calendar.MILLISECOND, 0);
+
+
+cal.compareTo(now) &lt;= 0</script>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>350</xloc>
+      <yloc>250</yloc>
+      </entry>
+    <entry>
+      <name>DUMMY 1</name>
+      <description>Special entries</description>
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>250</xloc>
+      <yloc>150</yloc>
+      </entry>
+    <entry>
+      <name>Mail missing logs</name>
+      <description>Mail</description>
+      <type>MAIL</type>
+      <server>localhost</server>
+      <port>25</port>
+      <destination>metrics-alerts@mozilla.org</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replytoname>Metrics log ETL processor</replytoname>
+      <subject>Missing logs alert</subject>
+      <include_date>N</include_date>
+      <contact_person>Daniel Einspanjer</contact_person>
+      <contact_phone>(603) 438-5731</contact_phone>
+      <comment>The ETL processor was unable to find any log files for the following servers and times.
+Please check log file synchronization processes.  The processor will pick up new files on the next run.
+
+These files must be in place before 7:45 PM PST or the nightly reports will be delayed.
+
+${AUDIT_RESULTS}</comment>
+      <include_files>N</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>N</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user/>
+      <auth_password>Encrypted </auth_password>
+      <only_comment>Y</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>Y</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>high</priority>
+      <importance>high</importance>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>        <filetype>WARNING</filetype>
+      </filetypes>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>1</nr>
+      <xloc>450</xloc>
+      <yloc>250</yloc>
+      </entry>
+    <entry>
+      <name>Success 1</name>
+      <description>Success</description>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>200</xloc>
+      <yloc>250</yloc>
+      </entry>
+  </entries>
+  <hops>
+    <hop>
+      <from>Process DMO</from>
+      <to>Process AUS</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Process AMO</from>
+      <to>Process DMO</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Log timestamp</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Log timestamp</from>
+      <to>Process AMO</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Process AUS</from>
+      <to>audit_server_traffic</to>
+      <from_nr>0</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>audit_server_traffic</from>
+      <to>Any required left?</to>
+      <from_nr>1</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Any required left?</from>
+      <to>DUMMY 1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY 1</from>
+      <to>Checks if unparsable_files</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY 1</from>
+      <to>Critical window?</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Checks if unparsable_files</from>
+      <to>Email unparsable_files</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Critical window?</from>
+      <to>Mail missing logs</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Critical window?</from>
+      <to>End of hour?</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>End of hour?</from>
+      <to>Mail missing logs</to>
+      <from_nr>0</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>End of hour?</from>
+      <to>Success 1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Any required left?</from>
+      <to>Success 1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+  </hops>
+  <notepads>
+    <notepad>
+      <note>E-mail if at end of day
+or once per hour</note>
+      <xloc>400</xloc>
+      <yloc>200</yloc>
+      <width>83</width>
+      <heigth>28</heigth>
+    </notepad>
+  </notepads>
+</job>

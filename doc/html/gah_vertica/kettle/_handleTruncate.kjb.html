@@ -1,0 +1,238 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/gah_vertica/kettle/_handleTruncate.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/gah_vertica/kettle/_handleTruncate.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: _handleTruncate
+            relative-path: "/gah_vertica/kettle"
+            documentation-root: "../../.."
+        -->
+      <title>Kettle Documentation: job "_handleTruncate"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "_handleTruncate"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2009/05/29 18:16:44.872</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2009/05/29 18:16:44.872</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job does not define any parameters.
+         
+      </p>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 532px;&#xA;            height: 226px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:125px;&#xA;                    top:148px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Drop table"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:180px;&#xA;                    left:118.33333333333333px;&#xA;                " href="#START-text">START</a><a name="Drop table-icon"></a><div id="Drop table" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SQL" style="&#xA;                    left:252px;&#xA;                    top:148px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Create table"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:180px;&#xA;                    left:238.66666666666666px;&#xA;                " href="#Drop table-text">Drop table</a><a name="Create table-icon"></a><div id="Create table" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SQL" style="&#xA;                    left:377px;&#xA;                    top:148px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Insert statement"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:180px;&#xA;                    left:361px;&#xA;                " href="#Create table-text">Create table</a><a name="Insert statement-icon"></a><div id="Insert statement" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SQL" style="&#xA;                    left:506px;&#xA;                    top:148px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:180px;&#xA;                    left:484.6666666666667px;&#xA;                " href="#Insert statement-text">Insert statement</a><div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 102px;&#xA;&#x9;&#x9;&#x9;top: 50px;&#xA;&#x9;&#x9;&#x9;width: 308px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Microsoft Sans Serif;&#xA;&#x9;&#x9;&#x9;font-size: 8;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">Drop the table, create it again and run the insert query</div>
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>GAH_DBUSER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DBPASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DBCLASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DBURL</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>GAH_DROPTABLE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Drop table">Drop table</a></td>
+            </tr>
+            <tr>
+               <th>GAH_CREATETABLE</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Create table">Create table</a></td>
+            </tr>
+            <tr>
+               <th>GAH_INSERTQUERY</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Insert statement">Insert statement</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Job Entries
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.connection">connection</a></th>
+               <td>GENERIC</td>
+               <td>Native</td>
+               <td></td>
+               <td>1521</td>
+               <td>${GAH_DBUSER}</td>
+               <td><a href="#connection">Drop table</a>, <a href="#connection">Create table</a>, <a href="#connection">Insert statement</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.connection">connection</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>connection</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>GENERIC</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>1521</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${GAH_DBUSER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${GAH_DBPASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>Special entries</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SQL"></div>
+      <h3 class="entry-heading"><a name="Drop table-text" href="#Drop table-icon">Drop table</a></h3>
+      <p>SQL</p>
+      <h4>SQL</h4><pre class="brush: sql;">${GAH_DROPTABLE}</pre><div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SQL"></div>
+      <h3 class="entry-heading"><a name="Create table-text" href="#Create table-icon">Create table</a></h3>
+      <p>SQL</p>
+      <h4>SQL</h4><pre class="brush: sql;">${GAH_CREATETABLE}</pre><div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SQL"></div>
+      <h3 class="entry-heading"><a name="Insert statement-text" href="#Insert statement-icon">Insert statement</a></h3>
+      <p>SQL</p>
+      <h4>SQL</h4><pre class="brush: sql;">${GAH_INSERTQUERY}</pre><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

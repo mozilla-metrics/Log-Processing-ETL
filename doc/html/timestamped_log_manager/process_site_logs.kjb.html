@@ -1,0 +1,345 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/process_site_logs.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/timestamped_log_manager/process_site_logs.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: process_site_logs
+            relative-path: "/timestamped_log_manager"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: job "process_site_logs"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "process_site_logs"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2010/03/07 23:09:39.539</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2010/03/07 23:09:39.539</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job defines 4 parameters.
+         
+      </p>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  Name
+                  
+               </th>
+               <th>
+                  Default Value
+                  
+               </th>
+               <th>
+                  Description
+                  
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>ONLY_REQUIRED</th>
+               <td>Y</td>
+               <td>Will the job process only files that are old enough to be required</td>
+            </tr>
+            <tr>
+               <th>SITE_CONDITION</th>
+               <td>xxx</td>
+               <td>Which site(s) to query and process</td>
+            </tr>
+            <tr>
+               <th>SITE_INIT_TRANS</th>
+               <td>xxx</td>
+               <td>Run an optional transform to initialize (e.g. /etl/amo/update_amo_addons_dimension.ktr)</td>
+            </tr>
+            <tr>
+               <th>SITE_TRANSFORMATION</th>
+               <td>/etl/amo/parse_and_load_amo.ktr</td>
+               <td>Which transformation to execute for the site(s)</td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 628px;&#xA;            height: 378px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Process this site?"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:43.333333333333336px;&#xA;                " href="#START-text">START</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process site"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process site"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:232.66666666666666px;&#xA;                " href="/etl/timestamped_log_manager/get_filenames.ktr.html">Get filenames</a><a name="Process site-icon"></a><div id="Process site" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#audit_server_traffic"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Okay"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:334px;&#xA;                " href="${SITE_TRANSFORMATION}.html">Process site</a><a name="Try alternate directory?-icon"></a><div id="Try alternate directory?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-EVAL_TABLE_CONTENT" style="&#xA;                    left:450px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Get filenames"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Okay"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:418px;&#xA;                " href="#Try alternate directory?-text">Try alternate directory?</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:450px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process site"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process site"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:432.6666666666667px;&#xA;                " href="/etl/timestamped_log_manager/get_filenames.ktr.html">Get filenames</a><a name="Process site-icon"></a><div id="Process site" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:550px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#audit_server_traffic"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Okay"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:534px;&#xA;                " href="${SITE_TRANSFORMATION}.html">Process site</a><a name="audit_server_traffic-icon"></a><div id="audit_server_traffic" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:350px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Try alternate directory?"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:323.3333333333333px;&#xA;                " href="/etl/timestamped_log_manager/audit_server_traffic.ktr.html">audit_server_traffic</a><a name="Process this site?-icon"></a><div id="Process this site?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-EVAL_TABLE_CONTENT" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Test for init trans"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Okay"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Get filenames"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:26px;&#xA;                " href="#Process this site?-text">Process this site?</a><a name="Run site initialization transform-icon"></a><div id="Run site initialization transform" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process this site?"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:106px;&#xA;                " href="${SITE_INIT_TRANS}.html">Run site initialization transform</a><a name="Test for init trans-icon"></a><div id="Test for init trans" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:150px;&#xA;                    top:50px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Get filenames"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Run site initialization transform"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:124.66666666666667px;&#xA;                " href="#Test for init trans-text">Test for init trans</a><a name="Okay-icon"></a><div id="Okay" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SUCCESS" style="&#xA;                    left:350px;&#xA;                    top:300px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:332px;&#xA;                    left:344.6666666666667px;&#xA;                " href="#Okay-text">Okay</a><a name="Process this site?-icon"></a><div id="Process this site?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-EVAL_TABLE_CONTENT" style="&#xA;                    left:250px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Test for init trans"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Okay"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Get filenames"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:226px;&#xA;                " href="#Process this site?-text">Process this site?</a><div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 250px;&#xA;&#x9;&#x9;&#x9;top: 200px;&#xA;&#x9;&#x9;&#x9;width: 59px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: ;&#xA;&#x9;&#x9;&#x9;font-size: ;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;background-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;border-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;">Must get rows
+            again if init ran
+         </div>
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>SITE_TRANSFORMATION</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Process site">Process site</a>, <a href="#Process site">Process site</a></td>
+            </tr>
+            <tr>
+               <th>SITE_CONDITION</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Try alternate directory?">Try alternate directory?</a>, <a href="#Process this site?">Process this site?</a>, <a href="#Process this site?">Process this site?</a></td>
+            </tr>
+            <tr>
+               <th>TIMESTAMP</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Try alternate directory?">Try alternate directory?</a>, <a href="#Process this site?">Process this site?</a>, <a href="#Process this site?">Process this site?</a></td>
+            </tr>
+            <tr>
+               <th>ONLY_REQUIRED</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Process this site?">Process this site?</a>, <a href="#Process this site?">Process this site?</a></td>
+            </tr>
+            <tr>
+               <th>SITE_INIT_TRANS</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Run site initialization transform">Run site initialization transform</a>, <a href="#Test for init trans">Test for init trans</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Job Entries
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Try alternate directory?</a>, <a href="#metrics mysql">Process this site?</a>, <a href="#metrics mysql">Process this site?</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>Special entries</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Get filenames-text" href="#Get filenames-icon">Get filenames</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Process site-text" href="#Process site-icon">Process site</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-EVAL_TABLE_CONTENT"></div>
+      <h3 class="entry-heading"><a name="Try alternate directory?-text" href="#Try alternate directory?-icon">Try alternate directory?</a></h3>
+      <p>Evaluate rows number in a table</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Get filenames-text" href="#Get filenames-icon">Get filenames</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Process site-text" href="#Process site-icon">Process site</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="audit_server_traffic-text" href="#audit_server_traffic-icon">audit_server_traffic</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-EVAL_TABLE_CONTENT"></div>
+      <h3 class="entry-heading"><a name="Process this site?-text" href="#Process this site?-icon">Process this site?</a></h3>
+      <p>Evaluate rows number in a table</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="Run site initialization transform-text" href="#Run site initialization transform-icon">Run site initialization transform</a></h3>
+      <p>Transformation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SIMPLE_EVAL"></div>
+      <h3 class="entry-heading"><a name="Test for init trans-text" href="#Test for init trans-icon">Test for init trans</a></h3>
+      <p>Simple evaluation</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SUCCESS"></div>
+      <h3 class="entry-heading"><a name="Okay-text" href="#Okay-icon">Okay</a></h3>
+      <p>Success</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-EVAL_TABLE_CONTENT"></div>
+      <h3 class="entry-heading"><a name="Process this site?-text" href="#Process this site?-icon">Process this site?</a></h3>
+      <p>Evaluate rows number in a table</p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

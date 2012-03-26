@@ -1,0 +1,873 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/parse_amo_collections_requests.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/parse_amo_collections_requests.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/amo"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "parse_amo_collections_requests"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (0)</th>
+               <th>Transform</th>
+               <th>Output (0)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 928px;&#xA;            height: 428px;&#xA;        "><a name="Calculate request_id-icon"></a><div id="Calculate request_id" class="&#xA;                    step-icon&#xA;                    step-icon-Janino" style="&#xA;                    left:450px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#FYF Select fields"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Calculate request_id-text" style="&#xA;                    top:282px;&#xA;                    left:423.3333333333333px;                    &#xA;                ">Calculate request_id</a><a name="Calculate request_id 2-icon"></a><div id="Calculate request_id 2" class="&#xA;                    step-icon&#xA;                    step-icon-Janino" style="&#xA;                    left:750px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Collections Select fields"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Calculate request_id 2-text" style="&#xA;                    top:82px;&#xA;                    left:720.6666666666666px;                    &#xA;                ">Calculate request_id 2</a><a name="Collections Mapping input specification-icon"></a><div id="Collections Mapping input specification" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter bots"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Collections Mapping input specification-text" style="&#xA;                    top:82px;&#xA;                    left:-2px;                    &#xA;                ">Collections Mapping input specification</a><a name="Collections Regex-icon"></a><div id="Collections Regex" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Collections Regex-text" style="&#xA;                    top:82px;&#xA;                    left:227.33333333333334px;                    &#xA;                ">Collections Regex</a><a name="Collections Select fields-icon"></a><div id="Collections Select fields" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:850px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Mapping output specification"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Collections Select fields-text" style="&#xA;                    top:82px;&#xA;                    left:816.6666666666666px;                    &#xA;                ">Collections Select fields</a><a name="Concat requested addon_ids-icon"></a><div id="Concat requested addon_ids" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:650px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Calculate request_id 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Concat requested addon_ids-text" style="&#xA;                    top:82px;&#xA;                    left:615.3333333333334px;                    &#xA;                ">Concat requested addon_ids</a><a name="Count errors-icon"></a><div id="Count errors" class="&#xA;                    step-icon&#xA;                    step-icon-Sequence&#xA;                        step-error&#xA;                    " style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#First 10 errors"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Count errors-text" style="&#xA;                    top:182px;&#xA;                    left:334px;                    &#xA;                ">Count errors</a><a name="Count errors 2-icon"></a><div id="Count errors 2" class="&#xA;                    step-icon&#xA;                    step-icon-Sequence&#xA;                        step-error&#xA;                    " style="&#xA;                    left:350px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#First 10 errors 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Count errors 2-text" style="&#xA;                    top:382px;&#xA;                    left:331.3333333333333px;                    &#xA;                ">Count errors 2</a><a name="Data Validator-icon"></a><div id="Data Validator" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:350px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Database lookup"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                step-hop-error&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Count errors"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Data Validator-text" style="&#xA;                    top:82px;&#xA;                    left:331.3333333333333px;                    &#xA;                ">Data Validator</a><a name="Data Validator 2-icon"></a><div id="Data Validator 2" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:350px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Calculate request_id"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                step-hop-error&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Count errors 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Data Validator 2-text" style="&#xA;                    top:282px;&#xA;                    left:328.6666666666667px;                    &#xA;                ">Data Validator 2</a><a name="Database lookup-icon"></a><div id="Database lookup" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:450px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Sort collection requests"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Database lookup-text" style="&#xA;                    top:82px;&#xA;                    left:430px;                    &#xA;                ">Database lookup</a><a name="FYF Mapping input specification-icon"></a><div id="FYF Mapping input specification" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:50px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter bots 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#FYF Mapping input specification-text" style="&#xA;                    top:282px;&#xA;                    left:8.666666666666664px;                    &#xA;                ">FYF Mapping input specification</a><a name="FYF Regex-icon"></a><div id="FYF Regex" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:250px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#FYF Regex-text" style="&#xA;                    top:282px;&#xA;                    left:238px;                    &#xA;                ">FYF Regex</a><a name="FYF Select fields-icon"></a><div id="FYF Select fields" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:550px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Mapping output specification"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#FYF Select fields-text" style="&#xA;                    top:282px;&#xA;                    left:527.3333333333334px;                    &#xA;                ">FYF Select fields</a><a name="Filter bots-icon"></a><div id="Filter bots" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:150px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Collections Regex"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter bots-text" style="&#xA;                    top:82px;&#xA;                    left:135.33333333333334px;                    &#xA;                ">Filter bots</a><a name="Filter bots 2-icon"></a><div id="Filter bots 2" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:150px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#FYF Regex"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter bots 2-text" style="&#xA;                    top:282px;&#xA;                    left:132.66666666666666px;                    &#xA;                ">Filter bots 2</a><a name="First 10 errors-icon"></a><div id="First 10 errors" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:450px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Write collection request errors to log"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#First 10 errors-text" style="&#xA;                    top:182px;&#xA;                    left:430px;                    &#xA;                ">First 10 errors</a><a name="First 10 errors 2-icon"></a><div id="First 10 errors 2" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:450px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Write FYF request errors to log"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#First 10 errors 2-text" style="&#xA;                    top:382px;&#xA;                    left:427.3333333333333px;                    &#xA;                ">First 10 errors 2</a><a name="Mapping output specification-icon"></a><div id="Mapping output specification" class="&#xA;                    step-icon&#xA;                    step-icon-MappingOutput" style="&#xA;                    left:850px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Mapping output specification-text" style="&#xA;                    top:282px;&#xA;                    left:812.6666666666666px;                    &#xA;                ">Mapping output specification</a><a name="Sort collection requests-icon"></a><div id="Sort collection requests" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:550px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Concat requested addon_ids"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort collection requests-text" style="&#xA;                    top:82px;&#xA;                    left:518px;                    &#xA;                ">Sort collection requests</a><a name="Write FYF request errors to log-icon"></a><div id="Write FYF request errors to log" class="&#xA;                    step-icon&#xA;                    step-icon-WriteToLog" style="&#xA;                    left:550px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Write FYF request errors to log-text" style="&#xA;                    top:382px;&#xA;                    left:508.6666666666667px;                    &#xA;                ">Write FYF request errors to log</a><a name="Write collection request errors to log-icon"></a><div id="Write collection request errors to log" class="&#xA;                    step-icon&#xA;                    step-icon-WriteToLog" style="&#xA;                    left:550px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Write collection request errors to log-text" style="&#xA;                    top:182px;&#xA;                    left:499.3333333333333px;                    &#xA;                ">Write collection request errors to log</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Database lookup</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Janino"></div>
+      <h3 class="step-heading"><a name="Calculate request_id-text" href="#Calculate request_id-icon">Calculate request_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Janino"></div>
+      <h3 class="step-heading"><a name="Calculate request_id 2-text" href="#Calculate request_id 2-icon">Calculate request_id 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="Collections Mapping input specification-text" href="#Collections Mapping input specification-icon">Collections Mapping input specification</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>timestamp</td>
+               <td>String</td>
+               <td>13</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>line</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>url</td>
+               <td>String</td>
+               <td>1024</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>utc_date_id</td>
+               <td>Integer</td>
+               <td>4</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>location_id</td>
+               <td>Integer</td>
+               <td>9</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>client_ip_address</td>
+               <td>String</td>
+               <td>15</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>user_agent</td>
+               <td>String</td>
+               <td>1024</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RegexEval"></div>
+      <h3 class="step-heading"><a name="Collections Regex-text" href="#Collections Regex-icon">Collections Regex</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>group</th>
+               <th>decimal</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>trimtype</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>request_locale</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>15</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>product</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>20</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>file_id</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>collection_id</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>36</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Collections Select fields-text" href="#Collections Select fields-icon">Collections Select fields</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>timestamp</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>utc_date_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>location_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>request_locale</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>product</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>collection_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>request_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>addon_ids</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GroupBy"></div>
+      <h3 class="step-heading"><a name="Concat requested addon_ids-text" href="#Concat requested addon_ids-icon">Concat requested addon_ids</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>aggregate</th>
+               <th>subject</th>
+               <th>type</th>
+               <th>valuefield</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>addon_ids</td>
+               <td>addon_id</td>
+               <td>CONCAT_STRING</td>
+               <td>,</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Sequence"></div>
+      <h3 class="step-heading"><a name="Count errors-text" href="#Count errors-icon">Count errors</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Sequence"></div>
+      <h3 class="step-heading"><a name="Count errors 2-text" href="#Count errors 2-icon">Count errors 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
+      <h3 class="step-heading"><a name="Data Validator-text" href="#Data Validator-icon">Data Validator</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
+      <h3 class="step-heading"><a name="Data Validator 2-text" href="#Data Validator 2-icon">Data Validator 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
+      <h3 class="step-heading"><a name="Database lookup-text" href="#Database lookup-icon">Database lookup</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="FYF Mapping input specification-text" href="#FYF Mapping input specification-icon">FYF Mapping input specification</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>timestamp</td>
+               <td>String</td>
+               <td>13</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>line</td>
+               <td>String</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>url</td>
+               <td>String</td>
+               <td>1024</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>utc_date_id</td>
+               <td>Integer</td>
+               <td>4</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>location_id</td>
+               <td>Integer</td>
+               <td>9</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>user_agent</td>
+               <td>String</td>
+               <td>1024</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RegexEval"></div>
+      <h3 class="step-heading"><a name="FYF Regex-text" href="#FYF Regex-icon">FYF Regex</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>group</th>
+               <th>decimal</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>trimtype</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>request_locale</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>15</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>product</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>20</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>collection_id</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>40</td>
+               <td>-1</td>
+               <td>success</td>
+               <td>fyf</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>addon_ids</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>500</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="FYF Select fields-text" href="#FYF Select fields-icon">FYF Select fields</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>timestamp</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>utc_date_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>location_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>request_locale</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>product</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>collection_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>request_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>addon_ids</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter bots-text" href="#Filter bots-icon">Filter bots</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter bots 2-text" href="#Filter bots 2-icon">Filter bots 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="First 10 errors-text" href="#First 10 errors-icon">First 10 errors</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="First 10 errors 2-text" href="#First 10 errors 2-icon">First 10 errors 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingOutput"></div>
+      <h3 class="step-heading"><a name="Mapping output specification-text" href="#Mapping output specification-icon">Mapping output specification</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort collection requests-text" href="#Sort collection requests-icon">Sort collection requests</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>utc_date_id</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>location_id</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>request_locale</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>product</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>collection_id</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>client_ip_address</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>user_agent</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-WriteToLog"></div>
+      <h3 class="step-heading"><a name="Write FYF request errors to log-text" href="#Write FYF request errors to log-icon">Write FYF request errors to log</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>url</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-WriteToLog"></div>
+      <h3 class="step-heading"><a name="Write collection request errors to log-text" href="#Write collection request errors to log-icon">Write collection request errors to log</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>url</td>
+            </tr>
+         </tbody>
+      </table><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

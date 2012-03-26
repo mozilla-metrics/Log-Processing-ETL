@@ -1,0 +1,7 @@
+This is the log-processing code for Mozilla Metrics.
+
+etl/
+  Contains the transformations and jobs themselves.  They run from Pentaho Data Integration (aka Kettle).
+
+doc/
+  Contains the automatically generated documentation for the ETL jobs and transformations.

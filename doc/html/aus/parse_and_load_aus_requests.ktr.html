@@ -1,0 +1,1269 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/aus/parse_and_load_aus_requests.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/aus/parse_and_load_aus_requests.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/aus"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "parse_and_load_aus_requests"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (1)</th>
+               <th>Transform</th>
+               <th>Output (0)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Text file input</div>
+               </td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 378px;&#xA;            height: 428px;&#xA;        "><a name="Catch dirty locales-icon"></a><div id="Catch dirty locales" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:300px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                step-hop-error&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Try to fixup dirty locale"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Output to aus_requests_raw"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Catch dirty locales-text" style="&#xA;                    top:282px;&#xA;                    left:274.6666666666667px;                    &#xA;                ">Catch dirty locales</a><a name="Data Validator-icon"></a><div id="Data Validator" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:150px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Text file input"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Data Validator-text" style="&#xA;                    top:282px;&#xA;                    left:131.33333333333334px;                    &#xA;                ">Data Validator</a><a name="GeoIP lookup-icon"></a><div id="GeoIP lookup" class="&#xA;                    step-icon&#xA;                    step-icon-MaxMindGeoIPLookup" style="&#xA;                    left:300px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Catch dirty locales"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP lookup-text" style="&#xA;                    top:182px;&#xA;                    left:284px;                    &#xA;                ">GeoIP lookup</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:150px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get filenames-text" style="&#xA;                    top:382px;&#xA;                    left:132.66666666666666px;                    &#xA;                ">Get filenames</a><a name="Output to aus_requests_raw-icon"></a><div id="Output to aus_requests_raw" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:300px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Output to aus_requests_raw-text" style="&#xA;                    top:382px;&#xA;                    left:265.3333333333333px;                    &#xA;                ">Output to aus_requests_raw</a><a name="Postfilter and Date Parse-icon"></a><div id="Postfilter and Date Parse" class="&#xA;                    step-icon&#xA;                    step-icon-UserDefinedJavaClass" style="&#xA;                    left:300px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#GeoIP lookup"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Postfilter and Date Parse-text" style="&#xA;                    top:82px;&#xA;                    left:266.6666666666667px;                    &#xA;                ">Postfilter and Date Parse</a><a name="Regex requests-icon"></a><div id="Regex requests" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:150px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Postfilter and Date Parse"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex requests-text" style="&#xA;                    top:82px;&#xA;                    left:131.33333333333334px;                    &#xA;                ">Regex requests</a><a name="Text file input-icon"></a><div id="Text file input" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileInput" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex requests"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Text file input-text" style="&#xA;                    top:182px;&#xA;                    left:130px;                    &#xA;                ">Text file input</a><a name="Try to fixup dirty locale-icon"></a><div id="Try to fixup dirty locale" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod&#xA;                        step-error&#xA;                    " style="&#xA;                    left:400px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Output to aus_requests_raw"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Try to fixup dirty locale-text" style="&#xA;                    top:282px;&#xA;                    left:366.6666666666667px;                    &#xA;                ">Try to fixup dirty locale</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_DB</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>raw_table_suffix</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Output to aus_requests_raw">Output to aus_requests_raw</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 2 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th><a href="#connection.metrics">metrics</a></th>
+               <td>VERTICA</td>
+               <td>Native</td>
+               <td>${VERTICA_HOST}</td>
+               <td>${VERTICA_PORT}</td>
+               <td>${VERTICA_USER}</td>
+               <td><a href="#metrics">Output to aus_requests_raw</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4><a name="connection.metrics">metrics</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${VERTICA_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>VERTICA</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${VERTICA_DB}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${VERTICA_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${VERTICA_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${VERTICA_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
+      <h3 class="step-heading"><a name="Catch dirty locales-text" href="#Catch dirty locales-icon">Catch dirty locales</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
+      <h3 class="step-heading"><a name="Data Validator-text" href="#Data Validator-icon">Data Validator</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MaxMindGeoIPLookup"></div>
+      <h3 class="step-heading"><a name="GeoIP lookup-text" href="#GeoIP lookup-icon">GeoIP lookup</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsFromResult"></div>
+      <h3 class="step-heading"><a name="Get filenames-text" href="#Get filenames-icon">Get filenames</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>String</td>
+               <td>3</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>site</td>
+               <td>String</td>
+               <td>10</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>server</td>
+               <td>String</td>
+               <td>20</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>timestamp</td>
+               <td>String</td>
+               <td>13</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>filename</td>
+               <td>String</td>
+               <td>500</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-VerticaBulkLoader"></div>
+      <h3 class="step-heading"><a name="Output to aus_requests_raw-text" href="#Output to aus_requests_raw-icon">Output to aus_requests_raw</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>datacenter</td>
+               <td>datacenter</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>source_site</td>
+               <td>site</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>source_server</td>
+               <td>server</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>source_filename</td>
+               <td>filename</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>source_timestamp</td>
+               <td>timestamp</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>utc_date</td>
+               <td>utc_date</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>utc_year</td>
+               <td>utc_year</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>utc_month</td>
+               <td>utc_month</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>utc_day_of_month</td>
+               <td>utc_day_of_month</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>product_distribution_version</td>
+               <td>product_distribution_version</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>product_distribution</td>
+               <td>product_distribution</td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>gecko_version_major</td>
+               <td>gecko_version_major</td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>product_version_major</td>
+               <td>product_version_major</td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>product_version_sub_a</td>
+               <td>product_version_sub_a</td>
+            </tr>
+            <tr>
+               <th>15</th>
+               <td>product_os_platform</td>
+               <td>product_os_platform</td>
+            </tr>
+            <tr>
+               <th>16</th>
+               <td>gecko_version_sub_a</td>
+               <td>gecko_version_sub_a</td>
+            </tr>
+            <tr>
+               <th>17</th>
+               <td>utc_hour</td>
+               <td>utc_hour</td>
+            </tr>
+            <tr>
+               <th>18</th>
+               <td>product_build_target</td>
+               <td>product_build_target</td>
+            </tr>
+            <tr>
+               <th>19</th>
+               <td>product_name</td>
+               <td>product_name</td>
+            </tr>
+            <tr>
+               <th>20</th>
+               <td>gecko_version_sub_b</td>
+               <td>gecko_version_sub_b</td>
+            </tr>
+            <tr>
+               <th>21</th>
+               <td>product_version_minor</td>
+               <td>product_version_minor</td>
+            </tr>
+            <tr>
+               <th>22</th>
+               <td>gecko_version_minor</td>
+               <td>gecko_version_minor</td>
+            </tr>
+            <tr>
+               <th>23</th>
+               <td>product_version_sub_b</td>
+               <td>product_version_sub_b</td>
+            </tr>
+            <tr>
+               <th>24</th>
+               <td>utc_minute</td>
+               <td>utc_minute</td>
+            </tr>
+            <tr>
+               <th>25</th>
+               <td>utc_second</td>
+               <td>utc_second</td>
+            </tr>
+            <tr>
+               <th>26</th>
+               <td>gecko_version</td>
+               <td>gecko_version</td>
+            </tr>
+            <tr>
+               <th>27</th>
+               <td>product_version</td>
+               <td>product_version</td>
+            </tr>
+            <tr>
+               <th>28</th>
+               <td>product_channel</td>
+               <td>product_channel</td>
+            </tr>
+            <tr>
+               <th>29</th>
+               <td>country_name</td>
+               <td>country_name</td>
+            </tr>
+            <tr>
+               <th>30</th>
+               <td>country_code</td>
+               <td>country_code</td>
+            </tr>
+            <tr>
+               <th>31</th>
+               <td>locale_raw_string</td>
+               <td>locale_raw_string</td>
+            </tr>
+            <tr>
+               <th>32</th>
+               <td>locale_code</td>
+               <td>locale_code</td>
+            </tr>
+            <tr>
+               <th>33</th>
+               <td>locale_language</td>
+               <td>locale_language</td>
+            </tr>
+            <tr>
+               <th>34</th>
+               <td>locale_region</td>
+               <td>locale_region</td>
+            </tr>
+            <tr>
+               <th>35</th>
+               <td>locale_dialect</td>
+               <td>locale_dialect</td>
+            </tr>
+            <tr>
+               <th>36</th>
+               <td>region_code</td>
+               <td>region_code</td>
+            </tr>
+            <tr>
+               <th>37</th>
+               <td>product_os_version</td>
+               <td>product_os_version</td>
+            </tr>
+            <tr>
+               <th>38</th>
+               <td>product_build_number</td>
+               <td>product_build_number</td>
+            </tr>
+            <tr>
+               <th>39</th>
+               <td>region_name</td>
+               <td>region_name</td>
+            </tr>
+            <tr>
+               <th>40</th>
+               <td>city_name</td>
+               <td>city_name</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-UserDefinedJavaClass"></div>
+      <h3 class="step-heading"><a name="Postfilter and Date Parse-text" href="#Postfilter and Date Parse-icon">Postfilter and Date Parse</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Java Class Source Code</h4>
+      <h5>RowProcessor</h5><pre class="brush: java;">import java.util.*;
+
+private static final Map timeZones = Collections.synchronizedMap(new HashMap());
+private static final Map months;
+static
+{
+    Map tmp = new HashMap();
+    tmp.put("Jan", new Integer(0));
+    tmp.put("Feb", new Integer(1));
+    tmp.put("Mar", new Integer(2));
+    tmp.put("Apr", new Integer(3));
+    tmp.put("May", new Integer(4));
+    tmp.put("Jun", new Integer(5));
+    tmp.put("Jul", new Integer(6));
+    tmp.put("Aug", new Integer(7));
+    tmp.put("Sep", new Integer(8));
+    tmp.put("Oct", new Integer(9));
+    tmp.put("Nov", new Integer(10));
+    tmp.put("Dec", new Integer(11));
+    months = Collections.unmodifiableMap(tmp);
+}
+
+public static class Fields {
+	public static class In  { public static FieldHelper match_result, date; }
+	public static class Out { public static FieldHelper dom, month, year, hour, minute, second, date; }
+}
+
+private final Calendar calIn = Calendar.getInstance();
+private final Calendar calOut = Calendar.getInstance();
+private TimeZone timeZone;
+private String lastTimeZoneString;
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+	Object[] r = getRow();
+	if (r == null) {
+		setOutputDone();
+		return false;
+	}
+
+    if (first)
+    {
+        first = false;
+	    calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
+        data.outputRowMeta = getInputRowMeta().clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
+		Fields.In.match_result = new FieldHelper(data.inputRowMeta, "match_result");
+		Fields.In.date = new FieldHelper(data.inputRowMeta, "date");
+		Fields.Out.dom = new FieldHelper(data.outputRowMeta, "utc_day_of_month");
+		Fields.Out.month = new FieldHelper(data.outputRowMeta, "utc_month");
+		Fields.Out.year = new FieldHelper(data.outputRowMeta, "utc_year");
+		Fields.Out.hour = new FieldHelper(data.outputRowMeta, "utc_hour");
+		Fields.Out.minute = new FieldHelper(data.outputRowMeta, "utc_minute");
+		Fields.Out.second = new FieldHelper(data.outputRowMeta, "utc_second");
+		Fields.Out.date = new FieldHelper(data.outputRowMeta, "utc_date");
+    }
+
+	if (Boolean.TRUE.equals(Fields.In.match_result.getObject(r))) {
+		String date = Fields.In.date.getString(r);
+
+        int dom = Integer.parseInt(date.substring(0, 2));
+        int month = ((Integer)months.get(date.substring(3, 6))).intValue();
+        int year = Integer.parseInt(date.substring(7, 11));
+        int hour = Integer.parseInt(date.substring(12, 14));
+        int minute = Integer.parseInt(date.substring(15, 17));
+
+        String tzs = date.substring(21, 26);
+        if (!tzs.equals(lastTimeZoneString)) {
+			lastTimeZoneString = tzs;
+	        timeZone = (TimeZone)timeZones.get(tzs);
+			if (timeZone == null) {
+            	timeZone = TimeZone.getTimeZone("GMT"+tzs);
+            	timeZones.put(tzs, timeZone);
+			}
+        }
+        
+        calIn.setTimeZone(timeZone);
+        calIn.set(year, month, dom, hour, minute, 0);
+        calOut.setTime(calIn.getTime());
+
+        Long domParse = Long.valueOf(calOut.get(Calendar.DAY_OF_MONTH));
+        Long monthParse = Long.valueOf(calOut.get(Calendar.MONTH)+1);
+        Long yearParse = Long.valueOf(calOut.get(Calendar.YEAR));
+
+		Fields.Out.dom.setValue(r, domParse);
+		Fields.Out.month.setValue(r, monthParse);
+		Fields.Out.year.setValue(r, yearParse);
+		Fields.Out.hour.setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
+		Fields.Out.minute.setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
+		Fields.Out.second.setValue(r, 0L);
+
+		String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
+		Fields.Out.date.setValue(r, dateString);
+
+        putRow(data.outputRowMeta, r);
+	} else {
+        incrementLinesRejected();
+	}
+	return true;
+}
+
+</pre><h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>field_name</th>
+               <th>field_type</th>
+               <th>field_length</th>
+               <th>field_precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>utc_day_of_month</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>utc_month</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>utc_year</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>utc_hour</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>utc_minute</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>utc_second</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>utc_date</td>
+               <td>String</td>
+               <td>10</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RegexEval"></div>
+      <h3 class="step-heading"><a name="Regex requests-text" href="#Regex requests-icon">Regex requests</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>group</th>
+               <th>decimal</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>trimtype</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>client_ip_address</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>15</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>date</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>product_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>20</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>product_version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>15</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>product_version_major</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>product_version_minor</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>10</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>product_version_sub_a</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>10</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>product_version_sub_b</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>10</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>product_build_number</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>14</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>product_build_target</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>50</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>locale_raw_string</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>128</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>locale_code</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>15</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>locale_language</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>3</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>locale_region</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>2</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>15</th>
+               <td>locale_dialect</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>8</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>16</th>
+               <td>product_channel</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>100</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>17</th>
+               <td>product_os_platform</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>50</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>18</th>
+               <td>product_os_version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>50</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>19</th>
+               <td>product_distribution</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>100</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>20</th>
+               <td>product_distribution_version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>100</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>21</th>
+               <td>status_code</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>3</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>22</th>
+               <td>bytes_sent</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>10</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>23</th>
+               <td>user_agent</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>1024</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>24</th>
+               <td>gecko_version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>15</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>25</th>
+               <td>gecko_version_major</td>
+               <td>Integer</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>2</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>26</th>
+               <td>gecko_version_minor</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>10</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>27</th>
+               <td>gecko_version_sub_a</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>10</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>28</th>
+               <td>gecko_version_sub_b</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>10</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TextFileInput"></div>
+      <h3 class="step-heading"><a name="Text file input-text" href="#Text file input-icon">Text file input</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>position</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>trim_type</th>
+               <th>repeat</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>line</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Try to fixup dirty locale-text" href="#Try to fixup dirty locale-icon">Try to fixup dirty locale</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">var locale_code = "Unknown";
+var locale_language = "";
+var locale_region = "";
+
+var match = locale_raw_string.match(/((\b[a-z]{2}\b)(?:-([A-Z]{2}\b))?)/);
+if (match != null) {
+	locale_code = match[1];
+	locale_language = match[2];
+	locale_region = match[3];
+	_step_.incrementLinesUpdated();
+}</pre><h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>replace</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>locale_code</td>
+               <td>locale_code</td>
+               <td>String</td>
+               <td>15</td>
+               <td>-1</td>
+               <td>Y</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>locale_language</td>
+               <td>locale_language</td>
+               <td>String</td>
+               <td>2</td>
+               <td>-1</td>
+               <td>Y</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>locale_region</td>
+               <td>locale_region</td>
+               <td>String</td>
+               <td>2</td>
+               <td>-1</td>
+               <td>Y</td>
+            </tr>
+         </tbody>
+      </table><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>
