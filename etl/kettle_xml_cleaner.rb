@@ -119,7 +119,6 @@ ARGV.each do |file|
                 in_slaveservers = true
             elsif line =~ /^\s*<\/slaveservers>\s*$/
                 in_slaveservers = false
-                skip_lines += 1 unless skip_lines > 0
             elsif line =~ /^\s*<connection>\s*$/
                 in_connection = true
             elsif line =~ /^\s*<\/connection>\s*$/
@@ -151,9 +150,7 @@ ARGV.each do |file|
                 puts "WARN: #{file}:#{linenum}:  bare username: #{line}"
             elsif in_connection and line =~ /<password>/ and !line.include?('${')
                 puts "WARN: #{file}:#{linenum}:  bare password: #{line}"
-            end
-    
-            if in_slaveservers
+            elsif in_slaveservers
                 skip_lines += 1
             end
     
