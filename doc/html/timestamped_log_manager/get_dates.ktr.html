@@ -51,8 +51,8 @@
          <tbody>
             <tr>
                <td>
-                  <div>Get date_id</div>
                   <div>Generate 1 empty row</div>
+                  <div>Get date_id</div>
                </td>
                <td></td>
                <td></td>
@@ -60,15 +60,15 @@
          </tbody>
       </table>
       <h2><a name="diagram">Diagram</a></h2>
-      <div class="diagram" id="diagram" style="&#xA;            width: 128px;&#xA;            height: 428px;&#xA;        "><a name="Get date_id-icon"></a><div id="Get date_id" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:50px;&#xA;                    top:250px;&#xA;                ">
+      <div class="diagram" id="diagram" style="&#xA;            width: 128px;&#xA;            height: 428px;&#xA;        "><a name="Generate 1 empty row-icon"></a><div id="Generate 1 empty row" class="&#xA;                    step-icon&#xA;                    step-icon-RowGenerator" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Set date variables"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Generate 1 empty row-text" style="&#xA;                    top:82px;&#xA;                    left:23.333333333333332px;                    &#xA;                ">Generate 1 empty row</a><a name="Get date_id-icon"></a><div id="Get date_id" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:50px;&#xA;                    top:250px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Set date id variable"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Get date_id-text" style="&#xA;                    top:282px;&#xA;                    left:35.333333333333336px;                    &#xA;                ">Get date_id</a><a name="Set date id variable-icon"></a><div id="Set date id variable" class="&#xA;                    step-icon&#xA;                    step-icon-SetVariable" style="&#xA;                    left:50px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Set date id variable-text" style="&#xA;                    top:382px;&#xA;                    left:23.333333333333332px;                    &#xA;                ">Set date id variable</a><a name="Set date variables-icon"></a><div id="Set date variables" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get date_id"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Set date variables-text" style="&#xA;                    top:182px;&#xA;                    left:26px;                    &#xA;                ">Set date variables</a><a name="Generate 1 empty row-icon"></a><div id="Generate 1 empty row" class="&#xA;                    step-icon&#xA;                    step-icon-RowGenerator" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Set date variables"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Generate 1 empty row-text" style="&#xA;                    top:82px;&#xA;                    left:23.333333333333332px;                    &#xA;                ">Generate 1 empty row</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Set date variables-text" style="&#xA;                    top:182px;&#xA;                    left:26px;                    &#xA;                ">Set date variables</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -98,7 +98,7 @@
             <tr>
                <th>METRICS_MYSQL_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -215,7 +215,13 @@
          t.b.d.
          
       </p>
-      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowGenerator"></div>
+      <h3 class="step-heading"><a name="Generate 1 empty row-text" href="#Generate 1 empty row-icon">Generate 1 empty row</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
       <h3 class="step-heading"><a name="Get date_id-text" href="#Get date_id-icon">Get date_id</a></h3>
       <p>
          This job entry does not have a description.
@@ -341,13 +347,7 @@ Alert(date2str(dValue,"dd.MM.yyyy HH:mm:ss","EN", "EST"));
                <td>N</td>
             </tr>
          </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowGenerator"></div>
-      <h3 class="step-heading"><a name="Generate 1 empty row-text" href="#Generate 1 empty row-icon">Generate 1 empty row</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p>
-      <script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+      </table><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
             SyntaxHighlighter.all();
         </script></body>
 </html>

@@ -70,7 +70,9 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Select values"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Calculator-text" style="&#xA;                    top:182px;&#xA;                    left:236.66666666666666px;                    &#xA;                ">Calculator</a><a name="Compare tables-icon"></a><div id="Compare tables" class="&#xA;                    step-icon&#xA;                    step-icon-MergeRows" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Switch / Case"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Compare tables-text" style="&#xA;                    top:182px;&#xA;                    left:31.333333333333332px;                    &#xA;                ">Compare tables</a><a name="Get existing addon records-icon"></a><div id="Get existing addon records" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Compare tables-text" style="&#xA;                    top:182px;&#xA;                    left:31.333333333333332px;                    &#xA;                ">Compare tables</a><a name="Filter null guids-icon"></a><div id="Filter null guids" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:300px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Add delete flag"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter null guids-text" style="&#xA;                    top:282px;&#xA;                    left:277.3333333333333px;                    &#xA;                ">Filter null guids</a><a name="Get existing addon records-icon"></a><div id="Get existing addon records" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Compare tables"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Get existing addon records-text" style="&#xA;                    top:82px;&#xA;                    left:15.333333333333336px;                    &#xA;                ">Get existing addon records</a><a name="Get updated addon records-icon"></a><div id="Get updated addon records" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Calculator"></a></div>
@@ -84,9 +86,7 @@
             <div class="step-hops"></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Update-text" style="&#xA;                    top:382px;&#xA;                    left:192px;                    &#xA;                ">Update</a><a name="Update deleted-icon"></a><div id="Update deleted" class="&#xA;                    step-icon&#xA;                    step-icon-Update" style="&#xA;                    left:400px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Update deleted-text" style="&#xA;                    top:382px;&#xA;                    left:381.3333333333333px;                    &#xA;                ">Update deleted</a><a name="Filter null guids-icon"></a><div id="Filter null guids" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:300px;&#xA;                    top:250px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Add delete flag"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter null guids-text" style="&#xA;                    top:282px;&#xA;                    left:277.3333333333333px;                    &#xA;                ">Filter null guids</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Update deleted-text" style="&#xA;                    top:382px;&#xA;                    left:381.3333333333333px;                    &#xA;                ">Update deleted</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -116,7 +116,7 @@
             <tr>
                <th>AMO_SLAVE_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -146,7 +146,7 @@
             <tr>
                <th>METRICS_MYSQL_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -362,6 +362,11 @@
          
       </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MergeRows"></div>
       <h3 class="step-heading"><a name="Compare tables-text" href="#Compare tables-icon">Compare tables</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter null guids-text" href="#Filter null guids-icon">Filter null guids</a></h3>
       <p>
          This job entry does not have a description.
          
@@ -633,11 +638,6 @@ ORDER BY a.id, v.id, f.id
          
       </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Update"></div>
       <h3 class="step-heading"><a name="Update deleted-text" href="#Update deleted-icon">Update deleted</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
-      <h3 class="step-heading"><a name="Filter null guids-text" href="#Filter null guids-icon">Filter null guids</a></h3>
       <p>
          This job entry does not have a description.
          

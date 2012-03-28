@@ -93,36 +93,6 @@
          </thead>
          <tbody>
             <tr>
-               <th>METRICS_MYSQL_HOST</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>METRICS_MYSQL_NAME</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>METRICS_MYSQL_PORT</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>METRICS_MYSQL_USER</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>METRICS_MYSQL_PASS</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
                <th>VERTICA_HOST</th>
                <td></td>
                <td></td>
@@ -137,7 +107,7 @@
             <tr>
                <th>VERTICA_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -148,6 +118,36 @@
             </tr>
             <tr>
                <th>VERTICA_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td>, </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
                <td></td>
                <td></td>
                <td></td>
@@ -197,15 +197,6 @@
          </thead>
          <tbody>
             <tr>
-               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
-               <td>MYSQL</td>
-               <td>Native</td>
-               <td>${METRICS_MYSQL_HOST}</td>
-               <td>${METRICS_MYSQL_PORT}</td>
-               <td>${METRICS_MYSQL_USER}</td>
-               <td></td>
-            </tr>
-            <tr>
                <th><a href="#connection.metrics">metrics</a></th>
                <td>VERTICA</td>
                <td>Native</td>
@@ -214,56 +205,18 @@
                <td>${VERTICA_USER}</td>
                <td><a href="#metrics">Output to aus_requests_raw</a></td>
             </tr>
-         </tbody>
-      </table>
-      <h3>Database Connection Details</h3>
-      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
-      <table>
-         <thead>
             <tr>
-               <th>Property</th>
-               <th>Value</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td>name</td>
-               <td>metrics mysql</td>
-            </tr>
-            <tr>
-               <td>server</td>
-               <td>${METRICS_MYSQL_HOST}</td>
-            </tr>
-            <tr>
-               <td>type</td>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
                <td>MYSQL</td>
-            </tr>
-            <tr>
-               <td>access</td>
                <td>Native</td>
-            </tr>
-            <tr>
-               <td>database</td>
-               <td>${METRICS_MYSQL_NAME}</td>
-            </tr>
-            <tr>
-               <td>port</td>
+               <td>${METRICS_MYSQL_HOST}</td>
                <td>${METRICS_MYSQL_PORT}</td>
-            </tr>
-            <tr>
-               <td>username</td>
                <td>${METRICS_MYSQL_USER}</td>
-            </tr>
-            <tr>
-               <td>password</td>
-               <td>${METRICS_MYSQL_PASS}</td>
-            </tr>
-            <tr>
-               <td>attributes</td>
                <td></td>
             </tr>
          </tbody>
       </table>
+      <h3>Database Connection Details</h3>
       <h4><a name="connection.metrics">metrics</a></h4>
       <table>
          <thead>
@@ -304,6 +257,53 @@
             <tr>
                <td>password</td>
                <td>${VERTICA_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
             </tr>
             <tr>
                <td>attributes</td>

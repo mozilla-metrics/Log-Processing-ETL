@@ -63,17 +63,17 @@
       <h2><a name="diagram">Diagram</a></h2>
       <div class="diagram" id="diagram" style="&#xA;            width: 378px;&#xA;            height: 228px;&#xA;        "><a name="Count inserts-icon"></a><div id="Count inserts" class="&#xA;                    step-icon&#xA;                    step-icon-GroupBy" style="&#xA;                    left:250px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log inserts"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Count inserts-text" style="&#xA;                    top:182px;&#xA;                    left:232.66666666666666px;                    &#xA;                ">Count inserts</a><a name="Log inserts-icon"></a><div id="Log inserts" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Count inserts-text" style="&#xA;                    top:182px;&#xA;                    left:232.66666666666666px;                    &#xA;                ">Count inserts</a><a name="Delete share records-icon"></a><div id="Delete share records" class="&#xA;                    step-icon&#xA;                    step-icon-ExecSQL" style="&#xA;                    left:300px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log deletes"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Delete share records-text" style="&#xA;                    top:82px;&#xA;                    left:273.3333333333333px;                    &#xA;                ">Delete share records</a><a name="Log deletes-icon"></a><div id="Log deletes" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:400px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log deletes-text" style="&#xA;                    top:82px;&#xA;                    left:385.3333333333333px;                    &#xA;                ">Log deletes</a><a name="Log inserts-icon"></a><div id="Log inserts" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Log inserts-text" style="&#xA;                    top:182px;&#xA;                    left:335.3333333333333px;                    &#xA;                ">Log inserts</a><a name="Output to stats_share_counts-icon"></a><div id="Output to stats_share_counts" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Count inserts"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Output to stats_share_counts-text" style="&#xA;                    top:182px;&#xA;                    left:112.66666666666666px;                    &#xA;                ">Output to stats_share_counts</a><a name="Retrieve daily share addon request count-icon"></a><div id="Retrieve daily share addon request count" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:150px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Output to stats_share_counts"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Retrieve daily share addon request count-text" style="&#xA;                    top:82px;&#xA;                    left:96.66666666666666px;                    &#xA;                ">Retrieve daily share addon request count</a><a name="Delete share records-icon"></a><div id="Delete share records" class="&#xA;                    step-icon&#xA;                    step-icon-ExecSQL" style="&#xA;                    left:300px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log deletes"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Delete share records-text" style="&#xA;                    top:82px;&#xA;                    left:273.3333333333333px;                    &#xA;                ">Delete share records</a><a name="Log deletes-icon"></a><div id="Log deletes" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:400px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log deletes-text" style="&#xA;                    top:82px;&#xA;                    left:385.3333333333333px;                    &#xA;                ">Log deletes</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Retrieve daily share addon request count-text" style="&#xA;                    top:82px;&#xA;                    left:96.66666666666666px;                    &#xA;                ">Retrieve daily share addon request count</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -103,7 +103,7 @@
             <tr>
                <th>AMO_MASTER_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -133,7 +133,7 @@
             <tr>
                <th>METRICS_MYSQL_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -152,7 +152,7 @@
                <th>DATE</th>
                <td></td>
                <td></td>
-               <td><a href="#Retrieve daily share addon request count">Retrieve daily share addon request count</a>, <a href="#Delete share records">Delete share records</a></td>
+               <td><a href="#Delete share records">Delete share records</a>, <a href="#Retrieve daily share addon request count">Retrieve daily share addon request count</a></td>
             </tr>
          </tbody>
       </table>
@@ -199,7 +199,7 @@
                <td>${AMO_MASTER_HOST}</td>
                <td>${AMO_MASTER_PORT}</td>
                <td>${AMO_MASTER_USER}</td>
-               <td><a href="#amo master">Output to stats_share_counts</a>, <a href="#amo master">Delete share records</a></td>
+               <td><a href="#amo master">Delete share records</a>, <a href="#amo master">Output to stats_share_counts</a></td>
             </tr>
             <tr>
                <th><a href="#connection.metrics mysql">metrics mysql</a></th>
@@ -338,7 +338,21 @@
                <td></td>
             </tr>
          </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ExecSQL"></div>
+      <h3 class="step-heading"><a name="Delete share records-text" href="#Delete share records-icon">Delete share records</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">DELETE FROM stats_share_counts WHERE date ${DATE}
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+      <h3 class="step-heading"><a name="Log deletes-text" href="#Log deletes-icon">Log deletes</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h5>Script 1</h5><pre class="brush: js;">writeToLog("m", "Deleted "+share_deletes+" records from AMO master DB table share_counts for date "+getVariable("DATE","uninitialized"));
+</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
       <h3 class="step-heading"><a name="Log inserts-text" href="#Log inserts-icon">Log inserts</a></h3>
       <p>
          This job entry does not have a description.
@@ -396,21 +410,7 @@ FROM f_addon_share_requests a
 JOIN dates d ON a.utc_date_id = d.date_id
 WHERE date ${DATE}
 GROUP BY addon_id, service, date
-</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ExecSQL"></div>
-      <h3 class="step-heading"><a name="Delete share records-text" href="#Delete share records-icon">Delete share records</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p>
-      <h4>SQL</h4><pre class="brush: sql;">DELETE FROM stats_share_counts WHERE date ${DATE}
-</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
-      <h3 class="step-heading"><a name="Log deletes-text" href="#Log deletes-icon">Log deletes</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p>
-      <h5>Script 1</h5><pre class="brush: js;">writeToLog("m", "Deleted "+share_deletes+" records from AMO master DB table share_counts for date "+getVariable("DATE","uninitialized"));
-</pre>    <script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+</pre><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
             SyntaxHighlighter.all();
         </script></body>
 </html>

@@ -1,0 +1,412 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/process_product_dimension.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/amo/process_product_dimension.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/amo"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "process_product_dimension"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (1)</th>
+               <th>Transform</th>
+               <th>Output (1)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Get default names</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>Update</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 728px;&#xA;            height: 378px;&#xA;        "><a name="Database lookup-icon"></a><div id="Database lookup" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:400px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup name"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Database lookup-text" style="&#xA;                    top:182px;&#xA;                    left:380px;                    &#xA;                ">Database lookup</a><a name="Get default names-icon"></a><div id="Get default names" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:500px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup name"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get default names-text" style="&#xA;                    top:282px;&#xA;                    left:477.3333333333333px;                    &#xA;                ">Get default names</a><a name="Lookup name-icon"></a><div id="Lookup name" class="&#xA;                    step-icon&#xA;                    step-icon-StreamLookup" style="&#xA;                    left:500px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Update"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup name-text" style="&#xA;                    top:182px;&#xA;                    left:485.3333333333333px;                    &#xA;                ">Lookup name</a><a name="Lookup product_id-icon"></a><div id="Lookup product_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:200px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Mapping output specification"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Unique product_ids"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup product_id-text" style="&#xA;                    top:182px;&#xA;                    left:177.33333333333334px;                    &#xA;                ">Lookup product_id</a><a name="Mapping input specification-icon"></a><div id="Mapping input specification" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:200px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup product_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Mapping input specification-text" style="&#xA;                    top:82px;&#xA;                    left:164px;                    &#xA;                ">Mapping input specification</a><a name="Mapping output specification-icon"></a><div id="Mapping output specification" class="&#xA;                    step-icon&#xA;                    step-icon-MappingOutput" style="&#xA;                    left:200px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Mapping output specification-text" style="&#xA;                    top:282px;&#xA;                    left:162.66666666666666px;                    &#xA;                ">Mapping output specification</a><a name="Unique product_ids-icon"></a><div id="Unique product_ids" class="&#xA;                    step-icon&#xA;                    step-icon-UniqueRowsByHashSet" style="&#xA;                    left:300px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Database lookup"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Unique product_ids-text" style="&#xA;                    top:182px;&#xA;                    left:276px;                    &#xA;                ">Unique product_ids</a><a name="Update-icon"></a><div id="Update" class="&#xA;                    step-icon&#xA;                    step-icon-Update" style="&#xA;                    left:600px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Update-text" style="&#xA;                    top:182px;&#xA;                    left:592px;                    &#xA;                ">Update</a>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 0px;&#xA;&#x9;&#x9;&#x9;top: 150px;&#xA;&#x9;&#x9;&#x9;width: 174px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: ;&#xA;&#x9;&#x9;&#x9;font-size: ;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;background-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;border-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;">Look up product_id for this guid/version
+            Create a new record in products if it doesn't exist
+         </div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 250px;&#xA;&#x9;&#x9;&#x9;top: 100px;&#xA;&#x9;&#x9;&#x9;width: 138px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: ;&#xA;&#x9;&#x9;&#x9;font-size: ;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;background-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;border-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;">Only pass through each product_id
+            to the rest of the transformation once.
+            This step does not queue rows. It uses
+            an in memory hashset to determine
+            uniqueness.
+         </div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 350px;&#xA;&#x9;&#x9;&#x9;top: 200px;&#xA;&#x9;&#x9;&#x9;width: 114px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: ;&#xA;&#x9;&#x9;&#x9;font-size: ;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;background-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;border-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;">Check whether this product_id
+            has already had the additional
+            data updated in it.
+            (version details, product name)
+         </div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 450px;&#xA;&#x9;&#x9;&#x9;top: 300px;&#xA;&#x9;&#x9;&#x9;width: 131px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: ;&#xA;&#x9;&#x9;&#x9;font-size: ;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;background-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;border-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;">There are a static set of guids in the
+            products table that contain canonical
+            names for each product.  This query
+            retrieves those for use in the update.
+         </div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 600px;&#xA;&#x9;&#x9;&#x9;top: 100px;&#xA;&#x9;&#x9;&#x9;width: 181px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: ;&#xA;&#x9;&#x9;&#x9;font-size: ;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;background-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;&#x9;border-color: rgb(&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,);&#xA;&#x9;&#x9;">The stream at this point contains the product_id,
+            product name, and version details
+            (major/minor/sub_a/sub_b).  Update the product_id
+            with this additional data.
+            
+         </div>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Database lookup</a>, <a href="#metrics mysql">Get default names</a>, <a href="#metrics mysql">Lookup product_id</a>, <a href="#metrics mysql">Update</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
+      <h3 class="step-heading"><a name="Database lookup-text" href="#Database lookup-icon">Database lookup</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Get default names-text" href="#Get default names-icon">Get default names</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT DISTINCT
+  product_guid
+, product_name
+FROM products
+WHERE product_id &lt; 99
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-StreamLookup"></div>
+      <h3 class="step-heading"><a name="Lookup name-text" href="#Lookup name-icon">Lookup name</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="Lookup product_id-text" href="#Lookup product_id-icon">Lookup product_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      product_guid
+      product_guid
+      
+      
+      product_version
+      product_version
+      
+      
+      product_id
+      autoinc
+      Y
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="Mapping input specification-text" href="#Mapping input specification-icon">Mapping input specification</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_guid</td>
+               <td>String</td>
+               <td>36</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>product_version</td>
+               <td>String</td>
+               <td>30</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>product_version_major</td>
+               <td>Integer</td>
+               <td>10</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>product_version_minor</td>
+               <td>Integer</td>
+               <td>10</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>product_version_minor_suffix</td>
+               <td>String</td>
+               <td>15</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>product_version_sub_a</td>
+               <td>Integer</td>
+               <td>10</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>product_version_sub_a_suffix</td>
+               <td>String</td>
+               <td>15</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>product_version_sub_b</td>
+               <td>Integer</td>
+               <td>10</td>
+               <td>0</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>product_version_sub_b_suffix</td>
+               <td>String</td>
+               <td>15</td>
+               <td>0</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingOutput"></div>
+      <h3 class="step-heading"><a name="Mapping output specification-text" href="#Mapping output specification-icon">Mapping output specification</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-UniqueRowsByHashSet"></div>
+      <h3 class="step-heading"><a name="Unique product_ids-text" href="#Unique product_ids-icon">Unique product_ids</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_id</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Update"></div>
+      <h3 class="step-heading"><a name="Update-text" href="#Update-icon">Update</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

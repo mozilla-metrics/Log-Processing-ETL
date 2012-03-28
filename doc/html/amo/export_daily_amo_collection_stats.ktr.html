@@ -81,7 +81,9 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log deletes"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Join Rows (cartesian product) 2-text" style="&#xA;                    top:232px;&#xA;                    left:158.66666666666666px;                    &#xA;                ">Join Rows (cartesian product) 2</a><a name="Log deletes-icon"></a><div id="Log deletes" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:300px;&#xA;                    top:200px;&#xA;                ">
             <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log deletes-text" style="&#xA;                    top:232px;&#xA;                    left:285.3333333333333px;                    &#xA;                ">Log deletes</a><a name="Log inserts-icon"></a><div id="Log inserts" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:550px;&#xA;                    top:200px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log deletes-text" style="&#xA;                    top:232px;&#xA;                    left:285.3333333333333px;                    &#xA;                ">Log deletes</a><a name="Log errors-icon"></a><div id="Log errors" class="&#xA;                    step-icon&#xA;                    step-icon-WriteToLog&#xA;                        step-error&#xA;                    " style="&#xA;                    left:450px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log errors-text" style="&#xA;                    top:382px;&#xA;                    left:436.6666666666667px;                    &#xA;                ">Log errors</a><a name="Log inserts-icon"></a><div id="Log inserts" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:550px;&#xA;                    top:200px;&#xA;                ">
             <div class="step-hops"></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Log inserts-text" style="&#xA;                    top:232px;&#xA;                    left:535.3333333333334px;                    &#xA;                ">Log inserts</a><a name="Output to collection_addon_counts-icon"></a><div id="Output to collection_addon_counts" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:350px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Count inserts 2"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                step-hop-error&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log errors"></a></div>
@@ -91,9 +93,7 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Database lookup 2"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Retrieve daily collection addon request count-text" style="&#xA;                    top:382px;&#xA;                    left:40px;                    &#xA;                ">Retrieve daily collection addon request count</a><a name="Retrieve daily collection request count-icon"></a><div id="Retrieve daily collection request count" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Database lookup"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Retrieve daily collection request count-text" style="&#xA;                    top:82px;&#xA;                    left:48px;                    &#xA;                ">Retrieve daily collection request count</a><a name="Log errors-icon"></a><div id="Log errors" class="&#xA;                    step-icon&#xA;                    step-icon-WriteToLog&#xA;                        step-error&#xA;                    " style="&#xA;                    left:450px;&#xA;                    top:350px;&#xA;                ">
-            <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log errors-text" style="&#xA;                    top:382px;&#xA;                    left:436.6666666666667px;                    &#xA;                ">Log errors</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Retrieve daily collection request count-text" style="&#xA;                    top:82px;&#xA;                    left:48px;                    &#xA;                ">Retrieve daily collection request count</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -123,7 +123,7 @@
             <tr>
                <th>AMO_MASTER_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -153,7 +153,7 @@
             <tr>
                <th>METRICS_MYSQL_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -427,7 +427,39 @@ WHERE date ${DATE}</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&
       <h5>Script 1</h5><pre class="brush: js;">writeToLog("m", "Deleted "+collection_deletes+" records from AMO master DB table collection_counts for date "+getVariable("DATE","uninitialized"));
 
 writeToLog("m", "Deleted "+collection_addon_deletes+" records from AMO master DB table collection_addon_counts for date "+getVariable("DATE","uninitialized"));
-</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
+</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-WriteToLog"></div>
+      <h3 class="step-heading"><a name="Log errors-text" href="#Log errors-icon">Log errors</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>date</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>addon_id</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>collection_id</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>count</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
       <h3 class="step-heading"><a name="Log inserts-text" href="#Log inserts-icon">Log inserts</a></h3>
       <p>
          This job entry does not have a description.
@@ -530,39 +562,7 @@ GROUP BY utc_date_str, collection_id, addon_id
 FROM a_addon_collection_request_totals
 WHERE utc_date_str ${DATE}
 GROUP BY utc_date_str, collection_id
-</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-WriteToLog"></div>
-      <h3 class="step-heading"><a name="Log errors-text" href="#Log errors-icon">Log errors</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p>
-      <h4>Fields</h4>
-      <table>
-         <thead>
-            <tr>
-               <th>Position</th>
-               <th>name</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <th>1</th>
-               <td>date</td>
-            </tr>
-            <tr>
-               <th>2</th>
-               <td>addon_id</td>
-            </tr>
-            <tr>
-               <th>3</th>
-               <td>collection_id</td>
-            </tr>
-            <tr>
-               <th>4</th>
-               <td>count</td>
-            </tr>
-         </tbody>
-      </table><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+</pre><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
             SyntaxHighlighter.all();
         </script></body>
 </html>

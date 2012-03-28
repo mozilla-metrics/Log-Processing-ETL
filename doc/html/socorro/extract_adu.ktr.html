@@ -103,7 +103,7 @@
             <tr>
                <th>VERTICA_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -149,36 +149,6 @@
                <td></td>
             </tr>
             <tr>
-               <th>SOCORRO_DEV_HOST</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>SOCORRO_DEV_DATABASE</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>SOCORRO_DEV_PORT</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>SOCORRO_DEV_USER</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>SOCORRO_DEV_PASS</th>
-               <td></td>
-               <td></td>
-               <td></td>
-            </tr>
-            <tr>
                <th>DATE</th>
                <td></td>
                <td></td>
@@ -187,7 +157,7 @@
          </tbody>
       </table>
       <h2><a name="connections">Database Connections</a></h2>
-      <p>This transformation defines 3 database connections.</p>
+      <p>This transformation defines 2 database connections.</p>
       <h3>Database Connection Summary</h3>
       <table>
          <thead>
@@ -239,15 +209,6 @@
                <td>${SOCORRO_DB_PORT}</td>
                <td>${SOCORRO_DB_USER}</td>
                <td><a href="#socorro">Delete adu records</a>, <a href="#socorro">Table output</a></td>
-            </tr>
-            <tr>
-               <th><a href="#connection.socorro dev">socorro dev</a></th>
-               <td>POSTGRESQL</td>
-               <td>Native</td>
-               <td>${SOCORRO_DEV_HOST}</td>
-               <td>${SOCORRO_DEV_PORT}</td>
-               <td>${SOCORRO_DEV_USER}</td>
-               <td></td>
             </tr>
          </tbody>
       </table>
@@ -339,53 +300,6 @@
             <tr>
                <td>password</td>
                <td>${SOCORRO_DB_PASS}</td>
-            </tr>
-            <tr>
-               <td>attributes</td>
-               <td></td>
-            </tr>
-         </tbody>
-      </table>
-      <h4><a name="connection.socorro dev">socorro dev</a></h4>
-      <table>
-         <thead>
-            <tr>
-               <th>Property</th>
-               <th>Value</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td>name</td>
-               <td>socorro dev</td>
-            </tr>
-            <tr>
-               <td>server</td>
-               <td>${SOCORRO_DEV_HOST}</td>
-            </tr>
-            <tr>
-               <td>type</td>
-               <td>POSTGRESQL</td>
-            </tr>
-            <tr>
-               <td>access</td>
-               <td>Native</td>
-            </tr>
-            <tr>
-               <td>database</td>
-               <td>${SOCORRO_DEV_DATABASE}</td>
-            </tr>
-            <tr>
-               <td>port</td>
-               <td>${SOCORRO_DEV_PORT}</td>
-            </tr>
-            <tr>
-               <td>username</td>
-               <td>${SOCORRO_DEV_USER}</td>
-            </tr>
-            <tr>
-               <td>password</td>
-               <td>${SOCORRO_DEV_PASS}</td>
             </tr>
             <tr>
                <td>attributes</td>

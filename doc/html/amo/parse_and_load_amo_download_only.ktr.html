@@ -127,36 +127,6 @@
          </thead>
          <tbody>
             <tr>
-               <th>METRICS_MYSQL_HOST</th>
-               <td></td>
-               <td>, </td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>METRICS_MYSQL_NAME</th>
-               <td></td>
-               <td>, </td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>METRICS_MYSQL_PORT</th>
-               <td></td>
-               <td>, </td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>METRICS_MYSQL_USER</th>
-               <td></td>
-               <td>, </td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>METRICS_MYSQL_PASS</th>
-               <td></td>
-               <td>, </td>
-               <td></td>
-            </tr>
-            <tr>
                <th>VERTICA_HOST</th>
                <td></td>
                <td></td>
@@ -171,7 +141,7 @@
             <tr>
                <th>VERTICA_PORT</th>
                <td></td>
-               <td></td>
+               <td>, </td>
                <td></td>
             </tr>
             <tr>
@@ -187,6 +157,36 @@
                <td></td>
             </tr>
             <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td>, </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
                <th>raw_table_suffix</th>
                <td></td>
                <td></td>
@@ -195,7 +195,7 @@
          </tbody>
       </table>
       <h2><a name="connections">Database Connections</a></h2>
-      <p>This transformation defines 3 database connections.</p>
+      <p>This transformation defines 2 database connections.</p>
       <h3>Database Connection Summary</h3>
       <table>
          <thead>
@@ -231,15 +231,6 @@
          </thead>
          <tbody>
             <tr>
-               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
-               <td>MYSQL</td>
-               <td>Native</td>
-               <td>${METRICS_MYSQL_HOST}</td>
-               <td>${METRICS_MYSQL_PORT}</td>
-               <td>${METRICS_MYSQL_USER}</td>
-               <td><a href="#metrics mysql">Lookup addon</a>, <a href="#metrics mysql">Lookup location_id</a>, <a href="#metrics mysql">Lookup request_locale_id</a>, <a href="#metrics mysql">Lookup user_agent_browser_id</a>, <a href="#metrics mysql">Lookup user_agent_locale_id</a>, <a href="#metrics mysql">Lookup user_agent_os_id</a></td>
-            </tr>
-            <tr>
                <th><a href="#connection.metrics">metrics</a></th>
                <td>VERTICA</td>
                <td>Native</td>
@@ -260,53 +251,6 @@
          </tbody>
       </table>
       <h3>Database Connection Details</h3>
-      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
-      <table>
-         <thead>
-            <tr>
-               <th>Property</th>
-               <th>Value</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <td>name</td>
-               <td>metrics mysql</td>
-            </tr>
-            <tr>
-               <td>server</td>
-               <td>${METRICS_MYSQL_HOST}</td>
-            </tr>
-            <tr>
-               <td>type</td>
-               <td>MYSQL</td>
-            </tr>
-            <tr>
-               <td>access</td>
-               <td>Native</td>
-            </tr>
-            <tr>
-               <td>database</td>
-               <td>${METRICS_MYSQL_NAME}</td>
-            </tr>
-            <tr>
-               <td>port</td>
-               <td>${METRICS_MYSQL_PORT}</td>
-            </tr>
-            <tr>
-               <td>username</td>
-               <td>${METRICS_MYSQL_USER}</td>
-            </tr>
-            <tr>
-               <td>password</td>
-               <td>${METRICS_MYSQL_PASS}</td>
-            </tr>
-            <tr>
-               <td>attributes</td>
-               <td></td>
-            </tr>
-         </tbody>
-      </table>
       <h4><a name="connection.metrics">metrics</a></h4>
       <table>
          <thead>
@@ -995,6 +939,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       -2
       -2
       
+      false
+      
       
       
       
@@ -1004,6 +950,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       -
       -2
       -2
+      
+      false
       
       
       
