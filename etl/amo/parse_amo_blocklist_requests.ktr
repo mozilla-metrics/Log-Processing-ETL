@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!-- The contents of this file are subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
@@ -895,23 +895,23 @@ $]]></script>    <matcher>url</matcher>
 
         <class_name>RowProcessor</class_name>
 
+        
         <class_source><![CDATA[import java.util.*;
 
 public static class Fields {
-	public static class In  { public static FieldHelper utc_date_id, ping_count_raw, total_ping_count_raw, days_since_last_ping_raw; }
-	public static class Out { public static FieldHelper ping_count, total_ping_count, days_since_last_ping; }
+    public static class In  { public static FieldHelper utc_date_id, ping_count_raw, total_ping_count_raw, days_since_last_ping_raw; }
+    public static class Out { public static FieldHelper ping_count, total_ping_count, days_since_last_ping; }
 }
 
 private static final long JAN_1_11_DATE_ID = 4019L;
-private int outputRowMetaSize;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] r = getRow();
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
+    Object[] r = getRow();
+    if (r == null) {
+        setOutputDone();
+        return false;
+    }
 
     if (first)
     {
@@ -919,19 +919,18 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         data.inputRowMeta = getInputRowMeta();
         data.outputRowMeta = data.inputRowMeta.clone();
         meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
-		outputRowMetaSize = data.outputRowMeta.size();
-		Fields.In.utc_date_id = new FieldHelper(data.inputRowMeta, "utc_date_id");
-		Fields.In.ping_count_raw = new FieldHelper(data.inputRowMeta, "ping_count_raw");
-		Fields.In.total_ping_count_raw = new FieldHelper(data.inputRowMeta, "total_ping_count_raw");
-		Fields.In.days_since_last_ping_raw = new FieldHelper(data.inputRowMeta, "days_since_last_ping_raw");
-		Fields.Out.ping_count = new FieldHelper(data.outputRowMeta, "ping_count");
-		Fields.Out.total_ping_count = new FieldHelper(data.outputRowMeta, "total_ping_count");
-		Fields.Out.days_since_last_ping = new FieldHelper(data.outputRowMeta, "days_since_last_ping");
+        Fields.In.utc_date_id = new FieldHelper(data.inputRowMeta, "utc_date_id");
+        Fields.In.ping_count_raw = new FieldHelper(data.inputRowMeta, "ping_count_raw");
+        Fields.In.total_ping_count_raw = new FieldHelper(data.inputRowMeta, "total_ping_count_raw");
+        Fields.In.days_since_last_ping_raw = new FieldHelper(data.inputRowMeta, "days_since_last_ping_raw");
+        Fields.Out.ping_count = new FieldHelper(data.outputRowMeta, "ping_count");
+        Fields.Out.total_ping_count = new FieldHelper(data.outputRowMeta, "total_ping_count");
+        Fields.Out.days_since_last_ping = new FieldHelper(data.outputRowMeta, "days_since_last_ping");
     }
 
     long utc_date_id = Fields.In.utc_date_id.getInteger(r);
 
-	Object[] out = RowDataUtil.resizeArray(r,outputRowMetaSize);
+    Object[] out = RowDataUtil.resizeArray(r, data.outputRowMeta.size());
 
     long pingCount, totalPingCount, daysSinceLastPing;
     String pingCountStr = Fields.In.ping_count_raw.getString(r);
@@ -990,7 +989,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                 daysSinceLastPing = -1L;
             }
         }
-		//System.err.printf("\r%5s      %5d      ", new Object[] { daysSinceLastPingStr, daysSinceLastPing });
+        //System.err.printf("\r%5s      %5d      ", new Object[] { daysSinceLastPingStr, daysSinceLastPing });
         Fields.Out.days_since_last_ping.setValue(out, new Long(daysSinceLastPing));
     }
 
@@ -998,8 +997,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     return true;
 }
 
-]]></class_source>
-        </definition>
+]]></class_source></definition>
     </definitions>
     <fields>
         <field>
@@ -1033,7 +1031,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>Y</clear_result_fields>
-<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>600</xloc>
       <yloc>150</yloc>
