@@ -95,6 +95,9 @@ ARGV.each do |file|
                                 puts "Leaving UDJC alone."
                             end
                         end
+                    else
+                        puts "ERROR: No such file '#{javafile}'. Aborting."
+                        puts "  Hint: you can use the '--extract' option to get the source out of the transformation."
                     end
                 end
             end
