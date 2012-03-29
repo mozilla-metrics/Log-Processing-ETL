@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!-- The contents of this file are subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
@@ -256,7 +256,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value></allowed_value></validator_field>
+<allowed_value/></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
@@ -821,7 +821,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>Y</clear_result_fields>
-<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
       <yloc>350</yloc>
@@ -1550,44 +1550,34 @@ $]]></script>    <matcher>url</matcher>
 
         <class_name>RowProcessor</class_name>
 
+        
         <class_source><![CDATA[import java.util.*;
-
-public static class Fields {
-	public static class In  { public static FieldHelper utc_date_id, ping_count_raw, total_ping_count_raw, days_since_last_ping_raw; }
-	public static class Out { public static FieldHelper ping_count, total_ping_count, days_since_last_ping; }
-}
 
 private static final long JAN_1_11_DATE_ID = 4019L;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] r = getRow();
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
-
-    if (first)
-    {
-        first = false;
-		Fields.In.utc_date_id = new FieldHelper(data.inputRowMeta, "utc_date_id");
-		Fields.In.ping_count_raw = new FieldHelper(data.inputRowMeta, "ping_count_raw");
-		Fields.In.total_ping_count_raw = new FieldHelper(data.inputRowMeta, "total_ping_count_raw");
-		Fields.In.days_since_last_ping_raw = new FieldHelper(data.inputRowMeta, "days_since_last_ping_raw");
-		Fields.Out.ping_count = new FieldHelper(data.outputRowMeta, "ping_count");
-		Fields.Out.total_ping_count = new FieldHelper(data.outputRowMeta, "total_ping_count");
-		Fields.Out.days_since_last_ping = new FieldHelper(data.outputRowMeta, "days_since_last_ping");
+    Object[] r = getRow();
+    if (r == null) {
+        setOutputDone();
+        return false;
     }
 
-    long utc_date_id = Fields.In.utc_date_id.getInteger(r);
+    if (first) {
+        first = false;
+    }
+
+    long utc_date_id = get(Fields.In, "utc_date_id").getInteger(r);
+
+    Object[] out = createOutputRow(r, data.outputRowMeta.size());
 
     long pingCount, totalPingCount, daysSinceLastPing;
-    String pingCountStr = Fields.In.ping_count_raw.getString(r);
-    String totalPingCountStr = Fields.In.total_ping_count_raw.getString(r);
-    String daysSinceLastPingStr = Fields.In.days_since_last_ping_raw.getString(r);
+    String pingCountStr = get(Fields.In, "ping_count_raw").getString(r);
+    String totalPingCountStr = get(Fields.In, "total_ping_count_raw").getString(r);
+    String daysSinceLastPingStr = get(Fields.In, "days_since_last_ping_raw").getString(r);
 
     if (pingCountStr == null) {
-        Fields.Out.ping_count.setValue(r, null);
+        get(Fields.Out, "ping_count").setValue(out, null);
     } else {
         if ("invalid".equals(pingCountStr)) {
             pingCount = -1L;
@@ -1600,11 +1590,11 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                 pingCount = -1L;
             }
         }
-        Fields.Out.ping_count.setValue(r, new Long(pingCount));
+        get(Fields.Out, "ping_count").setValue(out, new Long(pingCount));
     }
 
     if (totalPingCountStr == null) {
-        Fields.Out.total_ping_count.setValue(r, null);
+        get(Fields.Out, "total_ping_count").setValue(out, null);
     } else {
         if ("invalid".equals(totalPingCountStr)) {
             totalPingCount = -1L;
@@ -1617,11 +1607,11 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                 totalPingCount = -1L;
             }
         }
-        Fields.Out.total_ping_count.setValue(r, new Long(totalPingCount));
+        get(Fields.Out, "total_ping_count").setValue(out, new Long(totalPingCount));
     }
 
     if (daysSinceLastPingStr == null) {
-        Fields.Out.days_since_last_ping.setValue(r, null);
+        get(Fields.Out, "days_since_last_ping").setValue(out, null);
     } else {
         if ("invalid".equals(daysSinceLastPingStr)) {
             daysSinceLastPing = -1L;
@@ -1638,16 +1628,15 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                 daysSinceLastPing = -1L;
             }
         }
-		//System.err.printf("\r%5s      %5d      ", new Object[] { daysSinceLastPingStr, daysSinceLastPing });
-        Fields.Out.days_since_last_ping.setValue(r, new Long(daysSinceLastPing));
+        //System.err.printf("\r%5s      %5d      ", new Object[] { daysSinceLastPingStr, daysSinceLastPing });
+        get(Fields.Out, "days_since_last_ping").setValue(out, new Long(daysSinceLastPing));
     }
 
-    putRow(data.outputRowMeta, r);
+    putRow(data.outputRowMeta, out);
     return true;
 }
 
-]]></class_source>
-        </definition>
+]]></class_source></definition>
     </definitions>
     <fields>
         <field>
@@ -1681,7 +1670,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>Y</clear_result_fields>
-<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>550</xloc>
       <yloc>350</yloc>
