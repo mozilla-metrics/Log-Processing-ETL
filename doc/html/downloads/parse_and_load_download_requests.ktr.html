@@ -414,36 +414,28 @@
          
       </p>
       <h4>Java Class Source Code</h4>
-      <h5>RowProcessor</h5><pre class="brush: java;">public static class Fields {
-	public static class In  { public static FieldHelper product; }
-}
-
-public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+      <h5>RowProcessor</h5><pre class="brush: java;">public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] r = getRow();
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
-
-    if (first)
-    {
-        first = false;
-        data.outputRowMeta = getInputRowMeta().clone();
-        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
-		Fields.In.product = new FieldHelper(data.inputRowMeta, "product");
+    Object[] r = getRow();
+    if (r == null) {
+        setOutputDone();
+        return false;
     }
 
-    String product = Fields.In.product.getString(r);
+    if (first) {
+        first = false;
+    }
+
+    String product = get(Fields.In, "product").getString(r);
     if ("firefox".equals(product)) {
-        Fields.In.product.setValue(r, "fennec-1.0b5");
-    incrementLinesUpdated();
+        get(Fields.In, "product").setValue(r, "fennec-1.0b5");
+        incrementLinesUpdated();
     } else if (product.indexOf("-") &gt; 20) {
-        Fields.In.product.setValue(r, "invalid-invalid");
+        get(Fields.In, "product").setValue(r, "invalid-invalid");
     }
 
     putRow(data.outputRowMeta, r);
-	return true;
+    return true;
 }
 
 </pre>
@@ -475,42 +467,34 @@ if (str2RegExp(product_locale.getString(), "^(None|all|multi|[a-z]{2,3}(?&gt;-[A
       <h4>Java Class Source Code</h4>
       <h5>RowProcessor</h5><pre class="brush: java;">import java.io.*;
 
-public static class Fields {
-	public static class In  { }
-	public static class Out { public static FieldHelper filename; }
-}
-
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	data.outputRowMeta = new RowMeta();
-	meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
+    if (getVariable("wildcard") != null &amp;&amp; !"xxx".equals(getVariable("wildcard"))) {
+        String cmd = "find " + getVariable("directory") + " -name 'access_" + getVariable("wildcard") + "*' | sort";
+        try {
+            logMinimal("Running command: "+cmd);
+            Process p = new ProcessBuilder(new String[] {"bash", "-c", cmd}).start();
+            BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            p.waitFor();
+            String filename = null;
+            while ((filename = in.readLine()) != null) {
+                logMinimal(filename);
+                Object[] rowData = RowDataUtil.allocateRowData(data.outputRowMeta.size());
+                get(Fields.Out, "filename").setValue(rowData, filename);
+                putRow(data.outputRowMeta, rowData);
+            }
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            setErrors(1);
+            stopAll();
+        }
+    }
 
-	if (getVariable("wildcard") != null &amp;&amp; !"xxx".equals(getVariable("wildcard"))) {
-		Fields.Out.filename = new FieldHelper(data.outputRowMeta, "filename");
-		String cmd = "find " + getVariable("directory") + " -name 'access_" + getVariable("wildcard") + "*' | sort";
-		try {
-			logMinimal("Running command: "+cmd);
-			Process p = new ProcessBuilder(new String[] {"bash", "-c", cmd}).start();
-			BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
-			p.waitFor();
-			String filename = null;
-			while ((filename = in.readLine()) != null) {
-				logMinimal(filename);
-				Object[] rowData = RowDataUtil.allocateRowData(data.outputRowMeta.size());
-				Fields.Out.filename.setValue(rowData, filename);
-				putRow(data.outputRowMeta, rowData);
-			}
-			in.close();
-		} catch (Exception e) {
-			e.printStackTrace();
-			setErrors(1);
-			stopAll();
-		}
-	}
-
-	setOutputDone();
-	return false;
-}</pre><h4>Fields</h4>
+    setOutputDone();
+    return false;
+}
+</pre><h4>Fields</h4>
       <table>
          <thead>
             <tr>
