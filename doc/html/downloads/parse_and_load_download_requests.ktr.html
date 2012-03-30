@@ -840,6 +840,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       <h4>Java Class Source Code</h4>
       <h5>RowProcessor</h5><pre class="brush: java;">import java.util.*;
 
+// Note that Kettle UDJCs do not appear to support generics.
 private static final Map timeZones = Collections.synchronizedMap(new HashMap());
 private static final Map months;
 static
@@ -860,11 +861,6 @@ static
     months = Collections.unmodifiableMap(tmp);
 }
 
-public static class Fields {
-	public static class In  { public static FieldHelper match_result, date; }
-	public static class Out { public static FieldHelper dom, month, year, hour, minute, second, date; }
-}
-
 private final Calendar calIn = Calendar.getInstance();
 private final Calendar calOut = Calendar.getInstance();
 private TimeZone timeZone;
@@ -872,31 +868,21 @@ private String lastTimeZoneString;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] r = getRow();
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
-
-    if (first)
-    {
-        first = false;
-	    calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
-        data.outputRowMeta = getInputRowMeta().clone();
-        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
-		Fields.In.match_result = new FieldHelper(data.inputRowMeta, "match_result");
-		Fields.In.date = new FieldHelper(data.inputRowMeta, "date");
-		Fields.Out.dom = new FieldHelper(data.outputRowMeta, "utc_day_of_month");
-		Fields.Out.month = new FieldHelper(data.outputRowMeta, "utc_month");
-		Fields.Out.year = new FieldHelper(data.outputRowMeta, "utc_year");
-		Fields.Out.hour = new FieldHelper(data.outputRowMeta, "utc_hour");
-		Fields.Out.minute = new FieldHelper(data.outputRowMeta, "utc_minute");
-		Fields.Out.second = new FieldHelper(data.outputRowMeta, "utc_second");
-		Fields.Out.date = new FieldHelper(data.outputRowMeta, "utc_date");
+    Object[] r = getRow();
+    if (r == null) {
+        setOutputDone();
+        return false;
     }
 
-	if (Boolean.TRUE.equals(Fields.In.match_result.getObject(r))) {
-		String date = Fields.In.date.getString(r);
+    if (first) {
+        first = false;
+        calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
+    }
+
+    r = createOutputRow(r, data.outputRowMeta.size());
+
+    if (Boolean.TRUE.equals(get(Fields.In, "match_result").getObject(r))) {
+        String date = get(Fields.In, "date").getString(r);
 
         int dom = Integer.parseInt(date.substring(0, 2));
         int month = ((Integer)months.get(date.substring(3, 6))).intValue();
@@ -906,12 +892,12 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         String tzs = date.substring(21, 26);
         if (!tzs.equals(lastTimeZoneString)) {
-			lastTimeZoneString = tzs;
-	        timeZone = (TimeZone)timeZones.get(tzs);
-			if (timeZone == null) {
-            	timeZone = TimeZone.getTimeZone("GMT"+tzs);
-            	timeZones.put(tzs, timeZone);
-			}
+            lastTimeZoneString = tzs;
+            timeZone = (TimeZone)timeZones.get(tzs);
+            if (timeZone == null) {
+                timeZone = TimeZone.getTimeZone("GMT"+tzs);
+                timeZones.put(tzs, timeZone);
+            }
         }
         
         calIn.setTimeZone(timeZone);
@@ -922,21 +908,21 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         Long monthParse = Long.valueOf(calOut.get(Calendar.MONTH)+1);
         Long yearParse = Long.valueOf(calOut.get(Calendar.YEAR));
 
-		Fields.Out.dom.setValue(r, domParse);
-		Fields.Out.month.setValue(r, monthParse);
-		Fields.Out.year.setValue(r, yearParse);
-		Fields.Out.hour.setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
-		Fields.Out.minute.setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
-		Fields.Out.second.setValue(r, 0L);
+        get(Fields.Out, "utc_day_of_month").setValue(r, domParse);
+        get(Fields.Out, "utc_month").setValue(r, monthParse);
+        get(Fields.Out, "utc_year").setValue(r, yearParse);
+        get(Fields.Out, "utc_hour").setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
+        get(Fields.Out, "utc_minute").setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
+        get(Fields.Out, "utc_second").setValue(r, 0L);
 
-		String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
-		Fields.Out.date.setValue(r, dateString);
+        String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
+        get(Fields.Out, "utc_date").setValue(r, dateString);
 
         putRow(data.outputRowMeta, r);
-	} else {
+    } else {
         incrementLinesRejected();
-	}
-	return true;
+    }
+    return true;
 }
 
 </pre><h4>Fields</h4>
