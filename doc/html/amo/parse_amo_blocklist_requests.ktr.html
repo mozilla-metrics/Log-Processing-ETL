@@ -727,11 +727,6 @@
       <h4>Java Class Source Code</h4>
       <h5>RowProcessor</h5><pre class="brush: java;">import java.util.*;
 
-public static class Fields {
-    public static class In  { public static FieldHelper utc_date_id, ping_count_raw, total_ping_count_raw, days_since_last_ping_raw; }
-    public static class Out { public static FieldHelper ping_count, total_ping_count, days_since_last_ping; }
-}
-
 private static final long JAN_1_11_DATE_ID = 4019L;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
@@ -742,32 +737,21 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         return false;
     }
 
-    if (first)
-    {
+    if (first) {
         first = false;
-        data.inputRowMeta = getInputRowMeta();
-        data.outputRowMeta = data.inputRowMeta.clone();
-        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
-        Fields.In.utc_date_id = new FieldHelper(data.inputRowMeta, "utc_date_id");
-        Fields.In.ping_count_raw = new FieldHelper(data.inputRowMeta, "ping_count_raw");
-        Fields.In.total_ping_count_raw = new FieldHelper(data.inputRowMeta, "total_ping_count_raw");
-        Fields.In.days_since_last_ping_raw = new FieldHelper(data.inputRowMeta, "days_since_last_ping_raw");
-        Fields.Out.ping_count = new FieldHelper(data.outputRowMeta, "ping_count");
-        Fields.Out.total_ping_count = new FieldHelper(data.outputRowMeta, "total_ping_count");
-        Fields.Out.days_since_last_ping = new FieldHelper(data.outputRowMeta, "days_since_last_ping");
     }
 
-    long utc_date_id = Fields.In.utc_date_id.getInteger(r);
+    long utc_date_id = get(Fields.In, "utc_date_id").getInteger(r);
 
-    Object[] out = RowDataUtil.resizeArray(r, data.outputRowMeta.size());
+    Object[] out = createOutputRow(r, data.outputRowMeta.size());
 
     long pingCount, totalPingCount, daysSinceLastPing;
-    String pingCountStr = Fields.In.ping_count_raw.getString(r);
-    String totalPingCountStr = Fields.In.total_ping_count_raw.getString(r);
-    String daysSinceLastPingStr = Fields.In.days_since_last_ping_raw.getString(r);
+    String pingCountStr = get(Fields.In, "ping_count_raw").getString(r);
+    String totalPingCountStr = get(Fields.In, "total_ping_count_raw").getString(r);
+    String daysSinceLastPingStr = get(Fields.In, "days_since_last_ping_raw").getString(r);
 
     if (pingCountStr == null) {
-        Fields.Out.ping_count.setValue(out, null);
+        get(Fields.Out, "ping_count").setValue(out, null);
     } else {
         if ("invalid".equals(pingCountStr)) {
             pingCount = -1L;
@@ -780,11 +764,11 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                 pingCount = -1L;
             }
         }
-        Fields.Out.ping_count.setValue(out, new Long(pingCount));
+        get(Fields.Out, "ping_count").setValue(out, new Long(pingCount));
     }
 
     if (totalPingCountStr == null) {
-        Fields.Out.total_ping_count.setValue(out, null);
+        get(Fields.Out, "total_ping_count").setValue(out, null);
     } else {
         if ("invalid".equals(totalPingCountStr)) {
             totalPingCount = -1L;
@@ -797,11 +781,11 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                 totalPingCount = -1L;
             }
         }
-        Fields.Out.total_ping_count.setValue(out, new Long(totalPingCount));
+        get(Fields.Out, "total_ping_count").setValue(out, new Long(totalPingCount));
     }
 
     if (daysSinceLastPingStr == null) {
-        Fields.Out.days_since_last_ping.setValue(out, null);
+        get(Fields.Out, "days_since_last_ping").setValue(out, null);
     } else {
         if ("invalid".equals(daysSinceLastPingStr)) {
             daysSinceLastPing = -1L;
@@ -819,7 +803,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
             }
         }
         //System.err.printf("\r%5s      %5d      ", new Object[] { daysSinceLastPingStr, daysSinceLastPing });
-        Fields.Out.days_since_last_ping.setValue(out, new Long(daysSinceLastPing));
+        get(Fields.Out, "days_since_last_ping").setValue(out, new Long(daysSinceLastPing));
     }
 
     putRow(data.outputRowMeta, out);

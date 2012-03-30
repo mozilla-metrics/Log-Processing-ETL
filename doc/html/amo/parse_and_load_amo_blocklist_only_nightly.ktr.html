@@ -495,6 +495,8 @@
       <h5>RowProcessor</h5><pre class="brush: java;">import java.util.*;
 
 private static final long dateDimensionEpoch = 946684800543L;
+
+// Note that Kettle UDJCs do not appear to support generics.
 private static final Map timeZones = Collections.synchronizedMap(new HashMap());
 private static final Map months;
 static
@@ -515,11 +517,6 @@ static
     months = Collections.unmodifiableMap(tmp);
 }
 
-public static class Fields {
-	public static class In  { public static FieldHelper result, date, url, url_params, user_agent; }
-	public static class Out { public static FieldHelper date, hour, minute, utc_date_id; }
-}
-
 private final Calendar calIn = Calendar.getInstance();
 private final Calendar calOut = Calendar.getInstance();
 private TimeZone timeZone;
@@ -527,45 +524,34 @@ private String lastTimeZoneString;
 
 public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
-	Object[] r = getRow();
-	if (r == null) {
-		setOutputDone();
-		return false;
-	}
-
-    if (first)
-    {
-        first = false;
-	    calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
-        data.outputRowMeta = getInputRowMeta().clone();
-        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
-		Fields.In.result = new FieldHelper(data.inputRowMeta, "result");
-		Fields.In.date = new FieldHelper(data.inputRowMeta, "date");
-		Fields.In.url = new FieldHelper(data.inputRowMeta, "url");
-		Fields.In.url_params = new FieldHelper(data.inputRowMeta, "url_params");
-		Fields.In.user_agent = new FieldHelper(data.inputRowMeta, "user_agent");
-		Fields.Out.date = new FieldHelper(data.outputRowMeta, "utc_date");
-		Fields.Out.hour = new FieldHelper(data.outputRowMeta, "utc_hour");
-		Fields.Out.minute = new FieldHelper(data.outputRowMeta, "utc_minute");
-		Fields.Out.utc_date_id = new FieldHelper(data.outputRowMeta, "utc_date_id");
+    Object[] r = getRow();
+    if (r == null) {
+        setOutputDone();
+        return false;
     }
 
-	if (Boolean.TRUE.equals(Fields.In.result.getObject(r))) {
+    if (first) {
+        first = false;
+        calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
+    }
 
-        String url = Fields.In.url.getString(r);
+    r = createOutputRow(r, data.outputRowMeta.size());
+
+    if (Boolean.TRUE.equals(get(Fields.In, "result").getObject(r))) {
+        String url = get(Fields.In, "url").getString(r);
         if (url != null &amp;&amp; url.contains("\\.")) {
-            Fields.In.url.setValue(r, url.replace("\\.", "."));
+            get(Fields.In, "url").setValue(r, url.replace("\\.", "."));
         }
-        String url_params = Fields.In.url_params.getString(r);
+        String url_params = get(Fields.In, "url_params").getString(r);
         if (url_params != null &amp;&amp; url_params.contains("\\.")) {
-            Fields.In.url_params.setValue(r, url_params.replace("\\.", "."));
+            get(Fields.In, "url_params").setValue(r, url_params.replace("\\.", "."));
         }
-        String user_agent = Fields.In.user_agent.getString(r);
+        String user_agent = get(Fields.In, "user_agent").getString(r);
         if (user_agent != null &amp;&amp; user_agent.contains("\\.")) {
-            Fields.In.user_agent.setValue(r, user_agent.replace("\\.", "."));
+            get(Fields.In, "user_agent").setValue(r, user_agent.replace("\\.", "."));
         }
 
-		String date = Fields.In.date.getString(r);
+        String date = get(Fields.In, "date").getString(r);
 
         int dom = Integer.parseInt(date.substring(0, 2));
         int month = ((Integer)months.get(date.substring(3, 6))).intValue();
@@ -575,12 +561,12 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         String tzs = date.substring(21, 26);
         if (!tzs.equals(lastTimeZoneString)) {
-			lastTimeZoneString = tzs;
-	        timeZone = (TimeZone)timeZones.get(tzs);
-			if (timeZone == null) {
-            	timeZone = TimeZone.getTimeZone("GMT"+tzs);
-            	timeZones.put(tzs, timeZone);
-			}
+            lastTimeZoneString = tzs;
+            timeZone = (TimeZone)timeZones.get(tzs);
+            if (timeZone == null) {
+                timeZone = TimeZone.getTimeZone("GMT"+tzs);
+                timeZones.put(tzs, timeZone);
+            }
         }
         
         calIn.setTimeZone(timeZone);
@@ -591,17 +577,17 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         Long monthParse = Long.valueOf(calOut.get(Calendar.MONTH)+1);
         Long yearParse = Long.valueOf(calOut.get(Calendar.YEAR));
 
-		String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
-		Fields.Out.date.setValue(r, dateString);
-		Fields.Out.hour.setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
-		Fields.Out.minute.setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
-		Fields.Out.utc_date_id.setValue(r, Long.valueOf((calOut.getTimeInMillis() - dateDimensionEpoch) / (1000 * 60 * 60 * 24) + 1));
+        String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
+        get(Fields.Out, "utc_date").setValue(r, dateString);
+        get(Fields.Out, "utc_hour").setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
+        get(Fields.Out, "utc_minute").setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
+        get(Fields.Out, "utc_date_id").setValue(r, Long.valueOf((calOut.getTimeInMillis() - dateDimensionEpoch) / (1000 * 60 * 60 * 24) + 1));
 
         putRow(data.outputRowMeta, r);
-	} else {
+    } else {
         incrementLinesRejected();
-	}
-	return true;
+    }
+    return true;
 }
 
 </pre><h4>Fields</h4>
