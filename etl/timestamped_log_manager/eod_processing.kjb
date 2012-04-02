@@ -201,13 +201,13 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>SOCORRO_DB_HOST</name>
             <stream_name/>
-            <value>FIXME</value>
+            <value>${SOCORRO_PROD_HOST}</value>
             </parameter>            <parameter>            <name>SOCORRO_DB_USER</name>
             <stream_name/>
-            <value>FIXME</value>
+            <value>${SOCORRO_PROD_USER}</value>
             </parameter>            <parameter>            <name>SOCORRO_DB_PASS</name>
             <stream_name/>
-            <value>FIXME</value>
+            <value>${SOCORRO_PROD_PASS}</value>
             </parameter>            <parameter>            <name>DATE</name>
             <stream_name/>
             <value>= &apos;${PREVIOUS_UTC_DATE}&apos;</value>
@@ -715,13 +715,13 @@ ORDER BY 1,2,3,4</custom_sql>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>SOCORRO_DB_HOST</name>
             <stream_name/>
-            <value>FIXME</value>
+            <value>${SOCORRO_STAGE_HOST}</value>
             </parameter>            <parameter>            <name>SOCORRO_DB_USER</name>
             <stream_name/>
-            <value>FIXME</value>
+            <value>${SOCORRO_STAGE_USER}</value>
             </parameter>            <parameter>            <name>SOCORRO_DB_PASS</name>
             <stream_name/>
-            <value>FIXME</value>
+            <value>${SOCORRO_STAGE_PASS}</value>
             </parameter>            <parameter>            <name>DATE</name>
             <stream_name/>
             <value>= &apos;${PREVIOUS_UTC_DATE}&apos;</value>
