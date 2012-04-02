@@ -454,26 +454,8 @@ writeToLog(&quot;m&quot;,&quot;GAH: Processing Config file: &quot; + filename);<
         <default_value/>
         </field>
       <field>
-        <field_name>DatabasePass</field_name>
-        <variable_name>GAH_DBPASS</variable_name>
-        <variable_type>JVM</variable_type>
-        <default_value/>
-        </field>
-      <field>
         <field_name>DatabaseSchema</field_name>
         <variable_name>GAH_DBSCHEMA</variable_name>
-        <variable_type>JVM</variable_type>
-        <default_value/>
-        </field>
-      <field>
-        <field_name>DatabaseUrl</field_name>
-        <variable_name>GAH_DBURL</variable_name>
-        <variable_type>JVM</variable_type>
-        <default_value/>
-        </field>
-      <field>
-        <field_name>DatabaseUser</field_name>
-        <variable_name>GAH_DBUSER</variable_name>
         <variable_type>JVM</variable_type>
         <default_value/>
         </field>

@@ -4,9 +4,9 @@
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <GenericAggHandlerConfig>
 	<Database>
-		<Url>FIXME</Url>
+		<Url/>
 		<Class>com.vertica.Driver</Class>
-		<User>FIXME</User>
+		<User/>
 		<Pass/>
 	</Database>
 	<AggregateInfo>
