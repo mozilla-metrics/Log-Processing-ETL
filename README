@@ -5,3 +5,6 @@ etl/
 
 doc/
   Contains the automatically generated documentation for the ETL jobs and transformations.
+
+lib/
+  Contains libraries required to run the ETL jobs (such as MaxMind GeoIP)
