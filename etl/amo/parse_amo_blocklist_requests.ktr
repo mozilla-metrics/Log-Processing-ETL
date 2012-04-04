@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- The contents of this file are subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
@@ -895,7 +895,6 @@ $]]></script>    <matcher>url</matcher>
 
         <class_name>RowProcessor</class_name>
 
-        
         <class_source><![CDATA[import java.util.*;
 
 private static final long JAN_1_11_DATE_ID = 4019L;
@@ -981,7 +980,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     return true;
 }
 
-]]></class_source></definition>
+]]></class_source>
+        </definition>
     </definitions>
     <fields>
         <field>
@@ -1014,8 +1014,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <field_precision>-1</field_precision>
 
         </field>
-    </fields><clear_result_fields>Y</clear_result_fields>
-<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>600</xloc>
       <yloc>150</yloc>

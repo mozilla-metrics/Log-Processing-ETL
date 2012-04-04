@@ -1664,7 +1664,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <field_precision>-1</field_precision>
 
         </field>
-    </fields><clear_result_fields>Y</clear_result_fields>
+    </fields><clear_result_fields>N</clear_result_fields>
 <info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>550</xloc>
