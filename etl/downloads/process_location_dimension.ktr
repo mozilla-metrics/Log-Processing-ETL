@@ -121,7 +121,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </attributes>
   </connection>
   <order>
-  <hop> <from>Database lookup</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Dummy (do nothing)</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP lookup</from><to>Replace nulls</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping input specification</from><to>GeoIP lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Replace nulls</from><to>Database lookup</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Database lookup</from><to>Dummy (do nothing)</to><enabled>Y</enabled> </hop>  <hop> <from>Dummy (do nothing)</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping input specification</from><to>GeoIP lookup</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP lookup</from><to>Database lookup</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Database lookup</name>
     <type>DBLookup</type>
@@ -143,19 +143,19 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>new_country_code</name>
+        <name>country_code</name>
         <field>country_code</field>
         <condition>=</condition>
         <name2/>
       </key>
       <key>
-        <name>new_region_code</name>
+        <name>region_code</name>
         <field>region_code</field>
         <condition>=</condition>
         <name2/>
       </key>
       <key>
-        <name>new_city_name</name>
+        <name>city_name</name>
         <field>city_name</field>
         <condition>=</condition>
         <name2/>
@@ -170,7 +170,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
-      <yloc>350</yloc>
+      <yloc>261</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -187,8 +187,8 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>150</xloc>
-      <yloc>350</yloc>
+      <xloc>153</xloc>
+      <yloc>261</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -205,8 +205,17 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            </partitioning>
    <ip_address_field_name>client_ip_address</ip_address_field_name>
    <db_location>&#47;usr&#47;local&#47;share&#47;GeoIP&#47;GeoIPCity.dat</db_location>
-   <db_type/>
-    <fields>    </fields>     <cluster_schema/>
+   <db_type>CITY</db_type>
+    <fields>      <field>        <name>city_name</name>
+        <lookup_type>city_name</lookup_type>
+        <ifnull>Unknown</ifnull>
+      </field>      <field>        <name>country_code</name>
+        <lookup_type>country_code</lookup_type>
+        <ifnull>??</ifnull>
+      </field>      <field>        <name>region_code</name>
+        <lookup_type>region_code</lookup_type>
+        <ifnull>??</ifnull>
+      </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
       <yloc>150</yloc>
@@ -253,96 +262,8 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>250</xloc>
-      <yloc>350</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Replace nulls</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>2</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>quest</field_name>
-<calc_type>CONSTANT</calc_type>
-<field_a>??</field_a>
-<field_b/>
-<field_c/>
-<value_type>String</value_type>
-<value_length>2</value_length>
-<value_precision>-1</value_precision>
-<remove>Y</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>unk</field_name>
-<calc_type>CONSTANT</calc_type>
-<field_a>Unknown</field_a>
-<field_b/>
-<field_c/>
-<value_type>String</value_type>
-<value_length>50</value_length>
-<value_precision>-1</value_precision>
-<remove>Y</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>new_city_name</field_name>
-<calc_type>NVL</calc_type>
-<field_a>city_name</field_a>
-<field_b>unk</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>50</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>new_country_code</field_name>
-<calc_type>NVL</calc_type>
-<field_a>country_code</field_a>
-<field_b>quest</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>2</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>new_region_code</field_name>
-<calc_type>NVL</calc_type>
-<field_a>region_code</field_a>
-<field_b>quest</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>2</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>50</xloc>
-      <yloc>250</yloc>
+      <xloc>253</xloc>
+      <yloc>261</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
