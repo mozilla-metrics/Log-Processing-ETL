@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- The contents of this file are subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>get_location_id_with_update</name>
     <description>Geocode an IP Address and look up the location_id</description>
-    <extended_description>The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
+    <extended_description>Geocode an IP Address, look up the location_id in the locations table, and insert the location if it is not present.
 
-Geocode an IP Address, look up the location_id in the locations table, and insert the location if it is not present.
+The contents of this file are subject to the terms of the Mozilla Public
+License, v. 2.0. If a copy of the MPL was not distributed with this file,
+You can obtain one at http://mozilla.org/MPL/2.0/.
     </extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
@@ -438,71 +441,6 @@ location_id</note>
     </step>
 
   <step>
-    <name>MaxMind GeoIP Lookup</name>
-    <type>MaxMindGeoIPLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <ip_address_field_name>client_ip_address</ip_address_field_name>
-   <db_location>&#47;usr&#47;share&#47;GeoIP&#47;GeoIPCity.dat</db_location>
-   <db_type>CITY</db_type>
-    <fields>      <field>        <name>country_code</name>
-        <lookup_type>country_code</lookup_type>
-        <ifnull>??</ifnull>
-      </field>      <field>        <name>country_name</name>
-        <lookup_type>country_name</lookup_type>
-        <ifnull>Unknown</ifnull>
-      </field>      <field>        <name>region_code</name>
-        <lookup_type>region_code</lookup_type>
-        <ifnull>??</ifnull>
-      </field>      <field>        <name>region_name</name>
-        <lookup_type>region_name</lookup_type>
-        <ifnull>Unknown</ifnull>
-      </field>      <field>        <name>city_name</name>
-        <lookup_type>city_name</lookup_type>
-        <ifnull>Unknown</ifnull>
-      </field>      <field>        <name>latitude</name>
-        <lookup_type>latitude</lookup_type>
-        <ifnull>0.0000</ifnull>
-      </field>      <field>        <name>longitude</name>
-        <lookup_type>longitude</lookup_type>
-        <ifnull>0.0000</ifnull>
-      </field>      <field>        <name>timezone</name>
-        <lookup_type>timezone</lookup_type>
-        <ifnull/>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>60</xloc>
-      <yloc>120</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Remove location_id</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <fields>        <select_unspecified>N</select_unspecified>
-      <remove>        <name>location_id</name>
-      </remove>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>300</xloc>
-      <yloc>200</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Mapping input specification</name>
     <type>MappingInput</type>
     <description/>
@@ -548,6 +486,51 @@ location_id</note>
     </step>
 
   <step>
+    <name>MaxMind GeoIP Lookup</name>
+    <type>MaxMindGeoIPLookup</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+   <ip_address_field_name>client_ip_address</ip_address_field_name>
+   <db_location>&#47;usr&#47;share&#47;GeoIP&#47;GeoIPCity.dat</db_location>
+   <db_type>CITY</db_type>
+    <fields>      <field>        <name>country_code</name>
+        <lookup_type>country_code</lookup_type>
+        <ifnull>??</ifnull>
+      </field>      <field>        <name>country_name</name>
+        <lookup_type>country_name</lookup_type>
+        <ifnull>Unknown</ifnull>
+      </field>      <field>        <name>region_code</name>
+        <lookup_type>region_code</lookup_type>
+        <ifnull>??</ifnull>
+      </field>      <field>        <name>region_name</name>
+        <lookup_type>region_name</lookup_type>
+        <ifnull>Unknown</ifnull>
+      </field>      <field>        <name>city_name</name>
+        <lookup_type>city_name</lookup_type>
+        <ifnull>Unknown</ifnull>
+      </field>      <field>        <name>latitude</name>
+        <lookup_type>latitude</lookup_type>
+        <ifnull>0.0000</ifnull>
+      </field>      <field>        <name>longitude</name>
+        <lookup_type>longitude</lookup_type>
+        <ifnull>0.0000</ifnull>
+      </field>      <field>        <name>timezone</name>
+        <lookup_type>timezone</lookup_type>
+        <ifnull/>
+      </field>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>60</xloc>
+      <yloc>120</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Remove continent</name>
     <type>SelectValues</type>
     <description/>
@@ -563,6 +546,26 @@ location_id</note>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>500</xloc>
+      <yloc>200</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Remove location_id</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>location_id</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>300</xloc>
       <yloc>200</yloc>
       <draw>Y</draw>
       </GUI>
