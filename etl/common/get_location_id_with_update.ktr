@@ -94,11 +94,12 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>The location_id was successfully found</note>
-      <xloc>304</xloc>
-      <yloc>75</yloc>
-      <width>223</width>
-      <heigth>23</heigth>
+      <note>The location_id was
+successfully found</note>
+      <xloc>352</xloc>
+      <yloc>76</yloc>
+      <width>118</width>
+      <heigth>36</heigth>
       <fontname>Sans</fontname>
       <fontsize>8</fontsize>
       <fontbold>N</fontbold>
@@ -115,11 +116,13 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
       <drawshadow>Y</drawshadow>
     </notepad>
     <notepad>
-      <note>Create a new locations record and fetch its location_id</note>
-      <xloc>264</xloc>
-      <yloc>347</yloc>
-      <width>306</width>
-      <heigth>23</heigth>
+      <note>Create a new &quot;locations&quot;
+record and fetch its 
+location_id</note>
+      <xloc>341</xloc>
+      <yloc>339</yloc>
+      <width>145</width>
+      <heigth>49</heigth>
       <fontname>Sans</fontname>
       <fontsize>8</fontsize>
       <fontbold>N</fontbold>
@@ -137,32 +140,34 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
     </notepad>
   </notepads>
   <connection>
-    <name>MySQL local testing</name>
-    <server>localhost</server>
+    <name>metrics mysql</name>
+    <server>${METRICS_MYSQL_HOST}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>metrics</database>
-    <port>13306</port>
-    <username>FIXME</username>
-    <password>FIXME</password>
+    <database>${METRICS_MYSQL_NAME}</database>
+    <port>${METRICS_MYSQL_PORT}</port>
+    <username>${METRICS_MYSQL_USER}</username>
+    <password>${METRICS_MYSQL_PASS}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>UTF-8</attribute></attribute>
       <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
       <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useServerPrepStmts</code><attribute>true</attribute></attribute>
+      <attribute><code>EXTRA_OPTION_MYSQL.useUnicode</code><attribute>true</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>13306</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>MaxMind GeoIP Lookup</from><to>Lookup location_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup location_id</from><to>Find missing locations</to><enabled>Y</enabled> </hop>  <hop> <from>Insert &#47; Update</from><to>Lookup new location_id</to><enabled>Y</enabled> </hop>  <hop> <from>Database lookup</from><to>Insert &#47; Update</to><enabled>Y</enabled> </hop>  <hop> <from>Get rows from result</from><to>MaxMind GeoIP Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Find missing locations</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup new location_id</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Find missing locations</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Database lookup</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>MaxMind GeoIP Lookup</from><to>Lookup location_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup location_id</from><to>Find missing locations</to><enabled>Y</enabled> </hop>  <hop> <from>Insert &#47; Update</from><to>Lookup new location_id</to><enabled>Y</enabled> </hop>  <hop> <from>Database lookup</from><to>Insert &#47; Update</to><enabled>Y</enabled> </hop>  <hop> <from>Find missing locations</from><to>Remove location_id</to><enabled>Y</enabled> </hop>  <hop> <from>Remove location_id</from><to>Database lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping input specification</from><to>MaxMind GeoIP Lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Find missing locations</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup new location_id</from><to>Remove continent</to><enabled>Y</enabled> </hop>  <hop> <from>Remove continent</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Database lookup</name>
     <type>DBLookup</type>
@@ -173,7 +178,7 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MySQL local testing</connection>
+    <connection>metrics mysql</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -220,8 +225,8 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Select values</send_true_to>
-<send_false_to>Copy rows to result</send_false_to>
+<send_true_to>Remove location_id</send_true_to>
+<send_false_to>Mapping output specification</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -248,7 +253,7 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MySQL local testing</connection>
+    <connection>metrics mysql</connection>
     <commit>100</commit>
     <update_bypassed>Y</update_bypassed>
     <lookup>
@@ -336,7 +341,7 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MySQL local testing</connection>
+    <connection>metrics mysql</connection>
     <cache>Y</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -389,7 +394,7 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>MySQL local testing</connection>
+    <connection>metrics mysql</connection>
     <cache>Y</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -478,7 +483,7 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
     </step>
 
   <step>
-    <name>Select values</name>
+    <name>Remove location_id</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -498,8 +503,8 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
     </step>
 
   <step>
-    <name>Get rows from result</name>
-    <type>RowsFromResult</type>
+    <name>Mapping input specification</name>
+    <type>MappingInput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -507,11 +512,16 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>      <field>        <name>client_ip_address</name>
+    <fields>
+      <field>
+        <name>client_ip_address</name>
         <type>String</type>
         <length>-1</length>
         <precision>-1</precision>
-        </field>      </fields>     <cluster_schema/>
+      </field>
+        <select_unspecified>Y</select_unspecified>
+    </fields>
+     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>60</xloc>
       <yloc>40</yloc>
@@ -520,8 +530,8 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
     </step>
 
   <step>
-    <name>Copy rows to result</name>
-    <type>RowsToResult</type>
+    <name>Mapping output specification</name>
+    <type>MappingOutput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -533,6 +543,27 @@ Geocode an IP Address, look up the location_id in the locations table, and inser
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>500</xloc>
       <yloc>120</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Remove continent</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>continent_code</name>
+      </remove>      <remove>        <name>continent_name</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>500</xloc>
+      <yloc>200</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
