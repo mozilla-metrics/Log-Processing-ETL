@@ -109,7 +109,7 @@ ARGV.each do |file|
                 fixed.print LICENSE_BLURB
                 fixed.print "\n#{indent}</extended_description>\n"
                 skip_lines += 1 unless skip_lines > 0
-            elsif line =~ /^\s*<extended_description>\s*$/
+            elsif line =~ /^\s*<extended_description>.*$/
                 in_extended_description = true
             elsif line =~ /^\s*<\/extended_description>\s*$/
                 in_extended_description = false

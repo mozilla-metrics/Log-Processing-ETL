@@ -162,7 +162,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Map request_type values</from><to>Map request_result values</to><enabled>Y</enabled> </hop>  <hop> <from>Map request_result values</from><to>Split URL</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup download_product_id</from><to>Lookup product_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Regex product capture</from><to>Validate product fields</to><enabled>Y</enabled> </hop>  <hop> <from>Validate product fields</from><to>Lookup download_product_id</to><enabled>Y</enabled> </hop>  <hop> <from>Validate product fields</from><to>Flag invalid product strings</to><enabled>Y</enabled> </hop>  <hop> <from>Flag invalid product strings</from><to>Lookup download_product_id</to><enabled>Y</enabled> </hop>  <hop> <from>Generate filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_locale_id</from><to>Lookup location_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup date_id</from><to>Map request_type values</to><enabled>Y</enabled> </hop>  <hop> <from>Split URL</from><to>Fixup Fennec beta 5</to><enabled>Y</enabled> </hop>  <hop> <from>Fixup Fennec beta 5</from><to>Regex product capture</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex Capture</to><enabled>Y</enabled> </hop>  <hop> <from>Regex Capture</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>Lookup date_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup location_id</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Load download_requests_raw</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Map request_type values</from><to>Map request_result values</to><enabled>Y</enabled> </hop>  <hop> <from>Map request_result values</from><to>Split URL</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup download_product_id</from><to>Lookup product_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Regex product capture</from><to>Validate product fields</to><enabled>Y</enabled> </hop>  <hop> <from>Validate product fields</from><to>Lookup download_product_id</to><enabled>Y</enabled> </hop>  <hop> <from>Validate product fields</from><to>Flag invalid product strings</to><enabled>Y</enabled> </hop>  <hop> <from>Flag invalid product strings</from><to>Lookup download_product_id</to><enabled>Y</enabled> </hop>  <hop> <from>Generate filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup date_id</from><to>Map request_type values</to><enabled>Y</enabled> </hop>  <hop> <from>Split URL</from><to>Fixup Fennec beta 5</to><enabled>Y</enabled> </hop>  <hop> <from>Fixup Fennec beta 5</from><to>Regex product capture</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex Capture</to><enabled>Y</enabled> </hop>  <hop> <from>Regex Capture</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>Lookup date_id</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Load download_requests_raw</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_locale_id</from><to>GeoIP &#47; location_id lookup</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP &#47; location_id lookup</from><to>Add constants</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -683,49 +683,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>250</xloc>
-      <yloc>250</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Lookup location_id</name>
-    <type>Mapping</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <specification_method>filename</specification_method>
-    <trans_object_id/>
-    <trans_name>process_location_dimension</trans_name>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;process_location_dimension.ktr</filename>
-    <directory_path/>
-    <mappings>
-      <input>
-    <mapping>    <input_step>Lookup product_locale_id</input_step>
-    <output_step>Mapping input specification</output_step>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </input>
-      <output>
-    <mapping>    <input_step>Mapping output specification</input_step>
-    <output_step>Add constants</output_step>
-    <main_path>Y</main_path>
-    <rename_on_output>N</rename_on_output>
-    <description/>
-    </mapping>      </output>
-          <parameters>    <inherit_all_vars>N</inherit_all_vars>
-    </parameters>
-    </mappings>
-    <allow_multiple_input>N</allow_multiple_input>
-    <allow_multiple_output>N</allow_multiple_output>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>350</xloc>
       <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1652,6 +1609,49 @@ $]]></script>    <matcher>product</matcher>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>150</xloc>
       <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>GeoIP &#47; location_id lookup</name>
+    <type>Mapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>${Internal.Transformation.Filename.Directory}&#47;..&#47;common&#47;get_location_id_with_update.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>N</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <allow_multiple_input>N</allow_multiple_input>
+    <allow_multiple_output>N</allow_multiple_output>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>251</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

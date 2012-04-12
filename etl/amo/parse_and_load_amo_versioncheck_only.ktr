@@ -167,7 +167,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>GeoIP lookup</from><to>Replace GeoIP nulls</to><enabled>Y</enabled> </hop>  <hop> <from>Replace GeoIP nulls</from><to>Lookup location_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup location_id</from><to>Switch to processing module</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Abort on unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>GeoIP lookup</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Spool versioncheck</from><to>Process versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Process versioncheck</from><to>versioncheck bulk_loader</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Switch to processing module</from><to>Abort on unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Spool versioncheck</from><to>Process versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Process versioncheck</from><to>versioncheck bulk_loader</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>GeoIP &#47; location_id lookup</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP &#47; location_id lookup</from><to>Switch to processing module</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort on unknown</name>
     <type>Abort</type>
@@ -183,8 +183,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <always_log_rows>Y</always_log_rows>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>900</xloc>
-      <yloc>150</yloc>
+      <xloc>553</xloc>
+      <yloc>152</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -237,36 +237,6 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     </step>
 
   <step>
-    <name>GeoIP lookup</name>
-    <type>MaxMindGeoIPLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-   <ip_address_field_name>client_ip_address</ip_address_field_name>
-   <db_location>&#47;usr&#47;local&#47;share&#47;GeoIP&#47;GeoIPCity.dat</db_location>
-   <db_type>CITY</db_type>
-    <fields>      <field>        <name>city_name</name>
-        <lookup_type>city_name</lookup_type>
-        <ifnull/>
-      </field>      <field>        <name>country_code</name>
-        <lookup_type>country_code</lookup_type>
-        <ifnull/>
-      </field>      <field>        <name>region_code</name>
-        <lookup_type>region_code</lookup_type>
-        <ifnull/>
-      </field>    </fields>     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>250</xloc>
-      <yloc>50</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Get filenames</name>
     <type>RowsFromResult</type>
     <description/>
@@ -300,59 +270,6 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
       <yloc>450</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Lookup location_id</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>metrics mysql</connection>
-    <cache>Y</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema/>
-      <table>locations</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>new_country_code</name>
-        <field>country_code</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>new_region_code</name>
-        <field>region_code</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <key>
-        <name>new_city_name</name>
-        <field>city_name</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
-      <value>
-        <name>location_id</name>
-        <rename>location_id</rename>
-        <default>1</default>
-        <type>Integer</type>
-      </value>
-    </lookup>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>550</xloc>
-      <yloc>50</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -562,8 +479,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <allow_multiple_output>N</allow_multiple_output>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>550</xloc>
-      <yloc>350</yloc>
+      <xloc>305</xloc>
+      <yloc>352</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -681,122 +598,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </step>
 
   <step>
-    <name>Replace GeoIP nulls</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>quest</field_name>
-<calc_type>CONSTANT</calc_type>
-<field_a>??</field_a>
-<field_b/>
-<field_c/>
-<value_type>String</value_type>
-<value_length>2</value_length>
-<value_precision>-1</value_precision>
-<remove>Y</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>unk</field_name>
-<calc_type>CONSTANT</calc_type>
-<field_a>Unknown</field_a>
-<field_b/>
-<field_c/>
-<value_type>String</value_type>
-<value_length>50</value_length>
-<value_precision>-1</value_precision>
-<remove>Y</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>new_city_name</field_name>
-<calc_type>NVL</calc_type>
-<field_a>city_name</field_a>
-<field_b>unk</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>50</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>new_country_code</field_name>
-<calc_type>NVL</calc_type>
-<field_a>country_code</field_a>
-<field_b>quest</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>2</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>new_region_code</field_name>
-<calc_type>NVL</calc_type>
-<field_a>region_code</field_a>
-<field_b>quest</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>2</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>output_filename_prefix</field_name>
-<calc_type>CONSTANT</calc_type>
-<field_a>&#47;etl&#47;processed&#47;</field_a>
-<field_b/>
-<field_c/>
-<value_type>String</value_type>
-<value_length>15</value_length>
-<value_precision>-1</value_precision>
-<remove>Y</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-       <calculation><field_name>output_filename</field_name>
-<calc_type>ADD</calc_type>
-<field_a>output_filename_prefix</field_a>
-<field_b>utc_date</field_b>
-<field_c/>
-<value_type>String</value_type>
-<value_length>25</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>400</xloc>
-      <yloc>50</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
     <name>Spool versioncheck</name>
     <type>Dummy</type>
     <description>Spooling because filter has multiple
@@ -810,8 +611,8 @@ a mapping.</description>
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>550</xloc>
-      <yloc>250</yloc>
+      <xloc>305</xloc>
+      <yloc>252</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -837,8 +638,8 @@ a mapping.</description>
 <target_step>Spool versioncheck</target_step>
 </case></cases>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>550</xloc>
-      <yloc>150</yloc>
+      <xloc>305</xloc>
+      <yloc>152</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1076,8 +877,51 @@ a mapping.</description>
     <stream_name>versioncheck bulk_loader${raw_table_suffix}</stream_name>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>550</xloc>
-      <yloc>450</yloc>
+      <xloc>305</xloc>
+      <yloc>452</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>GeoIP &#47; location_id lookup</name>
+    <type>Mapping</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <specification_method>filename</specification_method>
+    <trans_object_id/>
+    <trans_name/>
+    <filename>${Internal.Transformation.Filename.Directory}&#47;..&#47;common&#47;get_location_id_with_update.ktr</filename>
+    <directory_path/>
+    <mappings>
+      <input>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>Y</rename_on_output>
+    <description/>
+    </mapping>      </input>
+      <output>
+    <mapping>    <input_step/>
+    <output_step/>
+    <main_path>Y</main_path>
+    <rename_on_output>N</rename_on_output>
+    <description/>
+    </mapping>      </output>
+          <parameters>    <inherit_all_vars>N</inherit_all_vars>
+    </parameters>
+    </mappings>
+    <allow_multiple_input>N</allow_multiple_input>
+    <allow_multiple_output>N</allow_multiple_output>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>304</xloc>
+      <yloc>50</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
