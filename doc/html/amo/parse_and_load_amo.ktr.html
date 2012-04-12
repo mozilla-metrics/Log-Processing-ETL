@@ -65,14 +65,12 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Text file input"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Data Validator-text" style="&#xA;                    top:382px;&#xA;                    left:81.33333333333333px;                    &#xA;                ">Data Validator</a><a name="Discard duplicate downloads-icon"></a><div id="Discard duplicate downloads" class="&#xA;                    step-icon&#xA;                    step-icon-UniqueRowsByHashSet" style="&#xA;                    left:550px;&#xA;                    top:250px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Process amo_downloads"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Spool collections"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Discard duplicate downloads-text" style="&#xA;                    top:282px;&#xA;                    left:514px;                    &#xA;                ">Discard duplicate downloads</a><a name="GeoIP lookup-icon"></a><div id="GeoIP lookup" class="&#xA;                    step-icon&#xA;                    step-icon-MaxMindGeoIPLookup" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Replace GeoIP nulls"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP lookup-text" style="&#xA;                    top:82px;&#xA;                    left:234px;                    &#xA;                ">GeoIP lookup</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:100px;&#xA;                    top:450px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get filenames-text" style="&#xA;                    top:482px;&#xA;                    left:82.66666666666667px;                    &#xA;                ">Get filenames</a><a name="Lookup location_id-icon"></a><div id="Lookup location_id" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:550px;&#xA;                    top:50px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Discard duplicate downloads-text" style="&#xA;                    top:282px;&#xA;                    left:514px;                    &#xA;                ">Discard duplicate downloads</a><a name="GeoIP / location_id lookup-icon"></a><div id="GeoIP / location_id lookup" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:550px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Switch to processing module"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup location_id-text" style="&#xA;                    top:82px;&#xA;                    left:526px;                    &#xA;                ">Lookup location_id</a><a name="Postfilter and Date Parse-icon"></a><div id="Postfilter and Date Parse" class="&#xA;                    step-icon&#xA;                    step-icon-UserDefinedJavaClass" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#GeoIP lookup"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP / location_id lookup-text" style="&#xA;                    top:82px;&#xA;                    left:515.3333333333334px;                    &#xA;                ">GeoIP / location_id lookup</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:100px;&#xA;                    top:450px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get filenames-text" style="&#xA;                    top:482px;&#xA;                    left:82.66666666666667px;                    &#xA;                ">Get filenames</a><a name="Postfilter and Date Parse-icon"></a><div id="Postfilter and Date Parse" class="&#xA;                    step-icon&#xA;                    step-icon-UserDefinedJavaClass" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#GeoIP / location_id lookup"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Postfilter and Date Parse-text" style="&#xA;                    top:82px;&#xA;                    left:66.66666666666666px;                    &#xA;                ">Postfilter and Date Parse</a><a name="Process amo_downloads-icon"></a><div id="Process amo_downloads" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:550px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Spool amo_downloads 2"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Process amo_downloads-text" style="&#xA;                    top:382px;&#xA;                    left:522px;                    &#xA;                ">Process amo_downloads</a><a name="Process blocklist-icon"></a><div id="Process blocklist" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:400px;&#xA;                    top:350px;&#xA;                ">
@@ -85,9 +83,7 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Spool versioncheck 2"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Process versioncheck-text" style="&#xA;                    top:382px;&#xA;                    left:223.33333333333334px;                    &#xA;                ">Process versioncheck</a><a name="Regex amo requests-icon"></a><div id="Regex amo requests" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:100px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Postfilter and Date Parse"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex amo requests-text" style="&#xA;                    top:182px;&#xA;                    left:76px;                    &#xA;                ">Regex amo requests</a><a name="Replace GeoIP nulls-icon"></a><div id="Replace GeoIP nulls" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:400px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup location_id"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Replace GeoIP nulls-text" style="&#xA;                    top:82px;&#xA;                    left:374.6666666666667px;                    &#xA;                ">Replace GeoIP nulls</a><a name="Spool FYF-icon"></a><div id="Spool FYF" class="&#xA;                    step-icon&#xA;                    step-icon-Dummy" style="&#xA;                    left:800px;&#xA;                    top:250px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex amo requests-text" style="&#xA;                    top:182px;&#xA;                    left:76px;                    &#xA;                ">Regex amo requests</a><a name="Spool FYF-icon"></a><div id="Spool FYF" class="&#xA;                    step-icon&#xA;                    step-icon-Dummy" style="&#xA;                    left:800px;&#xA;                    top:250px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Process collections"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Spool FYF-text" style="&#xA;                    top:282px;&#xA;                    left:788px;                    &#xA;                ">Spool FYF</a><a name="Spool amo_downloads 2-icon"></a><div id="Spool amo_downloads 2" class="&#xA;                    step-icon&#xA;                    step-icon-Dummy" style="&#xA;                    left:550px;&#xA;                    top:450px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#land data"></a></div>
@@ -162,7 +158,7 @@
                <th>Internal.Transformation.Filename.Directory</th>
                <td></td>
                <td></td>
-               <td><a href="#Process amo_downloads">Process amo_downloads</a>, <a href="#Process blocklist">Process blocklist</a>, <a href="#Process collections">Process collections</a>, <a href="#Process share">Process share</a>, <a href="#Process versioncheck">Process versioncheck</a>, <a href="#land data">land data</a></td>
+               <td><a href="#GeoIP / location_id lookup">GeoIP / location_id lookup</a>, <a href="#Process amo_downloads">Process amo_downloads</a>, <a href="#Process blocklist">Process blocklist</a>, <a href="#Process collections">Process collections</a>, <a href="#Process share">Process share</a>, <a href="#Process versioncheck">Process versioncheck</a>, <a href="#land data">land data</a></td>
             </tr>
             <tr>
                <th>land</th>
@@ -221,7 +217,7 @@
                <td>${METRICS_MYSQL_HOST}</td>
                <td>${METRICS_MYSQL_PORT}</td>
                <td>${METRICS_MYSQL_USER}</td>
-               <td><a href="#metrics mysql">Lookup location_id</a></td>
+               <td></td>
             </tr>
          </tbody>
       </table>
@@ -312,43 +308,12 @@
                <td>url</td>
             </tr>
          </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MaxMindGeoIPLookup"></div>
-      <h3 class="step-heading"><a name="GeoIP lookup-text" href="#GeoIP lookup-icon">GeoIP lookup</a></h3>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Mapping"></div>
+      <h3 class="step-heading"><a name="GeoIP / location_id lookup-text" href="#GeoIP / location_id lookup-icon">GeoIP / location_id lookup</a></h3>
       <p>
          This job entry does not have a description.
          
-      </p>
-      <h4>Fields</h4>
-      <table>
-         <thead>
-            <tr>
-               <th>Position</th>
-               <th>name</th>
-               <th>lookup_type</th>
-               <th>ifnull</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <th>1</th>
-               <td>city_name</td>
-               <td>city_name</td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>2</th>
-               <td>country_code</td>
-               <td>country_code</td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>3</th>
-               <td>region_code</td>
-               <td>region_code</td>
-               <td></td>
-            </tr>
-         </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsFromResult"></div>
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsFromResult"></div>
       <h3 class="step-heading"><a name="Get filenames-text" href="#Get filenames-icon">Get filenames</a></h3>
       <p>
          This job entry does not have a description.
@@ -402,12 +367,7 @@
                <td>-1</td>
             </tr>
          </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
-      <h3 class="step-heading"><a name="Lookup location_id-text" href="#Lookup location_id-icon">Lookup location_id</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-UserDefinedJavaClass"></div>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-UserDefinedJavaClass"></div>
       <h3 class="step-heading"><a name="Postfilter and Date Parse-text" href="#Postfilter and Date Parse-icon">Postfilter and Date Parse</a></h3>
       <p>
          This job entry does not have a description.
@@ -668,12 +628,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                <td>none</td>
             </tr>
          </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Calculator"></div>
-      <h3 class="step-heading"><a name="Replace GeoIP nulls-text" href="#Replace GeoIP nulls-icon">Replace GeoIP nulls</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Dummy"></div>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Dummy"></div>
       <h3 class="step-heading"><a name="Spool FYF-text" href="#Spool FYF-icon">Spool FYF</a></h3>
       <p>Spooling because filter has multiple
          copies and that is incompatible with

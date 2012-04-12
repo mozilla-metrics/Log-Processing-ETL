@@ -59,7 +59,7 @@
          </tbody>
       </table>
       <h2><a name="diagram">Diagram</a></h2>
-      <div class="diagram" id="diagram" style="&#xA;            width: 628px;&#xA;            height: 528px;&#xA;        "><a name="Add src constants-icon"></a><div id="Add src constants" class="&#xA;                    step-icon&#xA;                    step-icon-Constant" style="&#xA;                    left:500px;&#xA;                    top:350px;&#xA;                ">
+      <div class="diagram" id="diagram" style="&#xA;            width: 628px;&#xA;            height: 529px;&#xA;        "><a name="Add src constants-icon"></a><div id="Add src constants" class="&#xA;                    step-icon&#xA;                    step-icon-Constant" style="&#xA;                    left:500px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#NVL addon_name"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Add src constants-text" style="&#xA;                    top:382px;&#xA;                    left:477.3333333333333px;                    &#xA;                ">Add src constants</a><a name="Audit invalid src-icon"></a><div id="Audit invalid src" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:500px;&#xA;                    top:450px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Write to log"></a></div>
@@ -71,15 +71,11 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#process_gecko_user_agent"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter invalid rows-text" style="&#xA;                    top:482px;&#xA;                    left:274.6666666666667px;                    &#xA;                ">Filter invalid rows</a><a name="Filter null src-icon"></a><div id="Filter null src" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:400px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Add src constants"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Validate src"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter null src-text" style="&#xA;                    top:382px;&#xA;                    left:380px;                    &#xA;                ">Filter null src</a><a name="GeoIP lookup-icon"></a><div id="GeoIP lookup" class="&#xA;                    step-icon&#xA;                    step-icon-MaxMindGeoIPLookup" style="&#xA;                    left:200px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Replace GeoIP nulls"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP lookup-text" style="&#xA;                    top:82px;&#xA;                    left:184px;                    &#xA;                ">GeoIP lookup</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:100px;&#xA;                    top:450px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter null src-text" style="&#xA;                    top:382px;&#xA;                    left:380px;                    &#xA;                ">Filter null src</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:100px;&#xA;                    top:450px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Get filenames-text" style="&#xA;                    top:482px;&#xA;                    left:82.66666666666667px;                    &#xA;                ">Get filenames</a><a name="Lookup addon-icon"></a><div id="Lookup addon" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:400px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Split url_params"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup addon-text" style="&#xA;                    top:182px;&#xA;                    left:384px;                    &#xA;                ">Lookup addon</a><a name="Lookup location_id-icon"></a><div id="Lookup location_id" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:200px;&#xA;                    top:250px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Discard duplicate downloads"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup location_id-text" style="&#xA;                    top:282px;&#xA;                    left:176px;                    &#xA;                ">Lookup location_id</a><a name="Lookup request_locale_id-icon"></a><div id="Lookup request_locale_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:400px;&#xA;                    top:50px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup addon-text" style="&#xA;                    top:182px;&#xA;                    left:384px;                    &#xA;                ">Lookup addon</a><a name="Lookup request_locale_id-icon"></a><div id="Lookup request_locale_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:400px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup addon"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup request_locale_id-text" style="&#xA;                    top:82px;&#xA;                    left:368px;                    &#xA;                ">Lookup request_locale_id</a><a name="Lookup user_agent_browser_id-icon"></a><div id="Lookup user_agent_browser_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:300px;&#xA;                    top:250px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup user_agent_locale_id"></a></div>
@@ -90,16 +86,14 @@
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup user_agent_os_id-text" style="&#xA;                    top:82px;&#xA;                    left:269.3333333333333px;                    &#xA;                ">Lookup user_agent_os_id</a><a name="NVL addon_name-icon"></a><div id="NVL addon_name" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:600px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Rename locale_ids"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#NVL addon_name-text" style="&#xA;                    top:382px;&#xA;                    left:581.3333333333334px;                    &#xA;                ">NVL addon_name</a><a name="Postfilter and Date Parse-icon"></a><div id="Postfilter and Date Parse" class="&#xA;                    step-icon&#xA;                    step-icon-UserDefinedJavaClass" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#GeoIP lookup"></a></div>
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#GeoIP / location_id lookup"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Postfilter and Date Parse-text" style="&#xA;                    top:82px;&#xA;                    left:66.66666666666666px;                    &#xA;                ">Postfilter and Date Parse</a><a name="Regex amo requests-icon"></a><div id="Regex amo requests" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:100px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Postfilter and Date Parse"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex amo requests-text" style="&#xA;                    top:182px;&#xA;                    left:76px;                    &#xA;                ">Regex amo requests</a><a name="Regex download requests-icon"></a><div id="Regex download requests" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:200px;&#xA;                    top:450px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter invalid rows"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex download requests-text" style="&#xA;                    top:482px;&#xA;                    left:169.33333333333334px;                    &#xA;                ">Regex download requests</a><a name="Rename locale_ids-icon"></a><div id="Rename locale_ids" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:500px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#amo_downloads bulk_loader"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Rename locale_ids-text" style="&#xA;                    top:182px;&#xA;                    left:477.3333333333333px;                    &#xA;                ">Rename locale_ids</a><a name="Replace GeoIP nulls-icon"></a><div id="Replace GeoIP nulls" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:200px;&#xA;                    top:150px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup location_id"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Replace GeoIP nulls-text" style="&#xA;                    top:182px;&#xA;                    left:174.66666666666666px;                    &#xA;                ">Replace GeoIP nulls</a><a name="Split url_params-icon"></a><div id="Split url_params" class="&#xA;                    step-icon&#xA;                    step-icon-FieldSplitter" style="&#xA;                    left:400px;&#xA;                    top:250px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Rename locale_ids-text" style="&#xA;                    top:182px;&#xA;                    left:477.3333333333333px;                    &#xA;                ">Rename locale_ids</a><a name="Split url_params-icon"></a><div id="Split url_params" class="&#xA;                    step-icon&#xA;                    step-icon-FieldSplitter" style="&#xA;                    left:400px;&#xA;                    top:250px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter null src"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Split url_params-text" style="&#xA;                    top:282px;&#xA;                    left:378.6666666666667px;                    &#xA;                ">Split url_params</a><a name="Text file input-icon"></a><div id="Text file input" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileInput" style="&#xA;                    left:100px;&#xA;                    top:250px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex amo requests"></a></div>
@@ -111,7 +105,9 @@
             <div class="step-hops"></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#amo_downloads bulk_loader-text" style="&#xA;                    top:82px;&#xA;                    left:466.6666666666667px;                    &#xA;                ">amo_downloads bulk_loader</a><a name="process_gecko_user_agent-icon"></a><div id="process_gecko_user_agent" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:300px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup user_agent_browser_id"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#process_gecko_user_agent-text" style="&#xA;                    top:382px;&#xA;                    left:268px;                    &#xA;                ">process_gecko_user_agent</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#process_gecko_user_agent-text" style="&#xA;                    top:382px;&#xA;                    left:268px;                    &#xA;                ">process_gecko_user_agent</a><a name="GeoIP / location_id lookup-icon"></a><div id="GeoIP / location_id lookup" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:200px;&#xA;                    top:49px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Discard duplicate downloads"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP / location_id lookup-text" style="&#xA;                    top:81px;&#xA;                    left:165.33333333333334px;                    &#xA;                ">GeoIP / location_id lookup</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -192,6 +188,12 @@
                <td></td>
                <td><a href="#amo_downloads bulk_loader">amo_downloads bulk_loader</a></td>
             </tr>
+            <tr>
+               <th>Internal.Transformation.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#GeoIP / location_id lookup">GeoIP / location_id lookup</a></td>
+            </tr>
          </tbody>
       </table>
       <h2><a name="connections">Database Connections</a></h2>
@@ -246,7 +248,7 @@
                <td>${METRICS_MYSQL_HOST}</td>
                <td>${METRICS_MYSQL_PORT}</td>
                <td>${METRICS_MYSQL_USER}</td>
-               <td><a href="#metrics mysql">Lookup addon</a>, <a href="#metrics mysql">Lookup location_id</a>, <a href="#metrics mysql">Lookup request_locale_id</a>, <a href="#metrics mysql">Lookup user_agent_browser_id</a>, <a href="#metrics mysql">Lookup user_agent_locale_id</a>, <a href="#metrics mysql">Lookup user_agent_os_id</a></td>
+               <td><a href="#metrics mysql">Lookup addon</a>, <a href="#metrics mysql">Lookup request_locale_id</a>, <a href="#metrics mysql">Lookup user_agent_browser_id</a>, <a href="#metrics mysql">Lookup user_agent_locale_id</a>, <a href="#metrics mysql">Lookup user_agent_os_id</a></td>
             </tr>
          </tbody>
       </table>
@@ -442,43 +444,7 @@
       <p>
          This job entry does not have a description.
          
-      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MaxMindGeoIPLookup"></div>
-      <h3 class="step-heading"><a name="GeoIP lookup-text" href="#GeoIP lookup-icon">GeoIP lookup</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p>
-      <h4>Fields</h4>
-      <table>
-         <thead>
-            <tr>
-               <th>Position</th>
-               <th>name</th>
-               <th>lookup_type</th>
-               <th>ifnull</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <th>1</th>
-               <td>city_name</td>
-               <td>city_name</td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>2</th>
-               <td>region_code</td>
-               <td>region_code</td>
-               <td></td>
-            </tr>
-            <tr>
-               <th>3</th>
-               <td>country_code</td>
-               <td>country_code</td>
-               <td></td>
-            </tr>
-         </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsFromResult"></div>
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsFromResult"></div>
       <h3 class="step-heading"><a name="Get filenames-text" href="#Get filenames-icon">Get filenames</a></h3>
       <p>
          This job entry does not have a description.
@@ -534,11 +500,6 @@
          </tbody>
       </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
       <h3 class="step-heading"><a name="Lookup addon-text" href="#Lookup addon-icon">Lookup addon</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
-      <h3 class="step-heading"><a name="Lookup location_id-text" href="#Lookup location_id-icon">Lookup location_id</a></h3>
       <p>
          This job entry does not have a description.
          
@@ -974,12 +935,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       
       
       
-          <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Calculator"></div>
-      <h3 class="step-heading"><a name="Replace GeoIP nulls-text" href="#Replace GeoIP nulls-icon">Replace GeoIP nulls</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FieldSplitter"></div>
+          <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FieldSplitter"></div>
       <h3 class="step-heading"><a name="Split url_params-text" href="#Split url_params-icon">Split url_params</a></h3>
       <p>
          This job entry does not have a description.
@@ -1247,6 +1203,11 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
          </tbody>
       </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Mapping"></div>
       <h3 class="step-heading"><a name="process_gecko_user_agent-text" href="#process_gecko_user_agent-icon">process_gecko_user_agent</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Mapping"></div>
+      <h3 class="step-heading"><a name="GeoIP / location_id lookup-text" href="#GeoIP / location_id lookup-icon">GeoIP / location_id lookup</a></h3>
       <p>
          This job entry does not have a description.
          
