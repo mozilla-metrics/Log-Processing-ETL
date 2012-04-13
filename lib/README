@@ -1,2 +1,6 @@
 MaxMindGeoIPLookup.r16688.zip - Built from revision 16688 in the pentaho public SVN repo
+MaxMindGeoIPLookup.r16748.deinspanjer.zip - Built from revision 16748, with additional changes imported from the 3.2x branch to give Geohash functionality.
 vertica_bulk_load.zip         - To be unzipped in $KETTLE/plugins/steps
+
+
+** NOTE: once the additional changes from MaxMindGeoIPLookup.r16748.deinspanjer.zip are incorporated into trunk, these two zips will be replaced with one.
