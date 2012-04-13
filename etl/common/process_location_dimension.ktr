@@ -9,7 +9,7 @@
     <extended_description>
 The contents of this file are subject to the terms of the Mozilla Public
 License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http://mozilla.org/MPL/2.0/.
+You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
@@ -216,6 +216,7 @@ with this additional data.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
@@ -352,7 +353,7 @@ with this additional data.
            <method>none</method>
            <schema_name/>
            </partitioning>
-   <ip_address_field_name>clientip</ip_address_field_name>
+   <ip_address_field_name>client_ip_address</ip_address_field_name>
    <db_location>&#47;usr&#47;local&#47;share&#47;GeoIP&#47;GeoIPCity.dat</db_location>
    <db_type>CITY</db_type>
     <fields>      <field>        <name>geohash</name>
@@ -433,7 +434,7 @@ FROM locations
            <method>none</method>
            <schema_name/>
            </partitioning>
-   <ip_address_field_name>clientip</ip_address_field_name>
+   <ip_address_field_name>client_ip_address</ip_address_field_name>
    <db_location>&#47;usr&#47;local&#47;share&#47;GeoIP&#47;GeoIPCity.dat</db_location>
    <db_type>CITY</db_type>
     <fields>      <field>        <name>country_code</name>
@@ -559,7 +560,7 @@ FROM locations
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <fields>      <field>        <name>clientip</name>
+    <fields>      <field>        <name>client_ip_address</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
