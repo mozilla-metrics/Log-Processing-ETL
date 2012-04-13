@@ -45,7 +45,7 @@
             <tr>
                <th>Input (1)</th>
                <th>Transform</th>
-               <th>Output (0)</th>
+               <th>Output (1)</th>
             </tr>
          </thead>
          <tbody>
@@ -54,42 +54,48 @@
                   <div>Text file input</div>
                </td>
                <td></td>
-               <td></td>
+               <td>
+                  <div>Log bad URLs</div>
+               </td>
             </tr>
          </tbody>
       </table>
       <h2><a name="diagram">Diagram</a></h2>
-      <div class="diagram" id="diagram" style="&#xA;            width: 728px;&#xA;            height: 328px;&#xA;        "><a name="Data Validator-icon"></a><div id="Data Validator" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+      <div class="diagram" id="diagram" style="&#xA;            width: 978px;&#xA;            height: 428px;&#xA;        "><a name="Capture gecko_version-icon"></a><div id="Capture gecko_version" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:400px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Transform counts"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Capture gecko_version-text" style="&#xA;                    top:382px;&#xA;                    left:372px;                    &#xA;                ">Capture gecko_version</a><a name="Data Validator-icon"></a><div id="Data Validator" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Text file input"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Data Validator-text" style="&#xA;                    top:82px;&#xA;                    left:31.333333333333332px;                    &#xA;                ">Data Validator</a><a name="Filter rows-icon"></a><div id="Filter rows" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex Capture gecko_version"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter rows-text" style="&#xA;                    top:182px;&#xA;                    left:335.3333333333333px;                    &#xA;                ">Filter rows</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Data Validator-text" style="&#xA;                    top:82px;&#xA;                    left:81.33333333333333px;                    &#xA;                ">Data Validator</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:200px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get filenames-text" style="&#xA;                    top:182px;&#xA;                    left:32.66666666666667px;                    &#xA;                ">Get filenames</a><a name="Lookup locale_id-icon"></a><div id="Lookup locale_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:650px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup product_id"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup locale_id-text" style="&#xA;                    top:82px;&#xA;                    left:628.6666666666666px;                    &#xA;                ">Lookup locale_id</a><a name="Lookup os_id-icon"></a><div id="Lookup os_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:500px;&#xA;                    top:150px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup product_distribution_id"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup os_id-text" style="&#xA;                    top:182px;&#xA;                    left:484px;                    &#xA;                ">Lookup os_id</a><a name="Lookup product_channel_id-icon"></a><div id="Lookup product_channel_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:500px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup os_id"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup product_channel_id-text" style="&#xA;                    top:82px;&#xA;                    left:466.6666666666667px;                    &#xA;                ">Lookup product_channel_id</a><a name="Lookup product_distribution_id-icon"></a><div id="Lookup product_distribution_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:500px;&#xA;                    top:250px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup locale_id"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup product_distribution_id-text" style="&#xA;                    top:282px;&#xA;                    left:460px;                    &#xA;                ">Lookup product_distribution_id</a><a name="Lookup product_id-icon"></a><div id="Lookup product_id" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:650px;&#xA;                    top:150px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#blocklist bulk_loader"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup product_id-text" style="&#xA;                    top:182px;&#xA;                    left:627.3333333333334px;                    &#xA;                ">Lookup product_id</a><a name="Postfilter and Date Parse-icon"></a><div id="Postfilter and Date Parse" class="&#xA;                    step-icon&#xA;                    step-icon-UserDefinedJavaClass" style="&#xA;                    left:150px;&#xA;                    top:250px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#GeoIP / location_id lookup"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Postfilter and Date Parse-text" style="&#xA;                    top:282px;&#xA;                    left:116.66666666666666px;                    &#xA;                ">Postfilter and Date Parse</a><a name="Regex Capture-icon"></a><div id="Regex Capture" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:350px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter rows"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex Capture-text" style="&#xA;                    top:82px;&#xA;                    left:332.6666666666667px;                    &#xA;                ">Regex Capture</a><a name="Regex Capture gecko_version-icon"></a><div id="Regex Capture gecko_version" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:350px;&#xA;                    top:250px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup product_channel_id"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex Capture gecko_version-text" style="&#xA;                    top:282px;&#xA;                    left:314px;                    &#xA;                ">Regex Capture gecko_version</a><a name="Regex amo requests-icon"></a><div id="Regex amo requests" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Postfilter and Date Parse"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex amo requests-text" style="&#xA;                    top:182px;&#xA;                    left:126px;                    &#xA;                ">Regex amo requests</a><a name="Text file input-icon"></a><div id="Text file input" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileInput" style="&#xA;                    left:150px;&#xA;                    top:50px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex amo requests"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Text file input-text" style="&#xA;                    top:82px;&#xA;                    left:130px;                    &#xA;                ">Text file input</a><a name="blocklist bulk_loader-icon"></a><div id="blocklist bulk_loader" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:650px;&#xA;                    top:250px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get filenames-text" style="&#xA;                    top:82px;&#xA;                    left:182.66666666666666px;                    &#xA;                ">Get filenames</a><a name="Log bad URLs-icon"></a><div id="Log bad URLs" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileOutput&#xA;                        step-error&#xA;                    " style="&#xA;                    left:550px;&#xA;                    top:250px;&#xA;                ">
             <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#blocklist bulk_loader-text" style="&#xA;                    top:282px;&#xA;                    left:622px;                    &#xA;                ">blocklist bulk_loader</a><a name="GeoIP / location_id lookup-icon"></a><div id="GeoIP / location_id lookup" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:249px;&#xA;                    top:150px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Log bad URLs-text" style="&#xA;                    top:282px;&#xA;                    left:534px;                    &#xA;                ">Log bad URLs</a><a name="Lookup locale_id-icon"></a><div id="Lookup locale_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:950px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup product_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup locale_id-text" style="&#xA;                    top:182px;&#xA;                    left:928.6666666666666px;                    &#xA;                ">Lookup locale_id</a><a name="Lookup os_id-icon"></a><div id="Lookup os_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:750px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup product_distribution_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup os_id-text" style="&#xA;                    top:282px;&#xA;                    left:734px;                    &#xA;                ">Lookup os_id</a><a name="Lookup product_channel_id-icon"></a><div id="Lookup product_channel_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:750px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup os_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup product_channel_id-text" style="&#xA;                    top:182px;&#xA;                    left:716.6666666666666px;                    &#xA;                ">Lookup product_channel_id</a><a name="Lookup product_distribution_id-icon"></a><div id="Lookup product_distribution_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:750px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup locale_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup product_distribution_id-text" style="&#xA;                    top:382px;&#xA;                    left:710px;                    &#xA;                ">Lookup product_distribution_id</a><a name="Lookup product_id-icon"></a><div id="Lookup product_id" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:950px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#blocklist bulk_loader"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup product_id-text" style="&#xA;                    top:282px;&#xA;                    left:927.3333333333334px;                    &#xA;                ">Lookup product_id</a><a name="Postfilter and Date Parse-icon"></a><div id="Postfilter and Date Parse" class="&#xA;                    step-icon&#xA;                    step-icon-UserDefinedJavaClass" style="&#xA;                    left:100px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#GeoIP / location_id lookup"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Postfilter and Date Parse-text" style="&#xA;                    top:382px;&#xA;                    left:66.66666666666666px;                    &#xA;                ">Postfilter and Date Parse</a><a name="Regex Capture-icon"></a><div id="Regex Capture" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:400px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Validate url matches"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex Capture-text" style="&#xA;                    top:182px;&#xA;                    left:382.6666666666667px;                    &#xA;                ">Regex Capture</a><a name="Regex amo requests-icon"></a><div id="Regex amo requests" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:100px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Postfilter and Date Parse"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Regex amo requests-text" style="&#xA;                    top:282px;&#xA;                    left:76px;                    &#xA;                ">Regex amo requests</a><a name="Text file input-icon"></a><div id="Text file input" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileInput" style="&#xA;                    left:100px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex amo requests"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Text file input-text" style="&#xA;                    top:182px;&#xA;                    left:80px;                    &#xA;                ">Text file input</a><a name="Transform counts-icon"></a><div id="Transform counts" class="&#xA;                    step-icon&#xA;                    step-icon-UserDefinedJavaClass" style="&#xA;                    left:550px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup product_channel_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Transform counts-text" style="&#xA;                    top:382px;&#xA;                    left:528.6666666666666px;                    &#xA;                ">Transform counts</a><a name="Validate url matches-icon"></a><div id="Validate url matches" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:400px;&#xA;                    top:250px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Capture gecko_version"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                step-hop-error&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log bad URLs"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Validate url matches-text" style="&#xA;                    top:282px;&#xA;                    left:373.3333333333333px;                    &#xA;                ">Validate url matches</a><a name="blocklist bulk_loader-icon"></a><div id="blocklist bulk_loader" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:950px;&#xA;                    top:350px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#blocklist bulk_loader-text" style="&#xA;                    top:382px;&#xA;                    left:922px;                    &#xA;                ">blocklist bulk_loader</a><a name="GeoIP / location_id lookup-icon"></a><div id="GeoIP / location_id lookup" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:252px;&#xA;                    top:251px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex Capture"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP / location_id lookup-text" style="&#xA;                    top:182px;&#xA;                    left:214.33333333333334px;                    &#xA;                ">GeoIP / location_id lookup</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP / location_id lookup-text" style="&#xA;                    top:283px;&#xA;                    left:217.33333333333334px;                    &#xA;                ">GeoIP / location_id lookup</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -334,13 +340,46 @@
          t.b.d.
          
       </p>
-      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
-      <h3 class="step-heading"><a name="Data Validator-text" href="#Data Validator-icon">Data Validator</a></h3>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RegexEval"></div>
+      <h3 class="step-heading"><a name="Capture gecko_version-text" href="#Capture gecko_version-icon">Capture gecko_version</a></h3>
       <p>
          This job entry does not have a description.
          
-      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
-      <h3 class="step-heading"><a name="Filter rows-text" href="#Filter rows-icon">Filter rows</a></h3>
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>group</th>
+               <th>decimal</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>trimtype</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>gecko_version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>15</td>
+               <td>-1</td>
+               <td></td>
+               <td>Unknown</td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
+      <h3 class="step-heading"><a name="Data Validator-text" href="#Data Validator-icon">Data Validator</a></h3>
       <p>
          This job entry does not have a description.
          
@@ -395,6 +434,44 @@
                <td>filename</td>
                <td>String</td>
                <td>500</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TextFileOutput"></div>
+      <h3 class="step-heading"><a name="Log bad URLs-text" href="#Log bad URLs-icon">Log bad URLs</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>trim_type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>url</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
                <td>-1</td>
             </tr>
          </tbody>
@@ -875,42 +952,43 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                <td>Unknown</td>
                <td>none</td>
             </tr>
-         </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RegexEval"></div>
-      <h3 class="step-heading"><a name="Regex Capture gecko_version-text" href="#Regex Capture gecko_version-icon">Regex Capture gecko_version</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p>
-      <h4>Fields</h4>
-      <table>
-         <thead>
             <tr>
-               <th>Position</th>
-               <th>name</th>
-               <th>type</th>
-               <th>format</th>
-               <th>group</th>
-               <th>decimal</th>
-               <th>length</th>
-               <th>precision</th>
-               <th>nullif</th>
-               <th>ifnull</th>
-               <th>trimtype</th>
-            </tr>
-         </thead>
-         <tbody>
-            <tr>
-               <th>1</th>
-               <td>gecko_version</td>
+               <th>19</th>
+               <td>ping_count_raw</td>
                <td>String</td>
                <td></td>
                <td></td>
                <td></td>
-               <td>15</td>
+               <td>10</td>
                <td>-1</td>
                <td></td>
-               <td>Unknown</td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>20</th>
+               <td>total_ping_count_raw</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>10</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>21</th>
+               <td>days_since_last_ping_raw</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>10</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
                <td>none</td>
             </tr>
          </tbody>
@@ -1048,7 +1126,138 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                <td>N</td>
             </tr>
          </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-VerticaBulkLoader"></div>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-UserDefinedJavaClass"></div>
+      <h3 class="step-heading"><a name="Transform counts-text" href="#Transform counts-icon">Transform counts</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Java Class Source Code</h4>
+      <h5>RowProcessor</h5><pre class="brush: java;">import java.util.*;
+
+private static final long JAN_1_11_DATE_ID = 4019L;
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+    Object[] r = getRow();
+    if (r == null) {
+        setOutputDone();
+        return false;
+    }
+
+    if (first) {
+        first = false;
+    }
+
+    long utc_date_id = get(Fields.In, "utc_date_id").getInteger(r);
+
+    Object[] out = createOutputRow(r, data.outputRowMeta.size());
+
+    long pingCount, totalPingCount, daysSinceLastPing;
+    String pingCountStr = get(Fields.In, "ping_count_raw").getString(r);
+    String totalPingCountStr = get(Fields.In, "total_ping_count_raw").getString(r);
+    String daysSinceLastPingStr = get(Fields.In, "days_since_last_ping_raw").getString(r);
+
+    if (pingCountStr == null) {
+        get(Fields.Out, "ping_count").setValue(out, null);
+    } else {
+        if ("invalid".equals(pingCountStr)) {
+            pingCount = -1L;
+        } else {
+            try {
+                pingCount = Long.parseLong(pingCountStr);
+                if (pingCount &lt; 1L) pingCount = -1L;
+                else if (utc_date_id - pingCount &lt; JAN_1_11_DATE_ID) pingCount = -1L;
+            } catch (Exception e) {
+                pingCount = -1L;
+            }
+        }
+        get(Fields.Out, "ping_count").setValue(out, new Long(pingCount));
+    }
+
+    if (totalPingCountStr == null) {
+        get(Fields.Out, "total_ping_count").setValue(out, null);
+    } else {
+        if ("invalid".equals(totalPingCountStr)) {
+            totalPingCount = -1L;
+        } else {
+            try {
+                totalPingCount = Long.parseLong(totalPingCountStr);
+                if (totalPingCount &lt; 1L) totalPingCount = -1L;
+                else if (utc_date_id - totalPingCount &lt; JAN_1_11_DATE_ID) totalPingCount = -1L;
+            } catch (Exception e) {
+                totalPingCount = -1L;
+            }
+        }
+        get(Fields.Out, "total_ping_count").setValue(out, new Long(totalPingCount));
+    }
+
+    if (daysSinceLastPingStr == null) {
+        get(Fields.Out, "days_since_last_ping").setValue(out, null);
+    } else {
+        if ("invalid".equals(daysSinceLastPingStr)) {
+            daysSinceLastPing = -1L;
+        } else if ("new".equals(daysSinceLastPingStr)) {
+            daysSinceLastPing = 365000L;
+        } else if ("reset".equals(daysSinceLastPingStr)) {
+            daysSinceLastPing = -2L;
+        } else {
+            try {
+                daysSinceLastPing = Long.parseLong(daysSinceLastPingStr);
+                if (daysSinceLastPing &lt; 0L) daysSinceLastPing = -1L;
+                else if (utc_date_id - daysSinceLastPing &lt; JAN_1_11_DATE_ID) daysSinceLastPing = -1L;
+            } catch (Exception e) {
+                daysSinceLastPing = -1L;
+            }
+        }
+        //System.err.printf("\r%5s      %5d      ", new Object[] { daysSinceLastPingStr, daysSinceLastPing });
+        get(Fields.Out, "days_since_last_ping").setValue(out, new Long(daysSinceLastPing));
+    }
+
+    putRow(data.outputRowMeta, out);
+    return true;
+}
+
+</pre><h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>field_name</th>
+               <th>field_type</th>
+               <th>field_length</th>
+               <th>field_precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>ping_count</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>total_ping_count</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>days_since_last_ping</td>
+               <td>Integer</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
+      <h3 class="step-heading"><a name="Validate url matches-text" href="#Validate url matches-icon">Validate url matches</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-VerticaBulkLoader"></div>
       <h3 class="step-heading"><a name="blocklist bulk_loader-text" href="#blocklist bulk_loader-icon">blocklist bulk_loader</a></h3>
       <p>
          This job entry does not have a description.
@@ -1153,6 +1362,36 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                <th>18</th>
                <td>product_build_number</td>
                <td>product_build_number</td>
+            </tr>
+            <tr>
+               <th>19</th>
+               <td>ping_count_raw</td>
+               <td>ping_count_raw</td>
+            </tr>
+            <tr>
+               <th>20</th>
+               <td>ping_count</td>
+               <td>ping_count</td>
+            </tr>
+            <tr>
+               <th>21</th>
+               <td>total_ping_count_raw</td>
+               <td>total_ping_count_raw</td>
+            </tr>
+            <tr>
+               <th>22</th>
+               <td>total_ping_count</td>
+               <td>total_ping_count</td>
+            </tr>
+            <tr>
+               <th>23</th>
+               <td>days_since_last_ping_raw</td>
+               <td>days_since_last_ping_raw</td>
+            </tr>
+            <tr>
+               <th>24</th>
+               <td>days_since_last_ping</td>
+               <td>days_since_last_ping</td>
             </tr>
          </tbody>
       </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Mapping"></div>

@@ -1,0 +1,519 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/common/process_location_dimension.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/common/process_location_dimension.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/common"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "process_location_dimension"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (2)</th>
+               <th>Transform</th>
+               <th>Output (1)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Get continent info</div>
+                  <div>Get max location_id</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>Update</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 959px;&#xA;            height: 427px;&#xA;        "><a name="Append continent-icon"></a><div id="Append continent" class="&#xA;                    step-icon&#xA;                    step-icon-StreamLookup" style="&#xA;                    left:750px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Update"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Append continent-text" style="&#xA;                    top:182px;&#xA;                    left:728.6666666666666px;                    &#xA;                ">Append continent</a><a name="Database lookup-icon"></a><div id="Database lookup" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:550px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup additional GeoIP data"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Database lookup-text" style="&#xA;                    top:182px;&#xA;                    left:530px;                    &#xA;                ">Database lookup</a><a name="Filter on max location_id-icon"></a><div id="Filter on max location_id" class="&#xA;                    step-icon&#xA;                    step-icon-JoinRows" style="&#xA;                    left:250px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Select values"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter on max location_id-text" style="&#xA;                    top:182px;&#xA;                    left:216.66666666666666px;                    &#xA;                ">Filter on max location_id</a><a name="GeoIP lookup-icon"></a><div id="GeoIP lookup" class="&#xA;                    step-icon&#xA;                    step-icon-MaxMindGeoIPLookup" style="&#xA;                    left:150px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Truncate geohash"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP lookup-text" style="&#xA;                    top:82px;&#xA;                    left:134px;                    &#xA;                ">GeoIP lookup</a><a name="Get continent info-icon"></a><div id="Get continent info" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:750px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Append continent"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get continent info-text" style="&#xA;                    top:82px;&#xA;                    left:726px;                    &#xA;                ">Get continent info</a><a name="Get max location_id-icon"></a><div id="Get max location_id" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter on max location_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get max location_id-text" style="&#xA;                    top:82px;&#xA;                    left:224.66666666666666px;                    &#xA;                ">Get max location_id</a><a name="Lookup additional GeoIP data-icon"></a><div id="Lookup additional GeoIP data" class="&#xA;                    step-icon&#xA;                    step-icon-MaxMindGeoIPLookup" style="&#xA;                    left:650px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Append continent"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup additional GeoIP data-text" style="&#xA;                    top:182px;&#xA;                    left:612.6666666666666px;                    &#xA;                ">Lookup additional GeoIP data</a><a name="Lookup location_id-icon"></a><div id="Lookup location_id" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Filter on max location_id"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Mapping output specification"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Lookup location_id-text" style="&#xA;                    top:182px;&#xA;                    left:126px;                    &#xA;                ">Lookup location_id</a><a name="Mapping input specification-icon"></a><div id="Mapping input specification" class="&#xA;                    step-icon&#xA;                    step-icon-MappingInput" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#GeoIP lookup"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Mapping input specification-text" style="&#xA;                    top:82px;&#xA;                    left:14px;                    &#xA;                ">Mapping input specification</a><a name="Mapping output specification-icon"></a><div id="Mapping output specification" class="&#xA;                    step-icon&#xA;                    step-icon-MappingOutput" style="&#xA;                    left:150px;&#xA;                    top:321px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Mapping output specification-text" style="&#xA;                    top:353px;&#xA;                    left:112.66666666666666px;                    &#xA;                ">Mapping output specification</a><a name="Select values-icon"></a><div id="Select values" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Unique location_ids"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Select values-text" style="&#xA;                    top:182px;&#xA;                    left:332.6666666666667px;                    &#xA;                ">Select values</a><a name="Truncate geohash-icon"></a><div id="Truncate geohash" class="&#xA;                    step-icon&#xA;                    step-icon-StringCut" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup location_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Truncate geohash-text" style="&#xA;                    top:182px;&#xA;                    left:28.666666666666668px;                    &#xA;                ">Truncate geohash</a><a name="Unique location_ids-icon"></a><div id="Unique location_ids" class="&#xA;                    step-icon&#xA;                    step-icon-UniqueRowsByHashSet" style="&#xA;                    left:450px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Database lookup"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Unique location_ids-text" style="&#xA;                    top:182px;&#xA;                    left:424.6666666666667px;                    &#xA;                ">Unique location_ids</a><a name="Update-icon"></a><div id="Update" class="&#xA;                    step-icon&#xA;                    step-icon-Update" style="&#xA;                    left:850px;&#xA;                    top:150px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Update-text" style="&#xA;                    top:182px;&#xA;                    left:842px;                    &#xA;                ">Update</a>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 19px;&#xA;&#x9;&#x9;&#x9;top: 218px;&#xA;&#x9;&#x9;&#x9;width: 120px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Sans;&#xA;&#x9;&#x9;&#x9;font-size: 8;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">Look up location_id
+            based on geohash
+            Create a new record
+            in "locations" if it 
+            doesn't exist
+         </div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 348px;&#xA;&#x9;&#x9;&#x9;top: 47px;&#xA;&#x9;&#x9;&#x9;width: 220px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: ;&#xA;&#x9;&#x9;&#x9;font-size: -1;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">Only pass through each location_id
+            to the rest of the transformation once.
+            This step does not queue rows. It uses
+            an in memory hashset to determine
+            uniqueness.
+         </div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 483px;&#xA;&#x9;&#x9;&#x9;top: 220px;&#xA;&#x9;&#x9;&#x9;width: 177px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: ;&#xA;&#x9;&#x9;&#x9;font-size: -1;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">Check whether this location_id
+            has already had the additional
+            data updated in it.
+         </div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 814px;&#xA;&#x9;&#x9;&#x9;top: 22px;&#xA;&#x9;&#x9;&#x9;width: 156px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Sans;&#xA;&#x9;&#x9;&#x9;font-size: 8;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">The stream at this point 
+            contains the location_id,
+            continent, country, region, 
+            city, lat/long.
+            Update the location_id 
+            with this additional data.
+            
+         </div>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_NAME</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td>, </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">Database lookup</a>, <a href="#metrics mysql">Get continent info</a>, <a href="#metrics mysql">Get max location_id</a>, <a href="#metrics mysql">Lookup location_id</a>, <a href="#metrics mysql">Update</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_NAME}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-StreamLookup"></div>
+      <h3 class="step-heading"><a name="Append continent-text" href="#Append continent-icon">Append continent</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
+      <h3 class="step-heading"><a name="Database lookup-text" href="#Database lookup-icon">Database lookup</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-JoinRows"></div>
+      <h3 class="step-heading"><a name="Filter on max location_id-text" href="#Filter on max location_id-icon">Filter on max location_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MaxMindGeoIPLookup"></div>
+      <h3 class="step-heading"><a name="GeoIP lookup-text" href="#GeoIP lookup-icon">GeoIP lookup</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>lookup_type</th>
+               <th>ifnull</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>geohash</td>
+               <td>geohash</td>
+               <td>s00000</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Get continent info-text" href="#Get continent info-icon">Get continent info</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT DISTINCT
+  continent_code
+, continent_name
+, country_code
+FROM locations
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Get max location_id-text" href="#Get max location_id-icon">Get max location_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT MAX(location_id) AS max_id
+FROM locations
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MaxMindGeoIPLookup"></div>
+      <h3 class="step-heading"><a name="Lookup additional GeoIP data-text" href="#Lookup additional GeoIP data-icon">Lookup additional GeoIP data</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>lookup_type</th>
+               <th>ifnull</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>country_code</td>
+               <td>country_code</td>
+               <td>??</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>country_name</td>
+               <td>country_name</td>
+               <td>Unknown</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>region_code</td>
+               <td>region_code</td>
+               <td>??</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>region_name</td>
+               <td>region_name</td>
+               <td>Unknown</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>city_name</td>
+               <td>city_name</td>
+               <td>Unknown</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>latitude</td>
+               <td>latitude</td>
+               <td>0.0000</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>longitude</td>
+               <td>longitude</td>
+               <td>0.0000</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="Lookup location_id-text" href="#Lookup location_id-icon">Lookup location_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      geohash
+      geohash
+      
+      
+      location_id
+      autoinc
+      Y
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingInput"></div>
+      <h3 class="step-heading"><a name="Mapping input specification-text" href="#Mapping input specification-icon">Mapping input specification</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>client_ip_address</td>
+               <td>String</td>
+               <td>15</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MappingOutput"></div>
+      <h3 class="step-heading"><a name="Mapping output specification-text" href="#Mapping output specification-icon">Mapping output specification</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Select values-text" href="#Select values-icon">Select values</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>client_ip_address</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>location_id</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-StringCut"></div>
+      <h3 class="step-heading"><a name="Truncate geohash-text" href="#Truncate geohash-icon">Truncate geohash</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>in_stream_name</th>
+               <th>out_stream_name</th>
+               <th>cut_from</th>
+               <th>cut_to</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>geohash</td>
+               <td></td>
+               <td>0</td>
+               <td>6</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-UniqueRowsByHashSet"></div>
+      <h3 class="step-heading"><a name="Unique location_ids-text" href="#Unique location_ids-icon">Unique location_ids</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>location_id</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Update"></div>
+      <h3 class="step-heading"><a name="Update-text" href="#Update-icon">Update</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>
