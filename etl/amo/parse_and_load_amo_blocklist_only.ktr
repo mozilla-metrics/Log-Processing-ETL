@@ -18,14 +18,14 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <parameters>
     </parameters>
     <log>
-<trans-log-table><connection/>
+<trans-log-table><connection>metrics mysql</connection>
 <schema/>
-<table/>
+<table>log_trans</table>
 <size_limit_lines/>
 <interval/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject>Lookup product_id</subject></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject>Lookup product_id</subject></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject>Lookup product_id</subject></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></trans-log-table>
-<perf-log-table><connection/>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject>Text file input</subject></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>Text file input</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject>Lookup product_id</subject></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject>Text file input</subject></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject>blocklist bulk_loader</subject></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject>Validate url matches</subject></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<perf-log-table><connection>metrics mysql</connection>
 <schema/>
 <table>log_trans_perf</table>
 <interval/>
@@ -109,7 +109,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         </clusterschema>
     </clusterschemas>
   <created_user/>
-  <created_date>2012&#47;03&#47;26 15:45:01.998</created_date>
+  <created_date>2012&#47;03&#47;26 15:45:02.093</created_date>
   <modified_user>deinspanjer</modified_user>
   <modified_date>2008&#47;08&#47;01 16:47:44.000</modified_date>
   </info>
@@ -167,7 +167,57 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Lookup os_id</from><to>Lookup product_distribution_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_channel_id</from><to>Lookup os_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_distribution_id</from><to>Lookup locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup locale_id</from><to>Lookup product_id</to><enabled>Y</enabled> </hop>  <hop> <from>Regex Capture gecko_version</from><to>Lookup product_channel_id</to><enabled>Y</enabled> </hop>  <hop> <from>Regex Capture</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_id</from><to>blocklist bulk_loader</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Regex Capture gecko_version</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>GeoIP &#47; location_id lookup</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP &#47; location_id lookup</from><to>Regex Capture</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Lookup os_id</from><to>Lookup product_distribution_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_channel_id</from><to>Lookup os_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_distribution_id</from><to>Lookup locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup locale_id</from><to>Lookup product_id</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_id</from><to>blocklist bulk_loader</to><enabled>Y</enabled> </hop>  <hop> <from>Regex Capture</from><to>Validate url matches</to><enabled>Y</enabled> </hop>  <hop> <from>Validate url matches</from><to>Capture gecko_version</to><enabled>Y</enabled> </hop>  <hop> <from>Capture gecko_version</from><to>Transform counts</to><enabled>Y</enabled> </hop>  <hop> <from>Transform counts</from><to>Lookup product_channel_id</to><enabled>Y</enabled> </hop>  <hop> <from>Validate url matches</from><to>Log bad URLs</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>GeoIP &#47; location_id lookup</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP &#47; location_id lookup</from><to>Regex Capture</to><enabled>Y</enabled> </hop>  </order>
+  <step>
+    <name>Capture gecko_version</name>
+    <type>RegexEval</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <script><![CDATA[  Mozilla/5.0\s\(
+  (?>[^r"]*(?>(?!rv:)r)?)*       # Uninteresting bits
+    (?>
+     rv:                       # Beginning of the gecko engine version token
+     ([^;)]{3,15})[;)]       # ensure version string size
+    )?
+  (?>[^"]+)]]></script>    <matcher>user_agent</matcher>
+    <resultfieldname>user_agent_match_result</resultfieldname>
+    <usevar>N</usevar>
+    <allowcapturegroups>Y</allowcapturegroups>
+    <replacefields>N</replacefields>
+    <canoneq>N</canoneq>
+    <caseinsensitive>N</caseinsensitive>
+    <comment>Y</comment>
+    <dotall>N</dotall>
+    <multiline>N</multiline>
+    <unicode>N</unicode>
+    <unix>N</unix>
+    <fields>
+      <field>
+        <name>gecko_version</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>15</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull>Unknown</ifnull>
+        <trimtype>none</trimtype>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>400</xloc>
+      <yloc>350</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
   <step>
     <name>Data Validator</name>
     <type>Validator</type>
@@ -209,36 +259,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 <allowed_value></allowed_value></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>50</xloc>
+      <xloc>100</xloc>
       <yloc>50</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Filter rows</name>
-    <type>FilterRows</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>4</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-<send_true_to/>
-<send_false_to/>
-    <compare>
-<condition>
- <negated>N</negated>
- <leftvalue>url_match_result</leftvalue>
- <function>=</function>
- <rightvalue/>
- <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
-    </compare>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>350</xloc>
-      <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -275,8 +297,71 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
         <precision>-1</precision>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>50</xloc>
-      <yloc>150</yloc>
+      <xloc>200</xloc>
+      <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Log bad URLs</name>
+    <type>TextFileOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <separator>	</separator>
+    <enclosure>&quot;</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>Y</enclosure_fix_disabled>
+    <header>N</header>
+    <footer>N</footer>
+    <format>Unix</format>
+    <compression>GZip</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>N</create_parent_folder>
+    <file>
+      <name>&#47;etl&#47;logs&#47;bad_blocklist_urls</name>
+      <is_command>N</is_command>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>Y</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>N</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>Y</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>url</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>both</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>550</xloc>
+      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -314,8 +399,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <last_update_field/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>650</xloc>
-      <yloc>50</yloc>
+      <xloc>950</xloc>
+      <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -357,8 +442,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <last_update_field/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>500</xloc>
-      <yloc>150</yloc>
+      <xloc>750</xloc>
+      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -396,8 +481,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <last_update_field/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>500</xloc>
-      <yloc>50</yloc>
+      <xloc>750</xloc>
+      <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -439,8 +524,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <last_update_field/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>500</xloc>
-      <yloc>250</yloc>
+      <xloc>750</xloc>
+      <yloc>350</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -482,8 +567,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     <allow_multiple_output>N</allow_multiple_output>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>650</xloc>
-      <yloc>150</yloc>
+      <xloc>950</xloc>
+      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -650,8 +735,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </fields><clear_result_fields>N</clear_result_fields>
 <info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>150</xloc>
-      <yloc>250</yloc>
+      <xloc>100</xloc>
+      <yloc>350</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -666,7 +751,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <script><![CDATA[/blocklist/[123]                # blocklist schema version
+    <script><![CDATA[^/blocklist/[123]              # blocklist schema version
 /(?>%7B)?((?<=%7B)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}(?=%7D)|prism@developer\.mozilla\.org|songbird@songbirdnest\.com)(?>%7D)?
                                # ^^ product_guid
 /                              # product_version
@@ -688,46 +773,55 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
        )
     )
 )
-(?>                            # blocklist/2 attributes
-   /([^\s/]{2,20})(?>[^/]*)    # product_name
-   /([^/]{8,14})[^/]*+         # product_build_number
-   /([^/]{1,50})               # product_build_target
+/
+(?>                           # blocklist/2 attributes
+  ([^\s/]{2,20})(?>[^/]*)/    # product_name
+  ([^/]{8,14})[^/]*+/         # product_build_number
+  ([^/]{1,50})/               # product_build_target
 
-   /(?>                        # locale raw_string
-     (?>
-        chrome://(?:.{0,108})\.properties
-          # Note: some Linuxes are messed up and report chrome URL instead of locale
-     )|(?>
-       (                       # locale code
-        (?>[a-z]{2,3})         # language
-        (?>[-_][A-Za-z]{2}(?>[-_][\w]{2,8})?)? # region-dialect
-       )
-       (?>;[^/]+)?
-     )|(?>
-        [^/]*
-     )
+  (?>                         # locale raw_string
+    (?>
+      chrome://(?:.{0,108})\.properties
+      # Note: some Linuxes are messed up and report chrome URL instead of locale
+    )|(?>
+      (                       # locale code
+       (?>[a-z]{2,3})         # language
+       (?>[-_][A-Za-z]{2}(?>[-_][\w]{2,8})?)? # region-dialect
+      )
+      (?>;[^/]+)?
+    )|(?>
+       [^/]*
+    )
    )
-
-   /([^/]{1,100})              # channel
-
-   /
-(?>(?>
-     ([A-Za-z_0-9]{1,15})         # legitimate platform name
-     %20
-     (\d{1,2}(?>
-      \.\d{1,2}(?>
-      \.\d{1,2}(?>
-	\.\d{1,2})?)?)?
-     ))?
-     (?>[^/]*)
-)
-   /([^/]{1,100})              # distribution_name
-   /([^/]{1,100})              # distribution_version
-   (?>/[^/]{1,10})           # update ping counter
-   (?>/[^/]{1,10})           # update ping counter
-   (?>/[^/]{1,10})           # update ping counter
-)                             # end of optional blocklist/2 attributes
-/]]></script>    <matcher>url</matcher>
+/
+  ([^/]{0,100})                # channel
+/
+   (?>
+    (?>
+      ([A-Za-z_0-9]{1,15})     # legitimate platform name
+      %20
+      (\d{1,2}(?>
+       \.\d{1,2}(?>
+       \.\d{1,2}(?>
+       \.\d{1,2})?)?)?
+      )
+    )?
+    (?>[^/]*)                  # extra platform cruft
+   )
+/
+  ([^/]{0,100})/               # distribution_name
+  ([^/]{0,100})/               # distribution_version
+  (?>                          # new ping counters
+    ([^/]{0,10})/              # num pings counter
+    (?>
+      ([^/]{0,10})/            # num total pings counter
+      (?>
+        ([^/]{0,10})/          # days since last ping counter
+      )?
+    )?
+  )?
+)?                             # end of optional blocklist/2 attributes
+$]]></script>    <matcher>url</matcher>
     <resultfieldname>url_match_result</resultfieldname>
     <usevar>N</usevar>
     <allowcapturegroups>Y</allowcapturegroups>
@@ -956,61 +1050,47 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <ifnull>Unknown</ifnull>
         <trimtype>none</trimtype>
       </field>
-    </fields>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>350</xloc>
-      <yloc>50</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Regex Capture gecko_version</name>
-    <type>RegexEval</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <script><![CDATA[  Mozilla/5.0\s\(
-  (?>[^r"]*(?>(?!rv:)r)?)*       # Uninteresting bits
-    (?>
-     rv:                       # Beginning of the gecko engine version token
-     ([^;)]{3,15})[;)]       # ensure version string size
-    )?
-  (?>[^"]+)]]></script>    <matcher>user_agent</matcher>
-    <resultfieldname>user_agent_match_result</resultfieldname>
-    <usevar>N</usevar>
-    <allowcapturegroups>Y</allowcapturegroups>
-    <replacefields>N</replacefields>
-    <canoneq>N</canoneq>
-    <caseinsensitive>N</caseinsensitive>
-    <comment>Y</comment>
-    <dotall>N</dotall>
-    <multiline>N</multiline>
-    <unicode>N</unicode>
-    <unix>N</unix>
-    <fields>
       <field>
-        <name>gecko_version</name>
+        <name>ping_count_raw</name>
         <type>String</type>
         <format/>
         <group/>
         <decimal/>
-        <length>15</length>
+        <length>10</length>
         <precision>-1</precision>
         <nullif/>
-        <ifnull>Unknown</ifnull>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>total_ping_count_raw</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>10</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>days_since_last_ping_raw</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>10</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
         <trimtype>none</trimtype>
       </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>350</xloc>
-      <yloc>250</yloc>
+      <xloc>400</xloc>
+      <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1120,8 +1200,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>150</xloc>
-      <yloc>150</yloc>
+      <xloc>100</xloc>
+      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1173,19 +1253,31 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </file>
     <filters>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIwOC4xMzY=</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64: R0VUIC9ibG9ja2xpc3Qv</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIxMy4=</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64: NjMuMjQ1LjIwOA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIxNy4=</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64: NjMuMjQ1LjIwOQ==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIx</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIyMA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIyMQ==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIyMg==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NjMuMjQ1LjIyMw==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: MTgwLjkyLjE4NA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NTkuMTUxLjUw</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NzIuMjYuMjIxLjY2</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+      <filter>
+        <filter_string>Base64: NzIuMjYuMjIxLjY3</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
         <filter_string>Base64: MjA5LjEwLjIxNy4yMjY=</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
-      <filter>
-        <filter_string>Base64: MTgwLjkyLjE4NC4=</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
-      <filter>
-        <filter_string>Base64: NTkuMTUxLjUwLg==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
-      <filter>
-        <filter_string>Base64: R0VUIC9ibG9ja2xpc3Qv</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
     </filters>
     <fields>
       <field>
@@ -1231,8 +1323,201 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>150</xloc>
-      <yloc>50</yloc>
+      <xloc>100</xloc>
+      <yloc>150</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Transform counts</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>RowProcessor</class_name>
+
+        <class_source><![CDATA[import java.util.*;
+
+private static final long JAN_1_11_DATE_ID = 4019L;
+
+public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+{
+    Object[] r = getRow();
+    if (r == null) {
+        setOutputDone();
+        return false;
+    }
+
+    if (first) {
+        first = false;
+    }
+
+    long utc_date_id = get(Fields.In, "utc_date_id").getInteger(r);
+
+    Object[] out = createOutputRow(r, data.outputRowMeta.size());
+
+    long pingCount, totalPingCount, daysSinceLastPing;
+    String pingCountStr = get(Fields.In, "ping_count_raw").getString(r);
+    String totalPingCountStr = get(Fields.In, "total_ping_count_raw").getString(r);
+    String daysSinceLastPingStr = get(Fields.In, "days_since_last_ping_raw").getString(r);
+
+    if (pingCountStr == null) {
+        get(Fields.Out, "ping_count").setValue(out, null);
+    } else {
+        if ("invalid".equals(pingCountStr)) {
+            pingCount = -1L;
+        } else {
+            try {
+                pingCount = Long.parseLong(pingCountStr);
+                if (pingCount < 1L) pingCount = -1L;
+                else if (utc_date_id - pingCount < JAN_1_11_DATE_ID) pingCount = -1L;
+            } catch (Exception e) {
+                pingCount = -1L;
+            }
+        }
+        get(Fields.Out, "ping_count").setValue(out, new Long(pingCount));
+    }
+
+    if (totalPingCountStr == null) {
+        get(Fields.Out, "total_ping_count").setValue(out, null);
+    } else {
+        if ("invalid".equals(totalPingCountStr)) {
+            totalPingCount = -1L;
+        } else {
+            try {
+                totalPingCount = Long.parseLong(totalPingCountStr);
+                if (totalPingCount < 1L) totalPingCount = -1L;
+                else if (utc_date_id - totalPingCount < JAN_1_11_DATE_ID) totalPingCount = -1L;
+            } catch (Exception e) {
+                totalPingCount = -1L;
+            }
+        }
+        get(Fields.Out, "total_ping_count").setValue(out, new Long(totalPingCount));
+    }
+
+    if (daysSinceLastPingStr == null) {
+        get(Fields.Out, "days_since_last_ping").setValue(out, null);
+    } else {
+        if ("invalid".equals(daysSinceLastPingStr)) {
+            daysSinceLastPing = -1L;
+        } else if ("new".equals(daysSinceLastPingStr)) {
+            daysSinceLastPing = 365000L;
+        } else if ("reset".equals(daysSinceLastPingStr)) {
+            daysSinceLastPing = -2L;
+        } else {
+            try {
+                daysSinceLastPing = Long.parseLong(daysSinceLastPingStr);
+                if (daysSinceLastPing < 0L) daysSinceLastPing = -1L;
+                else if (utc_date_id - daysSinceLastPing < JAN_1_11_DATE_ID) daysSinceLastPing = -1L;
+            } catch (Exception e) {
+                daysSinceLastPing = -1L;
+            }
+        }
+        //System.err.printf("\r%5s      %5d      ", new Object[] { daysSinceLastPingStr, daysSinceLastPing });
+        get(Fields.Out, "days_since_last_ping").setValue(out, new Long(daysSinceLastPing));
+    }
+
+    putRow(data.outputRowMeta, out);
+    return true;
+}
+
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+        <field>
+        <field_name>ping_count</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>total_ping_count</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>days_since_last_ping</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>550</xloc>
+      <yloc>350</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Validate url matches</name>
+    <type>Validator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<validate_all>N</validate_all>
+<concat_errors>N</concat_errors>
+<concat_separator>|</concat_separator>
+       <validator_field><name>url_match_result</name>
+<validation_name>success</validation_name>
+<max_length>-1</max_length>
+<min_length>-1</min_length>
+<null_allowed>N</null_allowed>
+<only_null_allowed>N</only_null_allowed>
+<only_numeric_allowed>N</only_numeric_allowed>
+<data_type>Boolean</data_type>
+<data_type_verified>N</data_type_verified>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<max_value/>
+<min_value/>
+<start_string/>
+<end_string/>
+<start_string_not_allowed/>
+<end_string_not_allowed/>
+<regular_expression/>
+<regular_expression_not_allowed/>
+<error_code/>
+<error_description/>
+<is_sourcing_values>N</is_sourcing_values>
+<sourcing_step/>
+<sourcing_field/>
+<allowed_value><value>Y</value>
+</allowed_value></validator_field>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>400</xloc>
+      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1324,6 +1609,30 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
           <column_name>product_build_number</column_name>
           <stream_name>product_build_number</stream_name>
         </field>
+        <field>
+          <column_name>ping_count_raw</column_name>
+          <stream_name>ping_count_raw</stream_name>
+        </field>
+        <field>
+          <column_name>ping_count</column_name>
+          <stream_name>ping_count</stream_name>
+        </field>
+        <field>
+          <column_name>total_ping_count_raw</column_name>
+          <stream_name>total_ping_count_raw</stream_name>
+        </field>
+        <field>
+          <column_name>total_ping_count</column_name>
+          <stream_name>total_ping_count</stream_name>
+        </field>
+        <field>
+          <column_name>days_since_last_ping_raw</column_name>
+          <stream_name>days_since_last_ping_raw</stream_name>
+        </field>
+        <field>
+          <column_name>days_since_last_ping</column_name>
+          <stream_name>days_since_last_ping</stream_name>
+        </field>
     </fields>
     <delimiter>\t</delimiter>
     <null_string/>
@@ -1335,8 +1644,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <stream_name>blocklist bulk_loader${raw_table_suffix}</stream_name>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>650</xloc>
-      <yloc>250</yloc>
+      <xloc>950</xloc>
+      <yloc>350</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1354,7 +1663,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;..&#47;common&#47;get_location_id_with_update.ktr</filename>
+    <filename>${Internal.Transformation.Filename.Directory}&#47;..&#47;common&#47;process_lookup_dimension.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -1378,13 +1687,25 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <allow_multiple_output>N</allow_multiple_output>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>249</xloc>
-      <yloc>150</yloc>
+      <xloc>252</xloc>
+      <yloc>251</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step_error_handling>
+      <error>
+        <source_step>Validate url matches</source_step>
+        <target_step>Log bad URLs</target_step>
+        <is_enabled>Y</is_enabled>
+        <nr_valuename/>
+        <descriptions_valuename/>
+        <fields_valuename/>
+        <codes_valuename/>
+        <max_errors>-1</max_errors>
+        <max_pct_errors>1</max_pct_errors>
+        <min_pct_rows>1000</min_pct_rows>
+      </error>
   </step_error_handling>
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
