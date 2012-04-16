@@ -63,14 +63,6 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <dependencies>
     </dependencies>
     <partitionschemas>
-        <partitionschema>
-          <name>vertica cluster nodes</name>
-          <partition>            <id>FIXME</id>
-          </partition>          <partition>            <id>FIXME</id>
-          </partition>          <partition>            <id>FIXME</id>
-          </partition>          <dynamic>N</dynamic>
-          <partitions_per_slave>1</partitions_per_slave>
-        </partitionschema>
     </partitionschemas>
     <slaveservers>
     </slaveservers>
