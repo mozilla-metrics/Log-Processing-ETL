@@ -278,7 +278,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
            <schema_name/>
            </partitioning>
    <ip_address_field_name>client_ip_address</ip_address_field_name>
-   <db_location>&#47;usr&#47;local&#47;share&#47;GeoIP&#47;GeoIPCity.dat</db_location>
+   <db_location>${MAXMIND_CITY_DB_PATH}</db_location>
    <db_type>CITY</db_type>
     <fields>      <field>        <name>city_name</name>
         <lookup_type>city_name</lookup_type>

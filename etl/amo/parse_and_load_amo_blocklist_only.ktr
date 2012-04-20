@@ -1663,7 +1663,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;..&#47;common&#47;process_lookup_dimension.ktr</filename>
+    <filename>${Internal.Transformation.Filename.Directory}&#47;..&#47;common&#47;process_location_dimension.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
