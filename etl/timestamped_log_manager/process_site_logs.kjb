@@ -114,7 +114,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#47;etl&#47;timestamped_log_manager&#47;get_filenames.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;get_filenames.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -213,7 +213,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#47;etl&#47;timestamped_log_manager&#47;get_filenames.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;get_filenames.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -277,7 +277,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#47;etl&#47;timestamped_log_manager&#47;audit_server_traffic.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;audit_server_traffic.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>

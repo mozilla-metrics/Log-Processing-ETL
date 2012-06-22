@@ -149,7 +149,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#47;etl&#47;gah_vertica&#47;kettle&#47;GenericAggHandler.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;gah_vertica&#47;kettle&#47;GenericAggHandler.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -179,7 +179,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#47;etl&#47;socorro&#47;extract_adu.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;socorro&#47;extract_adu.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -223,7 +223,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#47;etl&#47;amo&#47;export_daily_amo_stats.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;amo&#47;export_daily_amo_stats.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -511,7 +511,7 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#47;etl&#47;dimensions&#47;update.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;dimensions&#47;update.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -612,7 +612,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#47;etl&#47;dimensions&#47;product_version_management.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;dimensions&#47;product_version_management.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -693,7 +693,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#47;etl&#47;socorro&#47;extract_adu.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;socorro&#47;extract_adu.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
