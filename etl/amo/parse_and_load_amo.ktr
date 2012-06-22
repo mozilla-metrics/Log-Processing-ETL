@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!-- The contents of this file are subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
@@ -203,7 +203,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value></allowed_value></validator_field>
+<allowed_value/></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
@@ -333,6 +333,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 
         <class_name>RowProcessor</class_name>
 
+        
         <class_source><![CDATA[import java.util.*;
 
 private static final long dateDimensionEpoch = 946684800543L;
@@ -376,20 +377,20 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
     }
 
-    r = createOutputRow(r, data.outputRowMeta.size());
+    Object[] outputRow = createOutputRow(r, data.outputRowMeta.size());
 
     if (Boolean.TRUE.equals(get(Fields.In, "result").getObject(r))) {
         String url = get(Fields.In, "url").getString(r);
         if (url != null && url.contains("\\.")) {
-            get(Fields.In, "url").setValue(r, url.replace("\\.", "."));
+            get(Fields.Out, "url").setValue(outputRow, url.replace("\\.", "."));
         }
         String url_params = get(Fields.In, "url_params").getString(r);
         if (url_params != null && url_params.contains("\\.")) {
-            get(Fields.In, "url_params").setValue(r, url_params.replace("\\.", "."));
+            get(Fields.Out, "url_params").setValue(outputRow, url_params.replace("\\.", "."));
         }
         String user_agent = get(Fields.In, "user_agent").getString(r);
         if (user_agent != null && user_agent.contains("\\.")) {
-            get(Fields.In, "user_agent").setValue(r, user_agent.replace("\\.", "."));
+            get(Fields.Out, "user_agent").setValue(outputRow, user_agent.replace("\\.", "."));
         }
 
         String date = get(Fields.In, "date").getString(r);
@@ -419,20 +420,19 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         Long yearParse = Long.valueOf(calOut.get(Calendar.YEAR));
 
         String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
-        get(Fields.Out, "utc_date").setValue(r, dateString);
-        get(Fields.Out, "utc_hour").setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
-        get(Fields.Out, "utc_minute").setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
-        get(Fields.Out, "utc_date_id").setValue(r, Long.valueOf((calOut.getTimeInMillis() - dateDimensionEpoch) / (1000 * 60 * 60 * 24) + 1));
+        get(Fields.Out, "utc_date").setValue(outputRow, dateString);
+        get(Fields.Out, "utc_hour").setValue(outputRow, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
+        get(Fields.Out, "utc_minute").setValue(outputRow, Long.valueOf(calOut.get(Calendar.MINUTE)));
+        get(Fields.Out, "utc_date_id").setValue(outputRow, Long.valueOf((calOut.getTimeInMillis() - dateDimensionEpoch) / (1000 * 60 * 60 * 24) + 1));
 
-        putRow(data.outputRowMeta, r);
+        putRow(data.outputRowMeta, outputRow);
     } else {
         incrementLinesRejected();
     }
     return true;
 }
 
-]]></class_source>
-        </definition>
+]]></class_source></definition>
     </definitions>
     <fields>
         <field>
@@ -476,7 +476,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
       <yloc>50</yloc>
