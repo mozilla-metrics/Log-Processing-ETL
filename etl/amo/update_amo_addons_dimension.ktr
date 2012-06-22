@@ -307,12 +307,6 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 , english_name
 , native_name
 , addon_type
-, null as file_creation_date
-, null as file_modification_date
-, null as addon_creation_date
-, null as addon_modification_date
-, null as version_creation_date
-, null as version_modification_date
 FROM amo_hosted_addons
 WHERE is_deleted IS NULL
 ORDER BY addon_id, version_id, file_id</sql>
@@ -349,12 +343,6 @@ ORDER BY addon_id, version_id, file_id</sql>
 , IFNULL(LEFT(t1.localized_string, 255), LEFT(t2.localized_string, 255)) AS raw_name
 , LEFT(t2.localized_string, 255) AS native_name
 , LEFT(t3.localized_string, 30) AS addon_type
-, NULL AS file_creation_date
-, NULL AS file_modification_date
-, NULL AS addon_creation_date
-, NULL AS addon_modification_date
-, NULL AS version_creation_date
-, NULL AS version_modification_date
 FROM addons a
 LEFT JOIN versions v ON a.id = v.addon_id
 LEFT JOIN files f ON v.id = f.version_id
@@ -416,30 +404,6 @@ ORDER BY a.id, v.id, f.id
         <length>-2</length>
         <precision>-2</precision>
       </field>      <field>        <name>addon_type</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>file_creation_date</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>file_modification_date</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>addon_creation_date</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>addon_modification_date</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>version_creation_date</name>
-        <rename/>
-        <length>-2</length>
-        <precision>-2</precision>
-      </field>      <field>        <name>version_modification_date</name>
         <rename/>
         <length>-2</length>
         <precision>-2</precision>
@@ -543,30 +507,6 @@ ORDER BY a.id, v.id, f.id
           <column_name>addon_type</column_name>
           <stream_name>addon_type</stream_name>
         </field>
-        <field>
-          <column_name>file_creation_date</column_name>
-          <stream_name>file_creation_date</stream_name>
-        </field>
-        <field>
-          <column_name>file_modification_date</column_name>
-          <stream_name>file_modification_date</stream_name>
-        </field>
-        <field>
-          <column_name>addon_creation_date</column_name>
-          <stream_name>addon_creation_date</stream_name>
-        </field>
-        <field>
-          <column_name>addon_modification_date</column_name>
-          <stream_name>addon_modification_date</stream_name>
-        </field>
-        <field>
-          <column_name>version_creation_date</column_name>
-          <stream_name>version_creation_date</stream_name>
-        </field>
-        <field>
-          <column_name>version_modification_date</column_name>
-          <stream_name>version_modification_date</stream_name>
-        </field>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -632,30 +572,6 @@ ORDER BY a.id, v.id, f.id
       <value>
         <name>addon_type</name>
         <rename>addon_type</rename>
-        </value>
-      <value>
-        <name>file_creation_date</name>
-        <rename>file_creation_date</rename>
-        </value>
-      <value>
-        <name>file_modification_date</name>
-        <rename>file_modification_date</rename>
-        </value>
-      <value>
-        <name>addon_creation_date</name>
-        <rename>addon_creation_date</rename>
-        </value>
-      <value>
-        <name>addon_modification_date</name>
-        <rename>addon_modification_date</rename>
-        </value>
-      <value>
-        <name>version_creation_date</name>
-        <rename>version_creation_date</rename>
-        </value>
-      <value>
-        <name>version_modification_date</name>
-        <rename>version_modification_date</rename>
         </value>
       </lookup>
      <cluster_schema/>
