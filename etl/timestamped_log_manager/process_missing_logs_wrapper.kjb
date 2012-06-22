@@ -79,13 +79,13 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#47;etl&#47;timestamped_log_manager&#47;process_missing_logs.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;process_missing_logs.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;process_missing_logs_current_run</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;process_missing_logs_current_run</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -108,7 +108,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <description>Shell</description>
       <type>SHELL</type>
       <filename/>
-      <work_directory/>
+      <work_directory>${Internal.Job.Filename.Directory}&#47;..&#47;</work_directory>
       <arg_from_previous>N</arg_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>N</set_logfile>
@@ -119,7 +119,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
       <script>NOW=`date +%s`
-FILE=`stat -c %Z &#47;etl&#47;logs&#47;process_missing_logs_current_run_*.log`
+FILE=`stat -c %Z logs&#47;process_missing_logs_current_run_*.log`
 AGE=`expr \( $NOW - $FILE \) &#47; 60 &#47; 60`
 exit $AGE</script>
       <loglevel>Nothing</loglevel>
@@ -180,7 +180,7 @@ To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle; .&#47;kitchen.sh 
       <delete_all_before>Y</delete_all_before>
       <fields>
         <field>
-          <name>&#47;etl&#47;logs&#47;</name>
+          <name>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;</name>
           <filemask>process_missing_logs_current_run_.*\.log</filemask>
         </field>
       </fields>
@@ -229,7 +229,7 @@ To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle; .&#47;kitchen.sh 
       <delete_all_before>Y</delete_all_before>
       <fields>
         <field>
-          <name>&#47;etl&#47;logs&#47;</name>
+          <name>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;</name>
           <filemask>process_missing_logs_current_run_.*\.log</filemask>
         </field>
       </fields>
@@ -286,7 +286,7 @@ To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle; .&#47;kitchen.sh 
       <description>Shell</description>
       <type>SHELL</type>
       <filename/>
-      <work_directory/>
+      <work_directory>${Internal.Job.Filename.Directory}&#47;..&#47;</work_directory>
       <arg_from_previous>N</arg_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>N</set_logfile>
@@ -296,7 +296,7 @@ To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle; .&#47;kitchen.sh 
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>rename current_run_ &apos;&apos; &#47;etl&#47;logs&#47;process_missing_logs_current_run_*.log
+      <script>rename current_run_ &apos;&apos; logs&#47;process_missing_logs_current_run_*.log
 </script>
       <loglevel>Nothing</loglevel>
       <parallel>N</parallel>
@@ -310,7 +310,7 @@ To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle; .&#47;kitchen.sh 
       <description>Shell</description>
       <type>SHELL</type>
       <filename/>
-      <work_directory/>
+      <work_directory>${Internal.Job.Filename.Directory}&#47;..&#47;</work_directory>
       <arg_from_previous>N</arg_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>N</set_logfile>
@@ -320,7 +320,7 @@ To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle; .&#47;kitchen.sh 
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>ls -l &#47;etl&#47;logs&#47;process_missing_logs_current_run_*.log 2&gt;&amp;1
+      <script>ls -l logs&#47;process_missing_logs_current_run_*.log 2&gt;&amp;1
 exit $?</script>
       <loglevel>Nothing</loglevel>
       <parallel>N</parallel>

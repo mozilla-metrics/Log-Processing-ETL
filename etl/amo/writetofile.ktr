@@ -128,7 +128,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>&#47;etl&#47;processed&#47;${wildcard}_amo_download_requests</name>
+      <name>${Internal.Transformation.Filename.Directory}&#47;..&#47;processed&#47;${wildcard}_amo_download_requests</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
@@ -392,7 +392,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>&#47;etl&#47;processed&#47;${wildcard}_blocklist_requests</name>
+      <name>${Internal.Transformation.Filename.Directory}&#47;..&#47;processed&#47;${wildcard}_blocklist_requests</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
@@ -632,7 +632,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>&#47;etl&#47;processed&#47;${wildcard}_collection_requests</name>
+      <name>${Internal.Transformation.Filename.Directory}&#47;..&#47;processed&#47;${wildcard}_collection_requests</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
@@ -899,7 +899,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>&#47;etl&#47;processed&#47;${wildcard}_share_requests</name>
+      <name>${Internal.Transformation.Filename.Directory}&#47;..&#47;processed&#47;${wildcard}_share_requests</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>
@@ -1046,7 +1046,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <fileNameField/>
     <create_parent_folder>N</create_parent_folder>
     <file>
-      <name>&#47;etl&#47;processed&#47;${wildcard}_versioncheck_requests</name>
+      <name>${Internal.Transformation.Filename.Directory}&#47;..&#47;processed&#47;${wildcard}_versioncheck_requests</name>
       <is_command>N</is_command>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>Y</do_not_open_new_file_init>

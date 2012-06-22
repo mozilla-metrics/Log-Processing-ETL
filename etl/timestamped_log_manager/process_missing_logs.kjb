@@ -121,7 +121,7 @@ ORDER BY 1</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#47;etl&#47;timestamped_log_manager&#47;audit_server_traffic.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;audit_server_traffic.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -153,7 +153,7 @@ ORDER BY 1</custom_sql>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#47;etl&#47;timestamped_log_manager&#47;process_all_sites.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;process_all_sites.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>Y</params_from_previous>
@@ -189,7 +189,7 @@ ORDER BY 1</custom_sql>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>&#47;etl&#47;timestamped_log_manager&#47;process_all_sites.kjb</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;process_all_sites.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>Y</params_from_previous>

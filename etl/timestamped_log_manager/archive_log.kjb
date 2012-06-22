@@ -135,7 +135,7 @@ The ETL log processor will now resume its normal schedule.</comment>
       <description>Shell</description>
       <type>SHELL</type>
       <filename/>
-      <work_directory/>
+      <work_directory>${Internal.Job.Filename.Directory}&#47;..&#47;</work_directory>
       <arg_from_previous>N</arg_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>N</set_logfile>
@@ -145,7 +145,7 @@ The ETL log processor will now resume its normal schedule.</comment>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>ls -l &#47;etl&#47;logs&#47;process_missing_logs_current_run_*.log 2&gt;&amp;1
+      <script>ls -l logs&#47;process_missing_logs_current_run_*.log 2&gt;&amp;1
 exit $?</script>
       <loglevel>Nothing</loglevel>
       <parallel>N</parallel>
@@ -159,7 +159,7 @@ exit $?</script>
       <description>Shell</description>
       <type>SHELL</type>
       <filename/>
-      <work_directory/>
+      <work_directory>${Internal.Job.Filename.Directory}&#47;..&#47;</work_directory>
       <arg_from_previous>N</arg_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>N</set_logfile>
@@ -169,7 +169,7 @@ exit $?</script>
       <add_date>N</add_date>
       <add_time>N</add_time>
       <insertScript>Y</insertScript>
-      <script>rename current_run_ &apos;&apos; &#47;etl&#47;logs&#47;process_missing_logs_current_run_*.log
+      <script>rename current_run_ &apos;&apos; logs&#47;process_missing_logs_current_run_*.log
 </script>
       <loglevel>Nothing</loglevel>
       <parallel>N</parallel>
@@ -197,7 +197,7 @@ exit $?</script>
       <delete_all_before>N</delete_all_before>
       <fields>
         <field>
-          <name>&#47;etl&#47;logs</name>
+          <name>${Internal.Job.Filename.Directory}&#47;..&#47;logs</name>
           <filemask>process_missing_logs_current_run_.*\.log</filemask>
         </field>
       </fields>

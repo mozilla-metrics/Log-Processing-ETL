@@ -515,7 +515,7 @@ LIMIT 1</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>&#47;etl&#47;amo&#47;update_amo_download_valid_sources.ktr</filename>
+      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;amo&#47;update_amo_download_valid_sources.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
