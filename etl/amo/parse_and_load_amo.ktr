@@ -376,9 +376,13 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     if (first) {
         first = false;
         calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
+        // Workaround for http://jira.pentaho.com/browse/PDI-4981 (which seems to have returned in 4.3)
+        data.inputRowMeta = getInputRowMeta();
+        data.outputRowMeta = data.inputRowMeta.clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
     }
 
-    Object[] outputRow = createOutputRow(r, data.outputRowMeta.size());
+    Object[] outputRow = RowDataUtil.resizeArray(r, data.outputRowMeta.size());
 
     if (Boolean.TRUE.equals(get(Fields.In, "result").getObject(r))) {
         String url = get(Fields.In, "url").getString(r);

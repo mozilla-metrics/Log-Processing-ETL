@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <!-- The contents of this file are subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
@@ -254,7 +254,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value></allowed_value></validator_field>
+<allowed_value/></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>150</xloc>
@@ -280,6 +280,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 
         <class_name>RowProcessor</class_name>
 
+        
         <class_source><![CDATA[public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
     Object[] r = getRow();
@@ -290,6 +291,10 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 
     if (first) {
         first = false;
+        // Workaround for http://jira.pentaho.com/browse/PDI-4981 (which seems to have returned in 4.3)
+        data.inputRowMeta = getInputRowMeta();
+        data.outputRowMeta = data.inputRowMeta.clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
     }
 
     String product = get(Fields.In, "product").getString(r);
@@ -304,12 +309,11 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     return true;
 }
 
-]]></class_source>
-        </definition>
+]]></class_source></definition>
     </definitions>
     <fields>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
       <yloc>250</yloc>
@@ -414,7 +418,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
       <yloc>150</yloc>
@@ -849,6 +853,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         <class_name>RowProcessor</class_name>
 
+        
         <class_source><![CDATA[import java.util.*;
 
 // Note that Kettle UDJCs do not appear to support generics.
@@ -888,9 +893,13 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     if (first) {
         first = false;
         calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
+        // Workaround for http://jira.pentaho.com/browse/PDI-4981 (which seems to have returned in 4.3)
+        data.inputRowMeta = getInputRowMeta();
+        data.outputRowMeta = data.inputRowMeta.clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
     }
 
-    r = createOutputRow(r, data.outputRowMeta.size());
+    Object[] outputRow = RowDataUtil.resizeArray(r, data.outputRowMeta.size());
 
     if (Boolean.TRUE.equals(get(Fields.In, "match_result").getObject(r))) {
         String date = get(Fields.In, "date").getString(r);
@@ -919,25 +928,24 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         Long monthParse = Long.valueOf(calOut.get(Calendar.MONTH)+1);
         Long yearParse = Long.valueOf(calOut.get(Calendar.YEAR));
 
-        get(Fields.Out, "utc_day_of_month").setValue(r, domParse);
-        get(Fields.Out, "utc_month").setValue(r, monthParse);
-        get(Fields.Out, "utc_year").setValue(r, yearParse);
-        get(Fields.Out, "utc_hour").setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
-        get(Fields.Out, "utc_minute").setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
-        get(Fields.Out, "utc_second").setValue(r, 0L);
+        get(Fields.Out, "utc_day_of_month").setValue(outputRow, domParse);
+        get(Fields.Out, "utc_month").setValue(outputRow, monthParse);
+        get(Fields.Out, "utc_year").setValue(outputRow, yearParse);
+        get(Fields.Out, "utc_hour").setValue(outputRow, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
+        get(Fields.Out, "utc_minute").setValue(outputRow, Long.valueOf(calOut.get(Calendar.MINUTE)));
+        get(Fields.Out, "utc_second").setValue(outputRow, 0L);
 
         String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
-        get(Fields.Out, "utc_date").setValue(r, dateString);
+        get(Fields.Out, "utc_date").setValue(outputRow, dateString);
 
-        putRow(data.outputRowMeta, r);
+        putRow(data.outputRowMeta, outputRow);
     } else {
         incrementLinesRejected();
     }
     return true;
 }
 
-]]></class_source>
-        </definition>
+]]></class_source></definition>
     </definitions>
     <fields>
         <field>
@@ -1011,7 +1019,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>250</xloc>
       <yloc>150</yloc>
@@ -1583,7 +1591,7 @@ $]]></script>    <matcher>product</matcher>
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value></allowed_value></validator_field>
+<allowed_value/></validator_field>
        <validator_field><name>product_platform</name>
 <validation_name>product_platform in list</validation_name>
 <max_length>-1</max_length>
@@ -1647,7 +1655,7 @@ $]]></script>    <matcher>product</matcher>
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value></allowed_value></validator_field>
+<allowed_value/></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>150</xloc>
