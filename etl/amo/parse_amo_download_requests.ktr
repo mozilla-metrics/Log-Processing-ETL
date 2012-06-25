@@ -835,7 +835,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            </partitioning>
     <specification_method>filename</specification_method>
     <trans_object_id/>
-    <trans_name>process_user_agent_string</trans_name>
+    <trans_name/>
     <filename>${Internal.Transformation.Filename.Directory}&#47;process_gecko_only_user_agent_string.ktr</filename>
     <directory_path/>
     <mappings>
@@ -845,6 +845,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>user_agent</parent><child>user_agent</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step>Mapping output specification</input_step>

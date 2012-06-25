@@ -257,6 +257,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <main_path>Y</main_path>
     <rename_on_output>Y</rename_on_output>
     <description/>
+       <connector><parent>client_ip_address</parent><child>client_ip_address</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step/>
@@ -496,7 +497,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            </partitioning>
     <specification_method>filename</specification_method>
     <trans_object_id/>
-    <trans_name>process_location_dimension</trans_name>
+    <trans_name/>
     <filename>${Internal.Transformation.Filename.Directory}&#47;parse_amo_download_requests.ktr</filename>
     <directory_path/>
     <mappings>
@@ -506,6 +507,9 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>url</parent><child>url</child></connector>
+       <connector><parent>url_params</parent><child>url_params</child></connector>
+       <connector><parent>user_agent</parent><child>user_agent</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step>Mapping output specification</input_step>
@@ -539,7 +543,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            </partitioning>
     <specification_method>filename</specification_method>
     <trans_object_id/>
-    <trans_name>process_location_dimension</trans_name>
+    <trans_name/>
     <filename>${Internal.Transformation.Filename.Directory}&#47;parse_amo_blocklist_requests.ktr</filename>
     <directory_path/>
     <mappings>
@@ -549,6 +553,9 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>url</parent><child>url</child></connector>
+       <connector><parent>user_agent</parent><child>user_agent</child></connector>
+       <connector><parent>utc_date_id</parent><child>utc_date_id</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step>Mapping output specification</input_step>
@@ -592,11 +599,24 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <main_path>N</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>timestamp</parent><child>timestamp</child></connector>
+       <connector><parent>line</parent><child>line</child></connector>
+       <connector><parent>url</parent><child>url</child></connector>
+       <connector><parent>utc_date_id</parent><child>utc_date_id</child></connector>
+       <connector><parent>location_id</parent><child>location_id</child></connector>
+       <connector><parent>client_ip_address</parent><child>client_ip_address</child></connector>
+       <connector><parent>user_agent</parent><child>user_agent</child></connector>
     </mapping>    <mapping>    <input_step>Spool fyf</input_step>
     <output_step>FYF Mapping input specification</output_step>
     <main_path>N</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>timestamp</parent><child>timestamp</child></connector>
+       <connector><parent>line</parent><child>line</child></connector>
+       <connector><parent>url</parent><child>url</child></connector>
+       <connector><parent>utc_date_id</parent><child>utc_date_id</child></connector>
+       <connector><parent>location_id</parent><child>location_id</child></connector>
+       <connector><parent>user_agent</parent><child>user_agent</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step>Mapping output specification</input_step>
@@ -640,6 +660,14 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>timestamp</parent><child>timestamp</child></connector>
+       <connector><parent>url</parent><child>url</child></connector>
+       <connector><parent>user_agent</parent><child>user_agent</child></connector>
+       <connector><parent>client_ip_address</parent><child>client_ip_address</child></connector>
+       <connector><parent>utc_hour</parent><child>utc_hour</child></connector>
+       <connector><parent>utc_minute</parent><child>utc_minute</child></connector>
+       <connector><parent>utc_date_id</parent><child>utc_date_id</child></connector>
+       <connector><parent>location_id</parent><child>location_id</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step>Mapping output specification</input_step>
@@ -673,7 +701,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            </partitioning>
     <specification_method>filename</specification_method>
     <trans_object_id/>
-    <trans_name>process_location_dimension</trans_name>
+    <trans_name/>
     <filename>${Internal.Transformation.Filename.Directory}&#47;parse_amo_versioncheck_requests.ktr</filename>
     <directory_path/>
     <mappings>
@@ -683,6 +711,9 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
     <description/>
+       <connector><parent>url</parent><child>url</child></connector>
+       <connector><parent>url_params</parent><child>url_params</child></connector>
+       <connector><parent>filename</parent><child>filename</child></connector>
     </mapping>      </input>
       <output>
     <mapping>    <input_step>Mapping output specification</input_step>
