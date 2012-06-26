@@ -458,7 +458,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <script><![CDATA[^/blocklist/[123]              # blocklist schema version
 /(?>%7B)?((?<=%7B)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}(?=%7D)|prism@developer\.mozilla\.org|songbird@songbirdnest\.com)(?>%7D)?
                                # ^^ product_guid
-/                              # product_version
+/(?=[^/]{3,30}/)               # product_version
 (                                      #   version string
     (\d{1,2})                          #   major numeric
     \.(\d{1,2}+)                       #   minor numeric

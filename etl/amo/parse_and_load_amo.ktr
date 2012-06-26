@@ -750,8 +750,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            <schema_name/>
            </partitioning>
     <script><![CDATA[^(?>([^\s]{7,15})                      # client_ip
-\s(?>[^\s]+)                           # IDENT and auth fields
-\s(?>[^\s]+)                           # IDENT and auth fields
+\s(?>[^\s]+)                           # IDENT field
+\s(?>[^\s]+)                           # auth field
 \s\[?(\d{2}/\w{3}/\d{4}                # request date dd/MMM/yyyy
 :\d{2}:\d{2}:\d{2}\s[-+ ]\d{4})\]?     # request time :HH:mm:ss -0800
 \s"(?>[A-Z]+)\s                        # HTTP request type

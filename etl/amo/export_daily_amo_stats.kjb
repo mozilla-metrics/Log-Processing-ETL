@@ -247,13 +247,13 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>AMO_DB_HOST</name>
             <stream_name/>
-            <value>cm-webdev01-master01</value>
+            <value>${AMO_DEV_HOST}</value>
             </parameter>            <parameter>            <name>AMO_DB_USER</name>
             <stream_name/>
-            <value>metrics</value>
+            <value>${AMO_DEV_USER}</value>
             </parameter>            <parameter>            <name>AMO_DB_PASS</name>
             <stream_name/>
-            <value>metrics</value>
+            <value>${AMO_DEV_PASS}</value>
             </parameter>            <parameter>            <name>DATE</name>
             <stream_name/>
             <value>= &apos;${PREVIOUS_UTC_DATE}&apos;</value>

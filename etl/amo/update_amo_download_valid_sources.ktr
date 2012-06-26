@@ -75,14 +75,14 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
   <notepads>
   </notepads>
   <connection>
-    <name>amo master</name>
-    <server>${AMO_MASTER_HOST}</server>
+    <name>amo slave</name>
+    <server>${AMO_SLAVE_HOST}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${AMO_MASTER_DATABASE}</database>
-    <port>${AMO_MASTER_PORT}</port>
-    <username>${AMO_MASTER_USER}</username>
-    <password>${AMO_MASTER_PASS}</password>
+    <database>${AMO_SLAVE_DATABASE}</database>
+    <port>${AMO_SLAVE_PORT}</port>
+    <username>${AMO_SLAVE_USER}</username>
+    <password>${AMO_SLAVE_PASS}</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -92,7 +92,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${AMO_MASTER_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>${AMO_SLAVE_PORT}</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
@@ -135,7 +135,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>amo master</connection>
+    <connection>amo slave</connection>
     <sql>SELECT name, type
 FROM download_sources</sql>
     <limit>0</limit>

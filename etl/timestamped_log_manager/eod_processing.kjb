@@ -18,6 +18,11 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
   <modified_user>-</modified_user>
   <modified_date>2010&#47;03&#47;10 17:06:21.241</modified_date>
     <parameters>
+        <parameter>
+            <name>DAYS_AGO</name>
+            <default_value>-1</default_value>
+            <description/>
+        </parameter>
     </parameters>
   <connection>
     <name>metrics</name>
@@ -155,7 +160,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;eod_gah</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_gah</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -187,7 +192,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;eod_socorro</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_socorro</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -229,7 +234,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;eod_amo</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_amo</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -440,7 +445,7 @@ AND status = &apos;Successful&apos;</custom_sql>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;eod_audit</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_audit</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -517,7 +522,7 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;eod_dimensions</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_dimensions</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -618,7 +623,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;eod_dimensions</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_dimensions</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -701,7 +706,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;eod_socorro</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_socorro</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -838,7 +843,7 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <yloc>250</yloc>
       </entry>
     <entry>
-      <name>Mail export error</name>
+      <name>AMO error</name>
       <description>Mail</description>
       <type>MAIL</type>
       <server>localhost</server>
@@ -848,14 +853,100 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <destinationBCc/>
       <replyto>metrics-alerts@mozilla.org</replyto>
       <replytoname>Metrics EOD processor</replytoname>
-      <subject>Error during EOD processing</subject>
+      <subject>Error during EOD processing - AMO Export</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
       <contact_phone>(603) 438-5731</contact_phone>
-      <comment>One of the EOD export scripts returned an error status.
+      <comment>The EOD export to AMO returned an error status.
 Please check the logs and fix the problem then re-run relevant export script manually.
 
-This will delay the nightly exports of data to the Socorro and AMO production sites.
+This will delay the nightly exports of data to the AMO production site.
+</comment>
+      <include_files>Y</include_files>
+      <zip_files>Y</zip_files>
+      <zip_name>run_logs.zip</zip_name>
+      <use_auth>N</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user/>
+      <auth_password>Encrypted </auth_password>
+      <only_comment>Y</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>Y</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>high</priority>
+      <importance>high</importance>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>        <filetype>LOG</filetype>
+      </filetypes>      <embeddedimages>
+      </embeddedimages>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>750</xloc>
+      <yloc>150</yloc>
+      </entry>
+    <entry>
+      <name>Socorro prod error</name>
+      <description>Mail</description>
+      <type>MAIL</type>
+      <server>localhost</server>
+      <port>25</port>
+      <destination>metrics-alerts@mozilla.org</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replytoname>Metrics EOD processor</replytoname>
+      <subject>Error during EOD processing - Socorro Production</subject>
+      <include_date>N</include_date>
+      <contact_person>Daniel Einspanjer</contact_person>
+      <contact_phone>(603) 438-5731</contact_phone>
+      <comment>The EOD export to Socorro Production returned an error status.
+Please check the logs and fix the problem then re-run relevant export script manually.
+
+This will delay the nightly exports of data to the Socorro production site.
+</comment>
+      <include_files>Y</include_files>
+      <zip_files>Y</zip_files>
+      <zip_name>run_logs.zip</zip_name>
+      <use_auth>N</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user/>
+      <auth_password>Encrypted </auth_password>
+      <only_comment>Y</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>Y</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>high</priority>
+      <importance>high</importance>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>        <filetype>LOG</filetype>
+      </filetypes>      <embeddedimages>
+      </embeddedimages>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>750</xloc>
+      <yloc>200</yloc>
+      </entry>
+    <entry>
+      <name>Socorro stage error</name>
+      <description>Mail</description>
+      <type>MAIL</type>
+      <server>localhost</server>
+      <port>25</port>
+      <destination>metrics-alerts@mozilla.org</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replytoname>Metrics EOD processor</replytoname>
+      <subject>Error during EOD processing - Socorro Staging</subject>
+      <include_date>N</include_date>
+      <contact_person>Daniel Einspanjer</contact_person>
+      <contact_phone>(603) 438-5731</contact_phone>
+      <comment>The EOD export to Socorro Staging returned an error status.
+Please check the logs and fix the problem then re-run relevant export script manually.
 </comment>
       <include_files>Y</include_files>
       <zip_files>Y</zip_files>
@@ -880,6 +971,16 @@ This will delay the nightly exports of data to the Socorro and AMO production si
       <nr>0</nr>
       <xloc>750</xloc>
       <yloc>250</yloc>
+      </entry>
+    <entry>
+      <name>Success 2</name>
+      <description>Success</description>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>850</xloc>
+      <yloc>300</yloc>
       </entry>
   </entries>
   <hops>
@@ -1046,15 +1147,6 @@ This will delay the nightly exports of data to the Socorro and AMO production si
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>START</from>
-      <to>Get dates</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Get dates</from>
       <to>Already has successful eod?</to>
       <from_nr>0</from_nr>
@@ -1145,8 +1237,17 @@ This will delay the nightly exports of data to the Socorro and AMO production si
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Run Vertica GAH</from>
+      <to>Set Successful flag for EOD</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>export_daily_amo_stats</from>
-      <to>Mail export error</to>
+      <to>AMO error</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1155,7 +1256,7 @@ This will delay the nightly exports of data to the Socorro and AMO production si
     </hop>
     <hop>
       <from>Export to Socorro</from>
-      <to>Mail export error</to>
+      <to>Socorro prod error</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1164,7 +1265,7 @@ This will delay the nightly exports of data to the Socorro and AMO production si
     </hop>
     <hop>
       <from>Export to Socorro Staging</from>
-      <to>Mail export error</to>
+      <to>Socorro stage error</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1172,13 +1273,49 @@ This will delay the nightly exports of data to the Socorro and AMO production si
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run Vertica GAH</from>
-      <to>Set Successful flag for EOD</to>
+      <from>Export to Socorro Staging</from>
+      <to>Success 2</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>AMO error</from>
+      <to>Export to Socorro</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Socorro prod error</from>
+      <to>Export to Socorro Staging</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Socorro stage error</from>
+      <to>Success 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>START</from>
+      <to>Get dates</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>

@@ -16,6 +16,11 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <trans_status>0</trans_status>
     <directory>&#47;</directory>
     <parameters>
+        <parameter>
+            <name>DAYS_AGO</name>
+            <default_value>-1</default_value>
+            <description/>
+        </parameter>
     </parameters>
     <log>
 <trans-log-table><connection/>
@@ -204,7 +209,7 @@ gmtSDF.setTimeZone(gmtTimeZone);
 
 &#47;&#47; Get the current time truncated to hour of day
 var cal = java.util.Calendar.getInstance(gmtTimeZone);
-cal.add(java.util.Calendar.DATE, -1);
+cal.add(java.util.Calendar.DATE, str2num(getVariable(&quot;DAYS_AGO&quot;, &quot;-1&quot;)));
 
 var previousUTCDate = gmtSDF.format(cal.getTime());
 setVariable(&quot;PREVIOUS_UTC_DATE&quot;, previousUTCDate, &quot;r&quot;);
