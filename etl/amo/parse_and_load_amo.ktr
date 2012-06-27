@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- The contents of this file are subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
@@ -143,7 +143,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </attributes>
   </connection>
   <order>
-  <hop> <from>Discard duplicate downloads</from><to>Process amo_downloads</to><enabled>Y</enabled> </hop>  <hop> <from>Spool versioncheck</from><to>Process versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Abort on unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Spool blocklist</from><to>Process blocklist</to><enabled>Y</enabled> </hop>  <hop> <from>Spool share</from><to>Process share</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool blocklist</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool share</to><enabled>Y</enabled> </hop>  <hop> <from>Spool FYF</from><to>Process collections</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool FYF</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Discard duplicate downloads</to><enabled>Y</enabled> </hop>  <hop> <from>Discard duplicate downloads</from><to>Spool collections</to><enabled>Y</enabled> </hop>  <hop> <from>Spool collections</from><to>Process collections</to><enabled>Y</enabled> </hop>  <hop> <from>Process versioncheck</from><to>Spool versioncheck 2</to><enabled>Y</enabled> </hop>  <hop> <from>Spool versioncheck 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Process blocklist</from><to>Spool blocklist 2</to><enabled>Y</enabled> </hop>  <hop> <from>Spool blocklist 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Process amo_downloads</from><to>Spool amo_downloads 2</to><enabled>Y</enabled> </hop>  <hop> <from>Spool amo_downloads 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Spool collections 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Spool share 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Process collections</from><to>Spool collections 2</to><enabled>Y</enabled> </hop>  <hop> <from>Process share</from><to>Spool share 2</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>GeoIP &#47; location_id lookup</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP &#47; location_id lookup</from><to>Switch to processing module</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Discard duplicate downloads</from><to>Process amo_downloads</to><enabled>Y</enabled> </hop>  <hop> <from>Spool versioncheck</from><to>Process versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Abort on unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Spool blocklist</from><to>Process blocklist</to><enabled>Y</enabled> </hop>  <hop> <from>Spool share</from><to>Process share</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool blocklist</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool share</to><enabled>Y</enabled> </hop>  <hop> <from>Spool FYF</from><to>Process collections</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool FYF</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Discard duplicate downloads</to><enabled>Y</enabled> </hop>  <hop> <from>Discard duplicate downloads</from><to>Spool collections</to><enabled>Y</enabled> </hop>  <hop> <from>Spool collections</from><to>Process collections</to><enabled>Y</enabled> </hop>  <hop> <from>Process versioncheck</from><to>Spool versioncheck 2</to><enabled>Y</enabled> </hop>  <hop> <from>Spool versioncheck 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Process blocklist</from><to>Spool blocklist 2</to><enabled>Y</enabled> </hop>  <hop> <from>Spool blocklist 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Process amo_downloads</from><to>Spool amo_downloads 2</to><enabled>Y</enabled> </hop>  <hop> <from>Spool amo_downloads 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Spool collections 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Spool share 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Process collections</from><to>Spool collections 2</to><enabled>Y</enabled> </hop>  <hop> <from>Process share</from><to>Spool share 2</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP &#47; location_id lookup</from><to>Switch to processing module</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>Merge multiple inputs</to><enabled>Y</enabled> </hop>  <hop> <from>Merge multiple inputs</from><to>GeoIP &#47; location_id lookup</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Abort on unknown</name>
     <type>Abort</type>
@@ -203,7 +203,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value/></validator_field>
+<allowed_value></allowed_value></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
@@ -334,7 +334,6 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 
         <class_name>RowProcessor</class_name>
 
-        
         <class_source><![CDATA[import java.util.*;
 
 private static final long dateDimensionEpoch = 946684800543L;
@@ -437,7 +436,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     return true;
 }
 
-]]></class_source></definition>
+]]></class_source>
+        </definition>
     </definitions>
     <fields>
         <field>
@@ -481,7 +481,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
       <yloc>50</yloc>
@@ -1282,6 +1282,24 @@ a mapping.</description>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>550</xloc>
       <yloc>550</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge multiple inputs</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>248</xloc>
+      <yloc>50</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
