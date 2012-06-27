@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- The contents of this file are subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
@@ -167,7 +167,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Add src constants</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>  <hop> <from>Audit invalid src</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Filter invalid rows</from><to>process_gecko_user_agent</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null src</from><to>Add src constants</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null src</from><to>Validate src</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup addon</from><to>Split url_params</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup request_locale_id</from><to>Lookup addon</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_browser_id</from><to>Lookup user_agent_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_locale_id</from><to>Lookup user_agent_os_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_os_id</from><to>Lookup request_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>NVL addon_name</from><to>Rename locale_ids</to><enabled>Y</enabled> </hop>  <hop> <from>Regex download requests</from><to>Filter invalid rows</to><enabled>Y</enabled> </hop>  <hop> <from>Split url_params</from><to>Filter null src</to><enabled>Y</enabled> </hop>  <hop> <from>Validate src</from><to>Audit invalid src</to><enabled>Y</enabled> </hop>  <hop> <from>Validate src</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>  <hop> <from>process_gecko_user_agent</from><to>Lookup user_agent_browser_id</to><enabled>Y</enabled> </hop>  <hop> <from>Discard duplicate downloads</from><to>Regex download requests</to><enabled>Y</enabled> </hop>  <hop> <from>Rename locale_ids</from><to>amo_downloads bulk_loader</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>GeoIP &#47; location_id lookup</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP &#47; location_id lookup</from><to>Discard duplicate downloads</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Add src constants</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>  <hop> <from>Audit invalid src</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Filter invalid rows</from><to>process_gecko_user_agent</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null src</from><to>Add src constants</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null src</from><to>Validate src</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup addon</from><to>Split url_params</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup request_locale_id</from><to>Lookup addon</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_browser_id</from><to>Lookup user_agent_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_locale_id</from><to>Lookup user_agent_os_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_os_id</from><to>Lookup request_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>NVL addon_name</from><to>Rename locale_ids</to><enabled>Y</enabled> </hop>  <hop> <from>Regex download requests</from><to>Filter invalid rows</to><enabled>Y</enabled> </hop>  <hop> <from>Split url_params</from><to>Filter null src</to><enabled>Y</enabled> </hop>  <hop> <from>Validate src</from><to>Audit invalid src</to><enabled>Y</enabled> </hop>  <hop> <from>Validate src</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>  <hop> <from>process_gecko_user_agent</from><to>Lookup user_agent_browser_id</to><enabled>Y</enabled> </hop>  <hop> <from>Discard duplicate downloads</from><to>Regex download requests</to><enabled>Y</enabled> </hop>  <hop> <from>Rename locale_ids</from><to>amo_downloads bulk_loader</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP &#47; location_id lookup</from><to>Discard duplicate downloads</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>Merge multiple inputs</to><enabled>Y</enabled> </hop>  <hop> <from>Merge multiple inputs</from><to>GeoIP &#47; location_id lookup</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add src constants</name>
     <type>Constant</type>
@@ -276,7 +276,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value/></validator_field>
+<allowed_value></allowed_value></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
@@ -403,7 +403,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>200</xloc>
-      <yloc>49</yloc>
+      <yloc>152</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -734,7 +734,6 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 
         <class_name>RowProcessor</class_name>
 
-        
         <class_source><![CDATA[import java.util.*;
 
 private static final long dateDimensionEpoch = 946684800543L;
@@ -837,7 +836,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     return true;
 }
 
-]]></class_source></definition>
+]]></class_source>
+        </definition>
     </definitions>
     <fields>
         <field>
@@ -881,7 +881,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
       <yloc>50</yloc>
@@ -1489,6 +1489,24 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>300</xloc>
       <yloc>350</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge multiple inputs</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>200</xloc>
+      <yloc>51</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
