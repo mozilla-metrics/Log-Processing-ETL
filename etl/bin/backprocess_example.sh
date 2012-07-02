@@ -6,3 +6,8 @@
 JAVAMAXMEM=10000 ./kitchen.sh -file /etl/timestamped_log_manager/backprocess.kjb \
     -param:SITE_CONDITION="= 'vamo' AND server = 'nslog1'" \
     -param:SITE_TRANSFORMATION=/etl/amo/parse_and_load_amo_versioncheck_only.ktr 2012-02-27-13 2012-02-27-13
+
+# Another example:
+#JAVAMAXMEM=8000 ./kitchen.sh -file /etl/timestamped_log_manager/backprocess.kjb \
+#    -param:SITE_CONDITION="IN ('amo','vamo')" -param:ACTIVE_CONDITION="IS NOT NULL" \
+#    -param:SITE_TRANSFORMATION=/etl/amo/parse_and_load_amo.ktr  2012-04-19-06 2012-04-19-10

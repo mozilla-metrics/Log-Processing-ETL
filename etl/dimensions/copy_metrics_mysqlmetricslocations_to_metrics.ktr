@@ -169,6 +169,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 , city_name
 , latitude
 , longitude
+, geohash
+, insert_date
 FROM locations
 WHERE location_id &gt; IFNULL(?,0)</sql>
     <limit>0</limit>

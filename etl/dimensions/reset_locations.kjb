@@ -64,6 +64,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 , city_name VARCHAR(50)
 , latitude FLOAT
 , longitude FLOAT
+, geohash VARCHAR(6)
+, insert_date DATE
 );
 CREATE PROJECTION locations_super
 (
@@ -77,6 +79,8 @@ CREATE PROJECTION locations_super
 , city_name
 , latitude
 , longitude
+, geohash
+, insert_date
 ) AS SELECT
   location_id
 , continent_code
@@ -88,6 +92,8 @@ CREATE PROJECTION locations_super
 , city_name
 , latitude
 , longitude
+, geohash
+, insert_date
 FROM locations
 ORDER BY continent_code, continent_name, country_code, country_name
 UNSEGMENTED ALL NODES;
@@ -148,9 +154,9 @@ to:   [metrics].[metrics.locations]</launch_in_parallel>
       </entry>
     <entry>
       <name>Drop table locations</name>
-      <description>This executes the SQL to create table [metrics].[metrics.locales]</description>
+      <description>This executes the SQL to create table [metrics].[metrics.locations]</description>
       <type>SQL</type>
-      <launch_in_parallel>This executes the SQL to create table [metrics].[metrics.locales]</launch_in_parallel>
+      <launch_in_parallel>This executes the SQL to create table [metrics].[metrics.locations]</launch_in_parallel>
       <sql>DROP TABLE locations CASCADE;
 </sql>
       <useVariableSubstitution>F</useVariableSubstitution>
