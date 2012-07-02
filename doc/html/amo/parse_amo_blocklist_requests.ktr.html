@@ -739,11 +739,21 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
     if (first) {
         first = false;
+        // Workaround for http://jira.pentaho.com/browse/PDI-4981 (which seems to have returned in 4.3)
+        data.inputRowMeta = getInputRowMeta();
+        data.outputRowMeta = data.inputRowMeta.clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
     }
 
-    long utc_date_id = get(Fields.In, "utc_date_id").getInteger(r);
+    String utc_date_string = get(Fields.In, "utc_date_id").getString(r);
+    long utc_date_id = -1l;
+    try {
+       utc_date_id = Long.parseLong(utc_date_string);
+    } catch (NumberFormatException nfe) {
+       System.out.println("ERROR parsing '" + utc_date_string + "' as a Long. defaulting to -1");
+    }
 
-    Object[] out = createOutputRow(r, data.outputRowMeta.size());
+    Object[] out = RowDataUtil.resizeArray(r, data.outputRowMeta.size());
 
     long pingCount, totalPingCount, daysSinceLastPing;
     String pingCountStr = get(Fields.In, "ping_count_raw").getString(r);

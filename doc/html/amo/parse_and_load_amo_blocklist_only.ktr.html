@@ -65,7 +65,9 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Transform counts"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Capture gecko_version-text" style="&#xA;                    top:382px;&#xA;                    left:372px;                    &#xA;                ">Capture gecko_version</a><a name="Data Validator-icon"></a><div id="Data Validator" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Text file input"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Data Validator-text" style="&#xA;                    top:82px;&#xA;                    left:81.33333333333333px;                    &#xA;                ">Data Validator</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:200px;&#xA;                    top:50px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Data Validator-text" style="&#xA;                    top:82px;&#xA;                    left:81.33333333333333px;                    &#xA;                ">Data Validator</a><a name="GeoIP / location_id lookup-icon"></a><div id="GeoIP / location_id lookup" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:252px;&#xA;                    top:251px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex Capture"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP / location_id lookup-text" style="&#xA;                    top:283px;&#xA;                    left:217.33333333333334px;                    &#xA;                ">GeoIP / location_id lookup</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:200px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Get filenames-text" style="&#xA;                    top:82px;&#xA;                    left:182.66666666666666px;                    &#xA;                ">Get filenames</a><a name="Log bad URLs-icon"></a><div id="Log bad URLs" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileOutput&#xA;                        step-error&#xA;                    " style="&#xA;                    left:550px;&#xA;                    top:250px;&#xA;                ">
             <div class="step-hops"></div>
@@ -93,9 +95,7 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Capture gecko_version"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                step-hop-error&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log bad URLs"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Validate url matches-text" style="&#xA;                    top:282px;&#xA;                    left:373.3333333333333px;                    &#xA;                ">Validate url matches</a><a name="blocklist bulk_loader-icon"></a><div id="blocklist bulk_loader" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:950px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#blocklist bulk_loader-text" style="&#xA;                    top:382px;&#xA;                    left:922px;                    &#xA;                ">blocklist bulk_loader</a><a name="GeoIP / location_id lookup-icon"></a><div id="GeoIP / location_id lookup" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:252px;&#xA;                    top:251px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex Capture"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP / location_id lookup-text" style="&#xA;                    top:283px;&#xA;                    left:217.33333333333334px;                    &#xA;                ">GeoIP / location_id lookup</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#blocklist bulk_loader-text" style="&#xA;                    top:382px;&#xA;                    left:922px;                    &#xA;                ">blocklist bulk_loader</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -174,7 +174,7 @@
                <th>Internal.Transformation.Filename.Directory</th>
                <td></td>
                <td></td>
-               <td><a href="#Lookup product_id">Lookup product_id</a>, <a href="#GeoIP / location_id lookup">GeoIP / location_id lookup</a></td>
+               <td><a href="#GeoIP / location_id lookup">GeoIP / location_id lookup</a>, <a href="#Lookup product_id">Lookup product_id</a></td>
             </tr>
             <tr>
                <th>raw_table_suffix</th>
@@ -380,6 +380,11 @@
          </tbody>
       </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
       <h3 class="step-heading"><a name="Data Validator-text" href="#Data Validator-icon">Data Validator</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Mapping"></div>
+      <h3 class="step-heading"><a name="GeoIP / location_id lookup-text" href="#GeoIP / location_id lookup-icon">GeoIP / location_id lookup</a></h3>
       <p>
          This job entry does not have a description.
          
@@ -596,22 +601,26 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     if (first) {
         first = false;
         calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
+        // Workaround for http://jira.pentaho.com/browse/PDI-4981 (which seems to have returned in 4.3)
+        data.inputRowMeta = getInputRowMeta();
+        data.outputRowMeta = data.inputRowMeta.clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
     }
 
-    r = createOutputRow(r, data.outputRowMeta.size());
+    Object[] outputRow = RowDataUtil.resizeArray(r, data.outputRowMeta.size());
 
     if (Boolean.TRUE.equals(get(Fields.In, "result").getObject(r))) {
         String url = get(Fields.In, "url").getString(r);
         if (url != null &amp;&amp; url.contains("\\.")) {
-            get(Fields.In, "url").setValue(r, url.replace("\\.", "."));
+            get(Fields.Out, "url").setValue(outputRow, url.replace("\\.", "."));
         }
         String url_params = get(Fields.In, "url_params").getString(r);
         if (url_params != null &amp;&amp; url_params.contains("\\.")) {
-            get(Fields.In, "url_params").setValue(r, url_params.replace("\\.", "."));
+            get(Fields.Out, "url_params").setValue(outputRow, url_params.replace("\\.", "."));
         }
         String user_agent = get(Fields.In, "user_agent").getString(r);
         if (user_agent != null &amp;&amp; user_agent.contains("\\.")) {
-            get(Fields.In, "user_agent").setValue(r, user_agent.replace("\\.", "."));
+            get(Fields.Out, "user_agent").setValue(outputRow, user_agent.replace("\\.", "."));
         }
 
         String date = get(Fields.In, "date").getString(r);
@@ -641,12 +650,12 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         Long yearParse = Long.valueOf(calOut.get(Calendar.YEAR));
 
         String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
-        get(Fields.Out, "utc_date").setValue(r, dateString);
-        get(Fields.Out, "utc_hour").setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
-        get(Fields.Out, "utc_minute").setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
-        get(Fields.Out, "utc_date_id").setValue(r, Long.valueOf((calOut.getTimeInMillis() - dateDimensionEpoch) / (1000 * 60 * 60 * 24) + 1));
+        get(Fields.Out, "utc_date").setValue(outputRow, dateString);
+        get(Fields.Out, "utc_hour").setValue(outputRow, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
+        get(Fields.Out, "utc_minute").setValue(outputRow, Long.valueOf(calOut.get(Calendar.MINUTE)));
+        get(Fields.Out, "utc_date_id").setValue(outputRow, Long.valueOf((calOut.getTimeInMillis() - dateDimensionEpoch) / (1000 * 60 * 60 * 24) + 1));
 
-        putRow(data.outputRowMeta, r);
+        putRow(data.outputRowMeta, outputRow);
     } else {
         incrementLinesRejected();
     }
@@ -1147,11 +1156,21 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
     if (first) {
         first = false;
+        // Workaround for http://jira.pentaho.com/browse/PDI-4981 (which seems to have returned in 4.3)
+        data.inputRowMeta = getInputRowMeta();
+        data.outputRowMeta = data.inputRowMeta.clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
     }
 
-    long utc_date_id = get(Fields.In, "utc_date_id").getInteger(r);
+    String utc_date_string = get(Fields.In, "utc_date_id").getString(r);
+    long utc_date_id = -1l;
+    try {
+       utc_date_id = Long.parseLong(utc_date_string);
+    } catch (NumberFormatException nfe) {
+       System.out.println("ERROR parsing '" + utc_date_string + "' as a Long. defaulting to -1");
+    }
 
-    Object[] out = createOutputRow(r, data.outputRowMeta.size());
+    Object[] out = RowDataUtil.resizeArray(r, data.outputRowMeta.size());
 
     long pingCount, totalPingCount, daysSinceLastPing;
     String pingCountStr = get(Fields.In, "ping_count_raw").getString(r);
@@ -1394,12 +1413,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                <td>days_since_last_ping</td>
             </tr>
          </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Mapping"></div>
-      <h3 class="step-heading"><a name="GeoIP / location_id lookup-text" href="#GeoIP / location_id lookup-icon">GeoIP / location_id lookup</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+      </table><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
             SyntaxHighlighter.all();
         </script></body>
 </html>

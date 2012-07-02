@@ -272,7 +272,7 @@ gmtSDF.setTimeZone(gmtTimeZone);
 
 // Get the current time truncated to hour of day
 var cal = java.util.Calendar.getInstance(gmtTimeZone);
-cal.add(java.util.Calendar.DATE, -1);
+cal.add(java.util.Calendar.DATE, str2num(getVariable("DAYS_AGO", "-1")));
 
 var previousUTCDate = gmtSDF.format(cal.getTime());
 setVariable("PREVIOUS_UTC_DATE", previousUTCDate, "r");

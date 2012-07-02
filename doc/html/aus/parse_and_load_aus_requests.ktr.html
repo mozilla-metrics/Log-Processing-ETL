@@ -697,9 +697,13 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     if (first) {
         first = false;
         calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
+        // Workaround for http://jira.pentaho.com/browse/PDI-4981 (which seems to have returned in 4.3)
+        data.inputRowMeta = getInputRowMeta();
+        data.outputRowMeta = data.inputRowMeta.clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
     }
 
-    r = createOutputRow(r, data.outputRowMeta.size());
+    Object[] outputRow = RowDataUtil.resizeArray(r, data.outputRowMeta.size());
 
     if (Boolean.TRUE.equals(get(Fields.In, "match_result").getObject(r))) {
         String date = get(Fields.In, "date").getString(r);
@@ -728,17 +732,17 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         Long monthParse = Long.valueOf(calOut.get(Calendar.MONTH)+1);
         Long yearParse = Long.valueOf(calOut.get(Calendar.YEAR));
 
-        get(Fields.Out, "utc_day_of_month").setValue(r, domParse);
-        get(Fields.Out, "utc_month").setValue(r, monthParse);
-        get(Fields.Out, "utc_year").setValue(r, yearParse);
-        get(Fields.Out, "utc_hour").setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
-        get(Fields.Out, "utc_minute").setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
-        get(Fields.Out, "utc_second").setValue(r, 0L);
+        get(Fields.Out, "utc_day_of_month").setValue(outputRow, domParse);
+        get(Fields.Out, "utc_month").setValue(outputRow, monthParse);
+        get(Fields.Out, "utc_year").setValue(outputRow, yearParse);
+        get(Fields.Out, "utc_hour").setValue(outputRow, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
+        get(Fields.Out, "utc_minute").setValue(outputRow, Long.valueOf(calOut.get(Calendar.MINUTE)));
+        get(Fields.Out, "utc_second").setValue(outputRow, 0L);
 
         String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
-        get(Fields.Out, "utc_date").setValue(r, dateString);
+        get(Fields.Out, "utc_date").setValue(outputRow, dateString);
 
-        putRow(data.outputRowMeta, r);
+        putRow(data.outputRowMeta, outputRow);
     } else {
         incrementLinesRejected();
     }

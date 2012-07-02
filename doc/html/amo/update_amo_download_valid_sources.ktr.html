@@ -81,31 +81,31 @@
          </thead>
          <tbody>
             <tr>
-               <th>AMO_MASTER_HOST</th>
+               <th>AMO_SLAVE_HOST</th>
                <td></td>
                <td></td>
                <td></td>
             </tr>
             <tr>
-               <th>AMO_MASTER_DATABASE</th>
+               <th>AMO_SLAVE_DATABASE</th>
                <td></td>
                <td></td>
                <td></td>
             </tr>
             <tr>
-               <th>AMO_MASTER_PORT</th>
+               <th>AMO_SLAVE_PORT</th>
                <td></td>
                <td>, </td>
                <td></td>
             </tr>
             <tr>
-               <th>AMO_MASTER_USER</th>
+               <th>AMO_SLAVE_USER</th>
                <td></td>
                <td></td>
                <td></td>
             </tr>
             <tr>
-               <th>AMO_MASTER_PASS</th>
+               <th>AMO_SLAVE_PASS</th>
                <td></td>
                <td></td>
                <td></td>
@@ -179,13 +179,13 @@
          </thead>
          <tbody>
             <tr>
-               <th><a href="#connection.amo master">amo master</a></th>
+               <th><a href="#connection.amo slave">amo slave</a></th>
                <td>MYSQL</td>
                <td>Native</td>
-               <td>${AMO_MASTER_HOST}</td>
-               <td>${AMO_MASTER_PORT}</td>
-               <td>${AMO_MASTER_USER}</td>
-               <td><a href="#amo master">Get download_sources</a></td>
+               <td>${AMO_SLAVE_HOST}</td>
+               <td>${AMO_SLAVE_PORT}</td>
+               <td>${AMO_SLAVE_USER}</td>
+               <td><a href="#amo slave">Get download_sources</a></td>
             </tr>
             <tr>
                <th><a href="#connection.metrics">metrics</a></th>
@@ -199,7 +199,7 @@
          </tbody>
       </table>
       <h3>Database Connection Details</h3>
-      <h4><a name="connection.amo master">amo master</a></h4>
+      <h4><a name="connection.amo slave">amo slave</a></h4>
       <table>
          <thead>
             <tr>
@@ -210,11 +210,11 @@
          <tbody>
             <tr>
                <td>name</td>
-               <td>amo master</td>
+               <td>amo slave</td>
             </tr>
             <tr>
                <td>server</td>
-               <td>${AMO_MASTER_HOST}</td>
+               <td>${AMO_SLAVE_HOST}</td>
             </tr>
             <tr>
                <td>type</td>
@@ -226,19 +226,19 @@
             </tr>
             <tr>
                <td>database</td>
-               <td>${AMO_MASTER_DATABASE}</td>
+               <td>${AMO_SLAVE_DATABASE}</td>
             </tr>
             <tr>
                <td>port</td>
-               <td>${AMO_MASTER_PORT}</td>
+               <td>${AMO_SLAVE_PORT}</td>
             </tr>
             <tr>
                <td>username</td>
-               <td>${AMO_MASTER_USER}</td>
+               <td>${AMO_SLAVE_USER}</td>
             </tr>
             <tr>
                <td>password</td>
-               <td>${AMO_MASTER_PASS}</td>
+               <td>${AMO_SLAVE_PASS}</td>
             </tr>
             <tr>
                <td>attributes</td>

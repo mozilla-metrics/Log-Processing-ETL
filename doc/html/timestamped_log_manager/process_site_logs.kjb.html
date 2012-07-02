@@ -96,11 +96,11 @@
             <tr>
                <th>SITE_INIT_TRANS</th>
                <td>xxx</td>
-               <td>Run an optional transform to initialize (e.g. /etl/amo/update_amo_addons_dimension.ktr)</td>
+               <td>Run an optional transform to initialize (e.g. amo/update_amo_addons_dimension.ktr)</td>
             </tr>
             <tr>
                <th>SITE_TRANSFORMATION</th>
-               <td>/etl/amo/parse_and_load_amo.ktr</td>
+               <td>/opt/pentaho/kettle/etl/logProcessing/etl/amo/parse_and_load_amo.ktr</td>
                <td>Which transformation to execute for the site(s)</td>
             </tr>
          </tbody>
@@ -110,17 +110,17 @@
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Process this site?"></a></div>
          </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:43.333333333333336px;&#xA;                " href="#START-text">START</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:250px;&#xA;                    top:50px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process site"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process site"></a></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:232.66666666666666px;&#xA;                " href="/etl/timestamped_log_manager/get_filenames.ktr.html">Get filenames</a><a name="Process site-icon"></a><div id="Process site" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:232.66666666666666px;&#xA;                " href="get_filenames.ktr.html">Get filenames</a><a name="Process site-icon"></a><div id="Process site" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:350px;&#xA;                    top:150px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#audit_server_traffic"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Okay"></a></div>
          </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:334px;&#xA;                " href="${SITE_TRANSFORMATION}.html">Process site</a><a name="Try alternate directory?-icon"></a><div id="Try alternate directory?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-EVAL_TABLE_CONTENT" style="&#xA;                    left:450px;&#xA;                    top:150px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Get filenames"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Okay"></a></div>
          </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:418px;&#xA;                " href="#Try alternate directory?-text">Try alternate directory?</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:450px;&#xA;                    top:50px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process site"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process site"></a></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:432.6666666666667px;&#xA;                " href="/etl/timestamped_log_manager/get_filenames.ktr.html">Get filenames</a><a name="Process site-icon"></a><div id="Process site" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:550px;&#xA;                    top:150px;&#xA;                ">
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:432.6666666666667px;&#xA;                " href="get_filenames.ktr.html">Get filenames</a><a name="Process site-icon"></a><div id="Process site" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:550px;&#xA;                    top:150px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#audit_server_traffic"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Okay"></a></div>
          </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:534px;&#xA;                " href="${SITE_TRANSFORMATION}.html">Process site</a><a name="audit_server_traffic-icon"></a><div id="audit_server_traffic" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:350px;&#xA;                    top:50px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Try alternate directory?"></a></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:323.3333333333333px;&#xA;                " href="/etl/timestamped_log_manager/audit_server_traffic.ktr.html">audit_server_traffic</a><a name="Process this site?-icon"></a><div id="Process this site?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-EVAL_TABLE_CONTENT" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:323.3333333333333px;&#xA;                " href="audit_server_traffic.ktr.html">audit_server_traffic</a><a name="Process this site?-icon"></a><div id="Process this site?" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-EVAL_TABLE_CONTENT" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Test for init trans"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Okay"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Get filenames"></a></div>
          </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:26px;&#xA;                " href="#Process this site?-text">Process this site?</a><a name="Run site initialization transform-icon"></a><div id="Run site initialization transform" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:150px;&#xA;                    top:150px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Process this site?"></a></div>
@@ -175,6 +175,12 @@
                <td></td>
                <td></td>
                <td></td>
+            </tr>
+            <tr>
+               <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get filenames">Get filenames</a>, <a href="#Get filenames">Get filenames</a>, <a href="#audit_server_traffic">audit_server_traffic</a></td>
             </tr>
             <tr>
                <th>SITE_TRANSFORMATION</th>

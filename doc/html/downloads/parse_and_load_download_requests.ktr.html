@@ -69,7 +69,9 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup download_product_id"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Flag invalid product strings-text" style="&#xA;                    top:382px;&#xA;                    left:112.66666666666666px;                    &#xA;                ">Flag invalid product strings</a><a name="Generate filenames-icon"></a><div id="Generate filenames" class="&#xA;                    step-icon&#xA;                    step-icon-UserDefinedJavaClass" style="&#xA;                    left:50px;&#xA;                    top:150px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Generate filenames-text" style="&#xA;                    top:182px;&#xA;                    left:26px;                    &#xA;                ">Generate filenames</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Generate filenames-text" style="&#xA;                    top:182px;&#xA;                    left:26px;                    &#xA;                ">Generate filenames</a><a name="GeoIP / location_id lookup-icon"></a><div id="GeoIP / location_id lookup" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:350px;&#xA;                    top:251px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Add constants"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP / location_id lookup-text" style="&#xA;                    top:283px;&#xA;                    left:315.3333333333333px;                    &#xA;                ">GeoIP / location_id lookup</a><a name="Get filenames-icon"></a><div id="Get filenames" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:50px;&#xA;                    top:50px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Data Validator"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Get filenames-text" style="&#xA;                    top:82px;&#xA;                    left:32.66666666666667px;                    &#xA;                ">Get filenames</a><a name="Load download_requests_raw-icon"></a><div id="Load download_requests_raw" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:450px;&#xA;                    top:350px;&#xA;                ">
             <div class="step-hops"></div>
@@ -95,9 +97,7 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Regex Capture"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Text file input-text" style="&#xA;                    top:182px;&#xA;                    left:130px;                    &#xA;                ">Text file input</a><a name="Validate product fields-icon"></a><div id="Validate product fields" class="&#xA;                    step-icon&#xA;                    step-icon-Validator" style="&#xA;                    left:150px;&#xA;                    top:250px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Lookup download_product_id"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                step-hop-error&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Flag invalid product strings"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Validate product fields-text" style="&#xA;                    top:282px;&#xA;                    left:119.33333333333333px;                    &#xA;                ">Validate product fields</a><a name="GeoIP / location_id lookup-icon"></a><div id="GeoIP / location_id lookup" class="&#xA;                    step-icon&#xA;                    step-icon-Mapping" style="&#xA;                    left:350px;&#xA;                    top:251px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Add constants"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#GeoIP / location_id lookup-text" style="&#xA;                    top:283px;&#xA;                    left:315.3333333333333px;                    &#xA;                ">GeoIP / location_id lookup</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Validate product fields-text" style="&#xA;                    top:282px;&#xA;                    left:119.33333333333333px;                    &#xA;                ">Validate product fields</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -173,16 +173,16 @@
                <td></td>
             </tr>
             <tr>
-               <th>raw_table_suffix</th>
-               <td></td>
-               <td></td>
-               <td><a href="#Load download_requests_raw">Load download_requests_raw</a></td>
-            </tr>
-            <tr>
                <th>Internal.Transformation.Filename.Directory</th>
                <td></td>
                <td></td>
                <td><a href="#GeoIP / location_id lookup">GeoIP / location_id lookup</a></td>
+            </tr>
+            <tr>
+               <th>raw_table_suffix</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Load download_requests_raw">Load download_requests_raw</a></td>
             </tr>
          </tbody>
       </table>
@@ -424,6 +424,10 @@
 
     if (first) {
         first = false;
+        // Workaround for http://jira.pentaho.com/browse/PDI-4981 (which seems to have returned in 4.3)
+        data.inputRowMeta = getInputRowMeta();
+        data.outputRowMeta = data.inputRowMeta.clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
     }
 
     String product = get(Fields.In, "product").getString(r);
@@ -514,7 +518,12 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
                <td>-1</td>
             </tr>
          </tbody>
-      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsFromResult"></div>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Mapping"></div>
+      <h3 class="step-heading"><a name="GeoIP / location_id lookup-text" href="#GeoIP / location_id lookup-icon">GeoIP / location_id lookup</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RowsFromResult"></div>
       <h3 class="step-heading"><a name="Get filenames-text" href="#Get filenames-icon">Get filenames</a></h3>
       <p>
          This job entry does not have a description.
@@ -856,9 +865,13 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     if (first) {
         first = false;
         calOut.setTimeZone(TimeZone.getTimeZone("GMT"));
+        // Workaround for http://jira.pentaho.com/browse/PDI-4981 (which seems to have returned in 4.3)
+        data.inputRowMeta = getInputRowMeta();
+        data.outputRowMeta = data.inputRowMeta.clone();
+        meta.getFields(data.outputRowMeta, getStepname(), null, null, parent);
     }
 
-    r = createOutputRow(r, data.outputRowMeta.size());
+    Object[] outputRow = RowDataUtil.resizeArray(r, data.outputRowMeta.size());
 
     if (Boolean.TRUE.equals(get(Fields.In, "match_result").getObject(r))) {
         String date = get(Fields.In, "date").getString(r);
@@ -887,17 +900,17 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         Long monthParse = Long.valueOf(calOut.get(Calendar.MONTH)+1);
         Long yearParse = Long.valueOf(calOut.get(Calendar.YEAR));
 
-        get(Fields.Out, "utc_day_of_month").setValue(r, domParse);
-        get(Fields.Out, "utc_month").setValue(r, monthParse);
-        get(Fields.Out, "utc_year").setValue(r, yearParse);
-        get(Fields.Out, "utc_hour").setValue(r, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
-        get(Fields.Out, "utc_minute").setValue(r, Long.valueOf(calOut.get(Calendar.MINUTE)));
-        get(Fields.Out, "utc_second").setValue(r, 0L);
+        get(Fields.Out, "utc_day_of_month").setValue(outputRow, domParse);
+        get(Fields.Out, "utc_month").setValue(outputRow, monthParse);
+        get(Fields.Out, "utc_year").setValue(outputRow, yearParse);
+        get(Fields.Out, "utc_hour").setValue(outputRow, Long.valueOf(calOut.get(Calendar.HOUR_OF_DAY)));
+        get(Fields.Out, "utc_minute").setValue(outputRow, Long.valueOf(calOut.get(Calendar.MINUTE)));
+        get(Fields.Out, "utc_second").setValue(outputRow, 0L);
 
         String dateString = String.format("%d-%02d-%02d", new Object[] { yearParse, monthParse, domParse });
-        get(Fields.Out, "utc_date").setValue(r, dateString);
+        get(Fields.Out, "utc_date").setValue(outputRow, dateString);
 
-        putRow(data.outputRowMeta, r);
+        putRow(data.outputRowMeta, outputRow);
     } else {
         incrementLinesRejected();
     }
@@ -1394,11 +1407,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
          </tbody>
       </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Validator"></div>
       <h3 class="step-heading"><a name="Validate product fields-text" href="#Validate product fields-icon">Validate product fields</a></h3>
-      <p>
-         This job entry does not have a description.
-         
-      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Mapping"></div>
-      <h3 class="step-heading"><a name="GeoIP / location_id lookup-text" href="#GeoIP / location_id lookup-icon">GeoIP / location_id lookup</a></h3>
       <p>
          This job entry does not have a description.
          
