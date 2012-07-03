@@ -95,7 +95,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <server>${METRICS_MYSQL_HOST}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_NAME}</database>
+    <database>${METRICS_MYSQL_DATABASE}</database>
     <port>${METRICS_MYSQL_PORT}</port>
     <username>${METRICS_MYSQL_USER}</username>
     <password>${METRICS_MYSQL_PASS}</password>

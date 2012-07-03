@@ -159,7 +159,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     <server>${METRICS_MYSQL_HOST}</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_NAME}</database>
+    <database>${METRICS_MYSQL_DATABASE}</database>
     <port>${METRICS_MYSQL_PORT}</port>
     <username>${METRICS_MYSQL_USER}</username>
     <password>${METRICS_MYSQL_PASS}</password>
