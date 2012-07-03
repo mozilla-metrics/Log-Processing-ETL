@@ -456,7 +456,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <schema_name/>
            </partitioning>
     <script><![CDATA[^/blocklist/[123]              # blocklist schema version
-/(?>%7B)?([^/]+?)(?>%7D)?
+/(?>%7B)?([^/]{1,36}?)(?>%7D)?
                                # ^^ product_guid
 /(?=[^/]{3,30}/)               # product_version
 (                                      #   version string
