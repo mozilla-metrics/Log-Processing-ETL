@@ -178,7 +178,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     <type>Validator</type>
     <description/>
     <distribute>Y</distribute>
-    <copies>2</copies>
+    <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
@@ -272,7 +272,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     <type>MaxMindGeoIPLookup</type>
     <description/>
     <distribute>Y</distribute>
-    <copies>2</copies>
+    <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
@@ -346,7 +346,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     <type>VerticaBulkLoader</type>
     <description/>
     <distribute>Y</distribute>
-    <copies>2</copies>
+    <copies>1</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
