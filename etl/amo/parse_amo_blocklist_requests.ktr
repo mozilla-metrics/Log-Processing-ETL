@@ -456,7 +456,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <schema_name/>
            </partitioning>
     <script><![CDATA[^/blocklist/[123]              # blocklist schema version
-/(?>%7B)?((?<=%7B)[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}(?=%7D)|prism@developer\.mozilla\.org|songbird@songbirdnest\.com)(?>%7D)?
+/(?>%7B)?([^/]+?)(?>%7D)?
                                # ^^ product_guid
 /(?=[^/]{3,30}/)               # product_version
 (                                      #   version string
@@ -904,7 +904,6 @@ $]]></script>    <matcher>url</matcher>
 
         <class_name>RowProcessor</class_name>
 
-        
         <class_source><![CDATA[import java.util.*;
 
 private static final long JAN_1_11_DATE_ID = 4019L;
@@ -1000,7 +999,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     return true;
 }
 
-]]></class_source></definition>
+]]></class_source>
+        </definition>
     </definitions>
     <fields>
         <field>
@@ -1034,7 +1034,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>600</xloc>
       <yloc>150</yloc>
