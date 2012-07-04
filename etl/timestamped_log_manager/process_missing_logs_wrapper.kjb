@@ -146,7 +146,9 @@ exit $AGE</script>
       <contact_phone>(603) 438-5731</contact_phone>
       <comment>There is a log file from a previous run of the log processor that is more than one hour old.
 Please check the attached log for indication of an error or hang and correct the problem.
-To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle; .&#47;kitchen.sh -file &#47;etl&#47;timestamped_log_manager&#47;archive_log.kjb</comment>
+To resume processing, run:
+cd &#47;opt&#47;pentaho&#47;kettle&#47;kettle-4.3; .&#47;kitchen.sh -file &#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;timestamped_log_manager&#47;archive_log.kjb
+</comment>
       <include_files>Y</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
@@ -256,7 +258,7 @@ To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle; .&#47;kitchen.sh 
       <contact_phone>(603) 438-5731</contact_phone>
       <comment>The last run of the log processor returned an error status.
 Please check the attached log for the error and correct the problem.
-To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle; .&#47;kitchen.sh -file &#47;etl&#47;timestamped_log_manager&#47;archive_log.kjb</comment>
+To resume processing, run: cd &#47;opt&#47;pentaho&#47;kettle&#47;kettle-4.3; .&#47;kitchen.sh -file &#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;timestamped_log_manager&#47;archive_log.kjb </comment>
       <include_files>Y</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
