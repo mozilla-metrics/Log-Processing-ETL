@@ -1,0 +1,238 @@
+<?xml version="1.0"?>
+<GenericAggHandlerConfig>
+	<Database>
+		<Url>jdbc:vertica://vertica.metrics.scl3.mozilla.com:5433/metrics</Url>
+		<Class>com.vertica.Driver</Class>
+		<User>dbadmin</User>
+		<Pass/>
+	</Database>
+	<AggregateInfo>
+		<Table>adi_dimensional_by_date</Table>
+		<CreateTableStatement>
+
+			CREATE TABLE "adi_dimensional_by_date" (
+                "_year_quarter" varchar(7) NOT NULL,
+				"bl_date" date NOT NULL,
+				"product" varchar(20),
+				"v_prod_major" varchar(7),
+				"prod_os" varchar(50),
+				"v_prod_os" varchar(50),
+                "channel" varchar(100),
+                "locale" varchar(2),
+                "continent_code" varchar(2),
+                "cntry_code" varchar(2),
+                "tot_requests_on_date" int8)
+				PARTITION BY _year_quarter;
+
+
+			CREATE PROJECTION "adi_dimensional_by_date_super" (
+                "_year_quarter" ENCODING RLE,
+				"bl_date" ENCODING RLE,
+				"product" ENCODING RLE,
+				"v_prod_major" ENCODING RLE,
+				"prod_os",
+				"v_prod_os",
+                "channel" ENCODING RLE,
+                "locale" ENCODING RLE,
+                "continent_code" ENCODING RLE,
+                "cntry_code" ENCODING RLE,
+                "tot_requests_on_date")
+			as select
+                "_year_quarter",
+				"bl_date",
+				"product",
+				"v_prod_major",
+				"prod_os",
+				"v_prod_os",
+                "channel",
+                "locale",
+                "continent_code",
+                "cntry_code",
+                "tot_requests_on_date"
+			from "adi_dimensional_by_date"
+			ORDER BY 
+                "_year_quarter",
+				"bl_date",
+                "channel",
+				"product",
+				"v_prod_major",
+                "locale",
+                "continent_code",
+                "cntry_code"
+			SEGMENTED BY MODULARHASH("tot_requests_on_date") ALL NODES;
+
+			CREATE PROJECTION "adi_dimensional_by_date_super_buddy" (
+                "_year_quarter" ENCODING RLE,
+				"bl_date" ENCODING RLE,
+				"product" ENCODING RLE,
+				"v_prod_major" ENCODING RLE,
+				"prod_os",
+				"v_prod_os",
+                "channel" ENCODING RLE,
+                "locale" ENCODING RLE,
+                "continent_code" ENCODING RLE,
+                "cntry_code" ENCODING RLE,
+                "tot_requests_on_date")
+			as select
+                "_year_quarter",
+				"bl_date",
+				"product",
+				"v_prod_major",
+				"prod_os",
+				"v_prod_os",
+                "channel",
+                "locale",
+                "continent_code",
+                "cntry_code",
+                "tot_requests_on_date"
+			from "adi_dimensional_by_date"
+			ORDER BY 
+                "_year_quarter",
+				"bl_date",
+                "channel",
+				"product",
+				"v_prod_major",
+                "continent_code",
+                "cntry_code",
+                "locale"
+			SEGMENTED BY MODULARHASH("tot_requests_on_date") ALL NODES OFFSET 1;
+		</CreateTableStatement>
+		<TableExistsStatement>select 1 from adi_dimensional_by_date limit 1 </TableExistsStatement>
+		<DropTableStatement>drop table adi_dimensional_by_date CASCADE</DropTableStatement>
+
+		<!-- AggregateMode can be TRUNCATE or INCREMENT;
+		
+		TRUNCATE will issue a DROP TABLE and recreate it. 
+		INCREMENT will try to find the new objects and insert only those 
+		
+		-->
+		
+		<AggregateMode>INCREMENT</AggregateMode>
+
+		<!-- QueryOnFact and QueryOnAggregate must return a single column named "value" -->
+
+		<QueryOnFact>
+            SELECT distinct TO_DATE(2451544 + utc_date_id, 'J') as value FROM blocklist_requests_by_day where utc_date_id >= 4000
+		</QueryOnFact>
+		<QueryOnAggregate>
+			SELECT distinct a.bl_date as value FROM adi_dimensional_by_date a;
+		</QueryOnAggregate>
+		<QuoteValue>true</QuoteValue>
+		<IncrementQuery>
+
+			INSERT /*+ direct */ INTO "adi_dimensional_by_date" (
+                "_year_quarter",
+				"bl_date",
+				"product",
+				"v_prod_major",
+				"prod_os",
+				"v_prod_os",
+                "channel",
+                "locale",
+                "continent_code",
+                "cntry_code",
+                "tot_requests_on_date")
+			select 
+                TO_CHAR(TO_DATE(2451544 + utc_date_id, 'J'), 'YYYY-"Q"Q'),
+                TO_DATE(2451544 + utc_date_id, 'J'),
+				"products"."product_name",
+				"products"."formatted_version_major",
+				"operating_systems"."product_os_platform", 
+				"operating_systems"."product_os_version", 
+				"product_channels"."product_channel", 
+                LEFT(NULLIF("locales"."code", 'Unknown'), 2),
+                "locations"."continent_code",
+                "locations"."country_code",
+				sum("blocklist_requests_by_day"."requests") 
+			from 
+				"blocklist_requests_by_day" as "blocklist_requests_by_day", 
+				"products" as "products", 
+				"product_channels" as "product_channels",
+                "locales" as "locales",
+				"locations" as "locations",
+				"operating_systems" as "operating_systems"
+				${INCREMENT_CONDITION_FROM}
+			where 
+				"blocklist_requests_by_day"."product_id" = "products"."product_id" and 
+				"blocklist_requests_by_day"."os_id" = "operating_systems"."os_id" and
+				"blocklist_requests_by_day"."locale_id" = "locales"."locale_id" and
+				"blocklist_requests_by_day"."location_id" = "locations"."location_id" and
+				"blocklist_requests_by_day"."product_channel_id" = "product_channels"."product_channel_id"
+				and TO_DATE(2451544 + utc_date_id, 'J') IN (${INCREMENT_LIST})
+				${INCREMENT_CONDITION_WHERE}
+			group by 1,2,3,4,5,6,7,8,9,10;
+
+		</IncrementQuery>
+		
+		<InsertQuery>
+
+			INSERT /*+ direct */ INTO "adi_dimensional_by_date" (
+                "_year_quarter",
+				"bl_date",
+				"product",
+				"v_prod_major",
+				"prod_os",
+				"v_prod_os",
+                "channel",
+                "locale",
+                "continent_code",
+                "cntry_code",
+                "tot_requests_on_date")
+			select 
+                TO_CHAR(TO_DATE(2451544 + utc_date_id, 'J'), 'YYYY-"Q"Q'),
+                TO_DATE(2451544 + utc_date_id, 'J'),
+				"products"."product_name",
+				"products"."formatted_version_major",
+				"operating_systems"."product_os_platform", 
+				"operating_systems"."product_os_version", 
+				"product_channels"."product_channel", 
+                LEFT(NULLIF("locales"."code", 'Unknown'), 2),
+                "locations"."continent_code",
+                "locations"."country_code",
+				sum("blocklist_requests_by_day"."requests") 
+			from 
+				"blocklist_requests_by_day" as "blocklist_requests_by_day", 
+				"products" as "products", 
+				"product_channels" as "product_channels",
+                "locales" as "locales",
+				"locations" as "locations",
+				"operating_systems" as "operating_systems"
+			where 
+				"blocklist_requests_by_day"."product_id" = "products"."product_id" and 
+				"blocklist_requests_by_day"."os_id" = "operating_systems"."os_id" and
+				"blocklist_requests_by_day"."locale_id" = "locales"."locale_id" and
+				"blocklist_requests_by_day"."location_id" = "locations"."location_id" and
+				"blocklist_requests_by_day"."product_channel_id" = "product_channels"."product_channel_id"
+			group by 1,2,3,4,5,6,7,8,9,10;
+				
+			SELECT PARTITION_TABLE('adi_dimensional_by_date');
+
+		</InsertQuery>
+
+		<!--
+			
+		IncrementConditionFrom and IncrementConditionWhere are javascript functions who's 
+		output will be inserted in the incremental query condition, in the place of the
+		token ${INCREMENT_CONDITION_FROM} and ${INCREMENT_CONDITION_WHERE}
+
+		Use when extra filtering logic is needed, like exclude today's date from the list of info
+		to be extracted, eg:
+
+		<IncrementConditionWhere>
+			<![CDATA[
+			var a = function(){
+				var now  = new Date();
+				return " and  date <= " +  (now.getYear()+ 1900) + "-" + (now.getMonth()+1) + "-" + now.getDate()
+			}
+			a()
+			]]>
+		</IncrementConditionWhere>
+
+		-->
+
+		<IncrementConditionFrom/>
+		<IncrementConditionWhere/>
+
+	</AggregateInfo>
+	
+</GenericAggHandlerConfig>
