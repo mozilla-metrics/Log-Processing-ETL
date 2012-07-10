@@ -233,7 +233,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;eod_amodev</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_amodev</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
