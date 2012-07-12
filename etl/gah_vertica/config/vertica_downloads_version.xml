@@ -4,10 +4,10 @@
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <GenericAggHandlerConfig>
 	<Database>
-		<Url/>
-		<Class>com.vertica.Driver</Class>
-		<User/>
-		<Pass/>
+		<Url>${VERTICA_GAH_DBURL}</Url>
+		<Class>${VERTICA_DRIVER}</Class>
+		<User>${VERTICA_USER}</User>
+		<Pass>${VERTICA_PASS}</Pass>
 	</Database>
 	<AggregateInfo>
 		<Table>a_downloads_version</Table>
