@@ -20,7 +20,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <parameters>
         <parameter>
             <name>input</name>
-            <default_value>&#47;etl&#47;dimensions&#47;product_versions_to_check.csv</default_value>
+            <default_value>&#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;dimensions&#47;product_versions_to_check.csv</default_value>
             <description>CSV file containing a list of specific product versions to manage</description>
         </parameter>
         <parameter>
@@ -30,7 +30,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         </parameter>
         <parameter>
             <name>output</name>
-            <default_value>&#47;etl&#47;dimensions&#47;product_versions_result</default_value>
+            <default_value>&#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;dimensions&#47;product_versions_result</default_value>
             <description>Results of the transformation tests (omit extension)</description>
         </parameter>
         <parameter>
@@ -127,7 +127,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>&#47;etl&#47;logs&#47;product_version_management</logfile>
+      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;product_version_management</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -161,7 +161,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <contact_person/>
       <contact_phone/>
       <comment>Please review the attached results.  If this run was only &quot;check&quot; mode, then you can prevent these updates from happening during the End of Day processing by running the following command:
-ssh cm-metricsetl01 touch &#47;etl&#47;dimensions&#47;kill_product_version_management_update
+ssh etl1 touch &#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;dimensions&#47;kill_product_version_management_update
 
 Otherwise, the updates will be performed at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portugal</comment>
       <include_files>Y</include_files>
@@ -196,7 +196,7 @@ Otherwise, the updates will be performed at 20:00 Pacific &#47; 23:00 Eastern &#
       <filename/>
       <fields>
         <field>
-          <name>&#47;etl&#47;dimensions&#47;kill_product_version_management_update</name>
+           <name>${Internal.Job.Filename.Directory}&#47;kill_product_version_management_update</name>
         </field>
       </fields>
       <parallel>N</parallel>
@@ -220,7 +220,7 @@ Otherwise, the updates will be performed at 20:00 Pacific &#47; 23:00 Eastern &#
       <include_date>N</include_date>
       <contact_person/>
       <contact_phone/>
-      <comment>Currently, the file cm-metricsetl01:&#47;etl&#47;dimensions&#47;kill_product_version_management_update exists, so the Product Version Management process will not check or update product version descriptions for the dashboard.
+      <comment>Currently, the file etl1:&#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;dimensions&#47;kill_product_version_management_update exists, so the Product Version Management process will not check or update product version descriptions for the dashboard.
 Please verify why the file was created and remove it in order to resume normal processing.
 
 Check mode normally runs at 19:30 Pacific &#47; 22:30 Eastern &#47; 03:30 Portugal

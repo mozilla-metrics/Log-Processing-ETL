@@ -18,7 +18,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <parameters>
         <parameter>
             <name>input</name>
-            <default_value>&#47;etl&#47;dimensions&#47;product_versions_to_check.csv</default_value>
+            <default_value>&#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;dimensions&#47;product_versions_to_check.csv</default_value>
             <description>CSV file containing a list of specific product versions to manage</description>
         </parameter>
         <parameter>
@@ -28,7 +28,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         </parameter>
         <parameter>
             <name>output</name>
-            <default_value>&#47;etl&#47;dimensions&#47;product_versions_result</default_value>
+            <default_value>&#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;dimensions&#47;product_versions_result</default_value>
             <description>Results of the transformation tests (omit extension)</description>
         </parameter>
     </parameters>
