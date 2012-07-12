@@ -47,8 +47,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>257</xloc>
-      <yloc>19</yloc>
+      <xloc>415</xloc>
+      <yloc>17</yloc>
       </entry>
     <entry>
       <name>START</name>
@@ -68,7 +68,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>25</xloc>
-      <yloc>19</yloc>
+      <yloc>17</yloc>
       </entry>
     <entry>
       <name>create _orig file</name>
@@ -92,8 +92,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>257</xloc>
-      <yloc>100</yloc>
+      <xloc>414</xloc>
+      <yloc>106</yloc>
       </entry>
     <entry>
       <name>Write To Log</name>
@@ -105,8 +105,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>135</xloc>
-      <yloc>19</yloc>
+      <xloc>155</xloc>
+      <yloc>17</yloc>
       </entry>
     <entry>
       <name>DUMMY</name>
@@ -125,8 +125,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>809</xloc>
-      <yloc>19</yloc>
+      <xloc>982</xloc>
+      <yloc>17</yloc>
       </entry>
     <entry>
       <name>Create a backup</name>
@@ -150,8 +150,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>377</xloc>
-      <yloc>19</yloc>
+      <xloc>545</xloc>
+      <yloc>17</yloc>
       </entry>
     <entry>
       <name>scrape_ftp_products</name>
@@ -182,36 +182,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>502</xloc>
-      <yloc>19</yloc>
-      </entry>
-    <entry>
-      <name>Evaluate files metrics</name>
-      <description/>
-      <type>EVAL_FILES_METRICS</type>
-      <result_filenames_wildcard/>
-      <Result_field_file/>
-      <Result_field_wildcard/>
-      <Result_field_includesubfolders/>
-      <fields>
-        <field>
-          <source_filefolder>${PRODUCT_DIMENSION_DIR}&#47;product_versions_to_check.csv</source_filefolder>
-          <wildcard/>
-          <include_subFolders>N</include_subFolders>
-        </field>
-      </fields>
-      <comparevalue>1</comparevalue>
-      <minvalue/>
-      <maxvalue/>
-      <successnumbercondition>greater</successnumbercondition>
-      <source_files>files</source_files>
-      <evaluation_type>size</evaluation_type>
-      <scale>bytes</scale>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>657</xloc>
-      <yloc>19</yloc>
+      <xloc>675</xloc>
+      <yloc>17</yloc>
       </entry>
     <entry>
       <name>Error scraping from ftp</name>
@@ -253,8 +225,8 @@ Update mode normally runs at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portu
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>502</xloc>
-      <yloc>105</yloc>
+      <xloc>672</xloc>
+      <yloc>113</yloc>
       </entry>
     <entry>
       <name>Restore backup</name>
@@ -270,7 +242,7 @@ Update mode normally runs at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portu
       <create_destination_folder>N</create_destination_folder>
       <fields>
         <field>
-          <source_filefolder>${PRODUCT_DIMENSION_DIR}&#47;product_versions_to_check_orig.csv</source_filefolder>
+          <source_filefolder>${PRODUCT_DIMENSION_DIR}&#47;product_versions_to_check_bak.csv</source_filefolder>
           <destination_filefolder>${PRODUCT_DIMENSION_DIR}&#47;product_versions_to_check.csv</destination_filefolder>
           <wildcard>.*</wildcard>
         </field>
@@ -278,8 +250,42 @@ Update mode normally runs at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portu
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>656</xloc>
-      <yloc>111</yloc>
+      <xloc>810</xloc>
+      <yloc>116</yloc>
+      </entry>
+    <entry>
+      <name>Delete failed file</name>
+      <description/>
+      <type>DELETE_FILES</type>
+      <arg_from_previous>N</arg_from_previous>
+      <include_subfolders>N</include_subfolders>
+      <fields>
+        <field>
+          <name>${PRODUCT_DIMENSION_DIR}&#47;product_versions_to_check_failed.txt</name>
+          <filemask/>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>285</xloc>
+      <yloc>17</yloc>
+      </entry>
+    <entry>
+      <name>Checks if error found</name>
+      <description/>
+      <type>FILES_EXIST</type>
+      <filename/>
+      <fields>
+        <field>
+          <name>${PRODUCT_DIMENSION_DIR}&#47;product_versions_to_check_failed.txt</name>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>810</xloc>
+      <yloc>17</yloc>
       </entry>
   </entries>
   <hops>
@@ -302,15 +308,6 @@ Update mode normally runs at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portu
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Write To Log</from>
-      <to>Checks if _orig file exists</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Checks if _orig file exists</from>
       <to>Create a backup</to>
       <from_nr>0</from_nr>
@@ -326,38 +323,11 @@ Update mode normally runs at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portu
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>scrape_ftp_products</from>
-      <to>Evaluate files metrics</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Evaluate files metrics</from>
-      <to>DUMMY</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
+      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>scrape_ftp_products</from>
       <to>Error scraping from ftp</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Evaluate files metrics</from>
-      <to>Restore backup</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -383,8 +353,53 @@ Update mode normally runs at 20:00 Pacific &#47; 23:00 Eastern &#47; 04:00 Portu
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>Write To Log</from>
+      <to>Delete failed file</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Delete failed file</from>
+      <to>Checks if _orig file exists</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>scrape_ftp_products</from>
+      <to>Checks if error found</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Checks if error found</from>
+      <to>DUMMY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Checks if error found</from>
+      <to>Restore backup</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Error scraping from ftp</from>
-      <to>Evaluate files metrics</to>
+      <to>Checks if error found</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
