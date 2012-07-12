@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>extract_adu</name>
@@ -358,7 +355,7 @@ JOIN products p ON p.product_id = b.product_id
 JOIN operating_systems o ON o.os_id = b.os_id
 JOIN product_channels c ON b.product_channel_id = c.product_channel_id
 WHERE DATE(date) ${DATE}
-AND ((product_name IN (&apos;Firefox&apos;, &apos;Fennec&apos;, &apos;Thunderbird&apos;) AND product_version_major &gt;= 3) OR (product_name = &apos;SeaMonkey&apos; AND product_version_major &gt;= 2))
+AND ((product_name IN (&apos;Firefox&apos;, &apos;Fennec&apos;, &apos;Thunderbird&apos;) AND product_version_major &gt;= 3) OR (product_name = &apos;SeaMonkey&apos; AND product_version_major &gt;= 2) OR product_name = &apos;WebappRuntime&apos;)
 GROUP BY 1, 2, 3, 4, 5, 6, 7
 ORDER BY 1, 2, 3, 4, 5, 6, 7
 </sql>

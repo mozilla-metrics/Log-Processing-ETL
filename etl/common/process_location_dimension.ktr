@@ -359,6 +359,12 @@ with this additional data.
     <fields>      <field>        <name>geohash</name>
         <lookup_type>geohash</lookup_type>
         <ifnull>s00000</ifnull>
+      </field>      <field>        <name>region_code</name>
+        <lookup_type>region_code</lookup_type>
+        <ifnull>??</ifnull>
+      </field>      <field>        <name>country_code</name>
+        <lookup_type>country_code</lookup_type>
+        <ifnull>??</ifnull>
       </field>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>150</xloc>
@@ -488,6 +494,14 @@ FROM locations
         <key>
           <name>geohash</name>
           <lookup>geohash</lookup>
+        </key>
+        <key>
+          <name>country_code</name>
+          <lookup>country_code</lookup>
+        </key>
+        <key>
+          <name>region_code</name>
+          <lookup>region_code</lookup>
         </key>
         <return>
           <name>location_id</name>
