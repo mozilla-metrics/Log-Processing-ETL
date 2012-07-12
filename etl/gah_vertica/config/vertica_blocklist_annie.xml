@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
 <GenericAggHandlerConfig>
 	<Database>
-		<Url>jdbc:vertica://vertica.metrics.scl3.mozilla.com:5433/metrics</Url>
-		<Class>com.vertica.Driver</Class>
-		<User>dbadmin</User>
-		<Pass/>
+		<Url>${VERTICA_GAH_DBURL}</Url>
+		<Class>${VERTICA_DRIVER}</Class>
+		<User>${VERTICA_USER}</User>
+		<Pass>${VERTICA_PASS}</Pass>
 	</Database>
 	<AggregateInfo>
 		<Table>adi_dimensional_by_date</Table>
