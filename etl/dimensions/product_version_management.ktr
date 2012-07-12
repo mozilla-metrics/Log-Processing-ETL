@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>product_version_management</name>
@@ -118,7 +115,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </attributes>
   </connection>
   <order>
-  <hop> <from>CSV file input</from><to>Query products</to><enabled>Y</enabled> </hop>  <hop> <from>CSV file input</from><to>Query download_products</to><enabled>Y</enabled> </hop>  <hop> <from>Query download_products</from><to>Test download_products</to><enabled>Y</enabled> </hop>  <hop> <from>Query products</from><to>Test products</to><enabled>Y</enabled> </hop>  <hop> <from>Test download_products</from><to>download_products mode</to><enabled>Y</enabled> </hop>  <hop> <from>Test products</from><to>products mode</to><enabled>Y</enabled> </hop>  <hop> <from>download_products mode</from><to>Update download_products</to><enabled>Y</enabled> </hop>  <hop> <from>products mode</from><to>Update products</to><enabled>Y</enabled> </hop>  <hop> <from>Mismatches or Updates</from><to>Output results</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Debug log UP TO DATE</to><enabled>Y</enabled> </hop>  <hop> <from>Test download_products</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Test products</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Debug log UP TO DATE</from><to>Wait for finish</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows 2</from><to>Serialize execution</to><enabled>Y</enabled> </hop>  <hop> <from>Serialize execution</from><to>Debug log UP TO DATE 2</to><enabled>Y</enabled> </hop>  <hop> <from>Wait for finish</from><to>Pass empty row</to><enabled>Y</enabled> </hop>  <hop> <from>Pass empty row</from><to>Serialize execution</to><enabled>Y</enabled> </hop>  <hop> <from>Mismatches or Updates 2</from><to>Output results 2</to><enabled>Y</enabled> </hop>  <hop> <from>Debug log UP TO DATE</from><to>Mismatches or Updates</to><enabled>Y</enabled> </hop>  <hop> <from>Debug log UP TO DATE 2</from><to>Mismatches or Updates 2</to><enabled>Y</enabled> </hop>  <hop> <from>Output results</from><to>Group by</to><enabled>Y</enabled> </hop>  <hop> <from>Output results 2</from><to>Group by</to><enabled>Y</enabled> </hop>  <hop> <from>Group by</from><to>Debug log results</to><enabled>Y</enabled> </hop>  <hop> <from>Debug log results</from><to>Copy row to result as flag</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>CSV file input</from><to>Query products</to><enabled>Y</enabled> </hop>  <hop> <from>CSV file input</from><to>Query download_products</to><enabled>Y</enabled> </hop>  <hop> <from>Query download_products</from><to>Test download_products</to><enabled>Y</enabled> </hop>  <hop> <from>Query products</from><to>Test products</to><enabled>Y</enabled> </hop>  <hop> <from>Test download_products</from><to>download_products mode</to><enabled>Y</enabled> </hop>  <hop> <from>Test products</from><to>products mode</to><enabled>Y</enabled> </hop>  <hop> <from>download_products mode</from><to>Update download_products</to><enabled>N</enabled> </hop>  <hop> <from>products mode</from><to>Update products</to><enabled>N</enabled> </hop>  <hop> <from>Mismatches or Updates</from><to>Output results</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Debug log UP TO DATE</to><enabled>Y</enabled> </hop>  <hop> <from>Test download_products</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Test products</from><to>Sort rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Debug log UP TO DATE</from><to>Wait for finish</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows 2</from><to>Serialize execution</to><enabled>Y</enabled> </hop>  <hop> <from>Serialize execution</from><to>Debug log UP TO DATE 2</to><enabled>Y</enabled> </hop>  <hop> <from>Wait for finish</from><to>Pass empty row</to><enabled>Y</enabled> </hop>  <hop> <from>Pass empty row</from><to>Serialize execution</to><enabled>Y</enabled> </hop>  <hop> <from>Mismatches or Updates 2</from><to>Output results 2</to><enabled>Y</enabled> </hop>  <hop> <from>Debug log UP TO DATE</from><to>Mismatches or Updates</to><enabled>Y</enabled> </hop>  <hop> <from>Debug log UP TO DATE 2</from><to>Mismatches or Updates 2</to><enabled>Y</enabled> </hop>  <hop> <from>Output results</from><to>Group by</to><enabled>Y</enabled> </hop>  <hop> <from>Output results 2</from><to>Group by</to><enabled>Y</enabled> </hop>  <hop> <from>Group by</from><to>Debug log results</to><enabled>Y</enabled> </hop>  <hop> <from>Debug log results</from><to>Copy row to result as flag</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>CSV file input</name>
     <type>CsvInput</type>
@@ -236,7 +233,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
-    <optimizationLevel/>
+    <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>if (result == &quot;UP TO DATE&quot; || result == &quot;NOT FOUND&quot;) {
@@ -256,7 +253,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 }</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>Item_0</jsScript_name>
-        <jsScript_script>var isBasicLogLevel = org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
+        <jsScript_script>var isBasicLogLevel = true; &#47;&#47; This is not found! org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
 
 println(java.lang.String.format(&quot;%20s | %15s | %15s | %6s | %20s | %20s | %7s | %7s&quot;, [
 &quot;download_name&quot;, &quot;version&quot;
@@ -282,7 +279,7 @@ println(java.lang.String.format(&quot;%20s | %15s | %15s | %6s | %20s | %20s | %
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
-    <optimizationLevel/>
+    <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>if (result == &quot;UP TO DATE&quot; || result == &quot;NOT FOUND&quot;) {
@@ -296,7 +293,7 @@ println(java.lang.String.format(&quot;%20s | %15s | %15s | %6s | %20s | %20s | %
 }</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>Item_0</jsScript_name>
-        <jsScript_script>var isBasicLogLevel = org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
+        <jsScript_script>var isBasicLogLevel = true; &#47;&#47; org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
 
 println(java.lang.String.format(&quot;\n\n%20s | %15s | %15s | %6s | %7s | %7s&quot;, [
 &quot;product_name&quot;, &quot;version&quot;, &quot;result&quot;, &quot;id&quot;, &quot;MVer&quot;, &quot;newMVer&quot;]));</jsScript_script>
