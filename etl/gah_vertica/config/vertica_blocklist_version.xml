@@ -179,7 +179,7 @@ SEGMENTED BY HASH(a_blocklist_version."blocklist_requests_by_day_Total_Requests"
 				"dates"."date" as "dates_Date", 
 				"products"."product_name" as "products_Name", 
 				"products"."formatted_version_major" as "products_Version_major", 
-				"products"."product_version" as "products_Version_string", 
+				left("products"."product_version",19) as "products_Version_string", 
 				sum("blocklist_requests_by_day"."requests") as "blocklist_requests_by_day_Total_Requests", 
 				count(*) as "blocklist_requests_by_day_fact_count"
 			from 
@@ -222,7 +222,7 @@ SEGMENTED BY HASH(a_blocklist_version."blocklist_requests_by_day_Total_Requests"
 				"dates"."date" as "dates_Date", 
 				"products"."product_name" as "products_Name", 
 				"products"."formatted_version_major" as "products_Version_major", 
-				"products"."product_version" as "products_Version_string", 
+				left("products"."product_version",19) as "products_Version_string", 
 				sum("blocklist_requests_by_day"."requests") as "blocklist_requests_by_day_Total_Requests", 
 				count(*) as "blocklist_requests_by_day_fact_count"
 			from 
