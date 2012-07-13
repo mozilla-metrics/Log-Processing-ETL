@@ -448,13 +448,31 @@ writeToLog(&quot;m&quot;,&quot;GAH: Processing Config file: &quot; + filename);<
            </partitioning>
     <fields>
       <field>
-        <field_name>DatabaseClass</field_name>
+        <field_name>DatabaseClass_1</field_name>
         <variable_name>GAH_DBCLASS</variable_name>
         <variable_type>JVM</variable_type>
         <default_value/>
         </field>
       <field>
-        <field_name>DatabaseSchema</field_name>
+        <field_name>DatabasePass_1</field_name>
+        <variable_name>GAH_DBPASS</variable_name>
+        <variable_type>JVM</variable_type>
+        <default_value/>
+        </field>
+      <field>
+        <field_name>DatabaseUrl_1</field_name>
+        <variable_name>GAH_DBURL</variable_name>
+        <variable_type>JVM</variable_type>
+        <default_value/>
+        </field>
+      <field>
+        <field_name>DatabaseUser_1</field_name>
+        <variable_name>GAH_DBUSER</variable_name>
+        <variable_type>JVM</variable_type>
+        <default_value/>
+        </field>
+      <field>
+        <field_name>DatabaseSchema_1</field_name>
         <variable_name>GAH_DBSCHEMA</variable_name>
         <variable_type>JVM</variable_type>
         <default_value/>
@@ -551,7 +569,7 @@ writeToLog(&quot;m&quot;,&quot;GAH: Processing Config file: &quot; + filename);<
            <method>none</method>
            <schema_name/>
            </partitioning>
-       <calculation><field_name>DatabaseClass</field_name>
+       <calculation><field_name>DatabaseClass_1</field_name>
 <calc_type>SUBSTITUTE_VARIABLE</calc_type>
 <field_a>DatabaseClass</field_a>
 <field_b/>
@@ -565,7 +583,7 @@ writeToLog(&quot;m&quot;,&quot;GAH: Processing Config file: &quot; + filename);<
 <grouping_symbol/>
 <currency_symbol/>
 </calculation>
-       <calculation><field_name>DatabasePass</field_name>
+       <calculation><field_name>DatabasePass_1</field_name>
 <calc_type>SUBSTITUTE_VARIABLE</calc_type>
 <field_a>DatabasePass</field_a>
 <field_b/>
@@ -579,7 +597,7 @@ writeToLog(&quot;m&quot;,&quot;GAH: Processing Config file: &quot; + filename);<
 <grouping_symbol/>
 <currency_symbol/>
 </calculation>
-       <calculation><field_name>DatabaseSchema</field_name>
+       <calculation><field_name>DatabaseSchema_1</field_name>
 <calc_type>SUBSTITUTE_VARIABLE</calc_type>
 <field_a>DatabaseSchema</field_a>
 <field_b/>
@@ -593,7 +611,7 @@ writeToLog(&quot;m&quot;,&quot;GAH: Processing Config file: &quot; + filename);<
 <grouping_symbol/>
 <currency_symbol/>
 </calculation>
-       <calculation><field_name>DatabaseUrl</field_name>
+       <calculation><field_name>DatabaseUrl_1</field_name>
 <calc_type>SUBSTITUTE_VARIABLE</calc_type>
 <field_a>DatabaseUrl</field_a>
 <field_b/>
@@ -607,7 +625,7 @@ writeToLog(&quot;m&quot;,&quot;GAH: Processing Config file: &quot; + filename);<
 <grouping_symbol/>
 <currency_symbol/>
 </calculation>
-       <calculation><field_name>DatabaseUser</field_name>
+       <calculation><field_name>DatabaseUser_1</field_name>
 <calc_type>SUBSTITUTE_VARIABLE</calc_type>
 <field_a>DatabaseUser</field_a>
 <field_b/>
