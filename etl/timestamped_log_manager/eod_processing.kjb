@@ -130,7 +130,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_rollup</logfile>
+      <logfile>${ETL_LOG_DIR}&#47;eod_rollup</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -160,7 +160,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_gah</logfile>
+      <logfile>${ETL_LOG_DIR}&#47;eod_gah</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -192,7 +192,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_socorro</logfile>
+      <logfile>${ETL_LOG_DIR}&#47;eod_socorro</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -234,7 +234,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_amo</logfile>
+      <logfile>${ETL_LOG_DIR}&#47;eod_amo</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -445,7 +445,7 @@ AND status = &apos;Successful&apos;</custom_sql>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_audit</logfile>
+      <logfile>${ETL_LOG_DIR}&#47;eod_audit</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -522,7 +522,7 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_dimensions</logfile>
+      <logfile>${ETL_LOG_DIR}&#47;eod_dimensions</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -623,7 +623,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_dimensions</logfile>
+      <logfile>${ETL_LOG_DIR}&#47;eod_dimensions</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -706,7 +706,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>${Internal.Job.Filename.Directory}&#47;..&#47;logs&#47;eod_socorro</logfile>
+      <logfile>${ETL_LOG_DIR}&#47;eod_socorro</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
