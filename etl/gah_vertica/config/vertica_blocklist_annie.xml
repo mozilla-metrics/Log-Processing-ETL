@@ -112,7 +112,7 @@
 		<!-- QueryOnFact and QueryOnAggregate must return a single column named "value" -->
 
 		<QueryOnFact>
-            SELECT distinct TO_DATE(2451544 + utc_date_id, 'J') as value FROM blocklist_requests_by_day where utc_date_id >= 4000
+            SELECT distinct TO_DATE(2451544 + utc_date_id, 'J') as value FROM blocklist_requests_by_day
 		</QueryOnFact>
 		<QueryOnAggregate>
 			SELECT distinct a.bl_date as value FROM adi_dimensional_by_date a;
