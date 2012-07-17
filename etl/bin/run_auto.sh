@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cd /opt/pentaho/kettle/kettle-4.3/
 BASEDIR=/opt/pentaho/kettle/etl/logProcessing
+
+cd $BASEDIR/kettle
+
 KETTLE_JOB=$BASEDIR/etl/timestamped_log_manager/process_missing_logs_wrapper.kjb
 LOG=/var/log/etl/auto_cron_hourly.log
 

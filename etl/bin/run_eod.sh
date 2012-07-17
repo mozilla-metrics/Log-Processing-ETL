@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cd /opt/pentaho/kettle/kettle-4.3/
 BASEDIR=/opt/pentaho/kettle/etl/logProcessing
+cd $BASEDIR/kettle
 LOG=/var/log/etl/eod_cron.log
 KETTLE_JOB=$BASEDIR/etl/timestamped_log_manager/eod_processing.kjb
 
