@@ -91,7 +91,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Detailed</loglevel>
       <cluster>N</cluster>
       <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
@@ -123,7 +123,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <logext/>
       <add_date>N</add_date>
       <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
+      <loglevel>Detailed</loglevel>
       <cluster>N</cluster>
       <slave_server_name/>
       <set_append_logfile>N</set_append_logfile>
