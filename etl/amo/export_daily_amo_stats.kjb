@@ -263,6 +263,18 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <xloc>450</xloc>
       <yloc>50</yloc>
       </entry>
+    <entry>
+      <name>Try to avoid a deadlock</name>
+      <description/>
+      <type>DELAY</type>
+      <maximumTimeout>5</maximumTimeout>
+      <scaletime>0</scaletime>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>150</xloc>
+      <yloc>50</yloc>
+      </entry>
   </entries>
   <hops>
     <hop>
@@ -293,15 +305,6 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>export_daily_amo_download_stats</from>
-      <to>export_daily_amo_update_stats</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>export_daily_amo_update_stats</from>
       <to>Export to AMO dev</to>
       <from_nr>0</from_nr>
@@ -309,6 +312,24 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>export_daily_amo_download_stats</from>
+      <to>Try to avoid a deadlock</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Try to avoid a deadlock</from>
+      <to>export_daily_amo_update_stats</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
