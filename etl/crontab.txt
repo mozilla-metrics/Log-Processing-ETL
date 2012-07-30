@@ -1,0 +1,23 @@
+MAILTO="metrics-alerts@mozilla.org"
+
+# Normal runs through most of the day, twice an hour. Skip hour 2, since that commonly runs out of memory.
+ */30  0-1,3-17 * * * export KETTLE_HOME=/opt/pentaho/kettle; /opt/pentaho/kettle/etl/logProcessing/etl/bin/run_auto.sh
+
+# Only run the first of hour at hour 18, skip the half hour run
+  0       18    * * * export KETTLE_HOME=/opt/pentaho/kettle; /opt/pentaho/kettle/etl/logProcessing/etl/bin/run_auto.sh
+
+# Run a big check for any late arriving logs from inactive servers at 18:45, just over an hour before the EOD starts
+  45      18    * * * export KETTLE_HOME=/opt/pentaho/kettle; /opt/pentaho/kettle/etl/logProcessing/etl/bin/run_auto.sh -param:allowedLogLagHours=-20
+
+# Run one last normal run 45 minutes before EOD
+  15      19    * * * export KETTLE_HOME=/opt/pentaho/kettle; /opt/pentaho/kettle/etl/logProcessing/etl/bin/run_auto.sh
+
+# Run the EOD at 20:00
+  0       20    * * * export KETTLE_HOME=/opt/pentaho/kettle; /opt/pentaho/kettle/etl/logProcessing/etl/bin/run_eod.sh
+
+# Run a normal run 45 minutes into the EOD just incase it is waiting on files.
+  45      20    * * * export KETTLE_HOME=/opt/pentaho/kettle; /opt/pentaho/kettle/etl/logProcessing/etl/bin/run_auto.sh
+
+# Resume normal runs twice an hour. Skip hour 23, since that commonly runs out of memory.
+ */30   21-22   * * * export KETTLE_HOME=/opt/pentaho/kettle; /opt/pentaho/kettle/etl/logProcessing/etl/bin/run_auto.sh
+
