@@ -69,9 +69,9 @@
     <notepad>
       <note>esr is the channel, so we need to
 remove it from the version</note>
-      <xloc>453</xloc>
-      <yloc>363</yloc>
-      <width>203</width>
+      <xloc>294</xloc>
+      <yloc>544</yloc>
+      <width>207</width>
       <heigth>42</heigth>
       <fontname>Arial</fontname>
       <fontsize>10</fontsize>
@@ -90,8 +90,8 @@ remove it from the version</note>
     </notepad>
     <notepad>
       <note>We need to generate webapprt form fx &gt;=16</note>
-      <xloc>555</xloc>
-      <yloc>210</yloc>
+      <xloc>664</xloc>
+      <yloc>22</yloc>
       <width>267</width>
       <heigth>26</heigth>
       <fontname>Arial</fontname>
@@ -109,9 +109,30 @@ remove it from the version</note>
       <bordercolorblue>100</bordercolorblue>
       <drawshadow>Y</drawshadow>
     </notepad>
+    <notepad>
+      <note>We need to generate webapprtMobile for fennec &gt;=16</note>
+      <xloc>669</xloc>
+      <yloc>260</yloc>
+      <width>321</width>
+      <heigth>25</heigth>
+      <fontname>Arial</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <order>
-  <hop> <from>Get (\d{2}\.\d+)\..* only</from><to>Discard</to><enabled>Y</enabled> </hop>  <hop> <from>Split dirs and files</from><to>Get product</to><enabled>Y</enabled> </hop>  <hop> <from>Split dirs and files</from><to>Get product 2</to><enabled>Y</enabled> </hop>  <hop> <from>Get product</from><to>version</to><enabled>Y</enabled> </hop>  <hop> <from>Get product 2</from><to>File versions</to><enabled>Y</enabled> </hop>  <hop> <from>Calculator</from><to>Get (\d{2}\.\d+)\..* only</to><enabled>Y</enabled> </hop>  <hop> <from>version</from><to>Format values 1</to><enabled>Y</enabled> </hop>  <hop> <from>Format values 1</from><to>Calculator</to><enabled>Y</enabled> </hop>  <hop> <from>File versions</from><to>Format values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Format values 2</from><to>Calculator</to><enabled>Y</enabled> </hop>  <hop> <from>Format output</from><to>Join</to><enabled>Y</enabled> </hop>  <hop> <from>Join originals</from><to>Join</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Discard</from><to>Get firefox &gt;=16</to><enabled>Y</enabled> </hop>  <hop> <from>Get firefox &gt;=16</from><to>Replace fennec</to><enabled>Y</enabled> </hop>  <hop> <from>Get firefox &gt;=16</from><to>Genarate webapprt</to><enabled>Y</enabled> </hop>  <hop> <from>Genarate webapprt</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Generate webappRuntime</to><enabled>Y</enabled> </hop>  <hop> <from>Generate webappRuntime</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Replace fennec</to><enabled>Y</enabled> </hop>  <hop> <from>Get Dirs from FTP</from><to>Split dirs and files</to><enabled>Y</enabled> </hop>  <hop> <from>Format output</from><to>Detect empty stream</to><enabled>Y</enabled> </hop>  <hop> <from>Detect empty stream</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Save failure file</to><enabled>Y</enabled> </hop>  <hop> <from>Join</from><to>Create download_version</to><enabled>Y</enabled> </hop>  <hop> <from>Replace fennec</from><to>Format output</to><enabled>Y</enabled> </hop>  <hop> <from>Create download_version</from><to>Replace esr and beta</to><enabled>Y</enabled> </hop>  <hop> <from>Replace esr and beta</from><to>Sort rows</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Get (\d{2}\.\d+)\..* only</from><to>Discard</to><enabled>Y</enabled> </hop>  <hop> <from>Split dirs and files</from><to>Get product</to><enabled>Y</enabled> </hop>  <hop> <from>Split dirs and files</from><to>Get product 2</to><enabled>Y</enabled> </hop>  <hop> <from>Get product</from><to>version</to><enabled>Y</enabled> </hop>  <hop> <from>Get product 2</from><to>File versions</to><enabled>Y</enabled> </hop>  <hop> <from>Calculator</from><to>Get (\d{2}\.\d+)\..* only</to><enabled>Y</enabled> </hop>  <hop> <from>version</from><to>Format values 1</to><enabled>Y</enabled> </hop>  <hop> <from>Format values 1</from><to>Calculator</to><enabled>Y</enabled> </hop>  <hop> <from>File versions</from><to>Format values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Format values 2</from><to>Calculator</to><enabled>Y</enabled> </hop>  <hop> <from>Format output</from><to>Join</to><enabled>Y</enabled> </hop>  <hop> <from>Join originals</from><to>Join</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Text file output</to><enabled>Y</enabled> </hop>  <hop> <from>Discard</from><to>Get firefox &gt;=16</to><enabled>Y</enabled> </hop>  <hop> <from>Get firefox &gt;=16</from><to>Genarate webapprt</to><enabled>Y</enabled> </hop>  <hop> <from>Genarate webapprt</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Generate webappRuntime</to><enabled>Y</enabled> </hop>  <hop> <from>Generate webappRuntime</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Replace fennec</to><enabled>Y</enabled> </hop>  <hop> <from>Get Dirs from FTP</from><to>Split dirs and files</to><enabled>Y</enabled> </hop>  <hop> <from>Format output</from><to>Detect empty stream</to><enabled>Y</enabled> </hop>  <hop> <from>Detect empty stream</from><to>Add constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add constants</from><to>Save failure file</to><enabled>Y</enabled> </hop>  <hop> <from>Join</from><to>Create download_version</to><enabled>Y</enabled> </hop>  <hop> <from>Create download_version</from><to>Replace esr and beta</to><enabled>Y</enabled> </hop>  <hop> <from>Replace esr and beta</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Get firefox &gt;=16</from><to>Replace fennec</to><enabled>Y</enabled> </hop>  <hop> <from>Genarate webapprtmobile</from><to>Filter rows 2</to><enabled>Y</enabled> </hop>  <hop> <from>Generate WebappRuntimeMobile</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>Replace fennec</from><to>Get fennec &gt;=16</to><enabled>Y</enabled> </hop>  <hop> <from>Get fennec &gt;=16</from><to>Genarate webapprtmobile</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Generate WebappRuntimeMobile</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows 2</from><to>Select values 2</to><enabled>Y</enabled> </hop>  <hop> <from>dummy</from><to>Format output</to><enabled>Y</enabled> </hop>  <hop> <from>Get fennec &gt;=16</from><to>dummy</to><enabled>Y</enabled> </hop>  <hop> <from>Select values 2</from><to>dummy</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Add constants</name>
     <type>Constant</type>
@@ -137,8 +158,8 @@ remove it from the version</note>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>901</xloc>
-      <yloc>213</yloc>
+      <xloc>762</xloc>
+      <yloc>552</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -176,6 +197,38 @@ remove it from the version</note>
     </step>
 
   <step>
+    <name>Create download_version</name>
+    <type>Calculator</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <calculation><field_name>version_download</field_name>
+<calc_type>COPY_FIELD</calc_type>
+<field_a>version</field_a>
+<field_b/>
+<field_c/>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<remove>N</remove>
+<conversion_mask/>
+<decimal_symbol/>
+<grouping_symbol/>
+<currency_symbol/>
+</calculation>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>789</xloc>
+      <yloc>632</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Detect empty stream</name>
     <type>DetectEmptyStream</type>
     <description/>
@@ -187,8 +240,8 @@ remove it from the version</note>
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>810</xloc>
-      <yloc>213</yloc>
+      <xloc>671</xloc>
+      <yloc>552</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -299,8 +352,36 @@ remove it from the version</note>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>589</xloc>
-      <yloc>55</yloc>
+      <xloc>771</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter rows 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Generate WebappRuntimeMobile</send_true_to>
+<send_false_to>Select values 2</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>clone</leftvalue>
+ <function>=</function>
+ <rightvalue/>
+ <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>771</xloc>
+      <yloc>303</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -338,8 +419,8 @@ remove it from the version</note>
       </field>        <select_unspecified>N</select_unspecified>
     </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>692</xloc>
-      <yloc>293</yloc>
+      <xloc>553</xloc>
+      <yloc>632</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -457,8 +538,72 @@ remove it from the version</note>
     <clonenumfield/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>492</xloc>
-      <yloc>55</yloc>
+      <xloc>666</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Genarate webapprtmobile</name>
+    <type>CloneRow</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <nrclones>1</nrclones>
+    <addcloneflag>Y</addcloneflag>
+    <cloneflagfield>clone</cloneflagfield>
+    <nrcloneinfield>N</nrcloneinfield>
+    <nrclonefield/>
+    <addclonenum>N</addclonenum>
+    <clonenumfield/>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>666</xloc>
+      <yloc>303</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Generate WebappRuntimeMobile</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>product_name</field_name>
+<formula_string>&quot;WebappRuntimeMobile&quot;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>product_name</replace_field>
+</formula>
+       <formula><field_name>download_name</field_name>
+<formula_string>&quot;webapprtmobile&quot;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>download_name</replace_field>
+</formula>
+       <formula><field_name>new_formatted_name</field_name>
+<formula_string>&quot;webapprtmobile&quot;</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>new_formatted_name</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>896</xloc>
+      <yloc>303</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -496,8 +641,8 @@ remove it from the version</note>
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>699</xloc>
-      <yloc>55</yloc>
+      <xloc>896</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -640,6 +785,46 @@ remove it from the version</note>
     </step>
 
   <step>
+    <name>Get fennec &gt;=16</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to>Genarate webapprtmobile</send_true_to>
+<send_false_to>dummy</send_false_to>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <conditions>
+  <condition>
+   <negated>N</negated>
+   <leftvalue>product_name</leftvalue>
+   <function>=</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>Fennec</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  <condition>
+   <negated>N</negated>
+   <operator>AND</operator>
+   <leftvalue>major_version</leftvalue>
+   <function>&gt;=</function>
+   <rightvalue/>
+   <value><name>constant</name><type>String</type><text>15</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+  </conditions>
+ </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>553</xloc>
+      <yloc>303</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
     <name>Get firefox &gt;=16</name>
     <type>FilterRows</type>
     <description/>
@@ -673,8 +858,8 @@ remove it from the version</note>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>381</xloc>
-      <yloc>55</yloc>
+      <xloc>553</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -751,8 +936,8 @@ remove it from the version</note>
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>810</xloc>
-      <yloc>293</yloc>
+      <xloc>671</xloc>
+      <yloc>632</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -839,8 +1024,40 @@ remove it from the version</note>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>694</xloc>
-      <yloc>378</yloc>
+      <xloc>555</xloc>
+      <yloc>717</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Replace esr and beta</name>
+    <type>Janino</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+       <formula><field_name>version</field_name>
+<formula_string>version.replaceAll(&quot;esr&quot;,&quot;&quot;)</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>version</replace_field>
+</formula>
+       <formula><field_name>version</field_name>
+<formula_string>version.replaceAll(&quot;b[0-9]+$&quot;,&quot;&quot;)</formula_string>
+<value_type>String</value_type>
+<value_length>-1</value_length>
+<value_precision>-1</value_precision>
+<replace_field>version</replace_field>
+</formula>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>915</xloc>
+      <yloc>632</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -878,8 +1095,8 @@ remove it from the version</note>
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>534</xloc>
-      <yloc>293</yloc>
+      <xloc>553</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -941,8 +1158,8 @@ remove it from the version</note>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1026</xloc>
-      <yloc>213</yloc>
+      <xloc>887</xloc>
+      <yloc>552</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -961,8 +1178,28 @@ remove it from the version</note>
       <remove>        <name>clone</name>
       </remove>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>651</xloc>
-      <yloc>152</yloc>
+      <xloc>824</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Select values 2</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <fields>        <select_unspecified>N</select_unspecified>
+      <remove>        <name>clone</name>
+      </remove>    </fields>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>830</xloc>
+      <yloc>420</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1018,8 +1255,8 @@ remove it from the version</note>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1054</xloc>
-      <yloc>392</yloc>
+      <xloc>915</xloc>
+      <yloc>731</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1169,8 +1406,26 @@ remove it from the version</note>
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1054</xloc>
-      <yloc>495</yloc>
+      <xloc>915</xloc>
+      <yloc>834</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>dummy</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>553</xloc>
+      <yloc>420</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1246,70 +1501,6 @@ remove it from the version</note>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>272</xloc>
       <yloc>143</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Create download_version</name>
-    <type>Calculator</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <calculation><field_name>version_download</field_name>
-<calc_type>COPY_FIELD</calc_type>
-<field_a>version</field_a>
-<field_b/>
-<field_c/>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<remove>N</remove>
-<conversion_mask/>
-<decimal_symbol/>
-<grouping_symbol/>
-<currency_symbol/>
-</calculation>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>928</xloc>
-      <yloc>293</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Replace esr and beta</name>
-    <type>Janino</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-       <formula><field_name>version</field_name>
-<formula_string>version.replaceAll(&quot;esr&quot;,&quot;&quot;)</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field>version</replace_field>
-</formula>
-       <formula><field_name>version</field_name>
-<formula_string>version.replaceAll(&quot;b[0-9]+$&quot;,&quot;&quot;)</formula_string>
-<value_type>String</value_type>
-<value_length>-1</value_length>
-<value_precision>-1</value_precision>
-<replace_field>version</replace_field>
-</formula>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>1054</xloc>
-      <yloc>293</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
