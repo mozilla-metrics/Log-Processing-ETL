@@ -1,0 +1,1008 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/scrape_ftp_products.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/scrape_ftp_products.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/dimensions"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "scrape_ftp_products"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (2)</th>
+               <th>Transform</th>
+               <th>Output (2)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>Get Dirs from FTP</div>
+                  <div>Join originals</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>Save failure file</div>
+                  <div>Text file output</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 996px;&#xA;            height: 940px;&#xA;        "><a name="Add constants-icon"></a><div id="Add constants" class="&#xA;                    step-icon&#xA;                    step-icon-Constant" style="&#xA;                    left:762px;&#xA;                    top:552px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Save failure file"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Add constants-text" style="&#xA;                    top:584px;&#xA;                    left:744.6666666666666px;                    &#xA;                ">Add constants</a><a name="Calculator-icon"></a><div id="Calculator" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:272px;&#xA;                    top:293px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get (\d{2}\.\d+)\..* only"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Calculator-text" style="&#xA;                    top:325px;&#xA;                    left:258.6666666666667px;                    &#xA;                ">Calculator</a><a name="Create download_version-icon"></a><div id="Create download_version" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:789px;&#xA;                    top:632px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Replace esr and beta"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Create download_version-text" style="&#xA;                    top:664px;&#xA;                    left:758.3333333333334px;                    &#xA;                ">Create download_version</a><a name="Detect empty stream-icon"></a><div id="Detect empty stream" class="&#xA;                    step-icon&#xA;                    step-icon-DetectEmptyStream" style="&#xA;                    left:671px;&#xA;                    top:552px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Add constants"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Detect empty stream-text" style="&#xA;                    top:584px;&#xA;                    left:645.6666666666666px;                    &#xA;                ">Detect empty stream</a><a name="Discard-icon"></a><div id="Discard" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:381px;&#xA;                    top:202px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get firefox &gt;=16"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Discard-text" style="&#xA;                    top:234px;&#xA;                    left:371.6666666666667px;                    &#xA;                ">Discard</a><a name="File versions-icon"></a><div id="File versions" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:168px;&#xA;                    top:208px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Format values 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#File versions-text" style="&#xA;                    top:240px;&#xA;                    left:150.66666666666666px;                    &#xA;                ">File versions</a><a name="Filter rows-icon"></a><div id="Filter rows" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:771px;&#xA;                    top:64px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Select values"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Generate webappRuntime"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter rows-text" style="&#xA;                    top:96px;&#xA;                    left:756.3333333333334px;                    &#xA;                ">Filter rows</a><a name="Filter rows 2-icon"></a><div id="Filter rows 2" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:771px;&#xA;                    top:303px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Generate WebappRuntimeMobile"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Select values 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Filter rows 2-text" style="&#xA;                    top:335px;&#xA;                    left:753.6666666666666px;                    &#xA;                ">Filter rows 2</a><a name="Format output-icon"></a><div id="Format output" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:553px;&#xA;                    top:632px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Join"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Detect empty stream"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Format output-text" style="&#xA;                    top:664px;&#xA;                    left:535.6666666666666px;                    &#xA;                ">Format output</a><a name="Format values 1-icon"></a><div id="Format values 1" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:272px;&#xA;                    top:216px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Calculator"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Format values 1-text" style="&#xA;                    top:248px;&#xA;                    left:252px;                    &#xA;                ">Format values 1</a><a name="Format values 2-icon"></a><div id="Format values 2" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:168px;&#xA;                    top:293px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Calculator"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Format values 2-text" style="&#xA;                    top:325px;&#xA;                    left:148px;                    &#xA;                ">Format values 2</a><a name="Genarate webapprt-icon"></a><div id="Genarate webapprt" class="&#xA;                    step-icon&#xA;                    step-icon-CloneRow" style="&#xA;                    left:666px;&#xA;                    top:64px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter rows"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Genarate webapprt-text" style="&#xA;                    top:96px;&#xA;                    left:643.3333333333334px;                    &#xA;                ">Genarate webapprt</a><a name="Genarate webapprtmobile-icon"></a><div id="Genarate webapprtmobile" class="&#xA;                    step-icon&#xA;                    step-icon-CloneRow" style="&#xA;                    left:666px;&#xA;                    top:303px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Filter rows 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Genarate webapprtmobile-text" style="&#xA;                    top:335px;&#xA;                    left:635.3333333333334px;                    &#xA;                ">Genarate webapprtmobile</a><a name="Generate WebappRuntimeMobile-icon"></a><div id="Generate WebappRuntimeMobile" class="&#xA;                    step-icon&#xA;                    step-icon-Janino" style="&#xA;                    left:896px;&#xA;                    top:303px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Select values 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Generate WebappRuntimeMobile-text" style="&#xA;                    top:335px;&#xA;                    left:858.6666666666666px;                    &#xA;                ">Generate WebappRuntimeMobile</a><a name="Generate webappRuntime-icon"></a><div id="Generate webappRuntime" class="&#xA;                    step-icon&#xA;                    step-icon-Janino" style="&#xA;                    left:896px;&#xA;                    top:64px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Select values"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Generate webappRuntime-text" style="&#xA;                    top:96px;&#xA;                    left:866.6666666666666px;                    &#xA;                ">Generate webappRuntime</a><a name="Get (\d{2}\.\d+)\..* only-icon"></a><div id="Get (\d{2}\.\d+)\..* only" class="&#xA;                    step-icon&#xA;                    step-icon-RegexEval" style="&#xA;                    left:382px;&#xA;                    top:293px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Discard"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get (\d{2}\.\d+)\..* only-text" style="&#xA;                    top:325px;&#xA;                    left:348.6666666666667px;                    &#xA;                ">Get (\d{2}\.\d+)\..* only</a><a name="Get Dirs from FTP-icon"></a><div id="Get Dirs from FTP" class="&#xA;                    step-icon&#xA;                    step-icon-GetFileNames" style="&#xA;                    left:47px;&#xA;                    top:55px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Split dirs and files"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get Dirs from FTP-text" style="&#xA;                    top:87px;&#xA;                    left:24.333333333333332px;                    &#xA;                ">Get Dirs from FTP</a><a name="Get fennec &gt;=16-icon"></a><div id="Get fennec &gt;=16" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:553px;&#xA;                    top:303px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Genarate webapprtmobile"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#dummy"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get fennec &gt;=16-text" style="&#xA;                    top:335px;&#xA;                    left:533px;                    &#xA;                ">Get fennec &gt;=16</a><a name="Get firefox &gt;=16-icon"></a><div id="Get firefox &gt;=16" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:553px;&#xA;                    top:64px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Genarate webapprt"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Replace fennec"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get firefox &gt;=16-text" style="&#xA;                    top:96px;&#xA;                    left:531.6666666666666px;                    &#xA;                ">Get firefox &gt;=16</a><a name="Get product-icon"></a><div id="Get product" class="&#xA;                    step-icon&#xA;                    step-icon-ReplaceString" style="&#xA;                    left:272px;&#xA;                    top:55px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#version"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get product-text" style="&#xA;                    top:87px;&#xA;                    left:257.3333333333333px;                    &#xA;                ">Get product</a><a name="Get product 2-icon"></a><div id="Get product 2" class="&#xA;                    step-icon&#xA;                    step-icon-ReplaceString" style="&#xA;                    left:168px;&#xA;                    top:130px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#File versions"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get product 2-text" style="&#xA;                    top:162px;&#xA;                    left:150.66666666666666px;                    &#xA;                ">Get product 2</a><a name="Join-icon"></a><div id="Join" class="&#xA;                    step-icon&#xA;                    step-icon-Dummy" style="&#xA;                    left:671px;&#xA;                    top:632px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Create download_version"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Join-text" style="&#xA;                    top:664px;&#xA;                    left:665.6666666666666px;                    &#xA;                ">Join</a><a name="Join originals-icon"></a><div id="Join originals" class="&#xA;                    step-icon&#xA;                    step-icon-CsvInput" style="&#xA;                    left:555px;&#xA;                    top:717px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Join"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Join originals-text" style="&#xA;                    top:749px;&#xA;                    left:536.3333333333334px;                    &#xA;                ">Join originals</a><a name="Replace esr and beta-icon"></a><div id="Replace esr and beta" class="&#xA;                    step-icon&#xA;                    step-icon-Janino" style="&#xA;                    left:915px;&#xA;                    top:632px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Sort rows"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Replace esr and beta-text" style="&#xA;                    top:664px;&#xA;                    left:888.3333333333334px;                    &#xA;                ">Replace esr and beta</a><a name="Replace fennec-icon"></a><div id="Replace fennec" class="&#xA;                    step-icon&#xA;                    step-icon-Janino" style="&#xA;                    left:553px;&#xA;                    top:176px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get fennec &gt;=16"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Replace fennec-text" style="&#xA;                    top:208px;&#xA;                    left:534.3333333333334px;                    &#xA;                ">Replace fennec</a><a name="Save failure file-icon"></a><div id="Save failure file" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileOutput" style="&#xA;                    left:887px;&#xA;                    top:552px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Save failure file-text" style="&#xA;                    top:584px;&#xA;                    left:864.3333333333334px;                    &#xA;                ">Save failure file</a><a name="Select values-icon"></a><div id="Select values" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:824px;&#xA;                    top:176px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Replace fennec"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Select values-text" style="&#xA;                    top:208px;&#xA;                    left:806.6666666666666px;                    &#xA;                ">Select values</a><a name="Select values 2-icon"></a><div id="Select values 2" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:830px;&#xA;                    top:420px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#dummy"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Select values 2-text" style="&#xA;                    top:452px;&#xA;                    left:810px;                    &#xA;                ">Select values 2</a><a name="Sort rows-icon"></a><div id="Sort rows" class="&#xA;                    step-icon&#xA;                    step-icon-SortRows" style="&#xA;                    left:915px;&#xA;                    top:731px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Text file output"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Sort rows-text" style="&#xA;                    top:763px;&#xA;                    left:903px;                    &#xA;                ">Sort rows</a><a name="Split dirs and files-icon"></a><div id="Split dirs and files" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:168px;&#xA;                    top:55px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#Get product"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#Get product 2"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Split dirs and files-text" style="&#xA;                    top:87px;&#xA;                    left:141.33333333333334px;                    &#xA;                ">Split dirs and files</a><a name="Text file output-icon"></a><div id="Text file output" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileOutput" style="&#xA;                    left:915px;&#xA;                    top:834px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Text file output-text" style="&#xA;                    top:866px;&#xA;                    left:893.6666666666666px;                    &#xA;                ">Text file output</a><a name="dummy-icon"></a><div id="dummy" class="&#xA;                    step-icon&#xA;                    step-icon-Dummy" style="&#xA;                    left:553px;&#xA;                    top:420px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Format output"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#dummy-text" style="&#xA;                    top:452px;&#xA;                    left:546.3333333333334px;                    &#xA;                ">dummy</a><a name="version-icon"></a><div id="version" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:272px;&#xA;                    top:143px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Format values 1"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#version-text" style="&#xA;                    top:175px;&#xA;                    left:262.6666666666667px;                    &#xA;                ">version</a>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 294px;&#xA;&#x9;&#x9;&#x9;top: 544px;&#xA;&#x9;&#x9;&#x9;width: 207px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Arial;&#xA;&#x9;&#x9;&#x9;font-size: 10;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">esr is the channel, so we need to
+            remove it from the version
+         </div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 664px;&#xA;&#x9;&#x9;&#x9;top: 22px;&#xA;&#x9;&#x9;&#x9;width: 267px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Arial;&#xA;&#x9;&#x9;&#x9;font-size: 10;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">We need to generate webapprt form fx &gt;=16</div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 669px;&#xA;&#x9;&#x9;&#x9;top: 260px;&#xA;&#x9;&#x9;&#x9;width: 321px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Arial;&#xA;&#x9;&#x9;&#x9;font-size: 10;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">We need to generate webapprtMobile for fennec &gt;=16</div>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>PRODUCT_DIMENSION_DIR</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Join originals">Join originals</a>, <a href="#Save failure file">Save failure file</a>, <a href="#Text file output">Text file output</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation does not define any database connections.</p>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Constant"></div>
+      <h3 class="step-heading"><a name="Add constants-text" href="#Add constants-icon">Add constants</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>status</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>Failed to do ftp scrapping</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Calculator"></div>
+      <h3 class="step-heading"><a name="Calculator-text" href="#Calculator-icon">Calculator</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Calculator"></div>
+      <h3 class="step-heading"><a name="Create download_version-text" href="#Create download_version-icon">Create download_version</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DetectEmptyStream"></div>
+      <h3 class="step-heading"><a name="Detect empty stream-text" href="#Detect empty stream-icon">Detect empty stream</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Discard-text" href="#Discard-icon">Discard</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RegexEval"></div>
+      <h3 class="step-heading"><a name="File versions-text" href="#File versions-icon">File versions</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>group</th>
+               <th>decimal</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>trimtype</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter rows-text" href="#Filter rows-icon">Filter rows</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Filter rows 2-text" href="#Filter rows 2-icon">Filter rows 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Format output-text" href="#Format output-icon">Format output</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>download_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>new_formatted_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>major_version</td>
+               <td>new_formatted_version_major</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Format values 1-text" href="#Format values 1-icon">Format values 1</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product</td>
+               <td>download_name</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>product</td>
+               <td>new_formatted_name</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>lastmodifiedtime</td>
+               <td>release_date</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Format values 2-text" href="#Format values 2-icon">Format values 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product</td>
+               <td>download_name</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>product</td>
+               <td>new_formatted_name</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>lastmodifiedtime</td>
+               <td>release_date</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CloneRow"></div>
+      <h3 class="step-heading"><a name="Genarate webapprt-text" href="#Genarate webapprt-icon">Genarate webapprt</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CloneRow"></div>
+      <h3 class="step-heading"><a name="Genarate webapprtmobile-text" href="#Genarate webapprtmobile-icon">Genarate webapprtmobile</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Janino"></div>
+      <h3 class="step-heading"><a name="Generate WebappRuntimeMobile-text" href="#Generate WebappRuntimeMobile-icon">Generate WebappRuntimeMobile</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Janino"></div>
+      <h3 class="step-heading"><a name="Generate webappRuntime-text" href="#Generate webappRuntime-icon">Generate webappRuntime</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-RegexEval"></div>
+      <h3 class="step-heading"><a name="Get (\d{2}\.\d+)\..* only-text" href="#Get (\d{2}\.\d+)\..* only-icon">Get (\d{2}\.\d+)\..* only</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>group</th>
+               <th>decimal</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>trimtype</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>major_version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GetFileNames"></div>
+      <h3 class="step-heading"><a name="Get Dirs from FTP-text" href="#Get Dirs from FTP-icon">Get Dirs from FTP</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Get fennec &gt;=16-text" href="#Get fennec &gt;=16-icon">Get fennec &gt;=16</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Get firefox &gt;=16-text" href="#Get firefox &gt;=16-icon">Get firefox &gt;=16</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ReplaceString"></div>
+      <h3 class="step-heading"><a name="Get product-text" href="#Get product-icon">Get product</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>in_stream_name</th>
+               <th>out_stream_name</th>
+               <th>use_regex</th>
+               <th>replace_string</th>
+               <th>replace_by_string</th>
+               <th>replace_field_by_string</th>
+               <th>whole_word</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>path</td>
+               <td>product</td>
+               <td>yes</td>
+               <td>ftp://ftp.mozilla.org/pub/mozilla.org/([^/]*)/.*</td>
+               <td>$1</td>
+               <td></td>
+               <td>no</td>
+               <td>no</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ReplaceString"></div>
+      <h3 class="step-heading"><a name="Get product 2-text" href="#Get product 2-icon">Get product 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>in_stream_name</th>
+               <th>out_stream_name</th>
+               <th>use_regex</th>
+               <th>replace_string</th>
+               <th>replace_by_string</th>
+               <th>replace_field_by_string</th>
+               <th>whole_word</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>short_filename</td>
+               <td>product_version</td>
+               <td>yes</td>
+               <td>^[^-]*-([^/]*)/.*</td>
+               <td>$1</td>
+               <td></td>
+               <td>no</td>
+               <td>no</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Dummy"></div>
+      <h3 class="step-heading"><a name="Join-text" href="#Join-icon">Join</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CsvInput"></div>
+      <h3 class="step-heading"><a name="Join originals-text" href="#Join originals-icon">Join originals</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>trim_type</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td>.</td>
+               <td>,</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>download_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td>.</td>
+               <td>,</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>new_formatted_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td>.</td>
+               <td>,</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td>.</td>
+               <td>,</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>new_formatted_version_major</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td>.</td>
+               <td>,</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Janino"></div>
+      <h3 class="step-heading"><a name="Replace esr and beta-text" href="#Replace esr and beta-icon">Replace esr and beta</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Janino"></div>
+      <h3 class="step-heading"><a name="Replace fennec-text" href="#Replace fennec-icon">Replace fennec</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TextFileOutput"></div>
+      <h3 class="step-heading"><a name="Save failure file-text" href="#Save failure file-icon">Save failure file</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>trim_type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>status</td>
+               <td>-</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Select values-text" href="#Select values-icon">Select values</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>        N
+              clone
+          <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Select values 2-text" href="#Select values 2-icon">Select values 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>        N
+              clone
+          <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SortRows"></div>
+      <h3 class="step-heading"><a name="Sort rows-text" href="#Sort rows-icon">Sort rows</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>ascending</th>
+               <th>case_sensitive</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>download_name</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>new_formatted_name</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>new_formatted_version_major</td>
+               <td>Y</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>version_download</td>
+               <td>N</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="Split dirs and files-text" href="#Split dirs and files-icon">Split dirs and files</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TextFileOutput"></div>
+      <h3 class="step-heading"><a name="Text file output-text" href="#Text file output-icon">Text file output</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>trim_type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>download_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>new_formatted_name</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>100</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>500</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>version_download</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>none</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>new_formatted_version_major</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Dummy"></div>
+      <h3 class="step-heading"><a name="dummy-text" href="#dummy-icon">dummy</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="version-text" href="#version-icon">version</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>filename</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>short_filename</td>
+               <td>version</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>path</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>type</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>exists</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>ishidden</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>isreadable</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>iswriteable</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>lastmodifiedtime</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>size</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>extension</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>12</th>
+               <td>uri</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>13</th>
+               <td>rooturi</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>14</th>
+               <td>product</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>
