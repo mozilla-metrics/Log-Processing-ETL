@@ -175,8 +175,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>850</xloc>
-      <yloc>100</yloc>
+      <xloc>846</xloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
       <name>Export to Socorro</name>
@@ -219,8 +219,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>850</xloc>
-      <yloc>200</yloc>
+      <xloc>848</xloc>
+      <yloc>170</yloc>
       </entry>
     <entry>
       <name>export_daily_amo_stats</name>
@@ -252,8 +252,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>850</xloc>
-      <yloc>150</yloc>
+      <xloc>847</xloc>
+      <yloc>108</yloc>
       </entry>
     <entry>
       <name>Abort if error</name>
@@ -733,8 +733,8 @@ ORDER BY 1,2,3,4</custom_sql>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>850</xloc>
-      <yloc>250</yloc>
+      <xloc>848</xloc>
+      <yloc>301</yloc>
       </entry>
     <entry>
       <name>Guard for race</name>
@@ -883,8 +883,8 @@ This will delay the nightly exports of data to the AMO production site.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>750</xloc>
-      <yloc>150</yloc>
+      <xloc>747</xloc>
+      <yloc>118</yloc>
       </entry>
     <entry>
       <name>Socorro prod error</name>
@@ -927,8 +927,8 @@ This will delay the nightly exports of data to the Socorro production site.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>750</xloc>
-      <yloc>200</yloc>
+      <xloc>749</xloc>
+      <yloc>176</yloc>
       </entry>
     <entry>
       <name>Socorro stage error</name>
@@ -979,8 +979,20 @@ Please check the logs and fix the problem then re-run relevant export script man
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>850</xloc>
-      <yloc>300</yloc>
+      <xloc>746</xloc>
+      <yloc>324</yloc>
+      </entry>
+    <entry>
+      <name>Try to avoid a deadlock</name>
+      <description/>
+      <type>DELAY</type>
+      <maximumTimeout>5</maximumTimeout>
+      <scaletime>0</scaletime>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>849</xloc>
+      <yloc>235</yloc>
       </entry>
   </entries>
   <hops>
@@ -1228,15 +1240,6 @@ Please check the logs and fix the problem then re-run relevant export script man
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Export to Socorro</from>
-      <to>Export to Socorro Staging</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Run Vertica GAH</from>
       <to>Set Successful flag for EOD</to>
       <from_nr>0</from_nr>
@@ -1291,15 +1294,6 @@ Please check the logs and fix the problem then re-run relevant export script man
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Socorro prod error</from>
-      <to>Export to Socorro Staging</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Socorro stage error</from>
       <to>Success 2</to>
       <from_nr>0</from_nr>
@@ -1315,6 +1309,33 @@ Please check the logs and fix the problem then re-run relevant export script man
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Export to Socorro</from>
+      <to>Try to avoid a deadlock</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Try to avoid a deadlock</from>
+      <to>Export to Socorro Staging</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Socorro prod error</from>
+      <to>Try to avoid a deadlock</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>Y</unconditional>
     </hop>
   </hops>
