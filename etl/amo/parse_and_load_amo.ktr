@@ -749,7 +749,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <script><![CDATA[^(?>([^\s]{7,15})                      # client_ip
+    <script><![CDATA[^(?>([a-fA-F0-9.:]{2,45})          # client_ip, either IPv4 (111.111.111.111) or IPv6 (::f or aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa or aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:111.111.111.111)
 \s(?>[^\s]+)                           # IDENT field
 \s(?>[^\s]+)                           # auth field
 \s\[?(\d{2}/\w{3}/\d{4}                # request date dd/MMM/yyyy
@@ -788,7 +788,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <format/>
         <group/>
         <decimal/>
-        <length>15</length>
+        <length>45</length>
         <precision>-1</precision>
         <nullif/>
         <ifnull/>
