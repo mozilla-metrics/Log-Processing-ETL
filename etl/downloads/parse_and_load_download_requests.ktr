@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='UTF-8'?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!-- The contents of this file are subject to the terms of the Mozilla Public
    - License, v. 2.0. If a copy of the MPL was not distributed with this file,
    - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
@@ -254,7 +254,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value/></validator_field>
+<allowed_value></allowed_value></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>150</xloc>
@@ -280,7 +280,6 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
 
         <class_name>RowProcessor</class_name>
 
-        
         <class_source><![CDATA[public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
 {
     Object[] r = getRow();
@@ -309,11 +308,12 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     return true;
 }
 
-]]></class_source></definition>
+]]></class_source>
+        </definition>
     </definitions>
     <fields>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
       <yloc>250</yloc>
@@ -418,7 +418,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
       <yloc>150</yloc>
@@ -853,7 +853,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         <class_name>RowProcessor</class_name>
 
-        
         <class_source><![CDATA[import java.util.*;
 
 // Note that Kettle UDJCs do not appear to support generics.
@@ -945,7 +944,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     return true;
 }
 
-]]></class_source></definition>
+]]></class_source>
+        </definition>
     </definitions>
     <fields>
         <field>
@@ -1019,7 +1019,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 
         </field>
     </fields><clear_result_fields>N</clear_result_fields>
-<info_steps/><target_steps/><usage_parameters/>     <cluster_schema/>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>250</xloc>
       <yloc>150</yloc>
@@ -1037,7 +1037,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <script><![CDATA[^(?>([^\s]{7,15}))              # client_ip
+    <script><![CDATA[^(?>([a-fA-F0-9.:]{2,45})    # client_ip, either IPv4 (111.111.111.111) or IPv6 (::f or aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa or aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:111.111.111.111)
 \s-\s                       # unused IDENT field
 (?>-|([^-](?:[^\[\s]++(?:(?!\s\[)[\[\s])?)++))\s      # Cookies field (unquoted so harder to parse)
 \[\[?(\d{2}/\w{3}/\d{4} # request date dd/MMM/yyyy
@@ -1074,7 +1074,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         <format/>
         <group/>
         <decimal/>
-        <length>15</length>
+        <length>45</length>
         <precision>-1</precision>
         <nullif/>
         <ifnull/>
@@ -1591,7 +1591,7 @@ $]]></script>    <matcher>product</matcher>
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value/></validator_field>
+<allowed_value></allowed_value></validator_field>
        <validator_field><name>product_platform</name>
 <validation_name>product_platform in list</validation_name>
 <max_length>-1</max_length>
@@ -1655,7 +1655,7 @@ $]]></script>    <matcher>product</matcher>
 <is_sourcing_values>N</is_sourcing_values>
 <sourcing_step/>
 <sourcing_field/>
-<allowed_value/></validator_field>
+<allowed_value></allowed_value></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>150</xloc>

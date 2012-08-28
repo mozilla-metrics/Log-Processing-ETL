@@ -62,7 +62,7 @@
       </p>
       <h2><a name="parameters">Parameters</a></h2>
       <p>
-         This job defines 5 parameters.
+         This job defines 6 parameters.
          
       </p>
       <table>
@@ -85,7 +85,7 @@
          <tbody>
             <tr>
                <th>input</th>
-               <td>/etl/dimensions/product_versions_to_check.csv</td>
+               <td>/opt/pentaho/kettle/etl/logProcessing/etl/dimensions/product_versions_to_check.csv</td>
                <td>CSV file containing a list of specific product versions to manage</td>
             </tr>
             <tr>
@@ -95,7 +95,7 @@
             </tr>
             <tr>
                <th>output</th>
-               <td>/etl/dimensions/product_versions_result</td>
+               <td>/opt/pentaho/kettle/etl/logProcessing/etl/dimensions/product_versions_result</td>
                <td>Results of the transformation tests (omit extension)</td>
             </tr>
             <tr>
@@ -108,26 +108,33 @@
                <td>metrics-mozilla@webdetails.pt</td>
                <td>Default address which will receive e-mail notification</td>
             </tr>
+            <tr>
+               <th>workDir</th>
+               <td>/etl/dimensions/</td>
+               <td>Work dir</td>
+            </tr>
          </tbody>
       </table>
       <h2><a name="diagram">Diagram</a></h2>
-      <div class="diagram" id="diagram" style="&#xA;            width: 228px;&#xA;            height: 528px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
+      <div class="diagram" id="diagram" style="&#xA;            width: 228px;&#xA;            height: 595px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:100px;&#xA;                    top:50px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Checks if kill file exists"></a></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:93.33333333333333px;&#xA;                " href="#START-text">START</a><a name="product_version_management-icon"></a><div id="product_version_management" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:100px;&#xA;                    top:250px;&#xA;                ">
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:82px;&#xA;                    left:93.33333333333333px;&#xA;                " href="#START-text">START</a><a name="product_version_management-icon"></a><div id="product_version_management" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:100px;&#xA;                    top:317px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Simple evaluation 1"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Mail error notice"></a></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:65.33333333333334px;&#xA;                " href="product_version_management.ktr.html">product_version_management</a><a name="Mail results-icon"></a><div id="Mail results" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:200px;&#xA;                    top:350px;&#xA;                ">
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:349px;&#xA;                    left:65.33333333333334px;&#xA;                " href="product_version_management.ktr.html">product_version_management</a><a name="Mail results-icon"></a><div id="Mail results" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:200px;&#xA;                    top:417px;&#xA;                ">
             <div class="entry-hops"></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:382px;&#xA;                    left:184px;&#xA;                " href="#Mail results-text">Mail results</a><a name="Checks if kill file exists-icon"></a><div id="Checks if kill file exists" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-FILES_EXIST" style="&#xA;                    left:100px;&#xA;                    top:150px;&#xA;                ">
-            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#product_version_management"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Mail kill notice"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:449px;&#xA;                    left:184px;&#xA;                " href="#Mail results-text">Mail results</a><a name="Checks if kill file exists-icon"></a><div id="Checks if kill file exists" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-FILES_EXIST" style="&#xA;                    left:100px;&#xA;                    top:150px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Mail kill notice"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#product_version_automation"></a></div>
          </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:65.33333333333334px;&#xA;                " href="#Checks if kill file exists-text">Checks if kill file exists</a><a name="Mail kill notice-icon"></a><div id="Mail kill notice" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:200px;&#xA;                    top:150px;&#xA;                ">
             <div class="entry-hops"></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:178.66666666666666px;&#xA;                " href="#Mail kill notice-text">Mail kill notice</a><a name="Simple evaluation 1-icon"></a><div id="Simple evaluation 1" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:100px;&#xA;                    top:350px;&#xA;                ">
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:182px;&#xA;                    left:178.66666666666666px;&#xA;                " href="#Mail kill notice-text">Mail kill notice</a><a name="Simple evaluation 1-icon"></a><div id="Simple evaluation 1" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SIMPLE_EVAL" style="&#xA;                    left:100px;&#xA;                    top:417px;&#xA;                ">
             <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Mail results"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Nothing to do"></a></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:382px;&#xA;                    left:74.66666666666667px;&#xA;                " href="#Simple evaluation 1-text">Simple evaluation 1</a><a name="Mail error notice-icon"></a><div id="Mail error notice" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:200px;&#xA;                    top:250px;&#xA;                ">
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:449px;&#xA;                    left:74.66666666666667px;&#xA;                " href="#Simple evaluation 1-text">Simple evaluation 1</a><a name="Mail error notice-icon"></a><div id="Mail error notice" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:200px;&#xA;                    top:317px;&#xA;                ">
             <div class="entry-hops"></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:282px;&#xA;                    left:177.33333333333334px;&#xA;                " href="#Mail error notice-text">Mail error notice</a><a name="Nothing to do-icon"></a><div id="Nothing to do" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SUCCESS" style="&#xA;                    left:100px;&#xA;                    top:450px;&#xA;                ">
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:349px;&#xA;                    left:177.33333333333334px;&#xA;                " href="#Mail error notice-text">Mail error notice</a><a name="Nothing to do-icon"></a><div id="Nothing to do" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SUCCESS" style="&#xA;                    left:100px;&#xA;                    top:517px;&#xA;                ">
             <div class="entry-hops"></div>
-         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:482px;&#xA;                    left:82.66666666666667px;&#xA;                " href="#Nothing to do-text">Nothing to do</a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:549px;&#xA;                    left:82.66666666666667px;&#xA;                " href="#Nothing to do-text">Nothing to do</a><a name="product_version_automation-icon"></a><div id="product_version_automation" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:100px;&#xA;                    top:245px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#product_version_management"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:277px;&#xA;                    left:65.33333333333334px;&#xA;                " href="product_version_automation.kjb.html">product_version_automation</a></div>
       <h2><a name="variables">Variables</a></h2>
       <p>This job reads the following variables:</p>
       <table>
@@ -172,6 +179,12 @@
             </tr>
             <tr>
                <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#product_version_management">product_version_management</a>, <a href="#Checks if kill file exists">Checks if kill file exists</a>, <a href="#product_version_automation">product_version_automation</a></td>
+            </tr>
+            <tr>
+               <th>ETL_LOG_DIR</th>
                <td></td>
                <td></td>
                <td><a href="#product_version_management">product_version_management</a></td>
@@ -315,7 +328,13 @@
       <p>Mail</p>
       <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SUCCESS"></div>
       <h3 class="entry-heading"><a name="Nothing to do-text" href="#Nothing to do-icon">Nothing to do</a></h3>
-      <p>Success</p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+      <p>Success</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="product_version_automation-text" href="#product_version_automation-icon">product_version_automation</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
             SyntaxHighlighter.all();
         </script></body>
 </html>

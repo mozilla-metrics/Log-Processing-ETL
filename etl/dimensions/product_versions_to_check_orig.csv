@@ -224,25 +224,25 @@ Firefox,firefox,firefox,15.0a1,15.0
 Firefox,firefox,firefox,15.0a2,15.0
 Firefox,firefox,firefox,16.0a1,16.0
 
-Webapp Runtime,webapprt,webapprt,13.0a1,13.0
-Webapp Runtime,webapprt,webapprt,13.0a2,13.0
-Webapp Runtime,webapprt,webapprt,13.0b1,13.0
-Webapp Runtime,webapprt,webapprt,13.0b2,13.0
-Webapp Runtime,webapprt,webapprt,13.0b3,13.0
-Webapp Runtime,webapprt,webapprt,13.0b4,13.0
-Webapp Runtime,webapprt,webapprt,13.0b5,13.0
-Webapp Runtime,webapprt,webapprt,13.0b6,13.0
-Webapp Runtime,webapprt,webapprt,13.0b7,13.0
-Webapp Runtime,webapprt,webapprt,13.0,13.0
-Webapp Runtime,webapprt,webapprt,13.0.1,13.0
-Webapp Runtime,webapprt,webapprt,14.0a1,14.0
-Webapp Runtime,webapprt,webapprt,14.0a2,14.0
-Webapp Runtime,webapprt,webapprt,14.0b6,14.0
-Webapp Runtime,webapprt,webapprt,14.0b7,14.0
-Webapp Runtime,webapprt,webapprt,14.0,14.0
-Webapp Runtime,webapprt,webapprt,15.0a1,15.0
-Webapp Runtime,webapprt,webapprt,15.0a2,15.0
-Webapp Runtime,webapprt,webapprt,16.0a1,16.0
+WebappRuntime,webapprt,webapprt,13.0a1,13.0
+WebappRuntime,webapprt,webapprt,13.0a2,13.0
+WebappRuntime,webapprt,webapprt,13.0b1,13.0
+WebappRuntime,webapprt,webapprt,13.0b2,13.0
+WebappRuntime,webapprt,webapprt,13.0b3,13.0
+WebappRuntime,webapprt,webapprt,13.0b4,13.0
+WebappRuntime,webapprt,webapprt,13.0b5,13.0
+WebappRuntime,webapprt,webapprt,13.0b6,13.0
+WebappRuntime,webapprt,webapprt,13.0b7,13.0
+WebappRuntime,webapprt,webapprt,13.0,13.0
+WebappRuntime,webapprt,webapprt,13.0.1,13.0
+WebappRuntime,webapprt,webapprt,14.0a1,14.0
+WebappRuntime,webapprt,webapprt,14.0a2,14.0
+WebappRuntime,webapprt,webapprt,14.0b6,14.0
+WebappRuntime,webapprt,webapprt,14.0b7,14.0
+WebappRuntime,webapprt,webapprt,14.0,14.0
+WebappRuntime,webapprt,webapprt,15.0a1,15.0
+WebappRuntime,webapprt,webapprt,15.0a2,15.0
+WebappRuntime,webapprt,webapprt,16.0a1,16.0
 
 Fennec,firefox-mobile,fennec,1.0.0,1.0
 Fennec,firefox-mobile,fennec,1.1,1.0

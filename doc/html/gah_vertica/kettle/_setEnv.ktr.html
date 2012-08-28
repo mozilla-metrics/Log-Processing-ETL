@@ -59,15 +59,17 @@
          </tbody>
       </table>
       <h2><a name="diagram">Diagram</a></h2>
-      <div class="diagram" id="diagram" style="&#xA;            width: 645px;&#xA;            height: 129px;&#xA;        "><a name="Get data from XML-icon"></a><div id="Get data from XML" class="&#xA;                    step-icon&#xA;                    step-icon-getXMLData" style="&#xA;                    left:381px;&#xA;                    top:149px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Set Variables"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get data from XML-text" style="&#xA;                    top:181px;&#xA;                    left:358.3333333333333px;                    &#xA;                ">Get data from XML</a><a name="Get rows from result-icon"></a><div id="Get rows from result" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:81px;&#xA;                    top:149px;&#xA;                ">
+      <div class="diagram" id="diagram" style="&#xA;            width: 645px;&#xA;            height: 129px;&#xA;        "><a name="Get data from XML-icon"></a><div id="Get data from XML" class="&#xA;                    step-icon&#xA;                    step-icon-getXMLData" style="&#xA;                    left:335px;&#xA;                    top:149px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Interpolate DB Variables"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get data from XML-text" style="&#xA;                    top:181px;&#xA;                    left:312.3333333333333px;                    &#xA;                ">Get data from XML</a><a name="Get rows from result-icon"></a><div id="Get rows from result" class="&#xA;                    step-icon&#xA;                    step-icon-RowsFromResult" style="&#xA;                    left:81px;&#xA;                    top:149px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Log info"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Get rows from result-text" style="&#xA;                    top:181px;&#xA;                    left:54.33333333333333px;                    &#xA;                ">Get rows from result</a><a name="Log info-icon"></a><div id="Log info" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:219px;&#xA;                    top:149px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get data from XML"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Log info-text" style="&#xA;                    top:181px;&#xA;                    left:208.33333333333334px;                    &#xA;                ">Log info</a><a name="Set Variables-icon"></a><div id="Set Variables" class="&#xA;                    step-icon&#xA;                    step-icon-SetVariable" style="&#xA;                    left:598px;&#xA;                    top:148px;&#xA;                ">
             <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Set Variables-text" style="&#xA;                    top:180px;&#xA;                    left:580.6666666666666px;                    &#xA;                ">Set Variables</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Set Variables-text" style="&#xA;                    top:180px;&#xA;                    left:580.6666666666666px;                    &#xA;                ">Set Variables</a><a name="Interpolate DB Variables-icon"></a><div id="Interpolate DB Variables" class="&#xA;                    step-icon&#xA;                    step-icon-Calculator" style="&#xA;                    left:466px;&#xA;                    top:148px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Set Variables"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Interpolate DB Variables-text" style="&#xA;                    top:180px;&#xA;                    left:434px;                    &#xA;                ">Interpolate DB Variables</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -440,104 +442,130 @@ writeToLog("m","GAH: Processing Config file: " + filename);</pre>    <br><div cl
          <tbody>
             <tr>
                <th>1</th>
-               <td>DatabaseClass</td>
+               <td>DatabaseClass_1</td>
                <td>GAH_DBCLASS</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
                <th>2</th>
-               <td>DatabaseSchema</td>
-               <td>GAH_DBSCHEMA</td>
+               <td>DatabasePass_1</td>
+               <td>GAH_DBPASS</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
                <th>3</th>
+               <td>DatabaseUrl_1</td>
+               <td>GAH_DBURL</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>DatabaseUser_1</td>
+               <td>GAH_DBUSER</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>DatabaseSchema_1</td>
+               <td>GAH_DBSCHEMA</td>
+               <td>JVM</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>6</th>
                <td>Table</td>
                <td>GAH_TABLE</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>4</th>
+               <th>7</th>
                <td>CreateTable</td>
                <td>GAH_CREATETABLE</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>5</th>
+               <th>8</th>
                <td>DropTable</td>
                <td>GAH_DROPTABLE</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>6</th>
+               <th>9</th>
                <td>TableExists</td>
                <td>GAH_TABLEEXISTS</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>7</th>
+               <th>10</th>
                <td>AggregateMode</td>
                <td>GAH_AGGREGATEMODE</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>8</th>
+               <th>11</th>
                <td>InsertQuery</td>
                <td>GAH_INSERTQUERY</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>9</th>
+               <th>12</th>
                <td>QueryOnFact</td>
                <td>GAH_QUERYONFACT</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>10</th>
+               <th>13</th>
                <td>QueryOnAggregate</td>
                <td>GAH_QUERYONAGGREGATE</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>11</th>
+               <th>14</th>
                <td>IncrementQuery</td>
                <td>GAH_INCREMENTQUERY</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>12</th>
+               <th>15</th>
                <td>QuoteValue</td>
                <td>GAH_QUOTEVALUE</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>13</th>
+               <th>16</th>
                <td>IncrementConditionFrom</td>
                <td>GAH_INCREMENTCONDITIONFROM</td>
                <td>JVM</td>
                <td></td>
             </tr>
             <tr>
-               <th>14</th>
+               <th>17</th>
                <td>IncrementConditionWhere</td>
                <td>GAH_INCREMENTCONDITIONWHERE</td>
                <td>JVM</td>
                <td></td>
             </tr>
          </tbody>
-      </table><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Calculator"></div>
+      <h3 class="step-heading"><a name="Interpolate DB Variables-text" href="#Interpolate DB Variables-icon">Interpolate DB Variables</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
             SyntaxHighlighter.all();
         </script></body>
 </html>

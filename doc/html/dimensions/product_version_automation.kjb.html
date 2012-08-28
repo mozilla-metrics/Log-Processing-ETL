@@ -1,0 +1,189 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/product_version_automation.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/product_version_automation.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: product_version_automation
+            relative-path: "/dimensions"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: job "product_version_automation"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "product_version_automation"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2012/07/12 11:28:34.151</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2012/07/12 11:28:34.151</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job does not define any parameters.
+         
+      </p>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 1085px;&#xA;            height: 227px;&#xA;        "><a name="Checks if _orig file exists-icon"></a><div id="Checks if _orig file exists" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-FILES_EXIST" style="&#xA;                    left:415px;&#xA;                    top:17px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#create _orig file"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Create a backup"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:49px;&#xA;                    left:379px;&#xA;                " href="#Checks if _orig file exists-text">Checks if _orig file exists</a><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:25px;&#xA;                    top:17px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Write To Log"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:49px;&#xA;                    left:18.333333333333332px;&#xA;                " href="#START-text">START</a><a name="create _orig file-icon"></a><div id="create _orig file" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-COPY_FILES" style="&#xA;                    left:414px;&#xA;                    top:106px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Create a backup"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:138px;&#xA;                    left:391.3333333333333px;&#xA;                " href="#create _orig file-text">create _orig file</a><a name="Write To Log-icon"></a><div id="Write To Log" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-WRITE_TO_LOG" style="&#xA;                    left:155px;&#xA;                    top:17px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Delete failed file"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:49px;&#xA;                    left:139px;&#xA;                " href="#Write To Log-text">Write To Log</a><a name="DUMMY-icon"></a><div id="DUMMY" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-DUMMY" style="&#xA;                    left:982px;&#xA;                    top:17px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:49px;&#xA;                    left:975.3333333333334px;&#xA;                " href="#DUMMY-text">DUMMY</a><a name="Create a backup-icon"></a><div id="Create a backup" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-COPY_FILES" style="&#xA;                    left:545px;&#xA;                    top:17px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#scrape_ftp_products"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:49px;&#xA;                    left:525px;&#xA;                " href="#Create a backup-text">Create a backup</a><a name="scrape_ftp_products-icon"></a><div id="scrape_ftp_products" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:675px;&#xA;                    top:17px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#Error scraping from ftp"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Checks if error found"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:49px;&#xA;                    left:649.6666666666666px;&#xA;                " href="scrape_ftp_products.ktr.html">scrape_ftp_products</a><a name="Error scraping from ftp-icon"></a><div id="Error scraping from ftp" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-MAIL" style="&#xA;                    left:672px;&#xA;                    top:113px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Checks if error found"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:145px;&#xA;                    left:641.3333333333334px;&#xA;                " href="#Error scraping from ftp-text">Error scraping from ftp</a><a name="Restore backup-icon"></a><div id="Restore backup" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-COPY_FILES" style="&#xA;                    left:810px;&#xA;                    top:116px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#DUMMY"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:148px;&#xA;                    left:791.3333333333334px;&#xA;                " href="#Restore backup-text">Restore backup</a><a name="Delete failed file-icon"></a><div id="Delete failed file" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-DELETE_FILES" style="&#xA;                    left:285px;&#xA;                    top:17px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#Checks if _orig file exists"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:49px;&#xA;                    left:261px;&#xA;                " href="#Delete failed file-text">Delete failed file</a><a name="Checks if error found-icon"></a><div id="Checks if error found" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-FILES_EXIST" style="&#xA;                    left:810px;&#xA;                    top:17px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-false" href="#DUMMY"></a><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#Restore backup"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:49px;&#xA;                    left:782px;&#xA;                " href="#Checks if error found-text">Checks if error found</a></div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>PRODUCT_DIMENSION_DIR</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Checks if _orig file exists">Checks if _orig file exists</a>, <a href="#create _orig file">create _orig file</a>, <a href="#Write To Log">Write To Log</a>, <a href="#Create a backup">Create a backup</a>, <a href="#Restore backup">Restore backup</a>, <a href="#Delete failed file">Delete failed file</a>, <a href="#Checks if error found">Checks if error found</a></td>
+            </tr>
+            <tr>
+               <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#scrape_ftp_products">scrape_ftp_products</a></td>
+            </tr>
+            <tr>
+               <th>smtp</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Error scraping from ftp">Error scraping from ftp</a></td>
+            </tr>
+            <tr>
+               <th>to</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Error scraping from ftp">Error scraping from ftp</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job does not define any database connections.</p>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-FILES_EXIST"></div>
+      <h3 class="entry-heading"><a name="Checks if _orig file exists-text" href="#Checks if _orig file exists-icon">Checks if _orig file exists</a></h3>
+      <p>Checks if files exist</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-COPY_FILES"></div>
+      <h3 class="entry-heading"><a name="create _orig file-text" href="#create _orig file-icon">create _orig file</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-WRITE_TO_LOG"></div>
+      <h3 class="entry-heading"><a name="Write To Log-text" href="#Write To Log-icon">Write To Log</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-DUMMY"></div>
+      <h3 class="entry-heading"><a name="DUMMY-text" href="#DUMMY-icon">DUMMY</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-COPY_FILES"></div>
+      <h3 class="entry-heading"><a name="Create a backup-text" href="#Create a backup-icon">Create a backup</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="scrape_ftp_products-text" href="#scrape_ftp_products-icon">scrape_ftp_products</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-MAIL"></div>
+      <h3 class="entry-heading"><a name="Error scraping from ftp-text" href="#Error scraping from ftp-icon">Error scraping from ftp</a></h3>
+      <p>Mail</p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-COPY_FILES"></div>
+      <h3 class="entry-heading"><a name="Restore backup-text" href="#Restore backup-icon">Restore backup</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-DELETE_FILES"></div>
+      <h3 class="entry-heading"><a name="Delete failed file-text" href="#Delete failed file-icon">Delete failed file</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-FILES_EXIST"></div>
+      <h3 class="entry-heading"><a name="Checks if error found-text" href="#Checks if error found-icon">Checks if error found</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

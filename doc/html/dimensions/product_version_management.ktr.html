@@ -65,7 +65,7 @@
       </table>
       <h2><a name="diagram">Diagram</a></h2>
       <div class="diagram" id="diagram" style="&#xA;            width: 728px;&#xA;            height: 528px;&#xA;        "><a name="CSV file input-icon"></a><div id="CSV file input" class="&#xA;                    step-icon&#xA;                    step-icon-CsvInput" style="&#xA;                    left:100px;&#xA;                    top:300px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Query products"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Query download_products"></a></div>
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Select values"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Select values 2"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#CSV file input-text" style="&#xA;                    top:332px;&#xA;                    left:81.33333333333333px;                    &#xA;                ">CSV file input</a><a name="Copy row to result as flag-icon"></a><div id="Copy row to result as flag" class="&#xA;                    step-icon&#xA;                    step-icon-RowsToResult" style="&#xA;                    left:700px;&#xA;                    top:300px;&#xA;                ">
             <div class="step-hops"></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#Copy row to result as flag-text" style="&#xA;                    top:332px;&#xA;                    left:665.3333333333334px;                    &#xA;                ">Copy row to result as flag</a><a name="Debug log UP TO DATE-icon"></a><div id="Debug log UP TO DATE" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:300px;&#xA;                    top:200px;&#xA;                ">
@@ -110,7 +110,11 @@
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Update download_products"></a></div>
          </div><a class="&#xA;                    step-label&#xA;                    " href="#download_products mode-text" style="&#xA;                    top:132px;&#xA;                    left:270.6666666666667px;                    &#xA;                ">download_products mode</a><a name="products mode-icon"></a><div id="products mode" class="&#xA;                    step-icon&#xA;                    step-icon-ScriptValueMod" style="&#xA;                    left:300px;&#xA;                    top:500px;&#xA;                ">
             <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Update products"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#products mode-text" style="&#xA;                    top:532px;&#xA;                    left:282.6666666666667px;                    &#xA;                ">products mode</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#products mode-text" style="&#xA;                    top:532px;&#xA;                    left:282.6666666666667px;                    &#xA;                ">products mode</a><a name="Select values-icon"></a><div id="Select values" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:100px;&#xA;                    top:216px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Query download_products"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Select values-text" style="&#xA;                    top:248px;&#xA;                    left:82.66666666666667px;                    &#xA;                ">Select values</a><a name="Select values 2-icon"></a><div id="Select values 2" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:100px;&#xA;                    top:397px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Query products"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Select values 2-text" style="&#xA;                    top:429px;&#xA;                    left:80px;                    &#xA;                ">Select values 2</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -342,6 +346,18 @@
             </tr>
             <tr>
                <th>5</th>
+               <td>version_download</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+            <tr>
+               <th>6</th>
                <td>new_formatted_version_major</td>
                <td>String</td>
                <td></td>
@@ -378,7 +394,7 @@
 			result, id, 
 			formatted_name, new_formatted_name, 
 			formatted_version_major, new_formatted_version_major]));
-}</pre><h5>Item_0</h5><pre class="brush: js;">var isBasicLogLevel = org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
+}</pre><h5>Item_0</h5><pre class="brush: js;">var isBasicLogLevel = true; // This is not found! org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
 
 println(java.lang.String.format("%20s | %15s | %15s | %6s | %20s | %20s | %7s | %7s", [
 "download_name", "version"
@@ -398,7 +414,7 @@ println(java.lang.String.format("%20s | %15s | %15s | %6s | %20s | %20s | %7s | 
 } else {
 	println(java.lang.String.format("%20s | %15s | %15s | %6s | %7s | %7s", [
 			product_name, version, result, id, formatted_version_major, new_formatted_version_major]));
-}</pre><h5>Item_0</h5><pre class="brush: js;">var isBasicLogLevel = org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
+}</pre><h5>Item_0</h5><pre class="brush: js;">var isBasicLogLevel = true; // org.pentaho.di.core.logging.LogWriter.getInstance().isBasic();
 
 println(java.lang.String.format("\n\n%20s | %15s | %15s | %6s | %7s | %7s", [
 "product_name", "version", "result", "id", "MVer", "newMVer"]));</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-ScriptValueMod"></div>
@@ -923,7 +939,115 @@ if (id == null) {
 	trans_Status = SKIP_TRANSFORMATION;
 } else if (mode == "update" &amp;&amp; (result == "UPDATE" || result == "ERROR MISMATCH")) {
 	trans_Status = CONTINUE_TRANSFORMATION
-}</pre><h5>Item_0</h5><pre class="brush: js;">var mode = getVariable("mode", "check");</pre>    <script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+}</pre><h5>Item_0</h5><pre class="brush: js;">var mode = getVariable("mode", "check");</pre>    <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Select values-text" href="#Select values-icon">Select values</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>download_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>new_formatted_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version_download</td>
+               <td>version</td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>new_formatted_version_major</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="Select values 2-text" href="#Select values 2-icon">Select values 2</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>rename</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>download_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>new_formatted_name</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>version</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>new_formatted_version_major</td>
+               <td></td>
+               <td>-2</td>
+               <td>-2</td>
+            </tr>
+         </tbody>
+      </table><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
             SyntaxHighlighter.all();
         </script></body>
 </html>
