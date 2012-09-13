@@ -739,7 +739,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 \[([^\]]{26})\]                # request time :HH:mm:ss -0800
 
 \s"GET\s
-/update/[123]                  # AUS schema version
+/update/[1234]                 # AUS schema version
 /([^/\s]{3,20})                # product_name
 
 /(                             # product_version
