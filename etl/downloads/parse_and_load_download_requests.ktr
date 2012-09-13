@@ -1037,7 +1037,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <script><![CDATA[^(?>([a-fA-F0-9.:]{2,45})    # client_ip, either IPv4 (111.111.111.111) or IPv6 (::f or aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa or aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:111.111.111.111)
+    <script><![CDATA[^(?>([a-fA-F0-9.:]{2,45}))    # client_ip, either IPv4 (111.111.111.111) or IPv6 (::f or aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:aaaa or aaaa:aaaa:aaaa:aaaa:aaaa:aaaa:111.111.111.111)
 \s-\s                       # unused IDENT field
 (?>-|([^-](?:[^\[\s]++(?:(?!\s\[)[\[\s])?)++))\s      # Cookies field (unquoted so harder to parse)
 \[\[?(\d{2}/\w{3}/\d{4} # request date dd/MMM/yyyy
