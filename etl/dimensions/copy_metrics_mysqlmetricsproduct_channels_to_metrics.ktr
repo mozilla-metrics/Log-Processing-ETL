@@ -180,6 +180,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     <sql>SELECT
   product_channel_id
 , product_channel
+, partner
 FROM product_channels
 WHERE product_channel_id &gt; IFNULL(?,0)</sql>
     <limit>0</limit>
