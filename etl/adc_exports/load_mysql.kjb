@@ -147,10 +147,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <create_parent_folder>N</create_parent_folder>
       <pass_export>N</pass_export>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>PROD</name>
-            <stream_name/>
-            <value>firefox</value>
-            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
@@ -180,10 +177,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <create_parent_folder>N</create_parent_folder>
       <pass_export>N</pass_export>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-            <parameter>            <name>PROD</name>
-            <stream_name/>
-            <value>firefox</value>
-            </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
+      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
