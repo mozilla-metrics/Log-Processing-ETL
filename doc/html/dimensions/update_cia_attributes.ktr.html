@@ -6,8 +6,8 @@
       <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
       <!--
             Debugging info - please ignore
-            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/copy_metrics_mysqlmetricsproduct_channels_to_metrics.ktr"
-            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/copy_metrics_mysqlmetricsproduct_channels_to_metrics.ktr"
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/update_cia_attributes.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/update_cia_attributes.ktr"
             file: 1
             document: 1
             document-element: transformation
@@ -28,16 +28,14 @@
          |   <a href="#variables">Variables</a>
          |   <a href="#connections">Database Connections</a>
          |   <a href="#files">Flat Files</a></div>
-      <h1>Transformation: "Update product_channels"</h1>
+      <h1>Transformation: "update_cia_attributes"</h1>
       <p>
          This transformation does not have a description.
          
       </p>
-      <p>
-         The contents of this file are subject to the terms of the Mozilla Public
+      <p>The contents of this file are subject to the terms of the Mozilla Public
          License, v. 2.0. If a copy of the MPL was not distributed with this file,
          You can obtain one at http://mozilla.org/MPL/2.0/.
-         
       </p>
       <h2>High Level Data Flow Diagram</h2>
       <table>
@@ -45,28 +43,32 @@
             <tr>
                <th>Input (2)</th>
                <th>Transform</th>
-               <th>Output (0)</th>
+               <th>Output (1)</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>
-                  <div>MySQL product_channels</div>
-                  <div>Vertica max(product_channel_id)</div>
+                  <div>MySQL cia_GenericAttributes</div>
+                  <div>Vertica max(cia_GenericAttributes)</div>
                </td>
                <td></td>
-               <td></td>
+               <td>
+                  <div>cia_GenericAttributes</div>
+               </td>
             </tr>
          </tbody>
       </table>
       <h2><a name="diagram">Diagram</a></h2>
-      <div class="diagram" id="diagram" style="&#xA;            width: 128px;&#xA;            height: 328px;&#xA;        "><a name="MySQL product_channels-icon"></a><div id="MySQL product_channels" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:100px;&#xA;                    top:200px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#update product_channels"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#MySQL product_channels-text" style="&#xA;                    top:232px;&#xA;                    left:70.66666666666667px;                    &#xA;                ">MySQL product_channels</a><a name="Vertica max(product_channel_id)-icon"></a><div id="Vertica max(product_channel_id)" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:100px;&#xA;                    top:100px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#MySQL product_channels"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Vertica max(product_channel_id)-text" style="&#xA;                    top:132px;&#xA;                    left:58.666666666666664px;                    &#xA;                ">Vertica max(product_channel_id)</a><a name="update product_channels-icon"></a><div id="update product_channels" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:100px;&#xA;                    top:300px;&#xA;                ">
+      <div class="diagram" id="diagram" style="&#xA;            width: 169px;&#xA;            height: 332px;&#xA;        "><a name="MySQL cia_GenericAttributes-icon"></a><div id="MySQL cia_GenericAttributes" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:112px;&#xA;                    top:184px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#cia_GenericAttributes"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#MySQL cia_GenericAttributes-text" style="&#xA;                    top:216px;&#xA;                    left:76px;                    &#xA;                ">MySQL cia_GenericAttributes</a><a name="Vertica max(cia_GenericAttributes)-icon"></a><div id="Vertica max(cia_GenericAttributes)" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:112px;&#xA;                    top:82px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#MySQL cia_GenericAttributes"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Vertica max(cia_GenericAttributes)-text" style="&#xA;                    top:114px;&#xA;                    left:66.66666666666666px;                    &#xA;                ">Vertica max(cia_GenericAttributes)</a><a name="cia_GenericAttributes-icon"></a><div id="cia_GenericAttributes" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:112px;&#xA;                    top:286px;&#xA;                ">
             <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#update product_channels-text" style="&#xA;                    top:332px;&#xA;                    left:69.33333333333333px;                    &#xA;                ">update product_channels</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#cia_GenericAttributes-text" style="&#xA;                    top:318px;&#xA;                    left:84px;                    &#xA;                ">cia_GenericAttributes</a>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 153px;&#xA;&#x9;&#x9;&#x9;top: 284px;&#xA;&#x9;&#x9;&#x9;width: 424px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Microsoft Sans Serif;&#xA;&#x9;&#x9;&#x9;font-size: 8;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">Using Table Output instead of Bulk loader because of issues with some escape chars</div>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -186,7 +188,7 @@
                <td>${VERTICA_HOST}</td>
                <td>${VERTICA_PORT}</td>
                <td>${VERTICA_USER}</td>
-               <td><a href="#metrics">Vertica max(product_channel_id)</a>, <a href="#metrics">update product_channels</a></td>
+               <td><a href="#metrics">Vertica max(cia_GenericAttributes)</a>, <a href="#metrics">cia_GenericAttributes</a></td>
             </tr>
             <tr>
                <th><a href="#connection.metrics mysql">metrics mysql</a></th>
@@ -195,7 +197,7 @@
                <td>${METRICS_MYSQL_HOST}</td>
                <td>${METRICS_MYSQL_PORT}</td>
                <td>${METRICS_MYSQL_USER}</td>
-               <td><a href="#metrics mysql">MySQL product_channels</a></td>
+               <td><a href="#metrics mysql">MySQL cia_GenericAttributes</a></td>
             </tr>
          </tbody>
       </table>
@@ -300,27 +302,29 @@
          
       </p>
       <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
-      <h3 class="step-heading"><a name="MySQL product_channels-text" href="#MySQL product_channels-icon">MySQL product_channels</a></h3>
+      <h3 class="step-heading"><a name="MySQL cia_GenericAttributes-text" href="#MySQL cia_GenericAttributes-icon">MySQL cia_GenericAttributes</a></h3>
       <p>
          This job entry does not have a description.
          
       </p>
       <h4>SQL</h4><pre class="brush: sql;">SELECT
-  product_channel_id
-, product_channel
-, partner
-FROM product_channels
-WHERE product_channel_id &gt; IFNULL(?,0)</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
-      <h3 class="step-heading"><a name="Vertica max(product_channel_id)-text" href="#Vertica max(product_channel_id)-icon">Vertica max(product_channel_id)</a></h3>
+  regionName
+, attribute
+, content
+, updated_at
+FROM cia_GenericAttributes
+WHERE updated_at &gt; IFNULL(?,0)
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Vertica max(cia_GenericAttributes)-text" href="#Vertica max(cia_GenericAttributes)-icon">Vertica max(cia_GenericAttributes)</a></h3>
       <p>
          This job entry does not have a description.
          
       </p>
       <h4>SQL</h4><pre class="brush: sql;">SELECT
-  MAX(product_channel_id)
-FROM product_channels
-</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-VerticaBulkLoader"></div>
-      <h3 class="step-heading"><a name="update product_channels-text" href="#update product_channels-icon">update product_channels</a></h3>
+  MAX(updated_at)
+FROM cia_GenericAttributes
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="cia_GenericAttributes-text" href="#cia_GenericAttributes-icon">cia_GenericAttributes</a></h3>
       <p>
          This job entry does not have a description.
          

@@ -6,8 +6,8 @@
       <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
       <!--
             Debugging info - please ignore
-            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/copy_metrics_mysqlmetricsproduct_channels_to_metrics.ktr"
-            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/copy_metrics_mysqlmetricsproduct_channels_to_metrics.ktr"
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/update_cia_countries.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/update_cia_countries.ktr"
             file: 1
             document: 1
             document-element: transformation
@@ -28,16 +28,14 @@
          |   <a href="#variables">Variables</a>
          |   <a href="#connections">Database Connections</a>
          |   <a href="#files">Flat Files</a></div>
-      <h1>Transformation: "Update product_channels"</h1>
+      <h1>Transformation: "update_cia_countries"</h1>
       <p>
          This transformation does not have a description.
          
       </p>
-      <p>
-         The contents of this file are subject to the terms of the Mozilla Public
+      <p>The contents of this file are subject to the terms of the Mozilla Public
          License, v. 2.0. If a copy of the MPL was not distributed with this file,
          You can obtain one at http://mozilla.org/MPL/2.0/.
-         
       </p>
       <h2>High Level Data Flow Diagram</h2>
       <table>
@@ -45,28 +43,30 @@
             <tr>
                <th>Input (2)</th>
                <th>Transform</th>
-               <th>Output (0)</th>
+               <th>Output (1)</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>
-                  <div>MySQL product_channels</div>
-                  <div>Vertica max(product_channel_id)</div>
+                  <div>MySQL cia_Countries</div>
+                  <div>Vertica max(cia_Countries)</div>
                </td>
                <td></td>
-               <td></td>
+               <td>
+                  <div>cia_Countries</div>
+               </td>
             </tr>
          </tbody>
       </table>
       <h2><a name="diagram">Diagram</a></h2>
-      <div class="diagram" id="diagram" style="&#xA;            width: 128px;&#xA;            height: 328px;&#xA;        "><a name="MySQL product_channels-icon"></a><div id="MySQL product_channels" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:100px;&#xA;                    top:200px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#update product_channels"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#MySQL product_channels-text" style="&#xA;                    top:232px;&#xA;                    left:70.66666666666667px;                    &#xA;                ">MySQL product_channels</a><a name="Vertica max(product_channel_id)-icon"></a><div id="Vertica max(product_channel_id)" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:100px;&#xA;                    top:100px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#MySQL product_channels"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Vertica max(product_channel_id)-text" style="&#xA;                    top:132px;&#xA;                    left:58.666666666666664px;                    &#xA;                ">Vertica max(product_channel_id)</a><a name="update product_channels-icon"></a><div id="update product_channels" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:100px;&#xA;                    top:300px;&#xA;                ">
+      <div class="diagram" id="diagram" style="&#xA;            width: 128px;&#xA;            height: 320px;&#xA;        "><a name="MySQL cia_Countries-icon"></a><div id="MySQL cia_Countries" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:113px;&#xA;                    top:182px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#cia_Countries"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#MySQL cia_Countries-text" style="&#xA;                    top:214px;&#xA;                    left:87.66666666666667px;                    &#xA;                ">MySQL cia_Countries</a><a name="Vertica max(cia_Countries)-icon"></a><div id="Vertica max(cia_Countries)" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:113px;&#xA;                    top:82px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#MySQL cia_Countries"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Vertica max(cia_Countries)-text" style="&#xA;                    top:114px;&#xA;                    left:78.33333333333334px;                    &#xA;                ">Vertica max(cia_Countries)</a><a name="cia_Countries-icon"></a><div id="cia_Countries" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:113px;&#xA;                    top:274px;&#xA;                ">
             <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#update product_channels-text" style="&#xA;                    top:332px;&#xA;                    left:69.33333333333333px;                    &#xA;                ">update product_channels</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#cia_Countries-text" style="&#xA;                    top:306px;&#xA;                    left:95.66666666666667px;                    &#xA;                ">cia_Countries</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -186,7 +186,7 @@
                <td>${VERTICA_HOST}</td>
                <td>${VERTICA_PORT}</td>
                <td>${VERTICA_USER}</td>
-               <td><a href="#metrics">Vertica max(product_channel_id)</a>, <a href="#metrics">update product_channels</a></td>
+               <td><a href="#metrics">Vertica max(cia_Countries)</a>, <a href="#metrics">cia_Countries</a></td>
             </tr>
             <tr>
                <th><a href="#connection.metrics mysql">metrics mysql</a></th>
@@ -195,7 +195,7 @@
                <td>${METRICS_MYSQL_HOST}</td>
                <td>${METRICS_MYSQL_PORT}</td>
                <td>${METRICS_MYSQL_USER}</td>
-               <td><a href="#metrics mysql">MySQL product_channels</a></td>
+               <td><a href="#metrics mysql">MySQL cia_Countries</a></td>
             </tr>
          </tbody>
       </table>
@@ -300,27 +300,129 @@
          
       </p>
       <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
-      <h3 class="step-heading"><a name="MySQL product_channels-text" href="#MySQL product_channels-icon">MySQL product_channels</a></h3>
+      <h3 class="step-heading"><a name="MySQL cia_Countries-text" href="#MySQL cia_Countries-icon">MySQL cia_Countries</a></h3>
       <p>
          This job entry does not have a description.
          
       </p>
       <h4>SQL</h4><pre class="brush: sql;">SELECT
-  product_channel_id
-, product_channel
-, partner
-FROM product_channels
-WHERE product_channel_id &gt; IFNULL(?,0)</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
-      <h3 class="step-heading"><a name="Vertica max(product_channel_id)-text" href="#Vertica max(product_channel_id)-icon">Vertica max(product_channel_id)</a></h3>
+  regionName
+, lastUpdate
+, totalArea
+, landArea
+, waterArea
+, coastline
+, arableLand
+, permanentCrops
+, otherLandUse
+, irrigatedLand
+, totalRenewableWaterResources
+, totalFreshwaterWithdrawal
+, domesticFreshwaterWithdrawal
+, industrialFreshwaterWithdrawal
+, agriculturalFreshwaterWithdrawal
+, totalFreshwaterWithdrawalPerCapita
+, population
+, populationYoungMale
+, populationYoungFemale
+, populationAdultMale
+, populationAdultFemale
+, populationOldMale
+, populationOldFemale
+, medianAge
+, medianAgeMale
+, medianAgeFemale
+, populationGrowthRate
+, birthRate
+, deathRate
+, netMigrationRate
+, urbanPopulation
+, urbanizationRate
+, sexRatioAtBirth
+, sexRatioYoung
+, sexRatioAdult
+, sexRatioOld
+, sexRatio
+, infantMortalityRate
+, infantMortalityRateMale
+, infantMortalityRateFemale
+, lifeExpectancyAtBirth
+, lifeExpectancyAtBirthMale
+, lifeExpectancyAtBirthFemale
+, totalFertilityRate
+, HIVadultPrevalenceRate
+, peopleLivingWithHIV
+, literacy
+, literacyMale
+, literacyFemale
+, schoolLifeExpectancy
+, schoolLifeExpectancyMale
+, schoolLifeExpectancyFemale
+, educationExpenditures
+, independence
+, GDPPurchasingPowerParity
+, GDPOfficialExchangeRate
+, GDPRealGrowthRate
+, GDPPerCapitaPPP
+, GDPAgriculture
+, GDPIndustry
+, GDPServices
+, laborForce
+, unemploymentRate
+, householdIncomeLowest
+, householdIncomeHighest
+, giniIndex
+, investment
+, revenues
+, expenditures
+, publicDebt
+, inflationRate
+, centralBankDiscountRate
+, commercialBankPrimeLendingRate
+, stockOfMoney
+, stockOfQuasiMoney
+, stockOfDomesticCredit
+, marketValueOfPubliclyTradedShares
+, industrialProductionGrowthRate
+, electricityProduction
+, electricityConsumption
+, electricityExports
+, electricityImports
+, oilProduction
+, oilConsumption
+, oilExports
+, oilImports
+, oilProvedReserves
+, naturalGasProduction
+, naturalGasConsumption
+, naturalGasExports
+, naturalGasImports
+, naturalGasProvedReserves
+, currentAccountBalance
+, exports
+, reservesOfForeignExchangeAndGold
+, debtExternal
+, stockOfDirectForeignInvestmentAtHome
+, stockOfDirectForeignInvestmentAbroad
+, telephonesMainLinesInUse
+, telephonesMobileCellular
+, internetHosts
+, internetUsers
+, airports
+, heliports
+, militaryExpenditures
+FROM cia_Countries
+WHERE lastUpdate &gt; IFNULL(?,0)</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Vertica max(cia_Countries)-text" href="#Vertica max(cia_Countries)-icon">Vertica max(cia_Countries)</a></h3>
       <p>
          This job entry does not have a description.
          
       </p>
       <h4>SQL</h4><pre class="brush: sql;">SELECT
-  MAX(product_channel_id)
-FROM product_channels
-</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-VerticaBulkLoader"></div>
-      <h3 class="step-heading"><a name="update product_channels-text" href="#update product_channels-icon">update product_channels</a></h3>
+  MAX(lastUpdate)
+FROM cia_Countries
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="cia_Countries-text" href="#cia_Countries-icon">cia_Countries</a></h3>
       <p>
          This job entry does not have a description.
          

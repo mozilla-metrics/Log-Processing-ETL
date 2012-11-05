@@ -1,0 +1,678 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/to_vertica/compare_and_notify.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/to_vertica/compare_and_notify.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/adc_exports/to_vertica"
+            documentation-root: "../../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "compare_and_notify"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (4)</th>
+               <th>Transform</th>
+               <th>Output (1)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>min, max mysql</div>
+                  <div>min, max vertica</div>
+                  <div>select * (vertica)</div>
+                  <div>select * (mysql)</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>report file</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 910px;&#xA;            height: 540px;&#xA;        "><a name="Detect empty stream-icon"></a><div id="Detect empty stream" class="&#xA;                    step-icon&#xA;                    step-icon-DetectEmptyStream" style="&#xA;                    left:205px;&#xA;                    top:123px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#no data"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Detect empty stream-text" style="&#xA;                    top:155px;&#xA;                    left:179.66666666666666px;                    &#xA;                ">Detect empty stream</a><a name="Merge Rows (diff)-icon"></a><div id="Merge Rows (diff)" class="&#xA;                    step-icon&#xA;                    step-icon-MergeRows" style="&#xA;                    left:374px;&#xA;                    top:248px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#changed or deleted"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Merge Rows (diff)-text" style="&#xA;                    top:280px;&#xA;                    left:351.3333333333333px;                    &#xA;                ">Merge Rows (diff)</a><a name="Set MIN_DATE, MAX_DATE-icon"></a><div id="Set MIN_DATE, MAX_DATE" class="&#xA;                    step-icon&#xA;                    step-icon-SetVariable" style="&#xA;                    left:65px;&#xA;                    top:332px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Set MIN_DATE, MAX_DATE-text" style="&#xA;                    top:364px;&#xA;                    left:35.66666666666667px;                    &#xA;                ">Set MIN_DATE, MAX_DATE</a><a name="changed or deleted-icon"></a><div id="changed or deleted" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:557px;&#xA;                    top:248px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#filename"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#changed or deleted-text" style="&#xA;                    top:280px;&#xA;                    left:533px;                    &#xA;                ">changed or deleted</a><a name="filename-icon"></a><div id="filename" class="&#xA;                    step-icon&#xA;                    step-icon-GetVariable" style="&#xA;                    left:697px;&#xA;                    top:248px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#report file"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#filename-text" style="&#xA;                    top:280px;&#xA;                    left:686.3333333333334px;                    &#xA;                ">filename</a><a name="min, max mysql-icon"></a><div id="min, max mysql" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:65px;&#xA;                    top:248px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#select * (vertica)"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Set MIN_DATE, MAX_DATE"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#min, max mysql-text" style="&#xA;                    top:280px;&#xA;                    left:46.33333333333333px;                    &#xA;                ">min, max mysql</a><a name="min, max vertica-icon"></a><div id="min, max vertica" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:65px;&#xA;                    top:416px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#select * (mysql)"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#min, max vertica-text" style="&#xA;                    top:448px;&#xA;                    left:43.66666666666667px;                    &#xA;                ">min, max vertica</a><a name="no data-icon"></a><div id="no data" class="&#xA;                    step-icon&#xA;                    step-icon-Abort" style="&#xA;                    left:374px;&#xA;                    top:124px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#no data-text" style="&#xA;                    top:156px;&#xA;                    left:364.6666666666667px;                    &#xA;                ">no data</a><a name="report file-icon"></a><div id="report file" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileOutput" style="&#xA;                    left:847px;&#xA;                    top:248px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#report file-text" style="&#xA;                    top:280px;&#xA;                    left:832.3333333333334px;                    &#xA;                ">report file</a><a name="select * (vertica)-icon"></a><div id="select * (vertica)" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:205px;&#xA;                    top:248px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Merge Rows (diff)"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-copy-data " href="#Detect empty stream"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#select * (vertica)-text" style="&#xA;                    top:280px;&#xA;                    left:181px;                    &#xA;                ">select * (vertica)</a><a name="select * (mysql)-icon"></a><div id="select * (mysql)" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:205px;&#xA;                    top:416px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Merge Rows (diff)"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#select * (mysql)-text" style="&#xA;                    top:448px;&#xA;                    left:183.66666666666666px;                    &#xA;                ">select * (mysql)</a>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 319px;&#xA;&#x9;&#x9;&#x9;top: 208px;&#xA;&#x9;&#x9;&#x9;width: 151px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Microsoft Sans Serif;&#xA;&#x9;&#x9;&#x9;font-size: 8;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">comparing overlapping dates</div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 551px;&#xA;&#x9;&#x9;&#x9;top: 205px;&#xA;&#x9;&#x9;&#x9;width: 335px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Microsoft Sans Serif;&#xA;&#x9;&#x9;&#x9;font-size: 8;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">notify changes                                                                                       </div>
+         
+         <div class="note" style="&#xA;&#x9;&#x9;&#x9;left: 526px;&#xA;&#x9;&#x9;&#x9;top: 4px;&#xA;&#x9;&#x9;&#x9;width: 402px;&#xA;&#x9;&#x9;&#x9;height: px;&#xA;&#x9;&#x9;&#x9;font-family: Microsoft Sans Serif;&#xA;&#x9;&#x9;&#x9;font-size: 8;&#xA;&#x9;&#x9;&#x9;&#xA;&#x9;&#x9;&#x9;color: rgb(0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;background-color: rgb(255&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,165&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,0);&#xA;&#x9;&#x9;&#x9;border-color: rgb(100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;,100);&#xA;&#x9;&#x9;">This transformation compares mysql and vertica
+            - same table
+            - same product
+            and reports differences: changes or deleted data.
+            
+            For running alone, the following variables need to be set:
+            PRODUCT_ID (id from d_firefox_mobileproduct)
+            TABLE_NAME (for ex. f_firefox_language_installs)
+            KEY_FIELD (for comparing, this depends on the table name for ex. language_id)
+         </div>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>VERTICA_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_DB</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PORT</th>
+               <td></td>
+               <td>, </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_DATABASE</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td>, </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>FIREFOXMOBILE_INBOX</th>
+               <td></td>
+               <td></td>
+               <td><a href="#filename">filename</a></td>
+            </tr>
+            <tr>
+               <th>TABLE_NAME</th>
+               <td></td>
+               <td></td>
+               <td><a href="#filename">filename</a>, <a href="#min, max mysql">min, max mysql</a>, <a href="#min, max vertica">min, max vertica</a>, <a href="#no data">no data</a>, <a href="#select * (vertica)">select * (vertica)</a>, <a href="#select * (mysql)">select * (mysql)</a></td>
+            </tr>
+            <tr>
+               <th>PRODUCT_ID</th>
+               <td></td>
+               <td></td>
+               <td><a href="#filename">filename</a>, <a href="#min, max mysql">min, max mysql</a>, <a href="#min, max vertica">min, max vertica</a>, <a href="#no data">no data</a>, <a href="#select * (vertica)">select * (vertica)</a>, <a href="#select * (mysql)">select * (mysql)</a></td>
+            </tr>
+            <tr>
+               <th>KEY_FIELD</th>
+               <td></td>
+               <td></td>
+               <td><a href="#select * (vertica)">select * (vertica)</a>, <a href="#select * (mysql)">select * (mysql)</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 2 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics">metrics</a></th>
+               <td>VERTICA</td>
+               <td>Native</td>
+               <td>${VERTICA_HOST}</td>
+               <td>${VERTICA_PORT}</td>
+               <td>${VERTICA_USER}</td>
+               <td><a href="#metrics">min, max vertica</a>, <a href="#metrics">select * (vertica)</a></td>
+            </tr>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">min, max mysql</a>, <a href="#metrics mysql">select * (mysql)</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics">metrics</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${VERTICA_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>VERTICA</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${VERTICA_DB}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${VERTICA_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${VERTICA_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${VERTICA_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_DATABASE}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DetectEmptyStream"></div>
+      <h3 class="step-heading"><a name="Detect empty stream-text" href="#Detect empty stream-icon">Detect empty stream</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-MergeRows"></div>
+      <h3 class="step-heading"><a name="Merge Rows (diff)-text" href="#Merge Rows (diff)-icon">Merge Rows (diff)</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SetVariable"></div>
+      <h3 class="step-heading"><a name="Set MIN_DATE, MAX_DATE-text" href="#Set MIN_DATE, MAX_DATE-icon">Set MIN_DATE, MAX_DATE</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>field_name</th>
+               <th>variable_name</th>
+               <th>variable_type</th>
+               <th>default_value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>min_date</td>
+               <td>MIN_DATE</td>
+               <td>ROOT_JOB</td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>max_date</td>
+               <td>MAX_DATE</td>
+               <td>ROOT_JOB</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="changed or deleted-text" href="#changed or deleted-icon">changed or deleted</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GetVariable"></div>
+      <h3 class="step-heading"><a name="filename-text" href="#filename-icon">filename</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>variable</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>trim_type</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>filename</td>
+               <td>${FIREFOXMOBILE_INBOX}/report_${TABLE_NAME}_${PRODUCT_ID}.csv</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="min, max mysql-text" href="#min, max mysql-icon">min, max mysql</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">select min(date_id) as min_date, max(date_id) as max_date from ${TABLE_NAME}
+WHERE mobileproduct_id = ${PRODUCT_ID}</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="min, max vertica-text" href="#min, max vertica-icon">min, max vertica</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">select min(date_id) as min_date, max(date_id) as max_date from ${TABLE_NAME}
+WHERE mobileproduct_id = ${PRODUCT_ID}</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Abort"></div>
+      <h3 class="step-heading"><a name="no data-text" href="#no data-icon">no data</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TextFileOutput"></div>
+      <h3 class="step-heading"><a name="report file-text" href="#report file-icon">report file</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>trim_type</th>
+               <th>length</th>
+               <th>precision</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>date_id</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>key_field</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>daily_device_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>active_device_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>daily_user_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>total_user_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>active_user_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>daily_device_uninstalls</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>daily_user_uninstalls</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>daily_device_upgrades</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>flagfield</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>both</td>
+               <td>-1</td>
+               <td>-1</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="select * (vertica)-text" href="#select * (vertica)-icon">select * (vertica)</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT
+  date_id
+, ${KEY_FIELD} as key_field
+, daily_device_installs
+, active_device_installs
+, daily_user_installs
+, total_user_installs
+, active_user_installs
+, daily_device_uninstalls
+, daily_user_uninstalls
+, daily_device_upgrades
+FROM ${TABLE_NAME}
+WHERE mobileproduct_id = ${PRODUCT_ID}
+AND date_id between ? and ?
+ORDER BY date_id, ${KEY_FIELD}
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="select * (mysql)-text" href="#select * (mysql)-icon">select * (mysql)</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT
+  date_id
+, ${KEY_FIELD} as key_field
+, daily_device_installs
+, active_device_installs
+, daily_user_installs
+, total_user_installs
+, active_user_installs
+, daily_device_uninstalls
+, daily_user_uninstalls
+, daily_device_upgrades
+FROM ${TABLE_NAME}
+WHERE mobileproduct_id = ${PRODUCT_ID}
+AND date_id between ? and ?
+ORDER BY date_id, ${KEY_FIELD}</pre><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

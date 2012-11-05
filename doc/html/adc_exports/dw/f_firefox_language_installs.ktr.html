@@ -1,0 +1,350 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/dw/f_firefox_language_installs.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/dw/f_firefox_language_installs.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/adc_exports/dw"
+            documentation-root: "../../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "firefox_language_installs"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (1)</th>
+               <th>Transform</th>
+               <th>Output (1)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>sa_firefox_device_installs</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>f_firefox_language_installs</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 748px;&#xA;            height: 128px;&#xA;        "><a name="d_firefox_language-icon"></a><div id="d_firefox_language" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:397px;&#xA;                    top:54px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#d_firefox_mobileproduct"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#d_firefox_language-text" style="&#xA;                    top:86px;&#xA;                    left:373px;                    &#xA;                ">d_firefox_language</a><a name="d_firefox_mobileproduct-icon"></a><div id="d_firefox_mobileproduct" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:552px;&#xA;                    top:54px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#f_firefox_language_installs"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#d_firefox_mobileproduct-text" style="&#xA;                    top:86px;&#xA;                    left:521.3333333333334px;                    &#xA;                ">d_firefox_mobileproduct</a><a name="date_id-icon"></a><div id="date_id" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:242px;&#xA;                    top:54px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#d_firefox_language"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#date_id-text" style="&#xA;                    top:86px;&#xA;                    left:232.66666666666666px;                    &#xA;                ">date_id</a><a name="f_firefox_language_installs-icon"></a><div id="f_firefox_language_installs" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:707px;&#xA;                    top:54px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#f_firefox_language_installs-text" style="&#xA;                    top:86px;&#xA;                    left:671px;                    &#xA;                ">f_firefox_language_installs</a><a name="sa_firefox_device_installs-icon"></a><div id="sa_firefox_device_installs" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:87px;&#xA;                    top:54px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#date_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#sa_firefox_device_installs-text" style="&#xA;                    top:86px;&#xA;                    left:52.333333333333336px;                    &#xA;                ">sa_firefox_device_installs</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_DATABASE</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td>, </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">d_firefox_language</a>, <a href="#metrics mysql">d_firefox_mobileproduct</a>, <a href="#metrics mysql">date_id</a>, <a href="#metrics mysql">f_firefox_language_installs</a>, <a href="#metrics mysql">sa_firefox_device_installs</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_DATABASE}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="d_firefox_language-text" href="#d_firefox_language-icon">d_firefox_language</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      language
+      language
+      
+      
+      language_id
+      tablemax
+      N
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="d_firefox_mobileproduct-text" href="#d_firefox_mobileproduct-icon">d_firefox_mobileproduct</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      product
+      mobileproduct
+      
+      
+      mobileproduct_id
+      tablemax
+      N
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
+      <h3 class="step-heading"><a name="date_id-text" href="#date_id-icon">date_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="f_firefox_language_installs-text" href="#f_firefox_language_installs-icon">f_firefox_language_installs</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>date_id</td>
+               <td>date_id</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>mobileproduct_id</td>
+               <td>mobileproduct_id</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>language_id</td>
+               <td>language_id</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>daily_device_installs</td>
+               <td>daily_device_installs</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>active_device_installs</td>
+               <td>active_device_installs</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>daily_user_installs</td>
+               <td>daily_user_installs</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>total_user_installs</td>
+               <td>total_user_installs</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>active_user_installs</td>
+               <td>active_user_installs</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>daily_device_uninstalls</td>
+               <td>daily_device_uninstalls</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>daily_user_uninstalls</td>
+               <td>daily_user_uninstalls</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>daily_device_upgrades</td>
+               <td>daily_device_upgrades</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="sa_firefox_device_installs-text" href="#sa_firefox_device_installs-icon">sa_firefox_device_installs</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT
+  date_installs
+, product
+, language
+, daily_device_installs
+, active_device_installs
+, daily_user_installs
+, total_user_installs
+, active_user_installs
+, daily_device_uninstalls
+, daily_user_uninstalls
+, daily_device_upgrades
+FROM sa_firefox_language_installs
+</pre><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

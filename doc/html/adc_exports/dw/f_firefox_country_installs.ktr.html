@@ -1,0 +1,379 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/dw/f_firefox_country_installs.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/dw/f_firefox_country_installs.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/adc_exports/dw"
+            documentation-root: "../../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "firefox_country_installs"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (1)</th>
+               <th>Transform</th>
+               <th>Output (1)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>sa_firefox_country_installs</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>f_firefox_country_installs</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 940px;&#xA;            height: 222px;&#xA;        "><a name="found?-icon"></a><div id="found?" class="&#xA;                    step-icon&#xA;                    step-icon-FilterRows" style="&#xA;                    left:465px;&#xA;                    top:60px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-true " href="#d_firefox_mobileproduct"></a><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-false " href="#remove country_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#found?-text" style="&#xA;                    top:92px;&#xA;                    left:457px;                    &#xA;                ">found?</a><a name="d_firefox_country-icon"></a><div id="d_firefox_country" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:592px;&#xA;                    top:154px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#d_firefox_mobileproduct"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#d_firefox_country-text" style="&#xA;                    top:186px;&#xA;                    left:569.3333333333334px;                    &#xA;                ">d_firefox_country</a><a name="d_firefox_mobileproduct-icon"></a><div id="d_firefox_mobileproduct" class="&#xA;                    step-icon&#xA;                    step-icon-CombinationLookup" style="&#xA;                    left:719px;&#xA;                    top:60px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#f_firefox_country_installs"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#d_firefox_mobileproduct-text" style="&#xA;                    top:92px;&#xA;                    left:688.3333333333334px;                    &#xA;                ">d_firefox_mobileproduct</a><a name="date_id-icon"></a><div id="date_id" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:211px;&#xA;                    top:60px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#lk d_firefox_country"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#date_id-text" style="&#xA;                    top:92px;&#xA;                    left:201.66666666666666px;                    &#xA;                ">date_id</a><a name="f_firefox_country_installs-icon"></a><div id="f_firefox_country_installs" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:896px;&#xA;                    top:60px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#f_firefox_country_installs-text" style="&#xA;                    top:92px;&#xA;                    left:861.3333333333334px;                    &#xA;                ">f_firefox_country_installs</a><a name="lk d_firefox_country-icon"></a><div id="lk d_firefox_country" class="&#xA;                    step-icon&#xA;                    step-icon-DBLookup" style="&#xA;                    left:338px;&#xA;                    top:60px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#found?"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#lk d_firefox_country-text" style="&#xA;                    top:92px;&#xA;                    left:311.3333333333333px;                    &#xA;                ">lk d_firefox_country</a><a name="sa_firefox_country_installs-icon"></a><div id="sa_firefox_country_installs" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:84px;&#xA;                    top:60px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#date_id"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#sa_firefox_country_installs-text" style="&#xA;                    top:92px;&#xA;                    left:48px;                    &#xA;                ">sa_firefox_country_installs</a><a name="remove country_id-icon"></a><div id="remove country_id" class="&#xA;                    step-icon&#xA;                    step-icon-SelectValues" style="&#xA;                    left:465px;&#xA;                    top:153px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#d_firefox_country"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#remove country_id-text" style="&#xA;                    top:185px;&#xA;                    left:442.3333333333333px;                    &#xA;                ">remove country_id</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_DATABASE</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td>, </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">d_firefox_country</a>, <a href="#metrics mysql">d_firefox_mobileproduct</a>, <a href="#metrics mysql">date_id</a>, <a href="#metrics mysql">f_firefox_country_installs</a>, <a href="#metrics mysql">lk d_firefox_country</a>, <a href="#metrics mysql">sa_firefox_country_installs</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_DATABASE}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-FilterRows"></div>
+      <h3 class="step-heading"><a name="found?-text" href="#found?-icon">found?</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="d_firefox_country-text" href="#d_firefox_country-icon">d_firefox_country</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      country_code
+      country_code
+      
+      
+      country_name
+      country_name
+      
+      
+      country_id
+      tablemax
+      N
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-CombinationLookup"></div>
+      <h3 class="step-heading"><a name="d_firefox_mobileproduct-text" href="#d_firefox_mobileproduct-icon">d_firefox_mobileproduct</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      
+      product
+      mobileproduct
+      
+      
+      mobileproduct_id
+      tablemax
+      N
+      
+      <br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
+      <h3 class="step-heading"><a name="date_id-text" href="#date_id-icon">date_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="f_firefox_country_installs-text" href="#f_firefox_country_installs-icon">f_firefox_country_installs</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>date_id</td>
+               <td>date_id</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>mobileproduct_id</td>
+               <td>mobileproduct_id</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>country_id</td>
+               <td>country_id</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>daily_device_installs</td>
+               <td>daily_device_installs</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>active_device_installs</td>
+               <td>active_device_installs</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>daily_user_installs</td>
+               <td>daily_user_installs</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>total_user_installs</td>
+               <td>total_user_installs</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>active_user_installs</td>
+               <td>active_user_installs</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>daily_device_uninstalls</td>
+               <td>daily_device_uninstalls</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>daily_user_uninstalls</td>
+               <td>daily_user_uninstalls</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>daily_device_upgrades</td>
+               <td>daily_device_upgrades</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-DBLookup"></div>
+      <h3 class="step-heading"><a name="lk d_firefox_country-text" href="#lk d_firefox_country-icon">lk d_firefox_country</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="sa_firefox_country_installs-text" href="#sa_firefox_country_installs-icon">sa_firefox_country_installs</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">SELECT
+  date_installs
+, product
+, country_code
+, country_name -- default value
+, 'OTHR' as marketing_region_code -- default value
+, daily_device_installs
+, active_device_installs
+, daily_user_installs
+, total_user_installs
+, active_user_installs
+, daily_device_uninstalls
+, daily_user_uninstalls
+, daily_device_upgrades
+FROM sa_firefox_country_installs
+</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-SelectValues"></div>
+      <h3 class="step-heading"><a name="remove country_id-text" href="#remove country_id-icon">remove country_id</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>        N
+              country_id
+          <script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

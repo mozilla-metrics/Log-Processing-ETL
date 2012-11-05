@@ -1,0 +1,249 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/update_cia_tables.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/update_cia_tables.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: update_cia_tables
+            relative-path: "/dimensions"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: job "update_cia_tables"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "update_cia_tables"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2012/09/21 12:42:25.980</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2012/09/21 12:42:25.980</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job does not define any parameters.
+         
+      </p>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 647px;&#xA;            height: 128px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:98px;&#xA;                    top:74px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#update_cia_countries"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:106px;&#xA;                    left:91.33333333333333px;&#xA;                " href="#START-text">START</a><a name="update_cia_countries-icon"></a><div id="update_cia_countries" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:271px;&#xA;                    top:74px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#update_cia_attributes"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:106px;&#xA;                    left:244.33333333333334px;&#xA;                " href="update_cia_countries.ktr.html">update_cia_countries</a><a name="update_cia_attributes-icon"></a><div id="update_cia_attributes" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:444px;&#xA;                    top:74px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#advance_epoch"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:106px;&#xA;                    left:416px;&#xA;                " href="update_cia_attributes.ktr.html">update_cia_attributes</a><a name="advance_epoch-icon"></a><div id="advance_epoch" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-SQL" style="&#xA;                    left:617px;&#xA;                    top:74px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:106px;&#xA;                    left:599.6666666666666px;&#xA;                " href="#advance_epoch-text">advance_epoch</a></div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>VERTICA_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_DB</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PORT</th>
+               <td></td>
+               <td>, </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>VERTICA_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#update_cia_countries">update_cia_countries</a>, <a href="#update_cia_attributes">update_cia_attributes</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Job Entries
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics">metrics</a></th>
+               <td>VERTICA</td>
+               <td>Native</td>
+               <td>${VERTICA_HOST}</td>
+               <td>${VERTICA_PORT}</td>
+               <td>${VERTICA_USER}</td>
+               <td><a href="#metrics">advance_epoch</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics">metrics</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${VERTICA_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>VERTICA</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${VERTICA_DB}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${VERTICA_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${VERTICA_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${VERTICA_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="update_cia_countries-text" href="#update_cia_countries-icon">update_cia_countries</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="update_cia_attributes-text" href="#update_cia_attributes-icon">update_cia_attributes</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-SQL"></div>
+      <h3 class="entry-heading"><a name="advance_epoch-text" href="#advance_epoch-icon">advance_epoch</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>SQL</h4><pre class="brush: sql;">select advance_epoch();</pre><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

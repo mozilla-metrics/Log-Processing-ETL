@@ -1,0 +1,119 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/main.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/main.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: main
+            relative-path: "/adc_exports"
+            documentation-root: "../.."
+        -->
+      <title>Kettle Documentation: job "main"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "main"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2012/10/27 12:33:39.645</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2012/10/27 12:33:39.645</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job does not define any parameters.
+         
+      </p>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 495px;&#xA;            height: 128px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:100px;&#xA;                    top:111px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#load mysql"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:143px;&#xA;                    left:93.33333333333333px;&#xA;                " href="#START-text">START</a><a name="load mysql-icon"></a><div id="load mysql" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:282px;&#xA;                    top:111px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#copy to vertica"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:143px;&#xA;                    left:268.6666666666667px;&#xA;                " href="load_mysql.kjb.html">load mysql</a><a name="copy to vertica-icon"></a><div id="copy to vertica" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-JOB" style="&#xA;                    left:467px;&#xA;                    top:111px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:143px;&#xA;                    left:447px;&#xA;                " href="copy_to_vertica.kjb.html">copy to vertica</a></div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#load mysql">load mysql</a>, <a href="#copy to vertica">copy to vertica</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job does not define any database connections.</p>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="load mysql-text" href="#load mysql-icon">load mysql</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-JOB"></div>
+      <h3 class="entry-heading"><a name="copy to vertica-text" href="#copy to vertica-icon">copy to vertica</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

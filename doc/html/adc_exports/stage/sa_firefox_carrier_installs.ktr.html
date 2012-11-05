@@ -1,0 +1,537 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/stage/sa_firefox_carrier_installs.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/stage/sa_firefox_carrier_installs.ktr"
+            file: 1
+            document: 1
+            document-element: transformation
+            name: 
+            relative-path: "/adc_exports/stage"
+            documentation-root: "../../.."
+        -->
+      <title>Kettle Documentation: transformation ""</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Steps">Steps</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Transformation: "firefox_carrier_installs"</h1>
+      <p>
+         This transformation does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2>High Level Data Flow Diagram</h2>
+      <table>
+         <thead>
+            <tr>
+               <th>Input (1)</th>
+               <th>Transform</th>
+               <th>Output (1)</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>
+                  <div>firefox_carrier_installs.csv</div>
+               </td>
+               <td></td>
+               <td>
+                  <div>sa_firefox_carrier_installs</div>
+               </td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 716px;&#xA;            height: 129px;&#xA;        "><a name="Get ${PROD}-icon"></a><div id="Get ${PROD}" class="&#xA;                    step-icon&#xA;                    step-icon-GetVariable" style="&#xA;                    left:371px;&#xA;                    top:49px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#sa_firefox_carrier_installs"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Get ${PROD}-text" style="&#xA;                    top:81px;&#xA;                    left:356.3333333333333px;                    &#xA;                ">Get ${PROD}</a><a name="firefox_carrier_installs.csv-icon"></a><div id="firefox_carrier_installs.csv" class="&#xA;                    step-icon&#xA;                    step-icon-TextFileInput" style="&#xA;                    left:108px;&#xA;                    top:48px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#format date"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#firefox_carrier_installs.csv-text" style="&#xA;                    top:80px;&#xA;                    left:70.66666666666666px;                    &#xA;                ">firefox_carrier_installs.csv</a><a name="format date-icon"></a><div id="format date" class="&#xA;                    step-icon&#xA;                    step-icon-Formula" style="&#xA;                    left:255px;&#xA;                    top:49px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#Get ${PROD}"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#format date-text" style="&#xA;                    top:81px;&#xA;                    left:240.33333333333334px;                    &#xA;                ">format date</a><a name="sa_firefox_carrier_installs-icon"></a><div id="sa_firefox_carrier_installs" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:696px;&#xA;                    top:49px;&#xA;                ">
+            <div class="step-hops"></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#sa_firefox_carrier_installs-text" style="&#xA;                    top:81px;&#xA;                    left:660px;                    &#xA;                ">sa_firefox_carrier_installs</a>
+         
+      </div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This transformation reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Steps</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>METRICS_MYSQL_HOST</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_DATABASE</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PORT</th>
+               <td></td>
+               <td>, </td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_USER</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>METRICS_MYSQL_PASS</th>
+               <td></td>
+               <td></td>
+               <td></td>
+            </tr>
+            <tr>
+               <th>PROD</th>
+               <td></td>
+               <td></td>
+               <td><a href="#Get ${PROD}">Get ${PROD}</a>, <a href="#firefox_carrier_installs.csv">firefox_carrier_installs.csv</a></td>
+            </tr>
+            <tr>
+               <th>FIREFOXMOBILE_INBOX</th>
+               <td></td>
+               <td></td>
+               <td><a href="#firefox_carrier_installs.csv">firefox_carrier_installs.csv</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This transformation defines 1 database connections.</p>
+      <h3>Database Connection Summary</h3>
+      <table>
+         <thead>
+            <tr>
+               <th>
+                  							Name
+                  						
+               </th>
+               <th>
+                  							Type
+                  						
+               </th>
+               <th>
+                  							Access
+                  						
+               </th>
+               <th>
+                  							Host
+                  						
+               </th>
+               <th>
+                  							Port
+                  						
+               </th>
+               <th>
+                  							User
+                  						
+               </th>
+               <th>
+                  							Used in Steps
+               </th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th><a href="#connection.metrics mysql">metrics mysql</a></th>
+               <td>MYSQL</td>
+               <td>Native</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+               <td>${METRICS_MYSQL_USER}</td>
+               <td><a href="#metrics mysql">sa_firefox_carrier_installs</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h3>Database Connection Details</h3>
+      <h4><a name="connection.metrics mysql">metrics mysql</a></h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Property</th>
+               <th>Value</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <td>name</td>
+               <td>metrics mysql</td>
+            </tr>
+            <tr>
+               <td>server</td>
+               <td>${METRICS_MYSQL_HOST}</td>
+            </tr>
+            <tr>
+               <td>type</td>
+               <td>MYSQL</td>
+            </tr>
+            <tr>
+               <td>access</td>
+               <td>Native</td>
+            </tr>
+            <tr>
+               <td>database</td>
+               <td>${METRICS_MYSQL_DATABASE}</td>
+            </tr>
+            <tr>
+               <td>port</td>
+               <td>${METRICS_MYSQL_PORT}</td>
+            </tr>
+            <tr>
+               <td>username</td>
+               <td>${METRICS_MYSQL_USER}</td>
+            </tr>
+            <tr>
+               <td>password</td>
+               <td>${METRICS_MYSQL_PASS}</td>
+            </tr>
+            <tr>
+               <td>attributes</td>
+               <td></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2>Flat Files</h2>
+      <p>
+         t.b.d.
+         
+      </p>
+      <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-GetVariable"></div>
+      <h3 class="step-heading"><a name="Get ${PROD}-text" href="#Get ${PROD}-icon">Get ${PROD}</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>variable</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>trim_type</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>product</td>
+               <td>${PROD}</td>
+               <td>String</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TextFileInput"></div>
+      <h3 class="step-heading"><a name="firefox_carrier_installs.csv-text" href="#firefox_carrier_installs.csv-icon">firefox_carrier_installs.csv</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>name</th>
+               <th>type</th>
+               <th>format</th>
+               <th>currency</th>
+               <th>decimal</th>
+               <th>group</th>
+               <th>nullif</th>
+               <th>ifnull</th>
+               <th>position</th>
+               <th>length</th>
+               <th>precision</th>
+               <th>trim_type</th>
+               <th>repeat</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>date_yyyymmdd</td>
+               <td>String</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>carrier</td>
+               <td>String</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>daily_device_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>active_device_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>daily_user_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>total_user_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>active_user_installs</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>daily_device_uninstalls</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>daily_user_uninstalls</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>daily_device_upgrades</td>
+               <td>Integer</td>
+               <td>#</td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>-1</td>
+               <td>none</td>
+               <td>N</td>
+            </tr>
+         </tbody>
+      </table><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-Formula"></div>
+      <h3 class="step-heading"><a name="format date-text" href="#format date-icon">format date</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="sa_firefox_carrier_installs-text" href="#sa_firefox_carrier_installs-icon">sa_firefox_carrier_installs</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <h4>Fields</h4>
+      <table>
+         <thead>
+            <tr>
+               <th>Position</th>
+               <th>column_name</th>
+               <th>stream_name</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>1</th>
+               <td>date_installs</td>
+               <td>date_yyyy-mm-dd</td>
+            </tr>
+            <tr>
+               <th>2</th>
+               <td>product</td>
+               <td>product</td>
+            </tr>
+            <tr>
+               <th>3</th>
+               <td>carrier</td>
+               <td>carrier</td>
+            </tr>
+            <tr>
+               <th>4</th>
+               <td>daily_device_installs</td>
+               <td>daily_device_installs</td>
+            </tr>
+            <tr>
+               <th>5</th>
+               <td>active_device_installs</td>
+               <td>active_device_installs</td>
+            </tr>
+            <tr>
+               <th>6</th>
+               <td>daily_user_installs</td>
+               <td>daily_user_installs</td>
+            </tr>
+            <tr>
+               <th>7</th>
+               <td>total_user_installs</td>
+               <td>total_user_installs</td>
+            </tr>
+            <tr>
+               <th>8</th>
+               <td>active_user_installs</td>
+               <td>active_user_installs</td>
+            </tr>
+            <tr>
+               <th>9</th>
+               <td>daily_device_uninstalls</td>
+               <td>daily_device_uninstalls</td>
+            </tr>
+            <tr>
+               <th>10</th>
+               <td>daily_user_uninstalls</td>
+               <td>daily_user_uninstalls</td>
+            </tr>
+            <tr>
+               <th>11</th>
+               <td>daily_device_upgrades</td>
+               <td>daily_device_upgrades</td>
+            </tr>
+         </tbody>
+      </table><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

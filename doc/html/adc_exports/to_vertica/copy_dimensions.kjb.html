@@ -1,0 +1,143 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
+      <!--
+            Debugging info - please ignore
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/to_vertica/copy_dimensions.kjb"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/to_vertica/copy_dimensions.kjb"
+            file: 1
+            document: 1
+            document-element: job
+            name: copy_dimensions
+            relative-path: "/adc_exports/to_vertica"
+            documentation-root: "../../.."
+        -->
+      <title>Kettle Documentation: job "copy_dimensions"</title>
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/job.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
+   </head>
+   <body class="kettle-file" onload="drawHops()">
+      <div class="quicklinks"><a href="#diagram">Diagram</a>
+         |   <a href="#Job Entries">Job Entries</a>
+         |   <a href="#parameters">Parameters</a>
+         |   <a href="#variables">Variables</a>
+         |   <a href="#connections">Database Connections</a>
+         |   <a href="#files">Flat Files</a></div>
+      <h1>Job: "copy_dimensions"</h1>
+      <table>
+         <thead>
+            <tr>
+               <th>What?</th>
+               <th>Who?</th>
+               <th>When?</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Created</th>
+               <td>-</td>
+               <td>2012/10/31 09:10:00.731</td>
+            </tr>
+            <tr>
+               <th>Modified</th>
+               <td>-</td>
+               <td>2012/10/31 09:10:00.731</td>
+            </tr>
+         </tbody>
+      </table>
+      <p>
+         This job does not have a description.
+         
+      </p>
+      <p>
+         The contents of this file are subject to the terms of the Mozilla Public
+         License, v. 2.0. If a copy of the MPL was not distributed with this file,
+         You can obtain one at http://mozilla.org/MPL/2.0/.
+         
+      </p>
+      <h2><a name="parameters">Parameters</a></h2>
+      <p>
+         This job does not define any parameters.
+         
+      </p>
+      <h2><a name="diagram">Diagram</a></h2>
+      <div class="diagram" id="diagram" style="&#xA;            width: 853px;&#xA;            height: 128px;&#xA;        "><a name="START-icon"></a><div id="START" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-START" style="&#xA;                    left:89px;&#xA;                    top:84px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-unconditional" href="#copy_carrier"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:116px;&#xA;                    left:82.33333333333333px;&#xA;                " href="#START-text">START</a><a name="copy_carrier-icon"></a><div id="copy_carrier" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:234px;&#xA;                    top:84px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#copy_country"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:116px;&#xA;                    left:218px;&#xA;                " href="copy_carrier_to_vertica.ktr.html">copy_carrier</a><a name="copy_country-icon"></a><div id="copy_country" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:379px;&#xA;                    top:84px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#copy_device"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:116px;&#xA;                    left:363px;&#xA;                " href="copy_country_to_vertica.ktr.html">copy_country</a><a name="copy_device-icon"></a><div id="copy_device" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:524px;&#xA;                    top:84px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#copy_language"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:116px;&#xA;                    left:509.3333333333333px;&#xA;                " href="copy_device_to_vertica.ktr.html">copy_device</a><a name="copy_language-icon"></a><div id="copy_language" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:669px;&#xA;                    top:84px;&#xA;                ">
+            <div class="entry-hops"><a class="&#xA;                                entry-hop&#xA;                                entry-hop-true" href="#copy_os_version"></a></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:116px;&#xA;                    left:651.6666666666666px;&#xA;                " href="copy_languages_to_vertica.ktr.html">copy_language</a><a name="copy_os_version-icon"></a><div id="copy_os_version" class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-icon&#xA;                    entry-icon-TRANS" style="&#xA;                    left:814px;&#xA;                    top:84px;&#xA;                ">
+            <div class="entry-hops"></div>
+         </div><a class="&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;entry-label&#xA;                    " style="&#xA;                    top:116px;&#xA;                    left:794px;&#xA;                " href="copy_os_version_to_vertica.ktr.html">copy_os_version</a></div>
+      <h2><a name="variables">Variables</a></h2>
+      <p>This job reads the following variables:</p>
+      <table>
+         <thead>
+            <tr>
+               <th>Name</th>
+               <th>Value</th>
+               <th>Connections</th>
+               <th>Job Entries</th>
+            </tr>
+         </thead>
+         <tbody>
+            <tr>
+               <th>Internal.Job.Filename.Directory</th>
+               <td></td>
+               <td></td>
+               <td><a href="#copy_carrier">copy_carrier</a>, <a href="#copy_country">copy_country</a>, <a href="#copy_device">copy_device</a>, <a href="#copy_language">copy_language</a>, <a href="#copy_os_version">copy_os_version</a></td>
+            </tr>
+         </tbody>
+      </table>
+      <h2><a name="connections">Database Connections</a></h2>
+      <p>This job does not define any database connections.</p>
+      <h2><a name="Job Entries">Job Entries</a></h2>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-START"></div>
+      <h3 class="entry-heading"><a name="START-text" href="#START-icon">START</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="copy_carrier-text" href="#copy_carrier-icon">copy_carrier</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="copy_country-text" href="#copy_country-icon">copy_country</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="copy_device-text" href="#copy_device-icon">copy_device</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="copy_language-text" href="#copy_language-icon">copy_language</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p>
+      <div class="&#xA;&#x9;&#x9;&#x9;entry-icon&#xA;&#x9;&#x9;&#x9;entry-icon-TRANS"></div>
+      <h3 class="entry-heading"><a name="copy_os_version-text" href="#copy_os_version-icon">copy_os_version</a></h3>
+      <p>
+         This job entry does not have a description.
+         
+      </p><script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
+            SyntaxHighlighter.all();
+        </script></body>
+</html>

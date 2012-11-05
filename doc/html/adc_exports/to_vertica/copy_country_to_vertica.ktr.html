@@ -6,20 +6,20 @@
       <meta name="Generator" content="kettle-cookbook - see http://code.google.com/p/kettle-cookbook/">
       <!--
             Debugging info - please ignore
-            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/copy_metrics_mysqlmetricsproduct_channels_to_metrics.ktr"
-            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/dimensions/copy_metrics_mysqlmetricsproduct_channels_to_metrics.ktr"
+            param_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/to_vertica/copy_country_to_vertica.ktr"
+            normalized_filename: "/home/mark/mozilla/etl/Log-Processing-ETL/etl/adc_exports/to_vertica/copy_country_to_vertica.ktr"
             file: 1
             document: 1
             document-element: transformation
             name: 
-            relative-path: "/dimensions"
-            documentation-root: "../.."
+            relative-path: "/adc_exports/to_vertica"
+            documentation-root: "../../.."
         -->
       <title>Kettle Documentation: transformation ""</title>
-      <link rel="shortcut icon" type="image/x-icon" href="../../images/spoon.png">
-      <link rel="stylesheet" type="text/css" href="../../css/kettle.css">
-      <link rel="stylesheet" type="text/css" href="../../css/transformation.css">
-      <link rel="stylesheet" type="text/css" href="../../css/shCoreDefault.css">
+      <link rel="shortcut icon" type="image/x-icon" href="../../../images/spoon.png">
+      <link rel="stylesheet" type="text/css" href="../../../css/kettle.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/transformation.css">
+      <link rel="stylesheet" type="text/css" href="../../../css/shCoreDefault.css">
    </head>
    <body class="kettle-file" onload="drawHops()">
       <div class="quicklinks"><a href="#diagram">Diagram</a>
@@ -28,7 +28,7 @@
          |   <a href="#variables">Variables</a>
          |   <a href="#connections">Database Connections</a>
          |   <a href="#files">Flat Files</a></div>
-      <h1>Transformation: "Update product_channels"</h1>
+      <h1>Transformation: "copy_country_to_vertica"</h1>
       <p>
          This transformation does not have a description.
          
@@ -45,28 +45,30 @@
             <tr>
                <th>Input (2)</th>
                <th>Transform</th>
-               <th>Output (0)</th>
+               <th>Output (1)</th>
             </tr>
          </thead>
          <tbody>
             <tr>
                <td>
-                  <div>MySQL product_channels</div>
-                  <div>Vertica max(product_channel_id)</div>
+                  <div>MySQL d_firefox_country</div>
+                  <div>Vertica max(country_id)</div>
                </td>
                <td></td>
-               <td></td>
+               <td>
+                  <div>d_firefox_country</div>
+               </td>
             </tr>
          </tbody>
       </table>
       <h2><a name="diagram">Diagram</a></h2>
-      <div class="diagram" id="diagram" style="&#xA;            width: 128px;&#xA;            height: 328px;&#xA;        "><a name="MySQL product_channels-icon"></a><div id="MySQL product_channels" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:100px;&#xA;                    top:200px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#update product_channels"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#MySQL product_channels-text" style="&#xA;                    top:232px;&#xA;                    left:70.66666666666667px;                    &#xA;                ">MySQL product_channels</a><a name="Vertica max(product_channel_id)-icon"></a><div id="Vertica max(product_channel_id)" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:100px;&#xA;                    top:100px;&#xA;                ">
-            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#MySQL product_channels"></a></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#Vertica max(product_channel_id)-text" style="&#xA;                    top:132px;&#xA;                    left:58.666666666666664px;                    &#xA;                ">Vertica max(product_channel_id)</a><a name="update product_channels-icon"></a><div id="update product_channels" class="&#xA;                    step-icon&#xA;                    step-icon-VerticaBulkLoader" style="&#xA;                    left:100px;&#xA;                    top:300px;&#xA;                ">
+      <div class="diagram" id="diagram" style="&#xA;            width: 130px;&#xA;            height: 336px;&#xA;        "><a name="MySQL d_firefox_country-icon"></a><div id="MySQL d_firefox_country" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:104px;&#xA;                    top:187px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#d_firefox_country"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#MySQL d_firefox_country-text" style="&#xA;                    top:219px;&#xA;                    left:73.33333333333333px;                    &#xA;                ">MySQL d_firefox_country</a><a name="Vertica max(country_id)-icon"></a><div id="Vertica max(country_id)" class="&#xA;                    step-icon&#xA;                    step-icon-TableInput" style="&#xA;                    left:102px;&#xA;                    top:83px;&#xA;                ">
+            <div class="step-hops"><a class="&#xA;                                step-hop&#xA;                                &#xA;                                    step-hop-enabled&#xA;                                    step-hop-distribute-data " href="#MySQL d_firefox_country"></a></div>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#Vertica max(country_id)-text" style="&#xA;                    top:115px;&#xA;                    left:71.33333333333333px;                    &#xA;                ">Vertica max(country_id)</a><a name="d_firefox_country-icon"></a><div id="d_firefox_country" class="&#xA;                    step-icon&#xA;                    step-icon-TableOutput" style="&#xA;                    left:104px;&#xA;                    top:291px;&#xA;                ">
             <div class="step-hops"></div>
-         </div><a class="&#xA;                    step-label&#xA;                    " href="#update product_channels-text" style="&#xA;                    top:332px;&#xA;                    left:69.33333333333333px;                    &#xA;                ">update product_channels</a>
+         </div><a class="&#xA;                    step-label&#xA;                    " href="#d_firefox_country-text" style="&#xA;                    top:323px;&#xA;                    left:81.33333333333333px;                    &#xA;                ">d_firefox_country</a>
          
       </div>
       <h2><a name="variables">Variables</a></h2>
@@ -186,7 +188,7 @@
                <td>${VERTICA_HOST}</td>
                <td>${VERTICA_PORT}</td>
                <td>${VERTICA_USER}</td>
-               <td><a href="#metrics">Vertica max(product_channel_id)</a>, <a href="#metrics">update product_channels</a></td>
+               <td><a href="#metrics">Vertica max(country_id)</a>, <a href="#metrics">d_firefox_country</a></td>
             </tr>
             <tr>
                <th><a href="#connection.metrics mysql">metrics mysql</a></th>
@@ -195,7 +197,7 @@
                <td>${METRICS_MYSQL_HOST}</td>
                <td>${METRICS_MYSQL_PORT}</td>
                <td>${METRICS_MYSQL_USER}</td>
-               <td><a href="#metrics mysql">MySQL product_channels</a></td>
+               <td><a href="#metrics mysql">MySQL d_firefox_country</a></td>
             </tr>
          </tbody>
       </table>
@@ -300,32 +302,32 @@
          
       </p>
       <h2><a name="Steps">Steps</a></h2><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
-      <h3 class="step-heading"><a name="MySQL product_channels-text" href="#MySQL product_channels-icon">MySQL product_channels</a></h3>
+      <h3 class="step-heading"><a name="MySQL d_firefox_country-text" href="#MySQL d_firefox_country-icon">MySQL d_firefox_country</a></h3>
       <p>
          This job entry does not have a description.
          
       </p>
       <h4>SQL</h4><pre class="brush: sql;">SELECT
-  product_channel_id
-, product_channel
-, partner
-FROM product_channels
-WHERE product_channel_id &gt; IFNULL(?,0)</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
-      <h3 class="step-heading"><a name="Vertica max(product_channel_id)-text" href="#Vertica max(product_channel_id)-icon">Vertica max(product_channel_id)</a></h3>
+  country_id
+, country_code
+, country_name
+, marketing_region_code
+FROM d_firefox_country
+WHERE country_id &gt; IFNULL(?,0)</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableInput"></div>
+      <h3 class="step-heading"><a name="Vertica max(country_id)-text" href="#Vertica max(country_id)-icon">Vertica max(country_id)</a></h3>
       <p>
          This job entry does not have a description.
          
       </p>
       <h4>SQL</h4><pre class="brush: sql;">SELECT
-  MAX(product_channel_id)
-FROM product_channels
-</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-VerticaBulkLoader"></div>
-      <h3 class="step-heading"><a name="update product_channels-text" href="#update product_channels-icon">update product_channels</a></h3>
+  MAX(country_id)
+FROM d_firefox_country</pre><br><div class="&#xA;&#x9;&#x9;&#x9;step-icon&#xA;&#x9;&#x9;&#x9;step-icon-TableOutput"></div>
+      <h3 class="step-heading"><a name="d_firefox_country-text" href="#d_firefox_country-icon">d_firefox_country</a></h3>
       <p>
          This job entry does not have a description.
          
       </p>
-      <script type="text/javascript" src="../../js/wz_jsgraphics.js"></script><script src="../../js/kettle.js"></script><script type="text/javascript" src="../../js/shCore.js"></script><script type="text/javascript" src="../../js/shBrushBash.js"></script><script type="text/javascript" src="../../js/shBrushJava.js"></script><script type="text/javascript" src="../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../js/shBrushSql.js"></script><script type="text/javascript" src="../../js/shBrushXml.js"></script><script type="text/javascript">
+      <script type="text/javascript" src="../../../js/wz_jsgraphics.js"></script><script src="../../../js/kettle.js"></script><script type="text/javascript" src="../../../js/shCore.js"></script><script type="text/javascript" src="../../../js/shBrushBash.js"></script><script type="text/javascript" src="../../../js/shBrushJava.js"></script><script type="text/javascript" src="../../../js/shBrushJScript.js"></script><script type="text/javascript" src="../../../js/shBrushSql.js"></script><script type="text/javascript" src="../../../js/shBrushXml.js"></script><script type="text/javascript">
             SyntaxHighlighter.all();
         </script></body>
 </html>
