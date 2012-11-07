@@ -219,7 +219,7 @@ FROM d_firefox_mobileproduct</sql>
       <line> <item>f_firefox_device_installs</item><item>device_id</item> </line>
       <line> <item>f_firefox_language_installs</item><item>language_id</item> </line>
       <line> <item>f_firefox_os_version_installs</item><item>os_version_id</item> </line>
-      <line> <item>f_firefox_overall_installs</item><item/> </line>
+      <line> <item>f_firefox_overall_installs</item><item>&apos;&apos;</item> </line>
     </data>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
