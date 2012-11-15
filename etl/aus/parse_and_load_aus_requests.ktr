@@ -739,7 +739,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 \[([^\]]{26})\]                # request time :HH:mm:ss -0800
 
 \s"GET\s
-/update/[123]                 # AUS schema version
+/update/[1234]                 # AUS schema version
 /([^/\s]{3,20})                # product_name
 
 /(                             # product_version
@@ -782,6 +782,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
   (?>
     /([^/\s]{1,100})           # distribution_name
     /([^/\s]{1,100})           # distribution_version
+    (?>/[^u/\s]+)?             # platform version is only in AUS schema version 4 but we ignore it for now
   )?                           # distribution is only in AUS schema version 3
 )?                             # OS is only in AUS schema version 2
 /update\.xml[^\s]*             # filename and extra url params
