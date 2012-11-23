@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<ColumnizerConfig>
+  <ColumnizeMode>INCREMENT</ColumnizeMode>
+  <ColumnizeInfo>
+    <Source>
+      <!--  The select query on the source -->
+      <SelectQuery>select f.* from download_requests_by_day f, download_products d
+                   where f.download_product_id = d.download_product_id and d.name = 'thunderbird' and location_id is not null;</SelectQuery>
+      <QueryOnSource>SELECT utc_date_id as value FROM download_requests_by_day group by utc_date_id;</QueryOnSource>
+      <IncrementSelectQuery>select f.* from download_requests_by_day f, download_products d
+                            where f.download_product_id = d.download_product_id and d.name = 'thunderbird' and location_id is not null
+                            and utc_date_id in (${INCREMENT_LIST});
+      </IncrementSelectQuery>
+    </Source>
+    <Target>
+      <Database>VERTICA</Database>
+      <Table>download_requests_by_day_th</Table>
+      <CountStatement>select count(1) from download_requests_by_day_th</CountStatement>
+      <TableExistsStatement>select count(1) from download_requests_by_day_th</TableExistsStatement>
+      <DropTableStatement>drop table download_requests_by_day_th cascade</DropTableStatement>
+      <PostExecution>select advance_epoch()</PostExecution>
+      <CreateTableStatement>CREATE TABLE download_requests_by_day_th
+(
+    utc_date_id Integer NOT NULL,
+    request_type Varchar(10),
+    download_product_id Integer NOT NULL,
+    product_platform Varchar(20),
+    product_locale_id Integer NOT NULL,
+    download_type Varchar(10),
+    upgrade_version Varchar(20),
+    request_result Varchar(10),
+    location_id Integer NOT NULL,
+    user_agent_browser_id Integer NOT NULL,
+    user_agent_os_id Integer NOT NULL,
+    user_agent_locale_id Integer NOT NULL,
+    requests Integer NOT NULL
+)
+PARTITION BY ("datediff"('q', '2000-01-01 00:00:00', (date '1999-12-31 00:00:00' + (download_requests_by_day_th.utc_date_id))));
+
+
+ALTER TABLE download_requests_by_day_th ADD CONSTRAINT fk_utc_date_id FOREIGN KEY (utc_date_id) references dates (date_id);
+ALTER TABLE download_requests_by_day_th ADD CONSTRAINT fk_location_id FOREIGN KEY (location_id) references locations_old (location_id);
+
+CREATE PROJECTION download_requests_by_day_th_super_1
+(
+ utc_date_id ENCODING RLE,
+ request_type ENCODING RLE,
+ download_product_id,
+ product_platform ENCODING RLE,
+ product_locale_id,
+ download_type ENCODING RLE,
+ upgrade_version,
+ request_result ENCODING RLE,
+ location_id,
+ user_agent_browser_id,
+ user_agent_os_id ENCODING RLE,
+ user_agent_locale_id,
+ requests
+)
+AS
+SELECT download_requests_by_day_th.utc_date_id, download_requests_by_day_th.request_type, download_requests_by_day_th.download_product_id, download_requests_by_day_th.product_platform, download_requests_by_day_th.product_locale_id, download_requests_by_day_th.download_type, download_requests_by_day_th.upgrade_version, download_requests_by_day_th.request_result, download_requests_by_day_th.location_id, download_requests_by_day_th.user_agent_browser_id, download_requests_by_day_th.user_agent_os_id, download_requests_by_day_th.user_agent_locale_id, download_requests_by_day_th.requests FROM public.download_requests_by_day_th ORDER BY download_requests_by_day_th.utc_date_id, download_requests_by_day_th.request_type, download_requests_by_day_th.request_result, download_requests_by_day_th.download_type, download_requests_by_day_th.product_platform, download_requests_by_day_th.user_agent_os_id
+SEGMENTED BY hash(download_requests_by_day_th.location_id, download_requests_by_day_th.requests) ALL NODES;
+
+CREATE PROJECTION download_requests_by_day_th_super_2
+(
+ utc_date_id ENCODING RLE,
+ request_type ENCODING RLE,
+ download_product_id,
+ product_platform ENCODING RLE,
+ product_locale_id,
+ download_type ENCODING RLE,
+ upgrade_version,
+ request_result ENCODING RLE,
+ location_id,
+ user_agent_browser_id,
+ user_agent_os_id ENCODING RLE,
+ user_agent_locale_id,
+ requests
+)
+AS
+SELECT download_requests_by_day_th.utc_date_id, download_requests_by_day_th.request_type, download_requests_by_day_th.download_product_id, download_requests_by_day_th.product_platform, download_requests_by_day_th.product_locale_id, download_requests_by_day_th.download_type, download_requests_by_day_th.upgrade_version, download_requests_by_day_th.request_result, download_requests_by_day_th.location_id, download_requests_by_day_th.user_agent_browser_id, download_requests_by_day_th.user_agent_os_id, download_requests_by_day_th.user_agent_locale_id, download_requests_by_day_th.requests FROM public.download_requests_by_day_th ORDER BY download_requests_by_day_th.utc_date_id, download_requests_by_day_th.request_type, download_requests_by_day_th.request_result, download_requests_by_day_th.download_type, download_requests_by_day_th.product_platform, download_requests_by_day_th.user_agent_os_id
+SEGMENTED BY hash(download_requests_by_day_th.location_id, download_requests_by_day_th.requests) ALL NODES OFFSET 1;
+
+CREATE PROJECTION download_requests_by_day_th_ymd_summary_1
+(
+ request_type ENCODING RLE,
+ request_result ENCODING RLE,
+ download_type ENCODING RLE,
+ utc_date_id ENCODING RLE,
+ product_locale_id ENCODING RLE,
+ user_agent_os_id ENCODING RLE,
+ download_product_id ENCODING RLE,
+ user_agent_browser_id ENCODING RLE,
+ requests ENCODING RLE
+)
+AS
+SELECT download_requests_by_day_th.request_type, download_requests_by_day_th.request_result, download_requests_by_day_th.download_type, download_requests_by_day_th.utc_date_id, download_requests_by_day_th.product_locale_id, download_requests_by_day_th.user_agent_os_id, download_requests_by_day_th.download_product_id, download_requests_by_day_th.user_agent_browser_id, download_requests_by_day_th.requests FROM public.download_requests_by_day_th ORDER BY download_requests_by_day_th.request_type, download_requests_by_day_th.request_result, download_requests_by_day_th.download_type, download_requests_by_day_th.utc_date_id, download_requests_by_day_th.product_locale_id, download_requests_by_day_th.user_agent_os_id, download_requests_by_day_th.download_product_id, download_requests_by_day_th.user_agent_browser_id, download_requests_by_day_th.requests
+SEGMENTED BY hash(download_requests_by_day_th.product_locale_id, download_requests_by_day_th.user_agent_browser_id, download_requests_by_day_th.requests) ALL NODES;
+
+CREATE PROJECTION download_requests_by_day_th_ymd_summary_2
+(
+ request_type ENCODING RLE,
+ request_result ENCODING RLE,
+ download_type ENCODING RLE,
+ utc_date_id ENCODING RLE,
+ product_locale_id ENCODING RLE,
+ user_agent_os_id ENCODING RLE,
+ download_product_id ENCODING RLE,
+ user_agent_browser_id ENCODING RLE,
+ requests ENCODING RLE
+)
+AS
+SELECT download_requests_by_day_th.request_type, download_requests_by_day_th.request_result, download_requests_by_day_th.download_type, download_requests_by_day_th.utc_date_id, download_requests_by_day_th.product_locale_id, download_requests_by_day_th.user_agent_os_id, download_requests_by_day_th.download_product_id, download_requests_by_day_th.user_agent_browser_id, download_requests_by_day_th.requests FROM public.download_requests_by_day_th ORDER BY download_requests_by_day_th.request_type, download_requests_by_day_th.request_result, download_requests_by_day_th.download_type, download_requests_by_day_th.utc_date_id, download_requests_by_day_th.product_locale_id, download_requests_by_day_th.user_agent_os_id, download_requests_by_day_th.download_product_id, download_requests_by_day_th.user_agent_browser_id, download_requests_by_day_th.requests
+SEGMENTED BY hash(download_requests_by_day_th.product_locale_id, download_requests_by_day_th.user_agent_browser_id, download_requests_by_day_th.requests) ALL NODES OFFSET 1;
+
+
+SELECT MARK_DESIGN_KSAFE(1);</CreateTableStatement>
+      <QueryOnTarget>SELECT utc_date_id as value FROM download_requests_by_day_th group by utc_date_id;</QueryOnTarget>
+      <QuoteValue>false</QuoteValue>
+    </Target>
+  </ColumnizeInfo>
+</ColumnizerConfig>

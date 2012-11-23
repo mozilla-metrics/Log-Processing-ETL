@@ -1,0 +1,306 @@
+<?xml version="1.0"?>
+<!-- The contents of this file are subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+<GenericAggHandlerConfig>
+	<Database>
+		<Url>${VERTICA_GAH_DBURL}</Url>
+		<Class>${VERTICA_DRIVER}</Class>
+		<User>${VERTICA_USER}</User>
+		<Pass>${VERTICA_PASS}</Pass>
+	</Database>
+	<AggregateInfo>
+		<Table>a_th_downloads_ua</Table>
+		<CreateTableStatement>
+
+
+			CREATE TABLE "a_th_downloads_ua" (
+				"dates_Year" int8 NOT NULL,
+				"dates_Month" int8 NOT NULL,
+				"dates_Day_of_month" int8,
+				"dates_Date" varchar(10),
+				"download_products_Name" varchar(20),
+				"download_products_Major" varchar(7),
+				"download_products_Version" varchar(30),
+				"request_types_Type"  varchar(10),
+				"download_types_Type"  varchar(10),
+				"request_result_Result"  varchar(10),
+				"user_agent_browsers_Browser_Category" varchar(20),
+				"user_agent_browsers_Browser_Name" varchar(200),
+				"user_agent_browsers_Browser_Version" varchar(200),
+				"download_requests_by_day_Total_Requests" int8,
+				"download_requests_by_day_fact_count" int8)
+				PARTITION BY "dates_Year" || '-Q' || ((("dates_Month" - 1) / 3) + 1);
+
+			CREATE PROJECTION "a_th_downloads_ua_super" (
+				"dates_Year" ENCODING RLE,
+				"dates_Month" ENCODING RLE,
+				"dates_Day_of_month" ENCODING RLE,
+				"dates_Date" ENCODING RLE,
+				"download_products_Name" ENCODING RLE,
+				"download_products_Major" ENCODING RLE,
+				"download_products_Version" ENCODING RLE,
+				"request_types_Type" ENCODING RLE,
+				"download_types_Type" ENCODING RLE,
+				"request_result_Result" ENCODING RLE,
+				"user_agent_browsers_Browser_Category" ENCODING RLE,
+				"user_agent_browsers_Browser_Name" ENCODING RLE,
+				"user_agent_browsers_Browser_Version" ENCODING RLE,
+				"download_requests_by_day_Total_Requests" ,
+				"download_requests_by_day_fact_count")
+			as select
+				"dates_Year" ,
+				"dates_Month" ,
+				"dates_Day_of_month" ,
+				"dates_Date" ,
+				"download_products_Name" ,
+				"download_products_Major" ,
+				"download_products_Version" ,
+				"request_types_Type" ,
+				"download_types_Type" ,
+				"request_result_Result" ,
+				"user_agent_browsers_Browser_Category",
+				"user_agent_browsers_Browser_Name",
+				"user_agent_browsers_Browser_Version",
+				"download_requests_by_day_Total_Requests" ,
+				"download_requests_by_day_fact_count"
+			from a_th_downloads_ua
+			order by
+				"dates_Year" ,
+				"dates_Month" ,
+				"dates_Day_of_month" ,
+				"dates_Date" ,
+				"download_products_Name" ,
+				"download_products_Major" ,
+				"download_products_Version" ,
+				"request_types_Type" ,
+				"download_types_Type" ,
+				"request_result_Result",
+				"user_agent_browsers_Browser_Category",
+				"user_agent_browsers_Browser_Name",
+				"user_agent_browsers_Browser_Version"
+			SEGMENTED BY MODULARHASH("dates_Day_of_month") ALL NODES;
+
+
+			CREATE PROJECTION "a_th_downloads_ua_super_buddy" (
+				"dates_Year" ENCODING RLE,
+				"dates_Month" ENCODING RLE,
+				"dates_Day_of_month" ENCODING RLE,
+				"dates_Date" ENCODING RLE,
+				"download_products_Name" ENCODING RLE,
+				"download_products_Major" ENCODING RLE,
+				"download_products_Version" ENCODING RLE,
+				"request_types_Type" ENCODING RLE,
+				"download_types_Type" ENCODING RLE,
+				"request_result_Result" ENCODING RLE,
+				"user_agent_browsers_Browser_Category" ENCODING RLE,
+				"user_agent_browsers_Browser_Name" ENCODING RLE,
+				"user_agent_browsers_Browser_Version" ENCODING RLE,
+				"download_requests_by_day_Total_Requests" ,
+				"download_requests_by_day_fact_count")
+			as select
+				"dates_Year" ,
+				"dates_Month" ,
+				"dates_Day_of_month" ,
+				"dates_Date" ,
+				"download_products_Name" ,
+				"download_products_Major" ,
+				"download_products_Version" ,
+				"request_types_Type" ,
+				"download_types_Type" ,
+				"request_result_Result" ,
+				"user_agent_browsers_Browser_Category",
+				"user_agent_browsers_Browser_Name",
+				"user_agent_browsers_Browser_Version",
+				"download_requests_by_day_Total_Requests" ,
+				"download_requests_by_day_fact_count"
+			from a_th_downloads_ua
+			order by
+				"request_types_Type" ,
+				"download_types_Type" ,
+				"request_result_Result",
+				"user_agent_browsers_Browser_Category",
+				"user_agent_browsers_Browser_Name",
+				"user_agent_browsers_Browser_Version",
+				"download_products_Name" ,
+				"download_products_Major" ,
+				"download_products_Version" ,
+				"dates_Year" ,
+				"dates_Month" ,
+				"dates_Day_of_month" ,
+				"dates_Date"
+			SEGMENTED BY MODULARHASH("dates_Day_of_month") ALL NODES OFFSET 1;
+
+		</CreateTableStatement>
+		<TableExistsStatement>select 1 from a_th_downloads_ua limit 1 </TableExistsStatement>
+		<DropTableStatement>drop table a_th_downloads_ua CASCADE</DropTableStatement>
+
+		<!-- AggregateMode can be TRUNCATE or INCREMENT;
+		
+		TRUNCATE will issue a DROP TABLE and recreate it. 
+		INCREMENT will try to find the new objects and insert only those 
+		
+		-->
+		
+		<AggregateMode>INCREMENT</AggregateMode>
+
+		<!-- QueryOnFact and QueryOnAggregate must return a single column named "value" -->
+
+		<QueryOnFact>
+			SELECT distinct d.date as value FROM download_requests_by_day f inner join dates d on d.date_id=f.utc_date_id
+		</QueryOnFact>
+		<QueryOnAggregate>
+			SELECT distinct a.dates_Date as value FROM a_th_downloads_ua a;
+		</QueryOnAggregate>
+		<QuoteValue>true</QuoteValue>
+		<IncrementQuery>
+
+			INSERT /*+ direct */ INTO "a_th_downloads_ua" (
+				"dates_Year",
+				"dates_Month",
+				"dates_Day_of_month",
+				"dates_Date",
+				"download_products_Name",
+				"download_products_Major",
+				"download_products_Version",
+				"request_types_Type",
+				"download_types_Type",
+				"request_result_Result",
+				"user_agent_browsers_Browser_Category",
+				"user_agent_browsers_Browser_Name",
+				"user_agent_browsers_Browser_Version",
+				"download_requests_by_day_Total_Requests",
+				"download_requests_by_day_fact_count")
+			select 
+				"dates"."year" as "dates_Year", 
+				"dates"."month" as "dates_Month", 
+				"dates"."day_of_month" as "dates_Day_of_month", 
+				"dates"."date" as "dates_Date", 
+				"download_products"."formatted_name" as "download_products_Name", 
+				"download_products"."formatted_version_major" as "download_products_Major", 
+				"download_products"."version" as "download_products_Version", 
+				"download_requests_by_day_th"."request_type" as "request_types_Type",
+				"download_requests_by_day_th"."download_type" as "download_types_Type",
+				"download_requests_by_day_th"."request_result" as "request_result_Result",
+				"user_agent_browsers"."browser_category" as "user_agent_browsers_Browser_Category", 
+				"user_agent_browsers"."browser_name" as "user_agent_browsers_Browser_Name", 
+				"user_agent_browsers"."browser_version" as "user_agent_browsers_Browser_Version", 
+				sum("download_requests_by_day_th"."requests") as "download_requests_by_day_Total_Requests", 
+				count(*) as "download_requests_by_day_fact_count"
+			from 
+				"download_requests_by_day_th" as "download_requests_by_day_th", 
+				"dates" as "dates", 
+				"download_products" as "download_products", 
+				"user_agent_browsers" as "user_agent_browsers"
+				${INCREMENT_CONDITION_FROM}
+			where 
+				"download_requests_by_day_th"."utc_date_id" = "dates"."date_id" and 
+				"download_requests_by_day_th"."download_product_id" = "download_products"."download_product_id" and 
+				"download_requests_by_day_th"."user_agent_browser_id" = "user_agent_browsers"."user_agent_browser_id"
+				and "dates"."date" IN (${INCREMENT_LIST})
+				${INCREMENT_CONDITION_WHERE}
+			group by 
+				"dates"."year", 
+				"dates"."month", 
+				"dates"."day_of_month", 
+				"dates"."date", 
+				"download_products"."formatted_name", 
+				"download_products"."formatted_version_major", 
+				"download_products"."version", 
+				"download_requests_by_day_th"."request_type",
+				"download_requests_by_day_th"."download_type",
+				"download_requests_by_day_th"."request_result",	
+				"user_agent_browsers"."browser_category", 
+				"user_agent_browsers"."browser_name", 
+				"user_agent_browsers"."browser_version";
+
+		</IncrementQuery>
+		
+		<InsertQuery>
+
+			INSERT /*+ direct */ INTO "a_th_downloads_ua" (
+				"dates_Year",
+				"dates_Month",
+				"dates_Day_of_month",
+				"dates_Date",
+				"download_products_Name",
+				"download_products_Major",
+				"download_products_Version",
+				"request_types_Type",
+				"download_types_Type",
+				"request_result_Result",
+				"user_agent_browsers_Browser_Category",
+				"user_agent_browsers_Browser_Name",
+				"user_agent_browsers_Browser_Version",
+				"download_requests_by_day_Total_Requests",
+				"download_requests_by_day_fact_count")
+			select 
+				"dates"."year" as "dates_Year", 
+				"dates"."month" as "dates_Month", 
+				"dates"."day_of_month" as "dates_Day_of_month", 
+				"dates"."date" as "dates_Date", 
+				"download_products"."formatted_name" as "download_products_Name", 
+				"download_products"."formatted_version_major" as "download_products_Major", 
+				"download_products"."version" as "download_products_Version", 
+				"download_requests_by_day_th"."request_type" as "request_types_Type",
+				"download_requests_by_day_th"."download_type" as "download_types_Type",
+				"download_requests_by_day_th"."request_result" as "request_result_Result",
+				"user_agent_browsers"."browser_category" as "user_agent_browsers_Browser_Category", 
+				"user_agent_browsers"."browser_name" as "user_agent_browsers_Browser_Name", 
+				"user_agent_browsers"."browser_version" as "user_agent_browsers_Browser_Version", 
+				sum("download_requests_by_day_th"."requests") as "download_requests_by_day_Total_Requests", 
+				count(*) as "download_requests_by_day_fact_count"
+			from 
+				"download_requests_by_day_th" as "download_requests_by_day_th", 
+				"dates" as "dates", 
+				"download_products" as "download_products", 
+				"user_agent_browsers" as "user_agent_browsers"
+			where 
+				"download_requests_by_day_th"."utc_date_id" = "dates"."date_id" and 
+				"download_requests_by_day_th"."download_product_id" = "download_products"."download_product_id" and 
+				"download_requests_by_day_th"."user_agent_browser_id" = "user_agent_browsers"."user_agent_browser_id"
+			group by 
+				"dates"."year", 
+				"dates"."month", 
+				"dates"."day_of_month", 
+				"dates"."date", 
+				"download_products"."formatted_name", 
+				"download_products"."formatted_version_major", 
+				"download_products"."version", 
+				"download_requests_by_day_th"."request_type",
+				"download_requests_by_day_th"."download_type",
+				"download_requests_by_day_th"."request_result",	
+				"user_agent_browsers"."browser_category", 
+				"user_agent_browsers"."browser_name", 
+				"user_agent_browsers"."browser_version";
+
+			SELECT PARTITION_TABLE('a_th_downloads_ua');
+		</InsertQuery>
+
+		<!--
+			
+		IncrementConditionFrom and IncrementConditionWhere are javascript functions who's 
+		output will be inserted in the incremental query condition, in the place of the
+		token ${INCREMENT_CONDITION_FROM} and ${INCREMENT_CONDITION_WHERE}
+
+		Use when extra filtering logic is needed, like exclude today's date from the list of info
+		to be extracted, eg:
+
+		<IncrementConditionWhere>
+			<![CDATA[
+			var a = function(){
+				var now  = new Date();
+				return " and  date <= " +  (now.getYear()+ 1900) + "-" + (now.getMonth()+1) + "-" + now.getDate()
+			}
+			a()
+			]]>
+		</IncrementConditionWhere>
+
+		-->
+
+		<IncrementConditionFrom/>
+		<IncrementConditionWhere/>
+
+	</AggregateInfo>
+	
+</GenericAggHandlerConfig>
