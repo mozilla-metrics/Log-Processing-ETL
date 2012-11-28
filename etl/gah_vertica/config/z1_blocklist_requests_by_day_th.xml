@@ -1,0 +1,198 @@
+<?xml version="1.0"?>
+<ColumnizerConfig>
+  <ColumnizeMode>INCREMENT</ColumnizeMode>
+  <ColumnizeInfo>
+    <Source>
+      <!--  The select query on the source -->
+      <SelectQuery>select f.* from blocklist_requests_by_day f, v_products d
+                   where f.product_id = d.product_id and d.product_name = 'Thunderbird';
+      </SelectQuery>
+      <QueryOnSource>SELECT utc_date_id as value FROM blocklist_requests_by_day group by utc_date_id;</QueryOnSource>
+      <IncrementSelectQuery>select f.* from blocklist_requests_by_day f, v_products d
+                            where f.product_id = d.product_id and d.product_name = 'Thunderbird' and utc_date_id in (${INCREMENT_LIST});
+      </IncrementSelectQuery>
+    </Source>
+    <Target>
+      <Database>VERTICA</Database>
+      <Table>blocklist_requests_by_day_th</Table>
+      <CountStatement>select count(1) from blocklist_requests_by_day_th</CountStatement>
+      <TableExistsStatement>select count(1) from blocklist_requests_by_day_th</TableExistsStatement>
+      <DropTableStatement>drop table blocklist_requests_by_day_th cascade</DropTableStatement>
+      <PostExecution>select advance_epoch()</PostExecution>
+      <CreateTableStatement>CREATE TABLE blocklist_requests_by_day_th
+(
+    utc_date_id Integer NOT NULL,
+    product_id Integer NOT NULL,
+    os_id Integer NOT NULL,
+    locale_id Integer NOT NULL,
+    location_id Integer NOT NULL,
+    product_channel_id Integer NOT NULL,
+    product_distribution_id Integer NOT NULL,
+    gecko_version Varchar(15),
+    product_build_target Varchar(50),
+    product_build_number Varchar(14),
+    requests Integer,
+    ping_count Integer,
+    total_ping_count Integer,
+    days_since_last_ping Integer
+)
+PARTITION BY ("datediff"('q', '2000-01-01 00:00:00', (date '1999-12-31 00:00:00' + (blocklist_requests_by_day_th.utc_date_id))));
+
+
+ALTER TABLE blocklist_requests_by_day_th ADD CONSTRAINT fk_utc_date_id FOREIGN KEY (utc_date_id) references dates (date_id);
+ALTER TABLE blocklist_requests_by_day_th ADD CONSTRAINT fk_location_id FOREIGN KEY (location_id) references locations_old (location_id);
+
+CREATE PROJECTION blocklist_requests_by_day_th_super_1
+(
+ utc_date_id ENCODING RLE,
+ product_id,
+ os_id,
+ locale_id ENCODING RLE,
+ location_id,
+ product_channel_id,
+ product_distribution_id ENCODING RLE,
+ gecko_version,
+ product_build_target ENCODING RLE,
+ product_build_number,
+ requests,
+ ping_count,
+ total_ping_count,
+ days_since_last_ping
+)
+AS
+SELECT blocklist_requests_by_day_th.utc_date_id, blocklist_requests_by_day_th.product_id, blocklist_requests_by_day_th.os_id, blocklist_requests_by_day_th.locale_id, blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.product_channel_id, blocklist_requests_by_day_th.product_distribution_id, blocklist_requests_by_day_th.gecko_version, blocklist_requests_by_day_th.product_build_target, blocklist_requests_by_day_th.product_build_number, blocklist_requests_by_day_th.requests, blocklist_requests_by_day_th.ping_count, blocklist_requests_by_day_th.total_ping_count, blocklist_requests_by_day_th.days_since_last_ping FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.product_distribution_id, blocklist_requests_by_day_th.product_build_target, blocklist_requests_by_day_th.locale_id, blocklist_requests_by_day_th.utc_date_id
+SEGMENTED BY hash(blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.product_build_number, blocklist_requests_by_day_th.requests) ALL NODES;
+
+CREATE PROJECTION blocklist_requests_by_day_th_super_2
+(
+ utc_date_id ENCODING RLE,
+ product_id,
+ os_id,
+ locale_id ENCODING RLE,
+ location_id,
+ product_channel_id,
+ product_distribution_id ENCODING RLE,
+ gecko_version,
+ product_build_target ENCODING RLE,
+ product_build_number,
+ requests,
+ ping_count,
+ total_ping_count,
+ days_since_last_ping
+)
+AS
+SELECT blocklist_requests_by_day_th.utc_date_id, blocklist_requests_by_day_th.product_id, blocklist_requests_by_day_th.os_id, blocklist_requests_by_day_th.locale_id, blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.product_channel_id, blocklist_requests_by_day_th.product_distribution_id, blocklist_requests_by_day_th.gecko_version, blocklist_requests_by_day_th.product_build_target, blocklist_requests_by_day_th.product_build_number, blocklist_requests_by_day_th.requests, blocklist_requests_by_day_th.ping_count, blocklist_requests_by_day_th.total_ping_count, blocklist_requests_by_day_th.days_since_last_ping FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.product_distribution_id, blocklist_requests_by_day_th.product_build_target, blocklist_requests_by_day_th.locale_id, blocklist_requests_by_day_th.utc_date_id
+SEGMENTED BY hash(blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.product_build_number, blocklist_requests_by_day_th.requests) ALL NODES OFFSET 1;
+
+CREATE PROJECTION blocklist_requests_by_day_th_ymd_product_locale_location
+(
+ utc_date_id ENCODING RLE,
+ product_id ENCODING RLE,
+ locale_id ENCODING RLE,
+ location_id ENCODING RLE,
+ requests ENCODING RLE
+)
+AS
+SELECT blocklist_requests_by_day_th.utc_date_id, blocklist_requests_by_day_th.product_id, blocklist_requests_by_day_th.locale_id, blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.requests FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.utc_date_id, blocklist_requests_by_day_th.product_id, blocklist_requests_by_day_th.locale_id, blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.requests
+SEGMENTED BY hash(blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.requests) ALL NODES;
+
+CREATE PROJECTION blocklist_requests_by_day_th_ymd_product_location_locale
+(
+ utc_date_id ENCODING RLE,
+ product_id ENCODING RLE,
+ locale_id ENCODING RLE,
+ location_id ENCODING RLE,
+ requests ENCODING RLE
+)
+AS
+SELECT blocklist_requests_by_day_th.utc_date_id, blocklist_requests_by_day_th.product_id, blocklist_requests_by_day_th.locale_id, blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.requests FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.utc_date_id, blocklist_requests_by_day_th.product_id, blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.locale_id, blocklist_requests_by_day_th.requests
+SEGMENTED BY hash(blocklist_requests_by_day_th.location_id, blocklist_requests_by_day_th.requests) ALL NODES OFFSET 1;
+
+CREATE PROJECTION blocklist_requests_by_day_th_gecver_node1_cm_metricsdb01
+(
+ gecko_version ENCODING RLE,
+ utc_date_id
+)
+AS
+SELECT blocklist_requests_by_day_th.gecko_version, blocklist_requests_by_day_th.utc_date_id FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.gecko_version
+UNSEGMENTED NODE v_metrics_node0001;
+
+CREATE PROJECTION blocklist_requests_by_day_th_gecver_node2_cm_metricsdb02
+(
+ gecko_version ENCODING RLE,
+ utc_date_id
+)
+AS
+SELECT blocklist_requests_by_day_th.gecko_version, blocklist_requests_by_day_th.utc_date_id FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.gecko_version
+UNSEGMENTED NODE v_metrics_node0002;
+
+CREATE PROJECTION blocklist_requests_by_day_th_gecver_node3_cm_metricsdb03
+(
+ gecko_version ENCODING RLE,
+ utc_date_id
+)
+AS
+SELECT blocklist_requests_by_day_th.gecko_version, blocklist_requests_by_day_th.utc_date_id FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.gecko_version
+UNSEGMENTED NODE v_metrics_node0003;
+
+CREATE PROJECTION blocklist_requests_by_day_th_bldtarget_node1_cm_metricsdb01
+(
+ product_build_target ENCODING RLE,
+ utc_date_id
+)
+AS
+SELECT blocklist_requests_by_day_th.product_build_target, blocklist_requests_by_day_th.utc_date_id FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.product_build_target
+UNSEGMENTED NODE v_metrics_node0001;
+
+CREATE PROJECTION blocklist_requests_by_day_th_bldtarget_node2_cm_metricsdb02
+(
+ product_build_target ENCODING RLE,
+ utc_date_id
+)
+AS
+SELECT blocklist_requests_by_day_th.product_build_target, blocklist_requests_by_day_th.utc_date_id FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.product_build_target
+UNSEGMENTED NODE v_metrics_node0002;
+
+CREATE PROJECTION blocklist_requests_by_day_th_bldtarget_node3_cm_metricsdb03
+(
+ product_build_target ENCODING RLE,
+ utc_date_id
+)
+AS
+SELECT blocklist_requests_by_day_th.product_build_target, blocklist_requests_by_day_th.utc_date_id FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.product_build_target
+UNSEGMENTED NODE v_metrics_node0003;
+
+CREATE PROJECTION blocklist_requests_by_day_th_bldnum_node1_cm_metricsdb01
+(
+ product_build_number ENCODING RLE,
+ utc_date_id
+)
+AS
+SELECT blocklist_requests_by_day_th.product_build_number, blocklist_requests_by_day_th.utc_date_id FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.product_build_number
+UNSEGMENTED NODE v_metrics_node0001;
+
+CREATE PROJECTION blocklist_requests_by_day_th_bldnum_node2_cm_metricsdb02
+(
+ product_build_number ENCODING RLE,
+ utc_date_id
+)
+AS
+SELECT blocklist_requests_by_day_th.product_build_number, blocklist_requests_by_day_th.utc_date_id FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.product_build_number
+UNSEGMENTED NODE v_metrics_node0002;
+
+CREATE PROJECTION blocklist_requests_by_day_th_bldnum_node3_cm_metricsdb03
+(
+ product_build_number ENCODING RLE,
+ utc_date_id
+)
+AS
+SELECT blocklist_requests_by_day_th.product_build_number, blocklist_requests_by_day_th.utc_date_id FROM public.blocklist_requests_by_day_th ORDER BY blocklist_requests_by_day_th.product_build_number
+UNSEGMENTED NODE v_metrics_node0003;
+
+
+SELECT MARK_DESIGN_KSAFE(1);</CreateTableStatement>
+      <QueryOnTarget>SELECT utc_date_id as value FROM blocklist_requests_by_day_th group by utc_date_id;</QueryOnTarget>
+      <QuoteValue>false</QuoteValue>
+    </Target>
+  </ColumnizeInfo>
+</ColumnizerConfig>
