@@ -1,25 +1,18 @@
 <?xml version="1.0"?>
-<ColumnizerConfig>
-  <ColumnizeMode>INCREMENT</ColumnizeMode>
-  <ColumnizeInfo>
-    <Source>
-      <!--  The select query on the source -->
-      <SelectQuery>select f.* from download_requests_by_day f, download_products d
-                   where f.download_product_id = d.download_product_id and d.name = 'thunderbird' and location_id is not null;</SelectQuery>
-      <QueryOnSource>SELECT utc_date_id as value FROM download_requests_by_day group by utc_date_id;</QueryOnSource>
-      <IncrementSelectQuery>select f.* from download_requests_by_day f, download_products d
-                            where f.download_product_id = d.download_product_id and d.name = 'thunderbird' and location_id is not null
-                            and utc_date_id in (${INCREMENT_LIST});
-      </IncrementSelectQuery>
-    </Source>
-    <Target>
-      <Database>VERTICA</Database>
-      <Table>download_requests_by_day_th</Table>
-      <CountStatement>select count(1) from download_requests_by_day_th</CountStatement>
-      <TableExistsStatement>select count(1) from download_requests_by_day_th</TableExistsStatement>
-      <DropTableStatement>drop table download_requests_by_day_th cascade</DropTableStatement>
-      <PostExecution>select advance_epoch()</PostExecution>
-      <CreateTableStatement>CREATE TABLE download_requests_by_day_th
+<!-- The contents of this file are subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
+   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
+<GenericAggHandlerConfig>
+	<Database>
+		<Url>${VERTICA_GAH_DBURL}</Url>
+		<Class>${VERTICA_DRIVER}</Class>
+		<User>${VERTICA_USER}</User>
+		<Pass>${VERTICA_PASS}</Pass>
+	</Database>
+	<AggregateInfo>
+		<Table>download_requests_by_day_th</Table>
+		<CreateTableStatement>
+CREATE TABLE download_requests_by_day_th
 (
     utc_date_id Integer NOT NULL,
     request_type Varchar(10),
@@ -114,9 +107,91 @@ SELECT download_requests_by_day_th.request_type, download_requests_by_day_th.req
 SEGMENTED BY hash(download_requests_by_day_th.product_locale_id, download_requests_by_day_th.user_agent_browser_id, download_requests_by_day_th.requests) ALL NODES OFFSET 1;
 
 
-SELECT MARK_DESIGN_KSAFE(1);</CreateTableStatement>
-      <QueryOnTarget>SELECT utc_date_id as value FROM download_requests_by_day_th group by utc_date_id;</QueryOnTarget>
-      <QuoteValue>false</QuoteValue>
-    </Target>
-  </ColumnizeInfo>
-</ColumnizerConfig>
+SELECT MARK_DESIGN_KSAFE(1);
+		</CreateTableStatement>
+		<TableExistsStatement>select count(1) from download_requests_by_day_th</TableExistsStatement>
+		<DropTableStatement>drop table download_requests_by_day_th cascade</DropTableStatement>
+
+		<!-- AggregateMode can be TRUNCATE or INCREMENT;
+		
+		TRUNCATE will issue a DROP TABLE and recreate it. 
+		INCREMENT will try to find the new objects and insert only those 
+		
+		-->
+		
+		<AggregateMode>INCREMENT</AggregateMode>
+
+		<!-- QueryOnFact and QueryOnAggregate must return a single column named "value" -->
+
+		<QueryOnFact>
+SELECT utc_date_id as value FROM download_requests_by_day group by utc_date_id;
+		</QueryOnFact>
+		<QueryOnAggregate>
+SELECT utc_date_id as value FROM download_requests_by_day_th group by utc_date_id;
+		</QueryOnAggregate>
+		<QuoteValue>true</QuoteValue>
+		<IncrementQuery>
+			INSERT /*+ direct */ INTO "download_requests_by_day_th" (
+                   "utc_date_id",
+                   "request_type",
+                   "download_product_id",
+                   "product_platform",
+                   "product_locale_id",
+                   "download_type",
+                   "upgrade_version",
+                   "request_result",
+                   "location_id",
+                   "user_agent_browser_id",
+                   "user_agent_os_id",
+                   "user_agent_locale_id",
+                   "requests")                  
+            select f.* from download_requests_by_day f, download_products d
+                            where f.download_product_id = d.download_product_id and d.name = 'thunderbird' and location_id is not null
+                            and utc_date_id in (${INCREMENT_LIST});		</IncrementQuery>
+		
+		<InsertQuery>
+			INSERT /*+ direct */ INTO "download_requests_by_day_th" (
+                   "utc_date_id",
+                   "request_type",
+                   "download_product_id",
+                   "product_platform",
+                   "product_locale_id",
+                   "download_type",
+                   "upgrade_version",
+                   "request_result",
+                   "location_id",
+                   "user_agent_browser_id",
+                   "user_agent_os_id",
+                   "user_agent_locale_id",
+                   "requests")
+            select f.* from download_requests_by_day f, download_products d
+                            where f.download_product_id = d.download_product_id and d.name = 'thunderbird' and location_id is not null;
+		</InsertQuery>
+
+		<!--
+			
+		IncrementConditionFrom and IncrementConditionWhere are javascript functions who's 
+		output will be inserted in the incremental query condition, in the place of the
+		token ${INCREMENT_CONDITION_FROM} and ${INCREMENT_CONDITION_WHERE}
+
+		Use when extra filtering logic is needed, like exclude today's date from the list of info
+		to be extracted, eg:
+
+		<IncrementConditionWhere>
+			<![CDATA[
+			var a = function(){
+				var now  = new Date();
+				return " and  date <= " +  (now.getYear()+ 1900) + "-" + (now.getMonth()+1) + "-" + now.getDate()
+			}
+			a()
+			]]>
+		</IncrementConditionWhere>
+
+		-->
+
+		<IncrementConditionFrom/>
+		<IncrementConditionWhere/>
+
+	</AggregateInfo>
+	
+</GenericAggHandlerConfig>
