@@ -22,13 +22,13 @@ fi
 
 START_DATE_CHECK=$(echo $2 | sed -r "s/[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}$//")
 if [ ! -z "$START_DATE_CHECK" ]; then
-   echo "Error: invalid start date '$2'.  Should be of the form YYYY-mm-dd-HH"
+   echo "Error: invalid date '$2'.  Should be of the form YYYY-mm-dd-HH"
    echo "$USAGE"
    exit -1
 fi
 END_DATE_CHECK=$(echo $3 | sed -r "s/[0-9]{4}-[0-9]{2}-[0-9]{2}-[0-9]{2}$//")
 if [ ! -z "$END_DATE_CHECK" ]; then
-   echo "Error: invalid start date '$3'.  Should be of the form YYYY-mm-dd-HH"
+   echo "Error: invalid date '$3'.  Should be of the form YYYY-mm-dd-HH"
    echo "$USAGE"
    exit -1
 fi
