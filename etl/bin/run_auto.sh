@@ -9,3 +9,8 @@ LOG=/var/log/etl/auto_cron_hourly.log
 
 #KETTLE_HOME=/opt/pentaho/kettle
 JAVAMAXMEM=20000 ./kitchen.sh -file $KETTLE_JOB ${1+"$@"} 2>&1 > $LOG
+
+if [ "$?" -ne "0" ]; then
+   echo "Error encountered during hourly processing. Kettle exit code was '$?', but we expected '0'."
+   cat $LOG
+fi
