@@ -388,13 +388,22 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
         if (url != null && url.contains("\\.")) {
             get(Fields.Out, "url").setValue(outputRow, url.replace("\\.", "."));
         }
+        if (url != null && url.contains("\\")) {
+            get(Fields.Out, "url").setValue(outputRow, url.replace("\\", ""));
+        }
         String url_params = get(Fields.In, "url_params").getString(r);
         if (url_params != null && url_params.contains("\\.")) {
             get(Fields.Out, "url_params").setValue(outputRow, url_params.replace("\\.", "."));
         }
+        if (url_params != null && url_params.contains("\\")) {
+            get(Fields.Out, "url_params").setValue(outputRow, url_params.replace("\\", ""));
+        }
         String user_agent = get(Fields.In, "user_agent").getString(r);
         if (user_agent != null && user_agent.contains("\\.")) {
             get(Fields.Out, "user_agent").setValue(outputRow, user_agent.replace("\\.", "."));
+        }
+        if (user_agent != null && user_agent.contains("\\")) {
+            get(Fields.Out, "user_agent").setValue(outputRow, user_agent.replace("\\", ""));
         }
 
         String date = get(Fields.In, "date").getString(r);

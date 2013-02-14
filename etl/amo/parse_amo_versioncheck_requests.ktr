@@ -324,7 +324,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed/>
+<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -350,7 +350,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed/>
+<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -376,7 +376,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed/>
+<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -402,7 +402,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed/>
+<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -428,7 +428,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed/>
+<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -454,7 +454,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed/>
+<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -480,7 +480,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed/>
+<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
