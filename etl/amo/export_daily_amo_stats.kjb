@@ -256,7 +256,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
             <value>${AMO_DEV_PASS}</value>
             </parameter>            <parameter>            <name>DATE</name>
             <stream_name/>
-            <value>= &apos;${PREVIOUS_UTC_DATE}&apos;</value>
+            <value>${DATE}</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>

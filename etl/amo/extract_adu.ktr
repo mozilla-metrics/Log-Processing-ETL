@@ -338,7 +338,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
            </partitioning>
     <connection>metrics</connection>
     <sql>SELECT
-  TO_DATE(date, &apos;yyyy-MM-dd&apos;) AS &quot;date&quot;
+  TO_DATE(date, &apos;yyyy-MM-dd&apos;)::TIMESTAMP AS &quot;date&quot;
 , product_name
 , p.formatted_version_major AS product_version
 , SUM(requests) AS adu_count

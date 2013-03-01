@@ -391,7 +391,7 @@ WHERE date ${DATE}</sql>
            </partitioning>
     <connection>metrics</connection>
     <sql>select
-  DATE(date) as date
+  DATE(date)::TIMESTAMP as date
 , addon_id
 , COALESCE(REPLACE(src, &apos;invalid&apos;, &apos;null&apos;), &apos;null&apos;) as addon_source
 , sum(requests) as addon_source_sum

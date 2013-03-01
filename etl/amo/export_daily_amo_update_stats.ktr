@@ -118,6 +118,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>EXTRA_OPTION_VERTICA.ResultBufferSize</code><attribute>8192000</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
@@ -1532,7 +1533,7 @@ function serialize( mixed_value ) {
            </partitioning>
     <connection>metrics</connection>
     <sql>select
-  DATE(date) as date
+  DATE(date)::TIMESTAMP as date
 , addon_id
 , CASE LEFT(addon_status, 4) WHEN &apos;user&apos; THEN REPLACE(addon_status, &apos;%2C&apos;,&apos;,&apos;) ELSE &apos;null&apos; END as addon_status
 , sum(requests) as addon_status_sum
@@ -1567,7 +1568,7 @@ order by date, addon_id</sql>
            </partitioning>
     <connection>metrics</connection>
     <sql>select
-  DATE(date) as date
+  DATE(date)::TIMESTAMP as date
 , addon_id
 , COALESCE(REPLACE(addon_version, &apos;Unknown&apos;, &apos;null&apos;), &apos;null&apos;) as addon_version
 , sum(requests) as addon_version_sum
@@ -1602,7 +1603,7 @@ order by 1, 2, 3</sql>
            </partitioning>
     <connection>metrics</connection>
     <sql>select
-  DATE(date) as date
+  DATE(date)::TIMESTAMP as date
 , addon_id
 , REPLACE(product_guid, &apos;Unknown&apos;, &apos;null&apos;) as product_guid
 , REPLACE(product_version, &apos;Unknown&apos;, &apos;null&apos;) as product_version
@@ -1639,7 +1640,7 @@ order by date, addon_id, product_guid</sql>
            </partitioning>
     <connection>metrics</connection>
     <sql>select
-  DATE(date) as date
+  DATE(date)::TIMESTAMP as date
 , addon_id
 , REPLACE(product_locale, &apos;Unknown&apos;, &apos;null&apos;) as locale
 , sum(requests) as locale_sum
@@ -1674,7 +1675,7 @@ order by date, addon_id</sql>
            </partitioning>
     <connection>metrics</connection>
     <sql>select
-  DATE(date) as date
+  DATE(date)::TIMESTAMP as date
 , addon_id
 , DECODE(LEFT(product_os,1),&apos;0&apos;,&apos;null&apos;,&apos;1&apos;,&apos;null&apos;,&apos;2&apos;,&apos;null&apos;,REPLACE(product_os, &apos;Unknown&apos;, &apos;null&apos;)) AS os
 , sum(requests) as os_sum
