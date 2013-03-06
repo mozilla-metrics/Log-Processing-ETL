@@ -115,7 +115,7 @@
 		<!-- QueryOnFact and QueryOnAggregate must return a single column named "value" -->
 
 		<QueryOnFact>
-            SELECT distinct TO_DATE(2451544 + utc_date_id, 'J') as value FROM blocklist_requests_by_day
+            SELECT distinct TO_DATE(TO_CHAR(2451544 + utc_date_id), 'J') as value FROM blocklist_requests_by_day
 		</QueryOnFact>
 		<QueryOnAggregate>
 			SELECT distinct a.bl_date as value FROM adi_dimensional_by_date a;
@@ -136,8 +136,8 @@
                 "cntry_code",
                 "tot_requests_on_date")
 			select 
-                TO_CHAR(TO_DATE(2451544 + utc_date_id, 'J'), 'YYYY-"Q"Q'),
-                TO_DATE(2451544 + utc_date_id, 'J'),
+                TO_CHAR(TO_DATE(TO_CHAR(2451544 + utc_date_id), 'J'), 'YYYY-"Q"Q'),
+                TO_DATE(TO_CHAR(2451544 + utc_date_id), 'J'),
 				"products"."product_name",
 				"products"."formatted_version_major",
 				"operating_systems"."product_os_platform", 
@@ -161,7 +161,7 @@
 				"blocklist_requests_by_day"."locale_id" = "locales"."locale_id" and
 				"blocklist_requests_by_day"."location_id" = "locations"."location_id" and
 				"blocklist_requests_by_day"."product_channel_id" = "product_channels"."product_channel_id"
-				and TO_DATE(2451544 + utc_date_id, 'J') IN (${INCREMENT_LIST})
+				and TO_DATE(TO_CHAR(2451544 + utc_date_id), 'J') IN (${INCREMENT_LIST})
 				${INCREMENT_CONDITION_WHERE}
 			group by 1,2,3,4,5,6,7,8,9,10;
 
@@ -182,8 +182,8 @@
                 "cntry_code",
                 "tot_requests_on_date")
 			select 
-                TO_CHAR(TO_DATE(2451544 + utc_date_id, 'J'), 'YYYY-"Q"Q'),
-                TO_DATE(2451544 + utc_date_id, 'J'),
+                TO_CHAR(TO_DATE(TO_CHAR(2451544 + utc_date_id), 'J'), 'YYYY-"Q"Q'),
+                TO_DATE(TO_CHAR(2451544 + utc_date_id), 'J'),
 				"products"."product_name",
 				"products"."formatted_version_major",
 				"operating_systems"."product_os_platform", 
