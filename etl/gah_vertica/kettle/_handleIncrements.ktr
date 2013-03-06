@@ -92,13 +92,14 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>1521</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Query on facts</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Query on aggregates</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Rows (diff)</from><to>Remove identical ones</to><enabled>Y</enabled> </hop>  <hop> <from>Remove identical ones</from><to>Ignore</to><enabled>Y</enabled> </hop>  <hop> <from>Remove identical ones</from><to>Get only new rows</to><enabled>Y</enabled> </hop>  <hop> <from>Group by</from><to>Log info</to><enabled>Y</enabled> </hop>  <hop> <from>Get only new rows</from><to>Serialize</to><enabled>Y</enabled> </hop>  <hop> <from>Serialize</from><to>Join</to><enabled>Y</enabled> </hop>  <hop> <from>Join</from><to>Get SQL to Execute</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Join</to><enabled>Y</enabled> </hop>  <hop> <from>Get only new rows</from><to>Group by</to><enabled>Y</enabled> </hop>  <hop> <from>Get SQL to Execute</from><to>Set Variables</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Merge Rows (diff)</from><to>Remove identical ones</to><enabled>Y</enabled> </hop>  <hop> <from>Remove identical ones</from><to>Ignore</to><enabled>Y</enabled> </hop>  <hop> <from>Remove identical ones</from><to>Get only new rows</to><enabled>Y</enabled> </hop>  <hop> <from>Group by</from><to>Log info</to><enabled>Y</enabled> </hop>  <hop> <from>Get only new rows</from><to>Serialize</to><enabled>Y</enabled> </hop>  <hop> <from>Serialize</from><to>Join</to><enabled>Y</enabled> </hop>  <hop> <from>Join</from><to>Get SQL to Execute</to><enabled>Y</enabled> </hop>  <hop> <from>Get Variables</from><to>Join</to><enabled>Y</enabled> </hop>  <hop> <from>Get only new rows</from><to>Group by</to><enabled>Y</enabled> </hop>  <hop> <from>Get SQL to Execute</from><to>Set Variables</to><enabled>Y</enabled> </hop>  <hop> <from>Query on facts</from><to>Sort rows - source</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows - source</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  <hop> <from>Query on aggregates</from><to>Sort rows - target</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows - target</from><to>Merge Rows (diff)</to><enabled>Y</enabled> </hop>  </order>
   <step>
     <name>Get SQL to Execute</name>
     <type>ScriptValueMod</type>
@@ -376,14 +377,14 @@ writeToLog(&quot;e&quot;,&quot;GAH: WARNING: Found unexpect rows while comparing
       <value>value</value>
     </values>
 <flag_field>flagfield</flag_field>
-<reference>Query on aggregates</reference>
-<compare>Query on facts</compare>
+<reference>Sort rows - target</reference>
+<compare>Sort rows - source</compare>
     <compare>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>183</xloc>
-      <yloc>78</yloc>
+      <xloc>211</xloc>
+      <yloc>77</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -407,7 +408,7 @@ writeToLog(&quot;e&quot;,&quot;GAH: WARNING: Found unexpect rows while comparing
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>65</xloc>
+      <xloc>47</xloc>
       <yloc>130</yloc>
       <draw>Y</draw>
       </GUI>
@@ -432,8 +433,8 @@ writeToLog(&quot;e&quot;,&quot;GAH: WARNING: Found unexpect rows while comparing
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>64</xloc>
-      <yloc>35</yloc>
+      <xloc>49</xloc>
+      <yloc>30</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -525,6 +526,70 @@ writeToLog(&quot;e&quot;,&quot;GAH: WARNING: Found unexpect rows while comparing
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>719</xloc>
       <yloc>188</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows - source</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out_source</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>value</name>
+        <ascending>Y</ascending>
+        <case_sensitive>Y</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>141</xloc>
+      <yloc>30</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Sort rows - target</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <directory>%%java.io.tmpdir%%</directory>
+      <prefix>out_target</prefix>
+      <sort_size>1000000</sort_size>
+      <free_memory/>
+      <compress>N</compress>
+      <compress_variable/>
+      <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>value</name>
+        <ascending>Y</ascending>
+        <case_sensitive>Y</case_sensitive>
+      </field>
+    </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>146</xloc>
+      <yloc>131</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
