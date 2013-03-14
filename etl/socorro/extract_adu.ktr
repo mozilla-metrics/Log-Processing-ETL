@@ -358,7 +358,7 @@ JOIN products p ON p.product_id = b.product_id
 JOIN operating_systems o ON o.os_id = b.os_id
 JOIN product_channels c ON b.product_channel_id = c.product_channel_id
 WHERE DATE(date) ${DATE}
-AND ((product_name IN (&apos;Firefox&apos;, &apos;Fennec&apos;, &apos;Thunderbird&apos;) AND product_version_major &gt;= 3) OR (product_name = &apos;SeaMonkey&apos; AND product_version_major &gt;= 2) OR product_name = &apos;WebappRuntime&apos;)
+AND ((product_name IN (&apos;Firefox&apos;, &apos;Fennec&apos;, &apos;Thunderbird&apos;) AND product_version_major &gt;= 3) OR (product_name = &apos;SeaMonkey&apos; AND product_version_major &gt;= 2) OR product_name = &apos;WebappRuntime&apos; OR product_name = &apos;MetroBrowser&apos;)
 GROUP BY 1, 2, 3, 4, 5, 6, 7
 ORDER BY 1, 2, 3, 4, 5, 6, 7
 </sql>
