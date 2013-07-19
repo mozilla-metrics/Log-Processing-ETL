@@ -223,7 +223,7 @@ SELECT utc_date_id as value FROM blocklist_requests_by_day_th group by utc_date_
                    "ping_count",
                    "total_ping_count",
                    "days_since_last_ping")
-            select f.* from blocklist_requests_by_day f, v_products d
+            select f.* from blocklist_requests_by_day f, products d
                        where f.product_id = d.product_id and d.product_name = 'Thunderbird' and utc_date_id in (${INCREMENT_LIST});
 		</IncrementQuery>
 		
@@ -244,7 +244,7 @@ SELECT utc_date_id as value FROM blocklist_requests_by_day_th group by utc_date_
                    "ping_count",
                    "total_ping_count",
                    "days_since_last_ping")
-            select f.* from blocklist_requests_by_day f, v_products d
+            select f.* from blocklist_requests_by_day f, products d
                        where f.product_id = d.product_id and d.product_name = 'Thunderbird';
 		</InsertQuery>
 
