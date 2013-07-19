@@ -24,7 +24,9 @@
                 "locale" varchar(2),
                 "continent_code" varchar(2),
                 "cntry_code" varchar(2),
-                "tot_requests_on_date" int8)
+                "tot_requests_on_date" int8,
+                "distro_name" varchar(100),
+                "distro_version" varchar(100))
 				PARTITION BY _year_quarter;
 
 
@@ -39,7 +41,9 @@
                 "locale" ENCODING RLE,
                 "continent_code" ENCODING RLE,
                 "cntry_code" ENCODING RLE,
-                "tot_requests_on_date")
+                "tot_requests_on_date",
+                "distro_name",
+                "distro_version")
 			as select
                 "_year_quarter",
 				"bl_date",
@@ -51,7 +55,9 @@
                 "locale",
                 "continent_code",
                 "cntry_code",
-                "tot_requests_on_date"
+                "tot_requests_on_date",
+                "distro_name",
+                "distro_version"
 			from "adi_dimensional_by_date"
 			ORDER BY 
                 "_year_quarter",
@@ -75,7 +81,9 @@
                 "locale" ENCODING RLE,
                 "continent_code" ENCODING RLE,
                 "cntry_code" ENCODING RLE,
-                "tot_requests_on_date")
+                "tot_requests_on_date",
+                "distro_name",
+                "distro_version")
 			as select
                 "_year_quarter",
 				"bl_date",
@@ -87,7 +95,9 @@
                 "locale",
                 "continent_code",
                 "cntry_code",
-                "tot_requests_on_date"
+                "tot_requests_on_date",
+                "distro_name",
+                "distro_version"
 			from "adi_dimensional_by_date"
 			ORDER BY 
                 "_year_quarter",
@@ -134,6 +144,8 @@
                 "locale",
                 "continent_code",
                 "cntry_code",
+                "distro_name",
+                "distro_version",
                 "tot_requests_on_date")
 			select 
                 TO_CHAR(TO_DATE(TO_CHAR(2451544 + utc_date_id), 'J'), 'YYYY-"Q"Q'),
@@ -146,6 +158,8 @@
                 LEFT(NULLIF("locales"."code", 'Unknown'), 2),
                 "locations"."continent_code",
                 "locations"."country_code",
+                "product_distributions"."product_distribution",
+                "product_distributions"."product_distribution_version",
 				sum("blocklist_requests_by_day"."requests") 
 			from 
 				"blocklist_requests_by_day" as "blocklist_requests_by_day", 
@@ -153,17 +167,19 @@
 				"product_channels" as "product_channels",
                 "locales" as "locales",
 				"locations" as "locations",
-				"operating_systems" as "operating_systems"
+				"operating_systems" as "operating_systems",
+				"product_distributions" as "product_distributions"
 				${INCREMENT_CONDITION_FROM}
 			where 
 				"blocklist_requests_by_day"."product_id" = "products"."product_id" and 
 				"blocklist_requests_by_day"."os_id" = "operating_systems"."os_id" and
 				"blocklist_requests_by_day"."locale_id" = "locales"."locale_id" and
 				"blocklist_requests_by_day"."location_id" = "locations"."location_id" and
-				"blocklist_requests_by_day"."product_channel_id" = "product_channels"."product_channel_id"
+				"blocklist_requests_by_day"."product_channel_id" = "product_channels"."product_channel_id" and
+				"blocklist_requests_by_day"."product_distribution_id" = "product_distributions"."product_distribution_id"
 				and TO_DATE(TO_CHAR(2451544 + utc_date_id), 'J') IN (${INCREMENT_LIST})
 				${INCREMENT_CONDITION_WHERE}
-			group by 1,2,3,4,5,6,7,8,9,10;
+			group by 1,2,3,4,5,6,7,8,9,10,11,12;
 
 		</IncrementQuery>
 		
@@ -180,6 +196,8 @@
                 "locale",
                 "continent_code",
                 "cntry_code",
+                "distro_name",
+                "distro_version",
                 "tot_requests_on_date")
 			select 
                 TO_CHAR(TO_DATE(TO_CHAR(2451544 + utc_date_id), 'J'), 'YYYY-"Q"Q'),
@@ -192,6 +210,8 @@
                 LEFT(NULLIF("locales"."code", 'Unknown'), 2),
                 "locations"."continent_code",
                 "locations"."country_code",
+                "product_distributions"."product_distribution",
+                "product_distributions"."product_distribution_version",
 				sum("blocklist_requests_by_day"."requests") 
 			from 
 				"blocklist_requests_by_day" as "blocklist_requests_by_day", 
@@ -199,14 +219,17 @@
 				"product_channels" as "product_channels",
                 "locales" as "locales",
 				"locations" as "locations",
-				"operating_systems" as "operating_systems"
+				"operating_systems" as "operating_systems",
+				"product_distributions" as "product_distributions"
 			where 
 				"blocklist_requests_by_day"."product_id" = "products"."product_id" and 
 				"blocklist_requests_by_day"."os_id" = "operating_systems"."os_id" and
 				"blocklist_requests_by_day"."locale_id" = "locales"."locale_id" and
 				"blocklist_requests_by_day"."location_id" = "locations"."location_id" and
 				"blocklist_requests_by_day"."product_channel_id" = "product_channels"."product_channel_id"
-			group by 1,2,3,4,5,6,7,8,9,10;
+				"blocklist_requests_by_day"."product_channel_id" = "product_channels"."product_channel_id" and
+				"blocklist_requests_by_day"."product_distribution_id" = "product_distributions"."product_distribution_id"
+			group by 1,2,3,4,5,6,7,8,9,10,11,12;
 				
 			SELECT PARTITION_TABLE('adi_dimensional_by_date');
 
