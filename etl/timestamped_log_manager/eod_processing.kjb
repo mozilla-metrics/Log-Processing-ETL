@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <job>
   <name>eod_processing</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2010&#47;03&#47;10 17:06:21.241</created_date>
+  <created_date>2010&#x2f;03&#x2f;10 17&#x3a;06&#x3a;21.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2010&#47;03&#47;10 17:06:21.241</modified_date>
+  <modified_date>2010&#x2f;03&#x2f;10 17&#x3a;06&#x3a;21.241</modified_date>
     <parameters>
         <parameter>
             <name>DAYS_AGO</name>
@@ -26,13 +19,13 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </parameters>
   <connection>
     <name>metrics</name>
-    <server>${VERTICA_HOST}</server>
+    <server>&#x24;&#x7b;VERTICA_HOST&#x7d;</server>
     <type>VERTICA</type>
     <access>Native</access>
-    <database>${VERTICA_DB}</database>
-    <port>${VERTICA_PORT}</port>
-    <username>${VERTICA_USER}</username>
-    <password>${VERTICA_PASS}</password>
+    <database>&#x24;&#x7b;VERTICA_DB&#x7d;</database>
+    <port>&#x24;&#x7b;VERTICA_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;VERTICA_USER&#x7d;</username>
+    <password>&#x24;&#x7b;VERTICA_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -40,23 +33,22 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${VERTICA_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;VERTICA_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION 
-ISOLATION LEVEL READ COMMITTED</attribute></attribute>
+      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION &#xa;ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
     <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
+    <server>&#x24;&#x7b;METRICS_MYSQL_HOST&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_MYSQL_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_MYSQL_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_MYSQL_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -69,7 +61,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
@@ -124,13 +116,13 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;run_daily_aggregates.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;run_daily_aggregates.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${ETL_LOG_DIR}&#47;eod_rollup</logfile>
+      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_rollup</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -154,13 +146,13 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;gah_vertica&#47;kettle&#47;GenericAggHandler.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;gah_vertica&#x2f;kettle&#x2f;GenericAggHandler.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${ETL_LOG_DIR}&#47;eod_gah</logfile>
+      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_gah</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -175,8 +167,8 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>846</xloc>
-      <yloc>51</yloc>
+      <xloc>870</xloc>
+      <yloc>50</yloc>
       </entry>
     <entry>
       <name>Export to Socorro</name>
@@ -184,7 +176,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;socorro&#47;extract_adu.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;socorro&#x2f;extract_adu.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -192,7 +184,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>${ETL_LOG_DIR}&#47;eod_socorro</logfile>
+      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_socorro</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -203,24 +195,25 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>SOCORRO_DB_HOST</name>
             <stream_name/>
-            <value>${SOCORRO_PROD_HOST}</value>
+            <value>&#x24;&#x7b;SOCORRO_PROD_HOST&#x7d;</value>
             </parameter>            <parameter>            <name>SOCORRO_DB_USER</name>
             <stream_name/>
-            <value>${SOCORRO_PROD_USER}</value>
+            <value>&#x24;&#x7b;SOCORRO_PROD_USER&#x7d;</value>
             </parameter>            <parameter>            <name>SOCORRO_DB_PASS</name>
             <stream_name/>
-            <value>${SOCORRO_PROD_PASS}</value>
+            <value>&#x24;&#x7b;SOCORRO_PROD_PASS&#x7d;</value>
             </parameter>            <parameter>            <name>DATE</name>
             <stream_name/>
-            <value>= &apos;${PREVIOUS_UTC_DATE}&apos;</value>
+            <value>&#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
-      <yloc>170</yloc>
+      <xloc>989</xloc>
+      <yloc>50</yloc>
       </entry>
     <entry>
       <name>export_daily_amo_stats</name>
@@ -228,13 +221,13 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;amo&#47;export_daily_amo_stats.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;amo&#x2f;export_daily_amo_stats.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${ETL_LOG_DIR}&#47;eod_amo</logfile>
+      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_amo</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -247,13 +240,13 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>DATE</name>
             <stream_name/>
-            <value>= &apos;${PREVIOUS_UTC_DATE}&apos;</value>
+            <value>&#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;</value>
             </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>847</xloc>
-      <yloc>108</yloc>
+      <xloc>1351</xloc>
+      <yloc>50</yloc>
       </entry>
     <entry>
       <name>Abort if error</name>
@@ -272,20 +265,16 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics EOD processor</replytoname>
       <subject>Error during EOD processing</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
-      <comment>One of the EOD processing scripts returned an error status.
-Please check the logs and fix the problem then re-run the EOD processor.
-
-This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.
-</comment>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
+      <comment>One of the EOD processing scripts returned an error status.&#xa;Please check the logs and fix the problem then re-run the EOD processor.&#xa;&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;</comment>
       <include_files>Y</include_files>
       <zip_files>Y</zip_files>
       <zip_name>run_logs.zip</zip_name>
@@ -314,27 +303,7 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <name>Set Successful flag for EOD</name>
       <description>SQL</description>
       <type>SQL</type>
-      <sql>REPLACE INTO eod_status SET `utc_date_string` = &apos;${PREVIOUS_UTC_DATE}&apos;, `status` = &apos;Successful&apos;, `audit_snapshot` = (
-	SELECT CONCAT(site,&apos;\t&apos;,servers,&apos;\t&apos;,timestamps) AS results
-	FROM (
-		SELECT
-		  site
-		, GROUP_CONCAT(server ORDER BY server SEPARATOR &apos;, &apos;) AS servers
-		, timestamps
-		FROM (
-			SELECT
-			  site
-			, CONCAT(datacenter,&apos;-&apos;,server) AS server
-			, GROUP_CONCAT(timestamp ORDER BY timestamp SEPARATOR &apos;, &apos;) AS timestamps
-			FROM `server_timestamps_to_process`
-			WHERE required = &apos;Y&apos;
-			GROUP BY 1,2
-		) a
-		GROUP BY 1,3
-	) b
-	ORDER BY site, timestamps
-	LIMIT 1
-);</sql>
+      <sql>REPLACE INTO eod_status SET &#x60;utc_date_string&#x60; &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;, &#x60;status&#x60; &#x3d; &#x27;Successful&#x27;, &#x60;audit_snapshot&#x60; &#x3d; &#x28;&#xa;	SELECT CONCAT&#x28;site,&#x27;&#x5c;t&#x27;,servers,&#x27;&#x5c;t&#x27;,timestamps&#x29; AS results&#xa;	FROM &#x28;&#xa;		SELECT&#xa;		  site&#xa;		, GROUP_CONCAT&#x28;server ORDER BY server SEPARATOR &#x27;, &#x27;&#x29; AS servers&#xa;		, timestamps&#xa;		FROM &#x28;&#xa;			SELECT&#xa;			  site&#xa;			, CONCAT&#x28;datacenter,&#x27;-&#x27;,server&#x29; AS server&#xa;			, GROUP_CONCAT&#x28;timestamp ORDER BY timestamp SEPARATOR &#x27;, &#x27;&#x29; AS timestamps&#xa;			FROM &#x60;server_timestamps_to_process&#x60;&#xa;			WHERE required &#x3d; &#x27;Y&#x27;&#xa;			GROUP BY 1,2&#xa;		&#x29; a&#xa;		GROUP BY 1,3&#xa;	&#x29; b&#xa;	ORDER BY site, timestamps&#xa;	LIMIT 1&#xa;&#x29;&#x3b;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -343,34 +312,14 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1000</xloc>
-      <yloc>100</yloc>
+      <xloc>870</xloc>
+      <yloc>150</yloc>
       </entry>
     <entry>
       <name>Set Failed flag for EOD</name>
       <description>SQL</description>
       <type>SQL</type>
-      <sql>REPLACE INTO eod_status SET `utc_date_string` = &apos;${PREVIOUS_UTC_DATE}&apos;, `status` = &apos;Failed&apos;, `audit_snapshot` = (
-	SELECT CONCAT(site,&apos;\t&apos;,servers,&apos;\t&apos;,timestamps) AS results
-	FROM (
-		SELECT
-		  site
-		, GROUP_CONCAT(server ORDER BY server SEPARATOR &apos;, &apos;) AS servers
-		, timestamps
-		FROM (
-			SELECT
-			  site
-			, CONCAT(datacenter,&apos;-&apos;,server) AS server
-			, GROUP_CONCAT(timestamp ORDER BY timestamp SEPARATOR &apos;, &apos;) AS timestamps
-			FROM `server_timestamps_to_process`
-			WHERE required = &apos;Y&apos;
-			GROUP BY 1,2
-		) a
-		GROUP BY 1,3
-	) b
-	ORDER BY site, timestamps
-	LIMIT 1
-);</sql>
+      <sql>REPLACE INTO eod_status SET &#x60;utc_date_string&#x60; &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;, &#x60;status&#x60; &#x3d; &#x27;Failed&#x27;, &#x60;audit_snapshot&#x60; &#x3d; &#x28;&#xa;	SELECT CONCAT&#x28;site,&#x27;&#x5c;t&#x27;,servers,&#x27;&#x5c;t&#x27;,timestamps&#x29; AS results&#xa;	FROM &#x28;&#xa;		SELECT&#xa;		  site&#xa;		, GROUP_CONCAT&#x28;server ORDER BY server SEPARATOR &#x27;, &#x27;&#x29; AS servers&#xa;		, timestamps&#xa;		FROM &#x28;&#xa;			SELECT&#xa;			  site&#xa;			, CONCAT&#x28;datacenter,&#x27;-&#x27;,server&#x29; AS server&#xa;			, GROUP_CONCAT&#x28;timestamp ORDER BY timestamp SEPARATOR &#x27;, &#x27;&#x29; AS timestamps&#xa;			FROM &#x60;server_timestamps_to_process&#x60;&#xa;			WHERE required &#x3d; &#x27;Y&#x27;&#xa;			GROUP BY 1,2&#xa;		&#x29; a&#xa;		GROUP BY 1,3&#xa;	&#x29; b&#xa;	ORDER BY site, timestamps&#xa;	LIMIT 1&#xa;&#x29;&#x3b;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -386,7 +335,7 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <name>Set Running flag for EOD</name>
       <description>SQL</description>
       <type>SQL</type>
-      <sql>REPLACE INTO eod_status SET `utc_date_string` = &apos;${PREVIOUS_UTC_DATE}&apos;, `status` = &apos;Running&apos;</sql>
+      <sql>REPLACE INTO eod_status SET &#x60;utc_date_string&#x60; &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;, &#x60;status&#x60; &#x3d; &#x27;Running&#x27;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -399,7 +348,7 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <yloc>150</yloc>
       </entry>
     <entry>
-      <name>Already has successful eod?</name>
+      <name>Already has successful eod&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics mysql</connection>
@@ -409,10 +358,7 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT *
-FROM eod_status
-WHERE utc_date_string = &apos;${PREVIOUS_UTC_DATE}&apos;
-AND status = &apos;Successful&apos;</custom_sql>
+      <custom_sql>SELECT &#x2a;&#xa;FROM eod_status&#xa;WHERE utc_date_string &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;&#xa;AND status &#x3d; &#x27;Successful&#x27;</custom_sql>
       <add_rows_result>N</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
@@ -437,7 +383,7 @@ AND status = &apos;Successful&apos;</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;audit_server_traffic.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;audit_server_traffic.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -445,7 +391,7 @@ AND status = &apos;Successful&apos;</custom_sql>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>${ETL_LOG_DIR}&#47;eod_audit</logfile>
+      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_audit</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -456,6 +402,7 @@ AND status = &apos;Successful&apos;</custom_sql>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -469,23 +416,16 @@ AND status = &apos;Successful&apos;</custom_sql>
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics EOD processor</replytoname>
       <subject>Missing logs alert</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.
-Please check log file synchronization processes.  The processor will pick up new files on the next run.
-
-These missing logs are currently preventing the End Of Day processing from succeeding.
-This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.
-
-
-</comment>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
+      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;&#xa;These missing logs are currently preventing the End Of Day processing from succeeding.&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;&#xa;&#xa;</comment>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
@@ -516,13 +456,13 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;dimensions&#47;update.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;dimensions&#x2f;update.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${ETL_LOG_DIR}&#47;eod_dimensions</logfile>
+      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_dimensions</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -546,15 +486,15 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics EOD processor</replytoname>
-      <subject>EOD processing succeeded for ${PREVIOUS_UTC_DATE}</subject>
+      <subject>EOD processing succeeded for &#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
       <comment/>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
@@ -577,8 +517,8 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1000</xloc>
-      <yloc>200</yloc>
+      <xloc>869</xloc>
+      <yloc>250</yloc>
       </entry>
     <entry>
       <name>Wait for no required</name>
@@ -591,15 +531,7 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <rows_count_value>0</rows_count_value>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT
-  s.datacenter
-, s.site
-, s.server
-, timestamp
-FROM server_timestamps_to_process sttp
-JOIN servers s ON sttp.site = s.site AND sttp.server = s.server
-WHERE active = &apos;Y&apos; AND timestamp &lt;= &apos;${EOD_LAST_HOUR}&apos;
-ORDER BY 1,2,3,4</custom_sql>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
       <add_rows_result>N</add_rows_result>
       <maximum_timeout>2700</maximum_timeout>
       <check_cycle_time>300</check_cycle_time>
@@ -617,13 +549,13 @@ ORDER BY 1,2,3,4</custom_sql>
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;dimensions&#47;product_version_management.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;dimensions&#x2f;product_version_management.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>${ETL_LOG_DIR}&#47;eod_dimensions</logfile>
+      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_dimensions</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -648,7 +580,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <name>Advance epoch</name>
       <description>SQL</description>
       <type>SQL</type>
-      <sql>SELECT ADVANCE_EPOCH();</sql>
+      <sql>SELECT ADVANCE_EPOCH&#x28;&#x29;&#x3b;</sql>
       <useVariableSubstitution>F</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -666,7 +598,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;get_dates.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;get_dates.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -685,6 +617,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -698,7 +631,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;socorro&#47;extract_adu.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;socorro&#x2f;extract_adu.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -706,7 +639,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <clear_rows>N</clear_rows>
       <clear_files>N</clear_files>
       <set_logfile>Y</set_logfile>
-      <logfile>${ETL_LOG_DIR}&#47;eod_socorro_stage</logfile>
+      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_socorro_stage</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
@@ -717,24 +650,25 @@ ORDER BY 1,2,3,4</custom_sql>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>SOCORRO_DB_HOST</name>
             <stream_name/>
-            <value>${SOCORRO_STAGE_HOST}</value>
+            <value>&#x24;&#x7b;SOCORRO_STAGE_HOST&#x7d;</value>
             </parameter>            <parameter>            <name>SOCORRO_DB_USER</name>
             <stream_name/>
-            <value>${SOCORRO_STAGE_USER}</value>
+            <value>&#x24;&#x7b;SOCORRO_STAGE_USER&#x7d;</value>
             </parameter>            <parameter>            <name>SOCORRO_DB_PASS</name>
             <stream_name/>
-            <value>${SOCORRO_STAGE_PASS}</value>
+            <value>&#x24;&#x7b;SOCORRO_STAGE_PASS&#x7d;</value>
             </parameter>            <parameter>            <name>DATE</name>
             <stream_name/>
-            <value>= &apos;${PREVIOUS_UTC_DATE}&apos;</value>
+            <value>&#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;</value>
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>848</xloc>
-      <yloc>301</yloc>
+      <xloc>1227</xloc>
+      <yloc>50</yloc>
       </entry>
     <entry>
       <name>Guard for race</name>
@@ -747,15 +681,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT
-  s.datacenter
-, s.site
-, s.server
-, timestamp
-FROM server_timestamps_to_process sttp
-JOIN servers s ON sttp.site = s.site AND sttp.server = s.server
-WHERE active = &apos;Y&apos; AND timestamp &lt;= &apos;${EOD_LAST_HOUR}&apos;
-ORDER BY 1,2,3,4</custom_sql>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
       <add_rows_result>N</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
@@ -775,15 +701,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <rows_count_value>0</rows_count_value>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT
-  s.datacenter
-, s.site
-, s.server
-, timestamp
-FROM server_timestamps_to_process sttp
-JOIN servers s ON sttp.site = s.site AND sttp.server = s.server
-WHERE active = &apos;Y&apos; AND timestamp &lt;= &apos;${EOD_LAST_HOUR}&apos;
-ORDER BY 1,2,3,4</custom_sql>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
       <add_rows_result>N</add_rows_result>
       <maximum_timeout>2700</maximum_timeout>
       <check_cycle_time>300</check_cycle_time>
@@ -801,23 +719,16 @@ ORDER BY 1,2,3,4</custom_sql>
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics EOD processor</replytoname>
       <subject>Missing logs alert</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.
-Please check log file synchronization processes.  The processor will pick up new files on the next run.
-
-These missing logs are currently preventing the End Of Day processing from succeeding.
-This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.
-
-
-</comment>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
+      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;&#xa;These missing logs are currently preventing the End Of Day processing from succeeding.&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;&#xa;&#xa;</comment>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
@@ -848,20 +759,16 @@ This will delay the nightly reports and the exports of data to the Socorro and A
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics EOD processor</replytoname>
       <subject>Error during EOD processing - AMO Export</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
-      <comment>The EOD export to AMO returned an error status.
-Please check the logs and fix the problem then re-run relevant export script manually.
-
-This will delay the nightly exports of data to the AMO production site.
-</comment>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
+      <comment>The EOD export to AMO returned an error status.&#xa;Please check the logs and fix the problem then re-run relevant export script manually.&#xa;&#xa;This will delay the nightly exports of data to the AMO production site.&#xa;</comment>
       <include_files>Y</include_files>
       <zip_files>Y</zip_files>
       <zip_name>run_logs.zip</zip_name>
@@ -883,8 +790,8 @@ This will delay the nightly exports of data to the AMO production site.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>747</xloc>
-      <yloc>118</yloc>
+      <xloc>1351</xloc>
+      <yloc>150</yloc>
       </entry>
     <entry>
       <name>Socorro prod error</name>
@@ -892,20 +799,16 @@ This will delay the nightly exports of data to the AMO production site.
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics EOD processor</replytoname>
       <subject>Error during EOD processing - Socorro Production</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
-      <comment>The EOD export to Socorro Production returned an error status.
-Please check the logs and fix the problem then re-run relevant export script manually.
-
-This will delay the nightly exports of data to the Socorro production site.
-</comment>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
+      <comment>The EOD export to Socorro Production returned an error status.&#xa;Please check the logs and fix the problem then re-run relevant export script manually.&#xa;&#xa;This will delay the nightly exports of data to the Socorro production site.&#xa;</comment>
       <include_files>Y</include_files>
       <zip_files>Y</zip_files>
       <zip_name>run_logs.zip</zip_name>
@@ -927,8 +830,8 @@ This will delay the nightly exports of data to the Socorro production site.
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>749</xloc>
-      <yloc>176</yloc>
+      <xloc>989</xloc>
+      <yloc>150</yloc>
       </entry>
     <entry>
       <name>Socorro stage error</name>
@@ -936,18 +839,16 @@ This will delay the nightly exports of data to the Socorro production site.
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics EOD processor</replytoname>
       <subject>Error during EOD processing - Socorro Staging</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
-      <comment>The EOD export to Socorro Staging returned an error status.
-Please check the logs and fix the problem then re-run relevant export script manually.
-</comment>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
+      <comment>The EOD export to Socorro Staging returned an error status.&#xa;Please check the logs and fix the problem then re-run relevant export script manually.&#xa;</comment>
       <include_files>Y</include_files>
       <zip_files>Y</zip_files>
       <zip_name>run_logs.zip</zip_name>
@@ -969,8 +870,8 @@ Please check the logs and fix the problem then re-run relevant export script man
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>750</xloc>
-      <yloc>250</yloc>
+      <xloc>1227</xloc>
+      <yloc>150</yloc>
       </entry>
     <entry>
       <name>Success 2</name>
@@ -979,8 +880,8 @@ Please check the logs and fix the problem then re-run relevant export script man
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>746</xloc>
-      <yloc>324</yloc>
+      <xloc>1460</xloc>
+      <yloc>50</yloc>
       </entry>
     <entry>
       <name>Try to avoid a deadlock</name>
@@ -991,8 +892,8 @@ Please check the logs and fix the problem then re-run relevant export script man
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>849</xloc>
-      <yloc>235</yloc>
+      <xloc>1095</xloc>
+      <yloc>50</yloc>
       </entry>
   </entries>
   <hops>
@@ -1024,7 +925,7 @@ Please check the logs and fix the problem then re-run relevant export script man
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Already has successful eod?</from>
+      <from>Already has successful eod&#x3f;</from>
       <to>Set Running flag for EOD</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1033,7 +934,7 @@ Please check the logs and fix the problem then re-run relevant export script man
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Already has successful eod?</from>
+      <from>Already has successful eod&#x3f;</from>
       <to>Success 1</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -1160,7 +1061,7 @@ Please check the logs and fix the problem then re-run relevant export script man
     </hop>
     <hop>
       <from>Get dates</from>
-      <to>Already has successful eod?</to>
+      <to>Already has successful eod&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1222,33 +1123,6 @@ Please check the logs and fix the problem then re-run relevant export script man
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Run Vertica GAH</from>
-      <to>export_daily_amo_stats</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>export_daily_amo_stats</from>
-      <to>Export to Socorro</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Run Vertica GAH</from>
-      <to>Set Successful flag for EOD</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>export_daily_amo_stats</from>
       <to>AMO error</to>
       <from_nr>0</from_nr>
@@ -1274,33 +1148,6 @@ Please check the logs and fix the problem then re-run relevant export script man
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Export to Socorro Staging</from>
-      <to>Success 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>AMO error</from>
-      <to>Export to Socorro</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Socorro stage error</from>
-      <to>Success 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>START</from>
@@ -1337,6 +1184,60 @@ Please check the logs and fix the problem then re-run relevant export script man
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Export to Socorro Staging</from>
+      <to>export_daily_amo_stats</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>export_daily_amo_stats</from>
+      <to>Success 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Socorro stage error</from>
+      <to>export_daily_amo_stats</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>AMO error</from>
+      <to>Success 2</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Run Vertica GAH</from>
+      <to>Export to Socorro</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Run Vertica GAH</from>
+      <to>Set Successful flag for EOD</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
