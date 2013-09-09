@@ -1,58 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <job>
   <name>run_daily_aggregates</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2010&#47;03&#47;10 17:06:21.241</created_date>
+  <created_date>2010&#x2f;03&#x2f;10 17&#x3a;06&#x3a;21.241</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2010&#47;03&#47;10 17:06:21.241</modified_date>
+  <modified_date>2010&#x2f;03&#x2f;10 17&#x3a;06&#x3a;21.241</modified_date>
     <parameters>
     </parameters>
   <connection>
     <name>metrics</name>
-    <server>${VERTICA_HOST}</server>
+    <server>&#x24;&#x7b;VERTICA_HOST&#x7d;</server>
     <type>VERTICA</type>
     <access>Native</access>
-    <database>${VERTICA_DB}</database>
-    <port>${VERTICA_PORT}</port>
-    <username>${VERTICA_USER}</username>
-    <password>${VERTICA_PASS}</password>
+    <database>&#x24;&#x7b;VERTICA_DB&#x7d;</database>
+    <port>&#x24;&#x7b;VERTICA_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;VERTICA_USER&#x7d;</username>
+    <password>&#x24;&#x7b;VERTICA_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
-      <attribute><code>EXTRA_OPTION_VERTICA.AutoCommit</code><attribute>false</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${VERTICA_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;VERTICA_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION 
-ISOLATION LEVEL READ COMMITTED</attribute></attribute>
+      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION &#xa;ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
     <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
+    <server>&#x24;&#x7b;METRICS_MYSQL_HOST&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_MYSQL_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_MYSQL_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_MYSQL_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -65,7 +56,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -97,41 +88,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <name>amo_downloads</name>
       <description>SQL</description>
       <type>SQL</type>
-      <sql>INSERT &#47;*+ direct *&#47; INTO amo_download_requests_by_day
-SELECT
-  utc_date_id
-, product
-, file_id
-, addon_id
-, addon_guid
-, addon_version
-, addon_name
-, location_id
-, user_agent_os_id
-, user_agent_browser_id
-, user_agent_locale_id
-, request_locale_id
-, CASE WHEN x.src IS NULL THEN NULL WHEN v.name IS NULL THEN &apos;invalid&apos; ELSE x.src END AS source
-, COUNT(1) AS requests
-FROM amo_download_requests_raw x
-LEFT JOIN amo_download_valid_sources v ON x.src IS NOT NULL AND ((v.type = &apos;full&apos; AND v.name = x.src) OR (v.type = &apos;prefix&apos; AND LEFT(x.src, LENGTH(v.name)) = v.name))
-WHERE utc_date = &apos;${PREVIOUS_UTC_DATE}&apos;
-GROUP BY
-  utc_date
-, utc_date_id
-, product
-, source
-, request_locale_id
-, user_agent_locale_id
-, user_agent_os_id
-, addon_id
-, addon_guid
-, addon_name
-, addon_version
-, file_id
-, user_agent_browser_id
-, location_id;
-COMMIT;</sql>
+      <sql>INSERT &#x2f;&#x2a;&#x2b; direct &#x2a;&#x2f; INTO amo_download_requests_by_day&#xa;SELECT&#xa;  utc_date_id&#xa;, product&#xa;, file_id&#xa;, addon_id&#xa;, addon_guid&#xa;, addon_version&#xa;, addon_name&#xa;, location_id&#xa;, user_agent_os_id&#xa;, user_agent_browser_id&#xa;, user_agent_locale_id&#xa;, request_locale_id&#xa;, CASE WHEN x.src IS NULL THEN NULL WHEN v.name IS NULL THEN &#x27;invalid&#x27; ELSE x.src END AS source&#xa;, COUNT&#x28;1&#x29; AS requests&#xa;FROM amo_download_requests_raw x&#xa;LEFT JOIN amo_download_valid_sources v ON x.src IS NOT NULL AND &#x28;&#x28;v.type &#x3d; &#x27;full&#x27; AND v.name &#x3d; x.src&#x29; OR &#x28;v.type &#x3d; &#x27;prefix&#x27; AND LEFT&#x28;x.src, LENGTH&#x28;v.name&#x29;&#x29; &#x3d; v.name&#x29;&#x29;&#xa;WHERE utc_date &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;&#xa;GROUP BY&#xa;  utc_date&#xa;, utc_date_id&#xa;, product&#xa;, source&#xa;, request_locale_id&#xa;, user_agent_locale_id&#xa;, user_agent_os_id&#xa;, addon_id&#xa;, addon_guid&#xa;, addon_name&#xa;, addon_version&#xa;, file_id&#xa;, user_agent_browser_id&#xa;, location_id&#x3b;&#xa;COMMIT&#x3b;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -140,65 +97,14 @@ COMMIT;</sql>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>350</xloc>
-      <yloc>200</yloc>
+      <xloc>852</xloc>
+      <yloc>259</yloc>
       </entry>
     <entry>
       <name>blocklist</name>
       <description>SQL</description>
       <type>SQL</type>
-      <sql>INSERT &#47;*+ direct *&#47; INTO blocklist_requests_by_day (
-  utc_date_id
-, product_id
-, os_id
-, locale_id
-, location_id
-, product_channel_id
-, product_distribution_id
-, gecko_version
-, product_build_target
-, product_build_number
-, ping_count
-, total_ping_count
-, days_since_last_ping
-, requests
-)
-SELECT
-  utc_date_id
-, product_id
-, os_id
-, locale_id
-, location_id
-, product_channel_id
-, product_distribution_id
-, gecko_version
-, product_build_target
-, product_build_number
-, ping_count
-, total_ping_count
-, days_since_last_ping
-, COUNT(1) AS requests
-FROM blocklist_requests_raw
-WHERE utc_date = &apos;${PREVIOUS_UTC_DATE}&apos;  
-AND (days_since_last_ping IS NULL OR days_since_last_ping = -2 OR days_since_last_ping &gt; 0)
-GROUP BY
-  utc_date
-, utc_date_id
-, product_distribution_id
-, product_build_target
-, product_channel_id
-, product_id
-, os_id
-, locale_id
-, gecko_version
-, product_build_number
-, location_id
-, ping_count
-, total_ping_count
-, days_since_last_ping
-; 
-COMMIT;
-</sql>
+      <sql>INSERT &#x2f;&#x2a;&#x2b; direct &#x2a;&#x2f; INTO blocklist_requests_by_day &#x28;&#xa;  utc_date_id&#xa;, product_id&#xa;, os_id&#xa;, locale_id&#xa;, location_id&#xa;, product_channel_id&#xa;, product_distribution_id&#xa;, gecko_version&#xa;, product_build_target&#xa;, product_build_number&#xa;, ping_count&#xa;, total_ping_count&#xa;, days_since_last_ping&#xa;, requests&#xa;&#x29;&#xa;SELECT&#xa;  utc_date_id&#xa;, product_id&#xa;, os_id&#xa;, locale_id&#xa;, location_id&#xa;, product_channel_id&#xa;, product_distribution_id&#xa;, gecko_version&#xa;, product_build_target&#xa;, product_build_number&#xa;, ping_count&#xa;, total_ping_count&#xa;, days_since_last_ping&#xa;, COUNT&#x28;1&#x29; AS requests&#xa;FROM blocklist_requests_raw&#xa;WHERE utc_date &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;  &#xa;AND &#x28;days_since_last_ping IS NULL OR days_since_last_ping &#x3d; -2 OR days_since_last_ping &#x3e; 0&#x29;&#xa;GROUP BY&#xa;  utc_date&#xa;, utc_date_id&#xa;, product_distribution_id&#xa;, product_build_target&#xa;, product_channel_id&#xa;, product_id&#xa;, os_id&#xa;, locale_id&#xa;, gecko_version&#xa;, product_build_number&#xa;, location_id&#xa;, ping_count&#xa;, total_ping_count&#xa;, days_since_last_ping&#xa;&#x3b; &#xa;COMMIT&#x3b;&#xa;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -207,47 +113,14 @@ COMMIT;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>50</yloc>
+      <xloc>184</xloc>
+      <yloc>259</yloc>
       </entry>
     <entry>
       <name>downloads</name>
       <description>SQL</description>
       <type>SQL</type>
-      <sql>INSERT &#47;*+ direct *&#47; INTO download_requests_by_day
-SELECT
-  utc_date_id
-, request_type
-, download_product_id
-, product_platform
-, product_locale_id
-, download_type
-, upgrade_version
-, request_result
-, location_id
-, user_agent_browser_id
-, user_agent_os_id
-, user_agent_locale_id
-, COUNT(1) AS requests
-FROM download_requests_raw
-WHERE utc_date = &apos;${PREVIOUS_UTC_DATE}&apos;
-GROUP BY
-  utc_date
-, utc_date_id
-, request_type
-, request_result
-, download_type
-, product_platform
-, user_agent_os_id
-, download_product_id
-, product_locale_id
-, upgrade_version
-, location_id
-, user_agent_browser_id
-, user_agent_locale_id;
-
-COMMIT;
-</sql>
+      <sql>INSERT &#x2f;&#x2a;&#x2b; direct &#x2a;&#x2f; INTO download_requests_by_day&#xa;SELECT&#xa;  utc_date_id&#xa;, request_type&#xa;, download_product_id&#xa;, product_platform&#xa;, product_locale_id&#xa;, download_type&#xa;, upgrade_version&#xa;, request_result&#xa;, location_id&#xa;, user_agent_browser_id&#xa;, user_agent_os_id&#xa;, user_agent_locale_id&#xa;, COUNT&#x28;1&#x29; AS requests&#xa;FROM download_requests_raw&#xa;WHERE utc_date &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;&#xa;GROUP BY&#xa;  utc_date&#xa;, utc_date_id&#xa;, request_type&#xa;, request_result&#xa;, download_type&#xa;, product_platform&#xa;, user_agent_os_id&#xa;, download_product_id&#xa;, product_locale_id&#xa;, upgrade_version&#xa;, location_id&#xa;, user_agent_browser_id&#xa;, user_agent_locale_id&#x3b;&#xa;&#xa;COMMIT&#x3b;&#xa;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -256,53 +129,14 @@ COMMIT;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>100</yloc>
+      <xloc>531</xloc>
+      <yloc>259</yloc>
       </entry>
     <entry>
       <name>aus</name>
       <description>SQL</description>
       <type>SQL</type>
-      <sql>INSERT &#47;*+ direct *&#47; INTO aus_requests_by_day
-SELECT
-  utc_year
-, utc_month
-, utc_day_of_month
-, utc_date
-, product_name
-, product_version
-, product_version_major
-, product_version_minor
-, product_version_sub_a
-, product_version_sub_b
-, locale_code
-, locale_language
-, locale_region
-, locale_dialect
-, country_name
-, country_code
-, region_code
-, region_name
-, city_name
-, product_channel
-, product_distribution
-, product_distribution_version
-, product_os_platform
-, product_os_version
-, gecko_version
-, gecko_version_major
-, gecko_version_minor
-, gecko_version_sub_a
-, gecko_version_sub_b
-, product_build_number
-, product_build_target
-, COUNT(1) AS requests
-FROM aus_requests_raw
-WHERE utc_date = &apos;${PREVIOUS_UTC_DATE}&apos;
-GROUP BY  utc_year, utc_month, utc_day_of_month, utc_date, product_distribution_version, product_distribution, gecko_version_major, product_version_major, product_version_sub_a, locale_dialect, product_os_platform, gecko_version_sub_a, product_build_target, product_name, gecko_version_sub_b, product_version_minor, gecko_version_minor, product_version_sub_b, locale_language, locale_region, gecko_version, product_version, locale_code, product_channel, country_name, country_code, region_code, product_os_version, product_build_number, region_name, city_name;
-
-COMMIT;
-</sql>
+      <sql>INSERT &#x2f;&#x2a;&#x2b; direct &#x2a;&#x2f; INTO aus_requests_by_day&#xa;SELECT&#xa;  utc_year&#xa;, utc_month&#xa;, utc_day_of_month&#xa;, utc_date&#xa;, product_name&#xa;, product_version&#xa;, product_version_major&#xa;, product_version_minor&#xa;, product_version_sub_a&#xa;, product_version_sub_b&#xa;, locale_code&#xa;, locale_language&#xa;, locale_region&#xa;, locale_dialect&#xa;, country_name&#xa;, country_code&#xa;, region_code&#xa;, region_name&#xa;, city_name&#xa;, product_channel&#xa;, product_distribution&#xa;, product_distribution_version&#xa;, product_os_platform&#xa;, product_os_version&#xa;, gecko_version&#xa;, gecko_version_major&#xa;, gecko_version_minor&#xa;, gecko_version_sub_a&#xa;, gecko_version_sub_b&#xa;, product_build_number&#xa;, product_build_target&#xa;, COUNT&#x28;1&#x29; AS requests&#xa;FROM aus_requests_raw&#xa;WHERE utc_date &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;&#xa;GROUP BY  utc_year, utc_month, utc_day_of_month, utc_date, product_distribution_version, product_distribution, gecko_version_major, product_version_major, product_version_sub_a, locale_dialect, product_os_platform, gecko_version_sub_a, product_build_target, product_name, gecko_version_sub_b, product_version_minor, gecko_version_minor, product_version_sub_b, locale_language, locale_region, gecko_version, product_version, locale_code, product_channel, country_name, country_code, region_code, product_os_version, product_build_number, region_name, city_name&#x3b;&#xa;&#xa;COMMIT&#x3b;&#xa;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -311,49 +145,14 @@ COMMIT;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>150</yloc>
+      <xloc>692</xloc>
+      <yloc>259</yloc>
       </entry>
     <entry>
       <name>versioncheck</name>
       <description>SQL</description>
       <type>SQL</type>
-      <sql>INSERT &#47;*+ direct *&#47; INTO versioncheck_requests_by_day
-SELECT
-  utc_date_id
-, product_id
-, addon_id
-, addon_guid
-, addon_version
-, addon_name
-, max_app_version
-, addon_status
-, addon_locale
-, product_os
-, product_build_target
-, location_id
-, COUNT(1) AS requests
-FROM versioncheck_requests_raw
-WHERE utc_date = &apos;${PREVIOUS_UTC_DATE}&apos;
-AND addon_id &lt;&gt; 0
-GROUP BY
-  utc_date
-, utc_date_id
-, addon_locale
-, product_id
-, product_os
-, product_build_target
-, max_app_version
-, addon_id
-, addon_guid
-, addon_name
-, addon_version
-, addon_status
-, location_id
-;
-
-COMMIT;
-</sql>
+      <sql>INSERT &#x2f;&#x2a;&#x2b; direct &#x2a;&#x2f; INTO versioncheck_requests_by_day&#xa;SELECT&#xa;  utc_date_id&#xa;, product_id&#xa;, addon_id&#xa;, addon_guid&#xa;, addon_version&#xa;, addon_name&#xa;, max_app_version&#xa;, addon_status&#xa;, addon_locale&#xa;, product_os&#xa;, product_build_target&#xa;, location_id&#xa;, COUNT&#x28;1&#x29; AS requests&#xa;FROM versioncheck_requests_raw&#xa;WHERE utc_date &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;&#xa;AND addon_id &#x3c;&#x3e; 0&#xa;GROUP BY&#xa;  utc_date&#xa;, utc_date_id&#xa;, addon_locale&#xa;, product_id&#xa;, product_os&#xa;, product_build_target&#xa;, max_app_version&#xa;, addon_id&#xa;, addon_guid&#xa;, addon_name&#xa;, addon_version&#xa;, addon_status&#xa;, location_id&#xa;&#x3b;&#xa;&#xa;COMMIT&#x3b;&#xa;</sql>
       <useVariableSubstitution>T</useVariableSubstitution>
       <sqlfromfile>F</sqlfromfile>
       <sqlfilename/>
@@ -362,11 +161,11 @@ COMMIT;
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>250</yloc>
+      <xloc>1019</xloc>
+      <yloc>259</yloc>
       </entry>
     <entry>
-      <name>Run blocklist aggregate?</name>
+      <name>Run blocklist aggregate&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics</connection>
@@ -376,20 +175,17 @@ COMMIT;
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT requests
-FROM blocklist_requests_by_day
-WHERE utc_date_id = ${PREVIOUS_UTC_DATE_ID}
-LIMIT 1</custom_sql>
+      <custom_sql>SELECT requests&#xa;FROM blocklist_requests_by_day&#xa;WHERE utc_date_id &#x3d; &#x24;&#x7b;PREVIOUS_UTC_DATE_ID&#x7d;&#xa;LIMIT 1</custom_sql>
       <add_rows_result>Y</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>50</yloc>
+      <xloc>186</xloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
-      <name>Run amo_download aggregate?</name>
+      <name>Run amo_download aggregate&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics</connection>
@@ -399,20 +195,17 @@ LIMIT 1</custom_sql>
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT requests
-FROM amo_download_requests_by_day
-WHERE utc_date_id = ${PREVIOUS_UTC_DATE_ID}
-LIMIT 1</custom_sql>
+      <custom_sql>SELECT requests&#xa;FROM amo_download_requests_by_day&#xa;WHERE utc_date_id &#x3d; &#x24;&#x7b;PREVIOUS_UTC_DATE_ID&#x7d;&#xa;LIMIT 1</custom_sql>
       <add_rows_result>Y</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>200</yloc>
+      <xloc>852</xloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
-      <name>Run versioncheck aggregate?</name>
+      <name>Run versioncheck aggregate&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics</connection>
@@ -422,20 +215,17 @@ LIMIT 1</custom_sql>
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT requests
-FROM versioncheck_requests_by_day
-WHERE utc_date_id = ${PREVIOUS_UTC_DATE_ID}
-LIMIT 1</custom_sql>
+      <custom_sql>SELECT requests&#xa;FROM versioncheck_requests_by_day&#xa;WHERE utc_date_id &#x3d; &#x24;&#x7b;PREVIOUS_UTC_DATE_ID&#x7d;&#xa;LIMIT 1</custom_sql>
       <add_rows_result>Y</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>250</yloc>
+      <xloc>1016</xloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
-      <name>Run download aggregate?</name>
+      <name>Run download aggregate&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics</connection>
@@ -445,20 +235,17 @@ LIMIT 1</custom_sql>
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT requests
-FROM download_requests_by_day
-WHERE utc_date_id = ${PREVIOUS_UTC_DATE_ID}
-LIMIT 1</custom_sql>
+      <custom_sql>SELECT requests&#xa;FROM download_requests_by_day&#xa;WHERE utc_date_id &#x3d; &#x24;&#x7b;PREVIOUS_UTC_DATE_ID&#x7d;&#xa;LIMIT 1</custom_sql>
       <add_rows_result>Y</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>100</yloc>
+      <xloc>533</xloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
-      <name>Run aus aggregate?</name>
+      <name>Run aus aggregate&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics</connection>
@@ -468,17 +255,14 @@ LIMIT 1</custom_sql>
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT requests
-FROM aus_requests_by_day
-WHERE utc_date = &apos;${PREVIOUS_UTC_DATE}&apos;
-LIMIT 1</custom_sql>
+      <custom_sql>SELECT requests&#xa;FROM aus_requests_by_day&#xa;WHERE utc_date &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;&#xa;LIMIT 1</custom_sql>
       <add_rows_result>Y</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>150</yloc>
+      <xloc>694</xloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
       <name>START</name>
@@ -498,7 +282,7 @@ LIMIT 1</custom_sql>
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>50</xloc>
-      <yloc>50</yloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
       <name>Success 1</name>
@@ -507,8 +291,8 @@ LIMIT 1</custom_sql>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>300</yloc>
+      <xloc>1177</xloc>
+      <yloc>51</yloc>
       </entry>
     <entry>
       <name>update valid_sources</name>
@@ -516,7 +300,7 @@ LIMIT 1</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;..&#47;amo&#47;update_amo_download_valid_sources.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;amo&#x2f;update_amo_download_valid_sources.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -535,17 +319,54 @@ LIMIT 1</custom_sql>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>200</yloc>
+      <xloc>852</xloc>
+      <yloc>155</yloc>
+      </entry>
+    <entry>
+      <name>Run blocklist_pingdetails aggregates&#x3f;</name>
+      <description>Evaluate rows number in a table</description>
+      <type>EVAL_TABLE_CONTENT</type>
+      <connection>metrics</connection>
+      <schemaname/>
+      <tablename/>
+      <success_condition>rows_count_equal</success_condition>
+      <limit>0</limit>
+      <is_custom_sql>Y</is_custom_sql>
+      <is_usevars>Y</is_usevars>
+      <custom_sql>SELECT requests&#xa;FROM blocklist_pingdetails_by_day&#xa;WHERE utc_date_id &#x3d; &#x24;&#x7b;PREVIOUS_UTC_DATE_ID&#x7d;&#xa;LIMIT 1</custom_sql>
+      <add_rows_result>Y</add_rows_result>
+      <clear_result_rows>Y</clear_result_rows>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>361</xloc>
+      <yloc>51</yloc>
+      </entry>
+    <entry>
+      <name>blocklist_pingdetails</name>
+      <description>SQL</description>
+      <type>SQL</type>
+      <sql>INSERT &#x2f;&#x2a;&#x2b; direct &#x2a;&#x2f; INTO blocklist_pingdetails_by_day &#x28;&#xa;    utc_date_id,&#xa;    product_build_target,&#xa;    product_name,&#xa;    formatted_version_major,&#xa;    country_name,&#xa;    product_channel_id,&#xa;    locale_id,&#xa;    os_id,&#xa;    product_distribution_id,&#xa;    ping_count_bkt,&#xa;    total_ping_count_bkt,&#xa;    days_since_last_ping_bkt,&#xa;    new_ping,&#xa;    requests&#xa;&#x29;&#xa;SELECT&#xa;    utc_date_id,&#xa;    product_build_target,&#xa;    products.product_name,&#xa;    products.formatted_version_major,&#xa;    locations.country_name,&#xa;    product_channel_id,&#xa;    locale_id,&#xa;    os_id,&#xa;    product_distribution_id,&#xa;    three_steps_bucketing&#x28;ping_count, -2,1 ,60,10, 90,10, 180&#x29; as ping_count_bkt,&#xa;    three_steps_bucketing&#x28;total_ping_count, -2,1 ,60,10, 90,10, 180&#x29; as total_ping_count_bkt,&#xa;    case when days_since_last_ping&#x3d;365000 then 0 else three_steps_bucketing&#x28;days_since_last_ping, -2,1 ,60,10, 90,10, 180&#x29; end as days_since_last_ping_bkt,&#xa;    case when days_since_last_ping&#x3d;365000 then true else false end as new_ping,&#xa;    COUNT&#x28;1&#x29; AS requests&#xa;FROM blocklist_requests_raw&#xa;    inner join locations using &#x28;location_id&#x29;&#xa;    inner join products using &#x28;product_id&#x29;&#xa;WHERE TRUE&#xa;    AND utc_date &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;  &#xa;    AND &#x28;days_since_last_ping IS NULL OR days_since_last_ping &#x3d; -2 OR days_since_last_ping &#x3e; 0&#x29;&#xa;GROUP BY&#xa;    utc_date_id,&#xa;    product_build_target,&#xa;    products.product_name,&#xa;    products.formatted_version_major,&#xa;    locations.country_name,&#xa;    product_channel_id,&#xa;    locale_id,&#xa;    os_id,&#xa;    product_distribution_id,&#xa;    ping_count_bkt,&#xa;    total_ping_count_bkt,&#xa;    days_since_last_ping_bkt,&#xa;    new_ping&#x3b;&#xa;&#xa;COMMIT&#x3b;&#xa;</sql>
+      <useVariableSubstitution>T</useVariableSubstitution>
+      <sqlfromfile>F</sqlfromfile>
+      <sqlfilename/>
+      <sendOneStatement>F</sendOneStatement>
+      <connection>metrics</connection>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>359</xloc>
+      <yloc>259</yloc>
       </entry>
   </entries>
   <hops>
     <hop>
-      <from>Run blocklist aggregate?</from>
+      <from>Run blocklist aggregate&#x3f;</from>
       <to>blocklist</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -554,7 +375,7 @@ LIMIT 1</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run versioncheck aggregate?</from>
+      <from>Run versioncheck aggregate&#x3f;</from>
       <to>versioncheck</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -563,7 +384,7 @@ LIMIT 1</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run download aggregate?</from>
+      <from>Run download aggregate&#x3f;</from>
       <to>downloads</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -572,7 +393,7 @@ LIMIT 1</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run aus aggregate?</from>
+      <from>Run aus aggregate&#x3f;</from>
       <to>aus</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -582,7 +403,7 @@ LIMIT 1</custom_sql>
     </hop>
     <hop>
       <from>START</from>
-      <to>Run blocklist aggregate?</to>
+      <to>Run blocklist aggregate&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -590,17 +411,8 @@ LIMIT 1</custom_sql>
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>blocklist</from>
-      <to>Run download aggregate?</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>downloads</from>
-      <to>Run aus aggregate?</to>
+      <to>Run aus aggregate&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -609,7 +421,7 @@ LIMIT 1</custom_sql>
     </hop>
     <hop>
       <from>aus</from>
-      <to>Run amo_download aggregate?</to>
+      <to>Run amo_download aggregate&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -618,7 +430,7 @@ LIMIT 1</custom_sql>
     </hop>
     <hop>
       <from>amo_downloads</from>
-      <to>Run versioncheck aggregate?</to>
+      <to>Run versioncheck aggregate&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -626,8 +438,8 @@ LIMIT 1</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run blocklist aggregate?</from>
-      <to>Run download aggregate?</to>
+      <from>Run download aggregate&#x3f;</from>
+      <to>Run aus aggregate&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -635,8 +447,8 @@ LIMIT 1</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run download aggregate?</from>
-      <to>Run aus aggregate?</to>
+      <from>Run aus aggregate&#x3f;</from>
+      <to>Run amo_download aggregate&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -644,8 +456,8 @@ LIMIT 1</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run aus aggregate?</from>
-      <to>Run amo_download aggregate?</to>
+      <from>Run amo_download aggregate&#x3f;</from>
+      <to>Run versioncheck aggregate&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -653,16 +465,7 @@ LIMIT 1</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run amo_download aggregate?</from>
-      <to>Run versioncheck aggregate?</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Run versioncheck aggregate?</from>
+      <from>Run versioncheck aggregate&#x3f;</from>
       <to>Success 1</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -671,7 +474,7 @@ LIMIT 1</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Run amo_download aggregate?</from>
+      <from>Run amo_download aggregate&#x3f;</from>
       <to>update valid_sources</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -682,6 +485,60 @@ LIMIT 1</custom_sql>
     <hop>
       <from>update valid_sources</from>
       <to>amo_downloads</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>versioncheck</from>
+      <to>Success 1</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Run blocklist aggregate&#x3f;</from>
+      <to>Run blocklist_pingdetails aggregates&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Run blocklist_pingdetails aggregates&#x3f;</from>
+      <to>Run download aggregate&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Run blocklist_pingdetails aggregates&#x3f;</from>
+      <to>blocklist_pingdetails</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>blocklist_pingdetails</from>
+      <to>Run download aggregate&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>blocklist</from>
+      <to>Run blocklist_pingdetails aggregates&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
