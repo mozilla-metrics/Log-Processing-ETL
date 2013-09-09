@@ -344,6 +344,7 @@ ORDER BY 1,2,3,4</sql>
 , datacenter
 , site
 , server
+, log_timestamp_timezone
 , active
 FROM servers
 ORDER BY 2,3,4</sql>
@@ -371,12 +372,12 @@ ORDER BY 2,3,4</sql>
            <schema_name/>
            </partitioning>
     <compatible>N</compatible>
-    <optimizationLevel/>
+    <optimizationLevel>9</optimizationLevel>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
         <jsScript_script>var lastInputRowIdx = getInputRowMeta().size();
 
-var logTimestampTimeZone = java.util.TimeZone.getTimeZone(getVariable(&quot;logTimestampTimeZone&quot;, &quot;PST8PDT&quot;));
+var logTimestampTimeZone = java.util.TimeZone.getTimeZone(log_timestamp_timezone);
 var gmtTimeZone = java.util.TimeZone.getTimeZone(&quot;GMT&quot;);
 
 var sdf = new java.text.SimpleDateFormat(&quot;yyyy-MM-dd-HH&quot;);
