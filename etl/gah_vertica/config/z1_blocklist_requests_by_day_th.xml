@@ -223,7 +223,22 @@ SELECT utc_date_id as value FROM blocklist_requests_by_day_th group by utc_date_
                    "ping_count",
                    "total_ping_count",
                    "days_since_last_ping")
-            select f.* from blocklist_requests_by_day f, products d
+            select 
+                   f."utc_date_id",
+                   f."product_id",
+                   f."os_id",
+                   f."locale_id",
+                   f."location_id",
+                   f."product_channel_id",
+                   f."product_distribution_id",
+                   f."gecko_version",
+                   f."product_build_target",
+                   f."product_build_number",
+                   f."requests",
+                   f."ping_count",
+                   f."total_ping_count",
+                   f."days_since_last_ping"
+            from blocklist_requests_by_day f, products d
                        where f.product_id = d.product_id and d.product_name = 'Thunderbird' and utc_date_id in (${INCREMENT_LIST});
 		</IncrementQuery>
 		
@@ -244,7 +259,22 @@ SELECT utc_date_id as value FROM blocklist_requests_by_day_th group by utc_date_
                    "ping_count",
                    "total_ping_count",
                    "days_since_last_ping")
-            select f.* from blocklist_requests_by_day f, products d
+            select 
+                   f."utc_date_id",
+                   f."product_id",
+                   f."os_id",
+                   f."locale_id",
+                   f."location_id",
+                   f."product_channel_id",
+                   f."product_distribution_id",
+                   f."gecko_version",
+                   f."product_build_target",
+                   f."product_build_number",
+                   f."requests",
+                   f."ping_count",
+                   f."total_ping_count",
+                   f."days_since_last_ping"
+		from blocklist_requests_by_day f, products d
                        where f.product_id = d.product_id and d.product_name = 'Thunderbird';
 		</InsertQuery>
 
