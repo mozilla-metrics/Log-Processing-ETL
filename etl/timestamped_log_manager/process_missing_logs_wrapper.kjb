@@ -89,7 +89,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
-      <loglevel>Minimal</loglevel>
+      <loglevel>Basic</loglevel>
       <slave_server_name/>
       <wait_until_finished>N</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
