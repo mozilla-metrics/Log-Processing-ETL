@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>parse_and_load_amo</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>&#x2f;</directory>
     <parameters>
         <parameter>
             <name>land</name>
@@ -109,21 +102,42 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         </clusterschema>
     </clusterschemas>
   <created_user/>
-  <created_date>2012&#47;03&#47;26 15:45:01.625</created_date>
+  <created_date>2012&#x2f;03&#x2f;26 15&#x3a;45&#x3a;01.625</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2008&#47;09&#47;29 13:44:50.351</modified_date>
+  <modified_date>2008&#x2f;09&#x2f;29 13&#x3a;44&#x3a;50.351</modified_date>
   </info>
   <notepads>
+    <notepad>
+      <note>merge flows because&#xa;some files are bigger.</note>
+      <xloc>141</xloc>
+      <yloc>194</yloc>
+      <width>109</width>
+      <heigth>32</heigth>
+      <fontname>Arial</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
   <connection>
     <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
+    <server>&#x24;&#x7b;METRICS_MYSQL_HOST&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_MYSQL_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_MYSQL_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_MYSQL_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -136,14 +150,46 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Discard duplicate downloads</from><to>Process amo_downloads</to><enabled>Y</enabled> </hop>  <hop> <from>Spool versioncheck</from><to>Process versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Abort on unknown</to><enabled>Y</enabled> </hop>  <hop> <from>Spool blocklist</from><to>Process blocklist</to><enabled>Y</enabled> </hop>  <hop> <from>Spool share</from><to>Process share</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool versioncheck</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool blocklist</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool share</to><enabled>Y</enabled> </hop>  <hop> <from>Spool FYF</from><to>Process collections</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Spool FYF</to><enabled>Y</enabled> </hop>  <hop> <from>Switch to processing module</from><to>Discard duplicate downloads</to><enabled>Y</enabled> </hop>  <hop> <from>Discard duplicate downloads</from><to>Spool collections</to><enabled>Y</enabled> </hop>  <hop> <from>Spool collections</from><to>Process collections</to><enabled>Y</enabled> </hop>  <hop> <from>Process versioncheck</from><to>Spool versioncheck 2</to><enabled>Y</enabled> </hop>  <hop> <from>Spool versioncheck 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Process blocklist</from><to>Spool blocklist 2</to><enabled>Y</enabled> </hop>  <hop> <from>Spool blocklist 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Process amo_downloads</from><to>Spool amo_downloads 2</to><enabled>Y</enabled> </hop>  <hop> <from>Spool amo_downloads 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Spool collections 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Spool share 2</from><to>land data</to><enabled>Y</enabled> </hop>  <hop> <from>Process collections</from><to>Spool collections 2</to><enabled>Y</enabled> </hop>  <hop> <from>Process share</from><to>Spool share 2</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>  <hop> <from>Text file input</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>  <hop> <from>GeoIP &#47; location_id lookup</from><to>Switch to processing module</to><enabled>Y</enabled> </hop>  <hop> <from>Postfilter and Date Parse</from><to>Merge multiple inputs</to><enabled>Y</enabled> </hop>  <hop> <from>Merge multiple inputs</from><to>GeoIP &#47; location_id lookup</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Discard duplicate downloads</from><to>Process amo_downloads</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool versioncheck</from><to>Process versioncheck</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch to processing module</from><to>Abort on unknown</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool blocklist</from><to>Process blocklist</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool share</from><to>Process share</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch to processing module</from><to>Spool versioncheck</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch to processing module</from><to>Spool blocklist</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch to processing module</from><to>Spool share</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool FYF</from><to>Process collections</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch to processing module</from><to>Spool FYF</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch to processing module</from><to>Discard duplicate downloads</to><enabled>Y</enabled> </hop>
+  <hop> <from>Discard duplicate downloads</from><to>Spool collections</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool collections</from><to>Process collections</to><enabled>Y</enabled> </hop>
+  <hop> <from>Process versioncheck</from><to>Spool versioncheck 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool versioncheck 2</from><to>land data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Process blocklist</from><to>Spool blocklist 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool blocklist 2</from><to>land data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Process amo_downloads</from><to>Spool amo_downloads 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool amo_downloads 2</from><to>land data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get filenames</from><to>Data Validator</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool collections 2</from><to>land data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool share 2</from><to>land data</to><enabled>Y</enabled> </hop>
+  <hop> <from>Process collections</from><to>Spool collections 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Process share</from><to>Spool share 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Data Validator</from><to>Text file input</to><enabled>Y</enabled> </hop>
+  <hop> <from>Regex amo requests</from><to>Postfilter and Date Parse</to><enabled>Y</enabled> </hop>
+  <hop> <from>GeoIP &#x2f; location_id lookup</from><to>Switch to processing module</to><enabled>Y</enabled> </hop>
+  <hop> <from>Postfilter and Date Parse</from><to>Merge multiple inputs</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge multiple inputs</from><to>GeoIP &#x2f; location_id lookup</to><enabled>Y</enabled> </hop>
+  <hop> <from>Text file input</from><to>spool lines</to><enabled>Y</enabled> </hop>
+  <hop> <from>spool lines</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>
+  </order>
   <step>
     <name>Abort on unknown</name>
     <type>Abort</type>
@@ -177,7 +223,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            </partitioning>
 <validate_all>N</validate_all>
 <concat_errors>N</concat_errors>
-<concat_separator>|</concat_separator>
+<concat_separator>&#x7c;</concat_separator>
        <validator_field><name>filename</name>
 <validation_name>Is gzipped</validation_name>
 <max_length>-1</max_length>
@@ -206,8 +252,8 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <allowed_value></allowed_value></validator_field>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>100</xloc>
-      <yloc>350</yloc>
+      <xloc>101</xloc>
+      <yloc>370</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -236,7 +282,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </step>
 
   <step>
-    <name>GeoIP &#47; location_id lookup</name>
+    <name>GeoIP &#x2f; location_id lookup</name>
     <type>Mapping</type>
     <description/>
     <distribute>Y</distribute>
@@ -248,7 +294,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;..&#47;common&#47;process_location_dimension.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;..&#x2f;common&#x2f;process_location_dimension.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -311,8 +357,26 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         <precision>-1</precision>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>100</xloc>
+      <xloc>101</xloc>
       <yloc>450</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Merge multiple inputs</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>248</xloc>
+      <yloc>50</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -322,7 +386,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <type>UserDefinedJavaClass</type>
     <description/>
     <distribute>Y</distribute>
-    <copies>3</copies>
+    <copies>4</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
@@ -492,7 +556,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </fields><clear_result_fields>N</clear_result_fields>
 <info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>100</xloc>
+      <xloc>101</xloc>
       <yloc>50</yloc>
       <draw>Y</draw>
       </GUI>
@@ -511,7 +575,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;parse_amo_download_requests.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;parse_amo_download_requests.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -557,7 +621,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;parse_amo_blocklist_requests.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;parse_amo_blocklist_requests.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -603,7 +667,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;parse_amo_collections_requests.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;parse_amo_collections_requests.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -664,7 +728,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;parse_amo_share_requests.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;parse_amo_share_requests.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -715,7 +779,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;parse_amo_versioncheck_requests.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;parse_amo_versioncheck_requests.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -753,7 +817,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <type>RegexEval</type>
     <description/>
     <distribute>Y</distribute>
-    <copies>3</copies>
+    <copies>4</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
@@ -854,8 +918,8 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     </fields>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>100</xloc>
-      <yloc>150</yloc>
+      <xloc>101</xloc>
+      <yloc>130</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -863,9 +927,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
   <step>
     <name>Spool FYF</name>
     <type>Dummy</type>
-    <description>Spooling because filter has multiple
-copies and that is incompatible with
-a mapping.</description>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -883,9 +945,7 @@ a mapping.</description>
   <step>
     <name>Spool amo_downloads 2</name>
     <type>Dummy</type>
-    <description>Spooling because filter has multiple
-copies and that is incompatible with
-a mapping.</description>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -903,9 +963,7 @@ a mapping.</description>
   <step>
     <name>Spool blocklist</name>
     <type>Dummy</type>
-    <description>Spooling because filter has multiple
-copies and that is incompatible with
-a mapping.</description>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -923,9 +981,7 @@ a mapping.</description>
   <step>
     <name>Spool blocklist 2</name>
     <type>Dummy</type>
-    <description>Spooling because filter has multiple
-copies and that is incompatible with
-a mapping.</description>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -958,7 +1014,7 @@ a mapping.</description>
  <leftvalue>url</leftvalue>
  <function>CONTAINS</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>collection_id=</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <value><name>constant</name><type>String</type><text>collection_id&#x3d;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -971,9 +1027,7 @@ a mapping.</description>
   <step>
     <name>Spool collections 2</name>
     <type>Dummy</type>
-    <description>Spooling because filter has multiple
-copies and that is incompatible with
-a mapping.</description>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -991,9 +1045,7 @@ a mapping.</description>
   <step>
     <name>Spool share</name>
     <type>Dummy</type>
-    <description>Spooling because filter has multiple
-copies and that is incompatible with
-a mapping.</description>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -1011,9 +1063,7 @@ a mapping.</description>
   <step>
     <name>Spool share 2</name>
     <type>Dummy</type>
-    <description>Spooling because filter has multiple
-copies and that is incompatible with
-a mapping.</description>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -1031,9 +1081,7 @@ a mapping.</description>
   <step>
     <name>Spool versioncheck</name>
     <type>Dummy</type>
-    <description>Spooling because filter has multiple
-copies and that is incompatible with
-a mapping.</description>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -1051,9 +1099,7 @@ a mapping.</description>
   <step>
     <name>Spool versioncheck 2</name>
     <type>Dummy</type>
-    <description>Spooling because filter has multiple
-copies and that is incompatible with
-a mapping.</description>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -1085,15 +1131,15 @@ a mapping.</description>
 <case_value_decimal/>
 <case_value_group/>
 <default_target_step>Abort on unknown</default_target_step>
-<cases><case><value>&#47;update&#47;VersionCheck.php</value>
+<cases><case><value>&#x2f;update&#x2f;VersionCheck.php</value>
 <target_step>Spool versioncheck</target_step>
-</case><case><value>&#47;blocklist&#47;</value>
+</case><case><value>&#x2f;blocklist&#x2f;</value>
 <target_step>Spool blocklist</target_step>
-</case><case><value>&#47;downloads&#47;file&#47;</value>
+</case><case><value>&#x2f;downloads&#x2f;file&#x2f;</value>
 <target_step>Discard duplicate downloads</target_step>
-</case><case><value>&#47;collections&#47;</value>
+</case><case><value>&#x2f;collections&#x2f;</value>
 <target_step>Spool FYF</target_step>
-</case><case><value>&#47;share</value>
+</case><case><value>&#x2f;share</value>
 <target_step>Spool share</target_step>
 </case></cases>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -1108,7 +1154,7 @@ a mapping.</description>
     <type>TextFileInput</type>
     <description/>
     <distribute>Y</distribute>
-    <copies>3</copies>
+    <copies>4</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
@@ -1150,61 +1196,61 @@ a mapping.</description>
     </file>
     <filters>
       <filter>
-        <filter_string>Base64: R0VUIC91cGRhdGUvVmVyc2lvbkNoZWNrLnBocD8=</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; R0VUIC91cGRhdGUvVmVyc2lvbkNoZWNrLnBocD8&#x3d;</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: R0VUIC9ibG9ja2xpc3Qv</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; R0VUIC9ibG9ja2xpc3Qv</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: L2Rvd25sb2Fkcy9maWxlLw==</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; L2Rvd25sb2Fkcy9maWxlLw&#x3d;&#x3d;</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: L2NvbGxlY3Rpb25zLw==</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; L2NvbGxlY3Rpb25zLw&#x3d;&#x3d;</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: L2FkZG9uL3NoYXJlLw==</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; L2FkZG9uL3NoYXJlLw&#x3d;&#x3d;</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: L3NoYXJlP3NlcnZpY2U9</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; L3NoYXJlP3NlcnZpY2U9</filter_string>        <filter_position>-1</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>Y</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIwOA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NjMuMjQ1LjIwOA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIwOQ==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NjMuMjQ1LjIwOQ&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIxIA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NjMuMjQ1LjIxIA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIyMA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NjMuMjQ1LjIyMA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIyMQ==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NjMuMjQ1LjIyMQ&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIyMg==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NjMuMjQ1LjIyMg&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NjMuMjQ1LjIyMw==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NjMuMjQ1LjIyMw&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MTgwLjkyLjE4NA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MTgwLjkyLjE4NA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NTkuMTUxLjUw</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NTkuMTUxLjUw</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NzIuMjYuMjIxLjY2</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NzIuMjYuMjIxLjY2</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: NzIuMjYuMjIxLjY3</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; NzIuMjYuMjIxLjY3</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjA5LjEwLjIxNy4yMjY=</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjA5LjEwLjIxNy4yMjY&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjExIA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjExIA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjEyIA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjEyIA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjEzIA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjEzIA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjE0IA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjE0IA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjE1IA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjE1IA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjE2IA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjE2IA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjE3IA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjE3IA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjE4IA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjE4IA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjE5IA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjE5IA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
       <filter>
-        <filter_string>Base64: MjIzLjIwMi42LjIwIA==</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
+        <filter_string>Base64&#x3a; MjIzLjIwMi42LjIwIA&#x3d;&#x3d;</filter_string>        <filter_position>0</filter_position>        <filter_is_last_line>N</filter_is_last_line>        <filter_is_positive>N</filter_is_positive>      </filter>
     </filters>
     <fields>
       <field>
@@ -1250,8 +1296,8 @@ a mapping.</description>
     <sizeFieldName/>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>100</xloc>
-      <yloc>250</yloc>
+      <xloc>101</xloc>
+      <yloc>290</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1269,7 +1315,7 @@ a mapping.</description>
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;${land}.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;&#x24;&#x7b;land&#x7d;.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -1301,7 +1347,7 @@ a mapping.</description>
     </mapping>      </input>
       <output>
       </output>
-          <parameters>       <variablemapping><variable>raw_table_suffix</variable><input>${raw_table_suffix}</input></variablemapping>
+          <parameters>       <variablemapping><variable>raw_table_suffix</variable><input>&#x24;&#x7b;raw_table_suffix&#x7d;</input></variablemapping>
     <inherit_all_vars>Y</inherit_all_vars>
     </parameters>
     </mappings>
@@ -1316,9 +1362,9 @@ a mapping.</description>
     </step>
 
   <step>
-    <name>Merge multiple inputs</name>
+    <name>spool lines</name>
     <type>Dummy</type>
-    <description/>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -1327,8 +1373,8 @@ a mapping.</description>
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>248</xloc>
-      <yloc>50</yloc>
+      <xloc>101</xloc>
+      <yloc>210</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
