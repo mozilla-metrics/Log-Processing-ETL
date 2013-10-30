@@ -67,7 +67,7 @@
     </slaveservers>
 <job-log-table><connection>metrics mysql</connection>
 <schema/>
-<table>log_job</table>
+<table/>
 <size_limit_lines/>
 <interval/>
 <timeout_days/>
