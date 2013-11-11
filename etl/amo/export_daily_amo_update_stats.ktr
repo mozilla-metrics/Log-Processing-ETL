@@ -1,36 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>export_daily_amo_update_stats</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>&#x2f;</directory>
     <parameters>
         <parameter>
             <name>DATE</name>
-            <default_value>= CURRENT_DATE</default_value>
+            <default_value>&#x3d; CURRENT_DATE</default_value>
             <description>null</description>
         </parameter>
     </parameters>
     <log>
-<trans-log-table><connection>metrics mysql</connection>
+<trans-log-table><connection/>
 <schema/>
 <table>log_trans</table>
 <size_limit_lines>5000</size_limit_lines>
 <interval/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject>Merge Join 3</subject></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>Select values</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject>Output to AMO</subject></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject>Output to AMO</subject></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject>Output to AMO</subject></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
-<perf-log-table><connection>metrics mysql</connection>
+<perf-log-table><connection/>
 <schema/>
 <table/>
 <interval/>
@@ -74,21 +67,21 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <clusterschemas>
     </clusterschemas>
   <created_user/>
-  <created_date>2012&#47;03&#47;26 15:43:30.787</created_date>
+  <created_date>2012&#x2f;03&#x2f;26 15&#x3a;43&#x3a;30.787</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2009&#47;02&#47;04 10:21:47.657</modified_date>
+  <modified_date>2009&#x2f;02&#x2f;04 10&#x3a;21&#x3a;47.657</modified_date>
   </info>
   <notepads>
   </notepads>
   <connection>
     <name>amo master</name>
-    <server>${AMO_MASTER_HOST}</server>
+    <server>&#x24;&#x7b;AMO_MASTER_HOST&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${AMO_MASTER_DATABASE}</database>
-    <port>${AMO_MASTER_PORT}</port>
-    <username>${AMO_MASTER_USER}</username>
-    <password>${AMO_MASTER_PASS}</password>
+    <database>&#x24;&#x7b;AMO_MASTER_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;AMO_MASTER_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;AMO_MASTER_USER&#x7d;</username>
+    <password>&#x24;&#x7b;AMO_MASTER_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -98,67 +91,40 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${AMO_MASTER_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;AMO_MASTER_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>Y</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
-  <connection>
-    <name>metrics</name>
-    <server>${VERTICA_HOST}</server>
-    <type>VERTICA</type>
-    <access>Native</access>
-    <database>${VERTICA_DB}</database>
-    <port>${VERTICA_PORT}</port>
-    <username>${VERTICA_USER}</username>
-    <password>${VERTICA_PASS}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_VERTICA.ResultBufferSize</code><attribute>256000000</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${VERTICA_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION 
-ISOLATION LEVEL READ COMMITTED</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
-  <connection>
-    <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>UTF-8</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useServerPrepStmts</code><attribute>true</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useUnicode</code><attribute>true</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Group by addon_id</from><to>Serialize addon_versions</to><enabled>Y</enabled> </hop>  <hop> <from>Group by addon_id 2</from><to>Serialize addon_statuses</to><enabled>Y</enabled> </hop>  <hop> <from>Group by addon_id 3</from><to>Serialize oses</to><enabled>Y</enabled> </hop>  <hop> <from>Group by addon_id 5</from><to>Serialize applications</to><enabled>Y</enabled> </hop>  <hop> <from>Group by product_guid</from><to>Group by addon_id 5</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Join</from><to>Merge Join 2</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Join 2</from><to>Merge Join 3</to><enabled>Y</enabled> </hop>  <hop> <from>Select values</from><to>Output to AMO</to><enabled>Y</enabled> </hop>  <hop> <from>Serialize addon_statuses</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Serialize addon_versions</from><to>Merge Join</to><enabled>Y</enabled> </hop>  <hop> <from>Serialize oses</from><to>Merge Join 2</to><enabled>Y</enabled> </hop>  <hop> <from>Output to AMO</from><to>Count inserts</to><enabled>Y</enabled> </hop>  <hop> <from>Count inserts</from><to>Log inserts</to><enabled>Y</enabled> </hop>  <hop> <from>Delete update records</from><to>Log deletes</to><enabled>Y</enabled> </hop>  <hop> <from>Group by addon_id 4</from><to>Serialize locales</to><enabled>Y</enabled> </hop>  <hop> <from>Serialize locales</from><to>Merge Join 3</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Join 3</from><to>Merge Join 4</to><enabled>Y</enabled> </hop>  <hop> <from>Merge Join 4</from><to>Select values</to><enabled>Y</enabled> </hop>  <hop> <from>Serialize applications</from><to>Merge Join 4</to><enabled>Y</enabled> </hop>  <hop> <from>aggregate addon_version</from><to>Group by addon_id</to><enabled>Y</enabled> </hop>  <hop> <from>aggregate addon_status</from><to>Group by addon_id 2</to><enabled>Y</enabled> </hop>  <hop> <from>aggregate product_os</from><to>Group by addon_id 3</to><enabled>Y</enabled> </hop>  <hop> <from>aggregate product_locale</from><to>Group by addon_id 4</to><enabled>Y</enabled> </hop>  <hop> <from>aggregate product_guid_version</from><to>Wrap guids with braces</to><enabled>Y</enabled> </hop>  <hop> <from>Wrap guids with braces</from><to>Group by product_guid</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Group by addon_id</from><to>Serialize addon_versions</to><enabled>Y</enabled> </hop>
+  <hop> <from>Group by addon_id 2</from><to>Serialize addon_statuses</to><enabled>Y</enabled> </hop>
+  <hop> <from>Group by addon_id 3</from><to>Serialize oses</to><enabled>Y</enabled> </hop>
+  <hop> <from>Group by addon_id 5</from><to>Serialize applications</to><enabled>Y</enabled> </hop>
+  <hop> <from>Group by product_guid</from><to>Group by addon_id 5</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Join</from><to>Merge Join 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Join 2</from><to>Merge Join 3</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select values</from><to>Output to AMO</to><enabled>Y</enabled> </hop>
+  <hop> <from>Serialize addon_statuses</from><to>Merge Join</to><enabled>Y</enabled> </hop>
+  <hop> <from>Serialize addon_versions</from><to>Merge Join</to><enabled>Y</enabled> </hop>
+  <hop> <from>Serialize oses</from><to>Merge Join 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Output to AMO</from><to>Count inserts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Count inserts</from><to>Log inserts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Delete update records</from><to>Log deletes</to><enabled>Y</enabled> </hop>
+  <hop> <from>Group by addon_id 4</from><to>Serialize locales</to><enabled>Y</enabled> </hop>
+  <hop> <from>Serialize locales</from><to>Merge Join 3</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Join 3</from><to>Merge Join 4</to><enabled>Y</enabled> </hop>
+  <hop> <from>Merge Join 4</from><to>Select values</to><enabled>Y</enabled> </hop>
+  <hop> <from>Serialize applications</from><to>Merge Join 4</to><enabled>Y</enabled> </hop>
+  <hop> <from>Wrap guids with braces</from><to>Group by product_guid</to><enabled>Y</enabled> </hop>
+  <hop> <from>aggregate_addon_version.dump</from><to>Group by addon_id</to><enabled>Y</enabled> </hop>
+  <hop> <from>aggregate_addon_status.dump</from><to>Group by addon_id 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>aggregate product_os.dump</from><to>Group by addon_id 3</to><enabled>Y</enabled> </hop>
+  <hop> <from>aggregate_product_locale.dump</from><to>Group by addon_id 4</to><enabled>Y</enabled> </hop>
+  <hop> <from>aggregate product_guid_version.dump</from><to>Wrap guids with braces</to><enabled>Y</enabled> </hop>
+  </order>
   <step>
     <name>Count inserts</name>
     <type>GroupBy</type>
@@ -172,7 +138,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -209,8 +175,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>Y</replace_variables>
-    <sql>DELETE FROM update_counts
-WHERE date ${DATE}</sql>
+    <sql>DELETE FROM update_counts&#xa;WHERE date &#x24;&#x7b;DATE&#x7d;</sql>
     <insert_field/>
     <update_field/>
     <delete_field>update_deletes</delete_field>
@@ -238,7 +203,7 @@ WHERE date ${DATE}</sql>
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -256,13 +221,13 @@ WHERE date ${DATE}</sql>
           <aggregate>addon_versions</aggregate>
           <subject>addon_version</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
         <field>
           <aggregate>addon_version_sums</aggregate>
           <subject>addon_version_sum</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
         <field>
           <aggregate>addon_id_sum</aggregate>
@@ -292,7 +257,7 @@ WHERE date ${DATE}</sql>
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -310,13 +275,13 @@ WHERE date ${DATE}</sql>
           <aggregate>addon_statuses</aggregate>
           <subject>addon_status</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
         <field>
           <aggregate>addon_status_sums</aggregate>
           <subject>addon_status_sum</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
       </fields>
      <cluster_schema/>
@@ -340,7 +305,7 @@ WHERE date ${DATE}</sql>
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -358,13 +323,13 @@ WHERE date ${DATE}</sql>
           <aggregate>oses</aggregate>
           <subject>os</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
         <field>
           <aggregate>os_sums</aggregate>
           <subject>os_sum</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
       </fields>
      <cluster_schema/>
@@ -388,7 +353,7 @@ WHERE date ${DATE}</sql>
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -406,13 +371,13 @@ WHERE date ${DATE}</sql>
           <aggregate>locales</aggregate>
           <subject>locale</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
         <field>
           <aggregate>locale_sums</aggregate>
           <subject>locale_sum</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
       </fields>
      <cluster_schema/>
@@ -436,7 +401,7 @@ WHERE date ${DATE}</sql>
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -454,19 +419,19 @@ WHERE date ${DATE}</sql>
           <aggregate>product_guids</aggregate>
           <subject>product_guid</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
         <field>
           <aggregate>product_versions</aggregate>
           <subject>product_versions</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
         <field>
           <aggregate>product_version_sums</aggregate>
           <subject>product_version_sums</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~~~</valuefield>
+          <valuefield>&#x7e;&#x7e;&#x7e;</valuefield>
         </field>
       </fields>
      <cluster_schema/>
@@ -490,7 +455,7 @@ WHERE date ${DATE}</sql>
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -511,13 +476,13 @@ WHERE date ${DATE}</sql>
           <aggregate>product_versions</aggregate>
           <subject>product_version</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~+~</valuefield>
+          <valuefield>&#x7e;&#x2b;&#x7e;</valuefield>
         </field>
         <field>
           <aggregate>product_version_sums</aggregate>
           <subject>product_guid_version_sum</subject>
           <type>CONCAT_STRING</type>
-          <valuefield>~+~</valuefield>
+          <valuefield>&#x7e;&#x2b;&#x7e;</valuefield>
         </field>
       </fields>
      <cluster_schema/>
@@ -542,8 +507,7 @@ WHERE date ${DATE}</sql>
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>writeToLog(&quot;m&quot;, &quot;Deleted &quot;+update_deletes+&quot; records from AMO master DB table update_counts for date &quot;+getVariable(&quot;DATE&quot;,&quot;uninitialized&quot;));
-</jsScript_script>
+        <jsScript_script>writeToLog&#x28;&#x22;m&#x22;, &#x22;Deleted &#x22;&#x2b;update_deletes&#x2b;&#x22; records from AMO master DB table update_counts for date &#x22;&#x2b;getVariable&#x28;&#x22;DATE&#x22;,&#x22;uninitialized&#x22;&#x29;&#x29;&#x3b;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>650</xloc>
@@ -566,8 +530,7 @@ WHERE date ${DATE}</sql>
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>writeToLog(&quot;m&quot;, &quot;Inserted &quot;+num_inserts+&quot; records to AMO master DB table update_counts matching criteria date &quot;+getVariable(&quot;DATE&quot;,&quot;uninitialized&quot;));
-</jsScript_script>
+        <jsScript_script>writeToLog&#x28;&#x22;m&#x22;, &#x22;Inserted &#x22;&#x2b;num_inserts&#x2b;&#x22; records to AMO master DB table update_counts matching criteria date &#x22;&#x2b;getVariable&#x28;&#x22;DATE&#x22;,&#x22;uninitialized&#x22;&#x29;&#x29;&#x3b;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>650</xloc>
@@ -794,118 +757,10 @@ WHERE date ${DATE}</sql>
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var keys = addon_statuses.split(&apos;~~~&apos;);
-var values = addon_status_sums.split(&apos;~~~&apos;);
-&#47;&#47; These two arrays are guaranteed to be the same length.
-if (keys.length != values.length) throw new Error(&quot;Key&#47;Value array size mismatch&quot;);
-
-var hash = {};
-for (var i = 0; i &lt; keys.length; i++) {
-	hash[keys[i]] = parseInt(values[i]);
-}
-
-var string = serialize(hash);</jsScript_script>
+        <jsScript_script>var keys &#x3d; addon_statuses.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;var values &#x3d; addon_status_sums.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;&#x2f;&#x2f; These two arrays are guaranteed to be the same length.&#xa;if &#x28;keys.length &#x21;&#x3d; values.length&#x29; throw new Error&#x28;&#x22;Key&#x2f;Value array size mismatch&#x22;&#x29;&#x3b;&#xa;&#xa;var hash &#x3d; &#x7b;&#x7d;&#x3b;&#xa;for &#x28;var i &#x3d; 0&#x3b; i &#x3c; keys.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	hash&#x5b;keys&#x5b;i&#x5d;&#x5d; &#x3d; parseInt&#x28;values&#x5b;i&#x5d;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;var string &#x3d; serialize&#x28;hash&#x29;&#x3b;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>JSON functions</jsScript_name>
-        <jsScript_script>function convert(string) {
-    &#47;&#47; Convert a string into a 1-element array serialized in the PHP format.
-    &#47;&#47; &gt;&gt;&gt; convert(&apos;foo&apos;);
-    &#47;&#47; &apos;a:1:{i:0;s:3:&quot;foo&quot;;}&apos;
-    return serialize([string]);
-}
-
-
-function serialize( mixed_value ) {
-    &#47;&#47; http:&#47;&#47;kevin.vanzonneveld.net
-    &#47;&#47; +   original by: Arpad Ray (mailto:arpad@php.net)
-    &#47;&#47; +   improved by: Dino
-    &#47;&#47; +   bugfixed by: Andrej Pavlovic
-    &#47;&#47; +   bugfixed by: Garagoth
-    &#47;&#47; %          note: We feel the main purpose of this function should be to ease the transport of data between php &amp; js
-    &#47;&#47; %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
-    &#47;&#47; *     example 1: serialize([&apos;Kevin&apos;, &apos;van&apos;, &apos;Zonneveld&apos;]);
-    &#47;&#47; *     returns 1: &apos;a:3:{i:0;s:5:&quot;Kevin&quot;;i:1;s:3:&quot;van&quot;;i:2;s:9:&quot;Zonneveld&quot;;}&apos;
-    &#47;&#47; *     example 2: serialize({firstName: &apos;Kevin&apos;, midName: &apos;van&apos;, surName: &apos;Zonneveld&apos;});
-    &#47;&#47; *     returns 2: &apos;a:3:{s:9:&quot;firstName&quot;;s:5:&quot;Kevin&quot;;s:7:&quot;midName&quot;;s:3:&quot;van&quot;;s:7:&quot;surName&quot;;s:9:&quot;Zonneveld&quot;;}&apos;
-
-    var _getType = function( inp ) {
-        var type = typeof inp, match;
-        var key;
-        if (type == &apos;object&apos; &amp;&amp; !inp) {
-            return &apos;null&apos;;
-        }
-        if (type == &quot;object&quot;) {
-            if (!inp.constructor) {
-                return &apos;object&apos;;
-            }
-            var cons = inp.constructor.toString();
-            if (match = cons.match(&#47;(\w+)\(&#47;)) {
-                cons = match[1].toLowerCase();
-            }
-            var types = [&quot;boolean&quot;, &quot;number&quot;, &quot;string&quot;, &quot;array&quot;];
-            for (key in types) {
-                if (cons == types[key]) {
-                    type = types[key];
-                    break;
-                }
-            }
-        }
-        return type;
-    };
-    var type = _getType(mixed_value);
-    var val, ktype = &apos;&apos;;
-
-    switch (type) {
-        case &quot;function&quot;: 
-            val = &quot;&quot;; 
-            break;
-        case &quot;undefined&quot;:
-            val = &quot;N&quot;;
-            break;
-        case &quot;boolean&quot;:
-            val = &quot;b:&quot; + (mixed_value ? &quot;1&quot; : &quot;0&quot;);
-            break;
-        case &quot;number&quot;:
-            val = (Math.round(mixed_value) == mixed_value ? &quot;i&quot; : &quot;d&quot;) + &quot;:&quot; + mixed_value;
-            break;
-        case &quot;string&quot;:
-            val = &quot;s:&quot; + mixed_value.length + &quot;:\&quot;&quot; + mixed_value + &quot;\&quot;&quot;;
-            break;
-        case &quot;array&quot;:
-        case &quot;object&quot;:
-            val = &quot;a&quot;;
-            &#47;*
-            if (type == &quot;object&quot;) {
-                var objname = mixed_value.constructor.toString().match(&#47;(\w+)\(\)&#47;);
-                if (objname == undefined) {
-                    return;
-                }
-                objname[1] = serialize(objname[1]);
-                val = &quot;O&quot; + objname[1].substring(1, objname[1].length - 1);
-            }
-            *&#47;
-            var count = 0;
-            var vals = &quot;&quot;;
-            var okey;
-            var key;
-            for (key in mixed_value) {
-                ktype = _getType(mixed_value[key]);
-                if (ktype == &quot;function&quot;) { 
-                    continue; 
-                }
-
-                okey = (key.match(&#47;^[0-9]+$&#47;) ? parseInt(key) : key);
-                vals += serialize(okey) +
-                        serialize(mixed_value[key]);
-                count++;
-            }
-            val += &quot;:&quot; + count + &quot;:{&quot; + vals + &quot;}&quot;;
-            break;
-    }
-    if (type != &quot;object&quot; &amp;&amp; type != &quot;array&quot;) val += &quot;;&quot;;
-    return val;
-}
-</jsScript_script>
+        <jsScript_script>function convert&#x28;string&#x29; &#x7b;&#xa;    &#x2f;&#x2f; Convert a string into a 1-element array serialized in the PHP format.&#xa;    &#x2f;&#x2f; &#x3e;&#x3e;&#x3e; convert&#x28;&#x27;foo&#x27;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x27;a&#x3a;1&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;3&#x3a;&#x22;foo&#x22;&#x3b;&#x7d;&#x27;&#xa;    return serialize&#x28;&#x5b;string&#x5d;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#xa;function serialize&#x28; mixed_value &#x29; &#x7b;&#xa;    &#x2f;&#x2f; http&#x3a;&#x2f;&#x2f;kevin.vanzonneveld.net&#xa;    &#x2f;&#x2f; &#x2b;   original by&#x3a; Arpad Ray &#x28;mailto&#x3a;arpad&#x40;php.net&#x29;&#xa;    &#x2f;&#x2f; &#x2b;   improved by&#x3a; Dino&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Andrej Pavlovic&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Garagoth&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; We feel the main purpose of this function should be to ease the transport of data between php &#x26; js&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; Aiming for PHP-compatibility, we have to translate objects to arrays&#xa;    &#x2f;&#x2f; &#x2a;     example 1&#x3a; serialize&#x28;&#x5b;&#x27;Kevin&#x27;, &#x27;van&#x27;, &#x27;Zonneveld&#x27;&#x5d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 1&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;i&#x3a;1&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;i&#x3a;2&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;    &#x2f;&#x2f; &#x2a;     example 2&#x3a; serialize&#x28;&#x7b;firstName&#x3a; &#x27;Kevin&#x27;, midName&#x3a; &#x27;van&#x27;, surName&#x3a; &#x27;Zonneveld&#x27;&#x7d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 2&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;s&#x3a;9&#x3a;&#x22;firstName&#x22;&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;midName&#x22;&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;surName&#x22;&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;&#xa;    var _getType &#x3d; function&#x28; inp &#x29; &#x7b;&#xa;        var type &#x3d; typeof inp, match&#x3b;&#xa;        var key&#x3b;&#xa;        if &#x28;type &#x3d;&#x3d; &#x27;object&#x27; &#x26;&#x26; &#x21;inp&#x29; &#x7b;&#xa;            return &#x27;null&#x27;&#x3b;&#xa;        &#x7d;&#xa;        if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;            if &#x28;&#x21;inp.constructor&#x29; &#x7b;&#xa;                return &#x27;object&#x27;&#x3b;&#xa;            &#x7d;&#xa;            var cons &#x3d; inp.constructor.toString&#x28;&#x29;&#x3b;&#xa;            if &#x28;match &#x3d; cons.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x2f;&#x29;&#x29; &#x7b;&#xa;                cons &#x3d; match&#x5b;1&#x5d;.toLowerCase&#x28;&#x29;&#x3b;&#xa;            &#x7d;&#xa;            var types &#x3d; &#x5b;&#x22;boolean&#x22;, &#x22;number&#x22;, &#x22;string&#x22;, &#x22;array&#x22;&#x5d;&#x3b;&#xa;            for &#x28;key in types&#x29; &#x7b;&#xa;                if &#x28;cons &#x3d;&#x3d; types&#x5b;key&#x5d;&#x29; &#x7b;&#xa;                    type &#x3d; types&#x5b;key&#x5d;&#x3b;&#xa;                    break&#x3b;&#xa;                &#x7d;&#xa;            &#x7d;&#xa;        &#x7d;&#xa;        return type&#x3b;&#xa;    &#x7d;&#x3b;&#xa;    var type &#x3d; _getType&#x28;mixed_value&#x29;&#x3b;&#xa;    var val, ktype &#x3d; &#x27;&#x27;&#x3b;&#xa;&#xa;    switch &#x28;type&#x29; &#x7b;&#xa;        case &#x22;function&#x22;&#x3a; &#xa;            val &#x3d; &#x22;&#x22;&#x3b; &#xa;            break&#x3b;&#xa;        case &#x22;undefined&#x22;&#x3a;&#xa;            val &#x3d; &#x22;N&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;boolean&#x22;&#x3a;&#xa;            val &#x3d; &#x22;b&#x3a;&#x22; &#x2b; &#x28;mixed_value &#x3f; &#x22;1&#x22; &#x3a; &#x22;0&#x22;&#x29;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;number&#x22;&#x3a;&#xa;            val &#x3d; &#x28;Math.round&#x28;mixed_value&#x29; &#x3d;&#x3d; mixed_value &#x3f; &#x22;i&#x22; &#x3a; &#x22;d&#x22;&#x29; &#x2b; &#x22;&#x3a;&#x22; &#x2b; mixed_value&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;string&#x22;&#x3a;&#xa;            val &#x3d; &#x22;s&#x3a;&#x22; &#x2b; mixed_value.length &#x2b; &#x22;&#x3a;&#x5c;&#x22;&#x22; &#x2b; mixed_value &#x2b; &#x22;&#x5c;&#x22;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;array&#x22;&#x3a;&#xa;        case &#x22;object&#x22;&#x3a;&#xa;            val &#x3d; &#x22;a&#x22;&#x3b;&#xa;            &#x2f;&#x2a;&#xa;            if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;                var objname &#x3d; mixed_value.constructor.toString&#x28;&#x29;.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x5c;&#x29;&#x2f;&#x29;&#x3b;&#xa;                if &#x28;objname &#x3d;&#x3d; undefined&#x29; &#x7b;&#xa;                    return&#x3b;&#xa;                &#x7d;&#xa;                objname&#x5b;1&#x5d; &#x3d; serialize&#x28;objname&#x5b;1&#x5d;&#x29;&#x3b;&#xa;                val &#x3d; &#x22;O&#x22; &#x2b; objname&#x5b;1&#x5d;.substring&#x28;1, objname&#x5b;1&#x5d;.length - 1&#x29;&#x3b;&#xa;            &#x7d;&#xa;            &#x2a;&#x2f;&#xa;            var count &#x3d; 0&#x3b;&#xa;            var vals &#x3d; &#x22;&#x22;&#x3b;&#xa;            var okey&#x3b;&#xa;            var key&#x3b;&#xa;            for &#x28;key in mixed_value&#x29; &#x7b;&#xa;                ktype &#x3d; _getType&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                if &#x28;ktype &#x3d;&#x3d; &#x22;function&#x22;&#x29; &#x7b; &#xa;                    continue&#x3b; &#xa;                &#x7d;&#xa;&#xa;                okey &#x3d; &#x28;key.match&#x28;&#x2f;&#x5e;&#x5b;0-9&#x5d;&#x2b;&#x24;&#x2f;&#x29; &#x3f; parseInt&#x28;key&#x29; &#x3a; key&#x29;&#x3b;&#xa;                vals &#x2b;&#x3d; serialize&#x28;okey&#x29; &#x2b;&#xa;                        serialize&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                count&#x2b;&#x2b;&#x3b;&#xa;            &#x7d;&#xa;            val &#x2b;&#x3d; &#x22;&#x3a;&#x22; &#x2b; count &#x2b; &#x22;&#x3a;&#x7b;&#x22; &#x2b; vals &#x2b; &#x22;&#x7d;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;    &#x7d;&#xa;    if &#x28;type &#x21;&#x3d; &#x22;object&#x22; &#x26;&#x26; type &#x21;&#x3d; &#x22;array&#x22;&#x29; val &#x2b;&#x3d; &#x22;&#x3b;&#x22;&#x3b;&#xa;    return val&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>string</name>
         <rename>status</rename>
         <type>String</type>
@@ -934,124 +789,10 @@ function serialize( mixed_value ) {
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var keys = addon_versions.split(&apos;~~~&apos;);
-var values = addon_version_sums.split(&apos;~~~&apos;);
-&#47;&#47; These two arrays are guaranteed to be the same length.
-if (keys.length != values.length)
-{
-	writeToLog(&quot;e&quot;, date + &quot; : &quot; + addon_id + &quot; = &quot; + addon_id_sum);
-	writeToLog(&quot;e&quot;, addon_versions + &quot; =&gt; &quot; + keys);
-	writeToLog(&quot;e&quot;, addon_version_sums + &quot; =&gt; &quot; + values);
-	throw new Error(&quot;Key&#47;Value array size mismatch&quot;);
-}
-
-var hash = {};
-for (var i = 0; i &lt; keys.length; i++) {
-	hash[keys[i]] = parseInt(values[i]);
-}
-
-var string = serialize(hash);</jsScript_script>
+        <jsScript_script>var keys &#x3d; addon_versions.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;var values &#x3d; addon_version_sums.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;&#x2f;&#x2f; These two arrays are guaranteed to be the same length.&#xa;if &#x28;keys.length &#x21;&#x3d; values.length&#x29;&#xa;&#x7b;&#xa;	writeToLog&#x28;&#x22;e&#x22;, date &#x2b; &#x22; &#x3a; &#x22; &#x2b; addon_id &#x2b; &#x22; &#x3d; &#x22; &#x2b; addon_id_sum&#x29;&#x3b;&#xa;	writeToLog&#x28;&#x22;e&#x22;, addon_versions &#x2b; &#x22; &#x3d;&#x3e; &#x22; &#x2b; keys&#x29;&#x3b;&#xa;	writeToLog&#x28;&#x22;e&#x22;, addon_version_sums &#x2b; &#x22; &#x3d;&#x3e; &#x22; &#x2b; values&#x29;&#x3b;&#xa;	throw new Error&#x28;&#x22;Key&#x2f;Value array size mismatch&#x22;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;var hash &#x3d; &#x7b;&#x7d;&#x3b;&#xa;for &#x28;var i &#x3d; 0&#x3b; i &#x3c; keys.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	hash&#x5b;keys&#x5b;i&#x5d;&#x5d; &#x3d; parseInt&#x28;values&#x5b;i&#x5d;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;var string &#x3d; serialize&#x28;hash&#x29;&#x3b;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>JSON functions</jsScript_name>
-        <jsScript_script>function convert(string) {
-    &#47;&#47; Convert a string into a 1-element array serialized in the PHP format.
-    &#47;&#47; &gt;&gt;&gt; convert(&apos;foo&apos;);
-    &#47;&#47; &apos;a:1:{i:0;s:3:&quot;foo&quot;;}&apos;
-    return serialize([string]);
-}
-
-
-function serialize( mixed_value ) {
-    &#47;&#47; http:&#47;&#47;kevin.vanzonneveld.net
-    &#47;&#47; +   original by: Arpad Ray (mailto:arpad@php.net)
-    &#47;&#47; +   improved by: Dino
-    &#47;&#47; +   bugfixed by: Andrej Pavlovic
-    &#47;&#47; +   bugfixed by: Garagoth
-    &#47;&#47; %          note: We feel the main purpose of this function should be to ease the transport of data between php &amp; js
-    &#47;&#47; %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
-    &#47;&#47; *     example 1: serialize([&apos;Kevin&apos;, &apos;van&apos;, &apos;Zonneveld&apos;]);
-    &#47;&#47; *     returns 1: &apos;a:3:{i:0;s:5:&quot;Kevin&quot;;i:1;s:3:&quot;van&quot;;i:2;s:9:&quot;Zonneveld&quot;;}&apos;
-    &#47;&#47; *     example 2: serialize({firstName: &apos;Kevin&apos;, midName: &apos;van&apos;, surName: &apos;Zonneveld&apos;});
-    &#47;&#47; *     returns 2: &apos;a:3:{s:9:&quot;firstName&quot;;s:5:&quot;Kevin&quot;;s:7:&quot;midName&quot;;s:3:&quot;van&quot;;s:7:&quot;surName&quot;;s:9:&quot;Zonneveld&quot;;}&apos;
-
-    var _getType = function( inp ) {
-        var type = typeof inp, match;
-        var key;
-        if (type == &apos;object&apos; &amp;&amp; !inp) {
-            return &apos;null&apos;;
-        }
-        if (type == &quot;object&quot;) {
-            if (!inp.constructor) {
-                return &apos;object&apos;;
-            }
-            var cons = inp.constructor.toString();
-            if (match = cons.match(&#47;(\w+)\(&#47;)) {
-                cons = match[1].toLowerCase();
-            }
-            var types = [&quot;boolean&quot;, &quot;number&quot;, &quot;string&quot;, &quot;array&quot;];
-            for (key in types) {
-                if (cons == types[key]) {
-                    type = types[key];
-                    break;
-                }
-            }
-        }
-        return type;
-    };
-    var type = _getType(mixed_value);
-    var val, ktype = &apos;&apos;;
-
-    switch (type) {
-        case &quot;function&quot;: 
-            val = &quot;&quot;; 
-            break;
-        case &quot;undefined&quot;:
-            val = &quot;N&quot;;
-            break;
-        case &quot;boolean&quot;:
-            val = &quot;b:&quot; + (mixed_value ? &quot;1&quot; : &quot;0&quot;);
-            break;
-        case &quot;number&quot;:
-            val = (Math.round(mixed_value) == mixed_value ? &quot;i&quot; : &quot;d&quot;) + &quot;:&quot; + mixed_value;
-            break;
-        case &quot;string&quot;:
-            val = &quot;s:&quot; + mixed_value.length + &quot;:\&quot;&quot; + mixed_value + &quot;\&quot;&quot;;
-            break;
-        case &quot;array&quot;:
-        case &quot;object&quot;:
-            val = &quot;a&quot;;
-            &#47;*
-            if (type == &quot;object&quot;) {
-                var objname = mixed_value.constructor.toString().match(&#47;(\w+)\(\)&#47;);
-                if (objname == undefined) {
-                    return;
-                }
-                objname[1] = serialize(objname[1]);
-                val = &quot;O&quot; + objname[1].substring(1, objname[1].length - 1);
-            }
-            *&#47;
-            var count = 0;
-            var vals = &quot;&quot;;
-            var okey;
-            var key;
-            for (key in mixed_value) {
-                ktype = _getType(mixed_value[key]);
-                if (ktype == &quot;function&quot;) { 
-                    continue; 
-                }
-
-                okey = (key.match(&#47;^[0-9]+$&#47;) ? parseInt(key) : key);
-                vals += serialize(okey) +
-                        serialize(mixed_value[key]);
-                count++;
-            }
-            val += &quot;:&quot; + count + &quot;:{&quot; + vals + &quot;}&quot;;
-            break;
-    }
-    if (type != &quot;object&quot; &amp;&amp; type != &quot;array&quot;) val += &quot;;&quot;;
-    return val;
-}
-</jsScript_script>
+        <jsScript_script>function convert&#x28;string&#x29; &#x7b;&#xa;    &#x2f;&#x2f; Convert a string into a 1-element array serialized in the PHP format.&#xa;    &#x2f;&#x2f; &#x3e;&#x3e;&#x3e; convert&#x28;&#x27;foo&#x27;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x27;a&#x3a;1&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;3&#x3a;&#x22;foo&#x22;&#x3b;&#x7d;&#x27;&#xa;    return serialize&#x28;&#x5b;string&#x5d;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#xa;function serialize&#x28; mixed_value &#x29; &#x7b;&#xa;    &#x2f;&#x2f; http&#x3a;&#x2f;&#x2f;kevin.vanzonneveld.net&#xa;    &#x2f;&#x2f; &#x2b;   original by&#x3a; Arpad Ray &#x28;mailto&#x3a;arpad&#x40;php.net&#x29;&#xa;    &#x2f;&#x2f; &#x2b;   improved by&#x3a; Dino&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Andrej Pavlovic&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Garagoth&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; We feel the main purpose of this function should be to ease the transport of data between php &#x26; js&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; Aiming for PHP-compatibility, we have to translate objects to arrays&#xa;    &#x2f;&#x2f; &#x2a;     example 1&#x3a; serialize&#x28;&#x5b;&#x27;Kevin&#x27;, &#x27;van&#x27;, &#x27;Zonneveld&#x27;&#x5d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 1&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;i&#x3a;1&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;i&#x3a;2&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;    &#x2f;&#x2f; &#x2a;     example 2&#x3a; serialize&#x28;&#x7b;firstName&#x3a; &#x27;Kevin&#x27;, midName&#x3a; &#x27;van&#x27;, surName&#x3a; &#x27;Zonneveld&#x27;&#x7d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 2&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;s&#x3a;9&#x3a;&#x22;firstName&#x22;&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;midName&#x22;&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;surName&#x22;&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;&#xa;    var _getType &#x3d; function&#x28; inp &#x29; &#x7b;&#xa;        var type &#x3d; typeof inp, match&#x3b;&#xa;        var key&#x3b;&#xa;        if &#x28;type &#x3d;&#x3d; &#x27;object&#x27; &#x26;&#x26; &#x21;inp&#x29; &#x7b;&#xa;            return &#x27;null&#x27;&#x3b;&#xa;        &#x7d;&#xa;        if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;            if &#x28;&#x21;inp.constructor&#x29; &#x7b;&#xa;                return &#x27;object&#x27;&#x3b;&#xa;            &#x7d;&#xa;            var cons &#x3d; inp.constructor.toString&#x28;&#x29;&#x3b;&#xa;            if &#x28;match &#x3d; cons.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x2f;&#x29;&#x29; &#x7b;&#xa;                cons &#x3d; match&#x5b;1&#x5d;.toLowerCase&#x28;&#x29;&#x3b;&#xa;            &#x7d;&#xa;            var types &#x3d; &#x5b;&#x22;boolean&#x22;, &#x22;number&#x22;, &#x22;string&#x22;, &#x22;array&#x22;&#x5d;&#x3b;&#xa;            for &#x28;key in types&#x29; &#x7b;&#xa;                if &#x28;cons &#x3d;&#x3d; types&#x5b;key&#x5d;&#x29; &#x7b;&#xa;                    type &#x3d; types&#x5b;key&#x5d;&#x3b;&#xa;                    break&#x3b;&#xa;                &#x7d;&#xa;            &#x7d;&#xa;        &#x7d;&#xa;        return type&#x3b;&#xa;    &#x7d;&#x3b;&#xa;    var type &#x3d; _getType&#x28;mixed_value&#x29;&#x3b;&#xa;    var val, ktype &#x3d; &#x27;&#x27;&#x3b;&#xa;&#xa;    switch &#x28;type&#x29; &#x7b;&#xa;        case &#x22;function&#x22;&#x3a; &#xa;            val &#x3d; &#x22;&#x22;&#x3b; &#xa;            break&#x3b;&#xa;        case &#x22;undefined&#x22;&#x3a;&#xa;            val &#x3d; &#x22;N&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;boolean&#x22;&#x3a;&#xa;            val &#x3d; &#x22;b&#x3a;&#x22; &#x2b; &#x28;mixed_value &#x3f; &#x22;1&#x22; &#x3a; &#x22;0&#x22;&#x29;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;number&#x22;&#x3a;&#xa;            val &#x3d; &#x28;Math.round&#x28;mixed_value&#x29; &#x3d;&#x3d; mixed_value &#x3f; &#x22;i&#x22; &#x3a; &#x22;d&#x22;&#x29; &#x2b; &#x22;&#x3a;&#x22; &#x2b; mixed_value&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;string&#x22;&#x3a;&#xa;            val &#x3d; &#x22;s&#x3a;&#x22; &#x2b; mixed_value.length &#x2b; &#x22;&#x3a;&#x5c;&#x22;&#x22; &#x2b; mixed_value &#x2b; &#x22;&#x5c;&#x22;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;array&#x22;&#x3a;&#xa;        case &#x22;object&#x22;&#x3a;&#xa;            val &#x3d; &#x22;a&#x22;&#x3b;&#xa;            &#x2f;&#x2a;&#xa;            if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;                var objname &#x3d; mixed_value.constructor.toString&#x28;&#x29;.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x5c;&#x29;&#x2f;&#x29;&#x3b;&#xa;                if &#x28;objname &#x3d;&#x3d; undefined&#x29; &#x7b;&#xa;                    return&#x3b;&#xa;                &#x7d;&#xa;                objname&#x5b;1&#x5d; &#x3d; serialize&#x28;objname&#x5b;1&#x5d;&#x29;&#x3b;&#xa;                val &#x3d; &#x22;O&#x22; &#x2b; objname&#x5b;1&#x5d;.substring&#x28;1, objname&#x5b;1&#x5d;.length - 1&#x29;&#x3b;&#xa;            &#x7d;&#xa;            &#x2a;&#x2f;&#xa;            var count &#x3d; 0&#x3b;&#xa;            var vals &#x3d; &#x22;&#x22;&#x3b;&#xa;            var okey&#x3b;&#xa;            var key&#x3b;&#xa;            for &#x28;key in mixed_value&#x29; &#x7b;&#xa;                ktype &#x3d; _getType&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                if &#x28;ktype &#x3d;&#x3d; &#x22;function&#x22;&#x29; &#x7b; &#xa;                    continue&#x3b; &#xa;                &#x7d;&#xa;&#xa;                okey &#x3d; &#x28;key.match&#x28;&#x2f;&#x5e;&#x5b;0-9&#x5d;&#x2b;&#x24;&#x2f;&#x29; &#x3f; parseInt&#x28;key&#x29; &#x3a; key&#x29;&#x3b;&#xa;                vals &#x2b;&#x3d; serialize&#x28;okey&#x29; &#x2b;&#xa;                        serialize&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                count&#x2b;&#x2b;&#x3b;&#xa;            &#x7d;&#xa;            val &#x2b;&#x3d; &#x22;&#x3a;&#x22; &#x2b; count &#x2b; &#x22;&#x3a;&#x7b;&#x22; &#x2b; vals &#x2b; &#x22;&#x7d;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;    &#x7d;&#xa;    if &#x28;type &#x21;&#x3d; &#x22;object&#x22; &#x26;&#x26; type &#x21;&#x3d; &#x22;array&#x22;&#x29; val &#x2b;&#x3d; &#x22;&#x3b;&#x22;&#x3b;&#xa;    return val&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>string</name>
         <rename>version</rename>
         <type>String</type>
@@ -1080,128 +821,10 @@ function serialize( mixed_value ) {
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var keys = product_guids.split(&apos;~~~&apos;);
-
-var guid_versions = product_versions.split(&apos;~~~&apos;);
-var guid_version_sums = product_version_sums.split(&apos;~~~&apos;);
-&#47;&#47; These two arrays are guaranteed to be the same length.
-if (keys.length != guid_versions.length || keys.length != guid_version_sums.length) throw new Error(&quot;Key&#47;Value array size mismatch&quot;);
-
-var hash = {};
-for (var i = 0; i &lt; keys.length; i++) {
-	var subkeys = guid_versions[i].split(&apos;~+~&apos;);
-	var subvalues = guid_version_sums[i].split(&apos;~+~&apos;);
-	if (subkeys.length != subvalues.length) throw new Error(&quot;SubKey&#47;SubValue array size mismatch&quot;);
-	var subhash = {};
-	for (var j = 0; j &lt; subkeys.length; j++) {
-		subhash[subkeys[j]] = parseInt(subvalues[j]);
-	}
-	
-	hash[keys[i]] = subhash;
-}
-
-var string = serialize(hash);</jsScript_script>
+        <jsScript_script>var keys &#x3d; product_guids.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;&#xa;var guid_versions &#x3d; product_versions.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;var guid_version_sums &#x3d; product_version_sums.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;&#x2f;&#x2f; These two arrays are guaranteed to be the same length.&#xa;if &#x28;keys.length &#x21;&#x3d; guid_versions.length &#x7c;&#x7c; keys.length &#x21;&#x3d; guid_version_sums.length&#x29; throw new Error&#x28;&#x22;Key&#x2f;Value array size mismatch&#x22;&#x29;&#x3b;&#xa;&#xa;var hash &#x3d; &#x7b;&#x7d;&#x3b;&#xa;for &#x28;var i &#x3d; 0&#x3b; i &#x3c; keys.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	var subkeys &#x3d; guid_versions&#x5b;i&#x5d;.split&#x28;&#x27;&#x7e;&#x2b;&#x7e;&#x27;&#x29;&#x3b;&#xa;	var subvalues &#x3d; guid_version_sums&#x5b;i&#x5d;.split&#x28;&#x27;&#x7e;&#x2b;&#x7e;&#x27;&#x29;&#x3b;&#xa;	if &#x28;subkeys.length &#x21;&#x3d; subvalues.length&#x29; throw new Error&#x28;&#x22;SubKey&#x2f;SubValue array size mismatch&#x22;&#x29;&#x3b;&#xa;	var subhash &#x3d; &#x7b;&#x7d;&#x3b;&#xa;	for &#x28;var j &#x3d; 0&#x3b; j &#x3c; subkeys.length&#x3b; j&#x2b;&#x2b;&#x29; &#x7b;&#xa;		subhash&#x5b;subkeys&#x5b;j&#x5d;&#x5d; &#x3d; parseInt&#x28;subvalues&#x5b;j&#x5d;&#x29;&#x3b;&#xa;	&#x7d;&#xa;	&#xa;	hash&#x5b;keys&#x5b;i&#x5d;&#x5d; &#x3d; subhash&#x3b;&#xa;&#x7d;&#xa;&#xa;var string &#x3d; serialize&#x28;hash&#x29;&#x3b;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>JSON functions</jsScript_name>
-        <jsScript_script>function convert(string) {
-    &#47;&#47; Convert a string into a 1-element array serialized in the PHP format.
-    &#47;&#47; &gt;&gt;&gt; convert(&apos;foo&apos;);
-    &#47;&#47; &apos;a:1:{i:0;s:3:&quot;foo&quot;;}&apos;
-    return serialize([string]);
-}
-
-
-function serialize( mixed_value ) {
-    &#47;&#47; http:&#47;&#47;kevin.vanzonneveld.net
-    &#47;&#47; +   original by: Arpad Ray (mailto:arpad@php.net)
-    &#47;&#47; +   improved by: Dino
-    &#47;&#47; +   bugfixed by: Andrej Pavlovic
-    &#47;&#47; +   bugfixed by: Garagoth
-    &#47;&#47; %          note: We feel the main purpose of this function should be to ease the transport of data between php &amp; js
-    &#47;&#47; %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
-    &#47;&#47; *     example 1: serialize([&apos;Kevin&apos;, &apos;van&apos;, &apos;Zonneveld&apos;]);
-    &#47;&#47; *     returns 1: &apos;a:3:{i:0;s:5:&quot;Kevin&quot;;i:1;s:3:&quot;van&quot;;i:2;s:9:&quot;Zonneveld&quot;;}&apos;
-    &#47;&#47; *     example 2: serialize({firstName: &apos;Kevin&apos;, midName: &apos;van&apos;, surName: &apos;Zonneveld&apos;});
-    &#47;&#47; *     returns 2: &apos;a:3:{s:9:&quot;firstName&quot;;s:5:&quot;Kevin&quot;;s:7:&quot;midName&quot;;s:3:&quot;van&quot;;s:7:&quot;surName&quot;;s:9:&quot;Zonneveld&quot;;}&apos;
-
-    var _getType = function( inp ) {
-        var type = typeof inp, match;
-        var key;
-        if (type == &apos;object&apos; &amp;&amp; !inp) {
-            return &apos;null&apos;;
-        }
-        if (type == &quot;object&quot;) {
-            if (!inp.constructor) {
-                return &apos;object&apos;;
-            }
-            var cons = inp.constructor.toString();
-            if (match = cons.match(&#47;(\w+)\(&#47;)) {
-                cons = match[1].toLowerCase();
-            }
-            var types = [&quot;boolean&quot;, &quot;number&quot;, &quot;string&quot;, &quot;array&quot;];
-            for (key in types) {
-                if (cons == types[key]) {
-                    type = types[key];
-                    break;
-                }
-            }
-        }
-        return type;
-    };
-    var type = _getType(mixed_value);
-    var val, ktype = &apos;&apos;;
-
-    switch (type) {
-        case &quot;function&quot;: 
-            val = &quot;&quot;; 
-            break;
-        case &quot;undefined&quot;:
-            val = &quot;N&quot;;
-            break;
-        case &quot;boolean&quot;:
-            val = &quot;b:&quot; + (mixed_value ? &quot;1&quot; : &quot;0&quot;);
-            break;
-        case &quot;number&quot;:
-            val = (Math.round(mixed_value) == mixed_value ? &quot;i&quot; : &quot;d&quot;) + &quot;:&quot; + mixed_value;
-            break;
-        case &quot;string&quot;:
-            val = &quot;s:&quot; + mixed_value.length + &quot;:\&quot;&quot; + mixed_value + &quot;\&quot;&quot;;
-            break;
-        case &quot;array&quot;:
-        case &quot;object&quot;:
-            val = &quot;a&quot;;
-            &#47;*
-            if (type == &quot;object&quot;) {
-                var objname = mixed_value.constructor.toString().match(&#47;(\w+)\(\)&#47;);
-                if (objname == undefined) {
-                    return;
-                }
-                objname[1] = serialize(objname[1]);
-                val = &quot;O&quot; + objname[1].substring(1, objname[1].length - 1);
-            }
-            *&#47;
-            var count = 0;
-            var vals = &quot;&quot;;
-            var okey;
-            var key;
-            for (key in mixed_value) {
-                ktype = _getType(mixed_value[key]);
-                if (ktype == &quot;function&quot;) { 
-                    continue; 
-                }
-
-                okey = (key.match(&#47;^[0-9]+$&#47;) ? parseInt(key) : key);
-                vals += serialize(okey) +
-                        serialize(mixed_value[key]);
-                count++;
-            }
-            val += &quot;:&quot; + count + &quot;:{&quot; + vals + &quot;}&quot;;
-            break;
-    }
-    if (type != &quot;object&quot; &amp;&amp; type != &quot;array&quot;) val += &quot;;&quot;;
-    return val;
-}
-</jsScript_script>
+        <jsScript_script>function convert&#x28;string&#x29; &#x7b;&#xa;    &#x2f;&#x2f; Convert a string into a 1-element array serialized in the PHP format.&#xa;    &#x2f;&#x2f; &#x3e;&#x3e;&#x3e; convert&#x28;&#x27;foo&#x27;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x27;a&#x3a;1&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;3&#x3a;&#x22;foo&#x22;&#x3b;&#x7d;&#x27;&#xa;    return serialize&#x28;&#x5b;string&#x5d;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#xa;function serialize&#x28; mixed_value &#x29; &#x7b;&#xa;    &#x2f;&#x2f; http&#x3a;&#x2f;&#x2f;kevin.vanzonneveld.net&#xa;    &#x2f;&#x2f; &#x2b;   original by&#x3a; Arpad Ray &#x28;mailto&#x3a;arpad&#x40;php.net&#x29;&#xa;    &#x2f;&#x2f; &#x2b;   improved by&#x3a; Dino&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Andrej Pavlovic&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Garagoth&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; We feel the main purpose of this function should be to ease the transport of data between php &#x26; js&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; Aiming for PHP-compatibility, we have to translate objects to arrays&#xa;    &#x2f;&#x2f; &#x2a;     example 1&#x3a; serialize&#x28;&#x5b;&#x27;Kevin&#x27;, &#x27;van&#x27;, &#x27;Zonneveld&#x27;&#x5d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 1&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;i&#x3a;1&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;i&#x3a;2&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;    &#x2f;&#x2f; &#x2a;     example 2&#x3a; serialize&#x28;&#x7b;firstName&#x3a; &#x27;Kevin&#x27;, midName&#x3a; &#x27;van&#x27;, surName&#x3a; &#x27;Zonneveld&#x27;&#x7d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 2&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;s&#x3a;9&#x3a;&#x22;firstName&#x22;&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;midName&#x22;&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;surName&#x22;&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;&#xa;    var _getType &#x3d; function&#x28; inp &#x29; &#x7b;&#xa;        var type &#x3d; typeof inp, match&#x3b;&#xa;        var key&#x3b;&#xa;        if &#x28;type &#x3d;&#x3d; &#x27;object&#x27; &#x26;&#x26; &#x21;inp&#x29; &#x7b;&#xa;            return &#x27;null&#x27;&#x3b;&#xa;        &#x7d;&#xa;        if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;            if &#x28;&#x21;inp.constructor&#x29; &#x7b;&#xa;                return &#x27;object&#x27;&#x3b;&#xa;            &#x7d;&#xa;            var cons &#x3d; inp.constructor.toString&#x28;&#x29;&#x3b;&#xa;            if &#x28;match &#x3d; cons.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x2f;&#x29;&#x29; &#x7b;&#xa;                cons &#x3d; match&#x5b;1&#x5d;.toLowerCase&#x28;&#x29;&#x3b;&#xa;            &#x7d;&#xa;            var types &#x3d; &#x5b;&#x22;boolean&#x22;, &#x22;number&#x22;, &#x22;string&#x22;, &#x22;array&#x22;&#x5d;&#x3b;&#xa;            for &#x28;key in types&#x29; &#x7b;&#xa;                if &#x28;cons &#x3d;&#x3d; types&#x5b;key&#x5d;&#x29; &#x7b;&#xa;                    type &#x3d; types&#x5b;key&#x5d;&#x3b;&#xa;                    break&#x3b;&#xa;                &#x7d;&#xa;            &#x7d;&#xa;        &#x7d;&#xa;        return type&#x3b;&#xa;    &#x7d;&#x3b;&#xa;    var type &#x3d; _getType&#x28;mixed_value&#x29;&#x3b;&#xa;    var val, ktype &#x3d; &#x27;&#x27;&#x3b;&#xa;&#xa;    switch &#x28;type&#x29; &#x7b;&#xa;        case &#x22;function&#x22;&#x3a; &#xa;            val &#x3d; &#x22;&#x22;&#x3b; &#xa;            break&#x3b;&#xa;        case &#x22;undefined&#x22;&#x3a;&#xa;            val &#x3d; &#x22;N&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;boolean&#x22;&#x3a;&#xa;            val &#x3d; &#x22;b&#x3a;&#x22; &#x2b; &#x28;mixed_value &#x3f; &#x22;1&#x22; &#x3a; &#x22;0&#x22;&#x29;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;number&#x22;&#x3a;&#xa;            val &#x3d; &#x28;Math.round&#x28;mixed_value&#x29; &#x3d;&#x3d; mixed_value &#x3f; &#x22;i&#x22; &#x3a; &#x22;d&#x22;&#x29; &#x2b; &#x22;&#x3a;&#x22; &#x2b; mixed_value&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;string&#x22;&#x3a;&#xa;            val &#x3d; &#x22;s&#x3a;&#x22; &#x2b; mixed_value.length &#x2b; &#x22;&#x3a;&#x5c;&#x22;&#x22; &#x2b; mixed_value &#x2b; &#x22;&#x5c;&#x22;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;array&#x22;&#x3a;&#xa;        case &#x22;object&#x22;&#x3a;&#xa;            val &#x3d; &#x22;a&#x22;&#x3b;&#xa;            &#x2f;&#x2a;&#xa;            if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;                var objname &#x3d; mixed_value.constructor.toString&#x28;&#x29;.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x5c;&#x29;&#x2f;&#x29;&#x3b;&#xa;                if &#x28;objname &#x3d;&#x3d; undefined&#x29; &#x7b;&#xa;                    return&#x3b;&#xa;                &#x7d;&#xa;                objname&#x5b;1&#x5d; &#x3d; serialize&#x28;objname&#x5b;1&#x5d;&#x29;&#x3b;&#xa;                val &#x3d; &#x22;O&#x22; &#x2b; objname&#x5b;1&#x5d;.substring&#x28;1, objname&#x5b;1&#x5d;.length - 1&#x29;&#x3b;&#xa;            &#x7d;&#xa;            &#x2a;&#x2f;&#xa;            var count &#x3d; 0&#x3b;&#xa;            var vals &#x3d; &#x22;&#x22;&#x3b;&#xa;            var okey&#x3b;&#xa;            var key&#x3b;&#xa;            for &#x28;key in mixed_value&#x29; &#x7b;&#xa;                ktype &#x3d; _getType&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                if &#x28;ktype &#x3d;&#x3d; &#x22;function&#x22;&#x29; &#x7b; &#xa;                    continue&#x3b; &#xa;                &#x7d;&#xa;&#xa;                okey &#x3d; &#x28;key.match&#x28;&#x2f;&#x5e;&#x5b;0-9&#x5d;&#x2b;&#x24;&#x2f;&#x29; &#x3f; parseInt&#x28;key&#x29; &#x3a; key&#x29;&#x3b;&#xa;                vals &#x2b;&#x3d; serialize&#x28;okey&#x29; &#x2b;&#xa;                        serialize&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                count&#x2b;&#x2b;&#x3b;&#xa;            &#x7d;&#xa;            val &#x2b;&#x3d; &#x22;&#x3a;&#x22; &#x2b; count &#x2b; &#x22;&#x3a;&#x7b;&#x22; &#x2b; vals &#x2b; &#x22;&#x7d;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;    &#x7d;&#xa;    if &#x28;type &#x21;&#x3d; &#x22;object&#x22; &#x26;&#x26; type &#x21;&#x3d; &#x22;array&#x22;&#x29; val &#x2b;&#x3d; &#x22;&#x3b;&#x22;&#x3b;&#xa;    return val&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>string</name>
         <rename>application</rename>
         <type>String</type>
@@ -1230,118 +853,10 @@ function serialize( mixed_value ) {
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var keys = locales.split(&apos;~~~&apos;);
-var values = locale_sums.split(&apos;~~~&apos;);
-&#47;&#47; These two arrays are guaranteed to be the same length.
-if (keys.length != values.length) throw new Error(&quot;Key&#47;Value array size mismatch&quot;);
-
-var hash = {};
-for (var i = 0; i &lt; keys.length; i++) {
-	hash[keys[i]] = parseInt(values[i]);
-}
-
-var string = serialize(hash);</jsScript_script>
+        <jsScript_script>var keys &#x3d; locales.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;var values &#x3d; locale_sums.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;&#x2f;&#x2f; These two arrays are guaranteed to be the same length.&#xa;if &#x28;keys.length &#x21;&#x3d; values.length&#x29; throw new Error&#x28;&#x22;Key&#x2f;Value array size mismatch&#x22;&#x29;&#x3b;&#xa;&#xa;var hash &#x3d; &#x7b;&#x7d;&#x3b;&#xa;for &#x28;var i &#x3d; 0&#x3b; i &#x3c; keys.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	hash&#x5b;keys&#x5b;i&#x5d;&#x5d; &#x3d; parseInt&#x28;values&#x5b;i&#x5d;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;var string &#x3d; serialize&#x28;hash&#x29;&#x3b;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>JSON functions</jsScript_name>
-        <jsScript_script>function convert(string) {
-    &#47;&#47; Convert a string into a 1-element array serialized in the PHP format.
-    &#47;&#47; &gt;&gt;&gt; convert(&apos;foo&apos;);
-    &#47;&#47; &apos;a:1:{i:0;s:3:&quot;foo&quot;;}&apos;
-    return serialize([string]);
-}
-
-
-function serialize( mixed_value ) {
-    &#47;&#47; http:&#47;&#47;kevin.vanzonneveld.net
-    &#47;&#47; +   original by: Arpad Ray (mailto:arpad@php.net)
-    &#47;&#47; +   improved by: Dino
-    &#47;&#47; +   bugfixed by: Andrej Pavlovic
-    &#47;&#47; +   bugfixed by: Garagoth
-    &#47;&#47; %          note: We feel the main purpose of this function should be to ease the transport of data between php &amp; js
-    &#47;&#47; %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
-    &#47;&#47; *     example 1: serialize([&apos;Kevin&apos;, &apos;van&apos;, &apos;Zonneveld&apos;]);
-    &#47;&#47; *     returns 1: &apos;a:3:{i:0;s:5:&quot;Kevin&quot;;i:1;s:3:&quot;van&quot;;i:2;s:9:&quot;Zonneveld&quot;;}&apos;
-    &#47;&#47; *     example 2: serialize({firstName: &apos;Kevin&apos;, midName: &apos;van&apos;, surName: &apos;Zonneveld&apos;});
-    &#47;&#47; *     returns 2: &apos;a:3:{s:9:&quot;firstName&quot;;s:5:&quot;Kevin&quot;;s:7:&quot;midName&quot;;s:3:&quot;van&quot;;s:7:&quot;surName&quot;;s:9:&quot;Zonneveld&quot;;}&apos;
-
-    var _getType = function( inp ) {
-        var type = typeof inp, match;
-        var key;
-        if (type == &apos;object&apos; &amp;&amp; !inp) {
-            return &apos;null&apos;;
-        }
-        if (type == &quot;object&quot;) {
-            if (!inp.constructor) {
-                return &apos;object&apos;;
-            }
-            var cons = inp.constructor.toString();
-            if (match = cons.match(&#47;(\w+)\(&#47;)) {
-                cons = match[1].toLowerCase();
-            }
-            var types = [&quot;boolean&quot;, &quot;number&quot;, &quot;string&quot;, &quot;array&quot;];
-            for (key in types) {
-                if (cons == types[key]) {
-                    type = types[key];
-                    break;
-                }
-            }
-        }
-        return type;
-    };
-    var type = _getType(mixed_value);
-    var val, ktype = &apos;&apos;;
-
-    switch (type) {
-        case &quot;function&quot;: 
-            val = &quot;&quot;; 
-            break;
-        case &quot;undefined&quot;:
-            val = &quot;N&quot;;
-            break;
-        case &quot;boolean&quot;:
-            val = &quot;b:&quot; + (mixed_value ? &quot;1&quot; : &quot;0&quot;);
-            break;
-        case &quot;number&quot;:
-            val = (Math.round(mixed_value) == mixed_value ? &quot;i&quot; : &quot;d&quot;) + &quot;:&quot; + mixed_value;
-            break;
-        case &quot;string&quot;:
-            val = &quot;s:&quot; + mixed_value.length + &quot;:\&quot;&quot; + mixed_value + &quot;\&quot;&quot;;
-            break;
-        case &quot;array&quot;:
-        case &quot;object&quot;:
-            val = &quot;a&quot;;
-            &#47;*
-            if (type == &quot;object&quot;) {
-                var objname = mixed_value.constructor.toString().match(&#47;(\w+)\(\)&#47;);
-                if (objname == undefined) {
-                    return;
-                }
-                objname[1] = serialize(objname[1]);
-                val = &quot;O&quot; + objname[1].substring(1, objname[1].length - 1);
-            }
-            *&#47;
-            var count = 0;
-            var vals = &quot;&quot;;
-            var okey;
-            var key;
-            for (key in mixed_value) {
-                ktype = _getType(mixed_value[key]);
-                if (ktype == &quot;function&quot;) { 
-                    continue; 
-                }
-
-                okey = (key.match(&#47;^[0-9]+$&#47;) ? parseInt(key) : key);
-                vals += serialize(okey) +
-                        serialize(mixed_value[key]);
-                count++;
-            }
-            val += &quot;:&quot; + count + &quot;:{&quot; + vals + &quot;}&quot;;
-            break;
-    }
-    if (type != &quot;object&quot; &amp;&amp; type != &quot;array&quot;) val += &quot;;&quot;;
-    return val;
-}
-</jsScript_script>
+        <jsScript_script>function convert&#x28;string&#x29; &#x7b;&#xa;    &#x2f;&#x2f; Convert a string into a 1-element array serialized in the PHP format.&#xa;    &#x2f;&#x2f; &#x3e;&#x3e;&#x3e; convert&#x28;&#x27;foo&#x27;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x27;a&#x3a;1&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;3&#x3a;&#x22;foo&#x22;&#x3b;&#x7d;&#x27;&#xa;    return serialize&#x28;&#x5b;string&#x5d;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#xa;function serialize&#x28; mixed_value &#x29; &#x7b;&#xa;    &#x2f;&#x2f; http&#x3a;&#x2f;&#x2f;kevin.vanzonneveld.net&#xa;    &#x2f;&#x2f; &#x2b;   original by&#x3a; Arpad Ray &#x28;mailto&#x3a;arpad&#x40;php.net&#x29;&#xa;    &#x2f;&#x2f; &#x2b;   improved by&#x3a; Dino&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Andrej Pavlovic&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Garagoth&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; We feel the main purpose of this function should be to ease the transport of data between php &#x26; js&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; Aiming for PHP-compatibility, we have to translate objects to arrays&#xa;    &#x2f;&#x2f; &#x2a;     example 1&#x3a; serialize&#x28;&#x5b;&#x27;Kevin&#x27;, &#x27;van&#x27;, &#x27;Zonneveld&#x27;&#x5d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 1&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;i&#x3a;1&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;i&#x3a;2&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;    &#x2f;&#x2f; &#x2a;     example 2&#x3a; serialize&#x28;&#x7b;firstName&#x3a; &#x27;Kevin&#x27;, midName&#x3a; &#x27;van&#x27;, surName&#x3a; &#x27;Zonneveld&#x27;&#x7d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 2&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;s&#x3a;9&#x3a;&#x22;firstName&#x22;&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;midName&#x22;&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;surName&#x22;&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;&#xa;    var _getType &#x3d; function&#x28; inp &#x29; &#x7b;&#xa;        var type &#x3d; typeof inp, match&#x3b;&#xa;        var key&#x3b;&#xa;        if &#x28;type &#x3d;&#x3d; &#x27;object&#x27; &#x26;&#x26; &#x21;inp&#x29; &#x7b;&#xa;            return &#x27;null&#x27;&#x3b;&#xa;        &#x7d;&#xa;        if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;            if &#x28;&#x21;inp.constructor&#x29; &#x7b;&#xa;                return &#x27;object&#x27;&#x3b;&#xa;            &#x7d;&#xa;            var cons &#x3d; inp.constructor.toString&#x28;&#x29;&#x3b;&#xa;            if &#x28;match &#x3d; cons.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x2f;&#x29;&#x29; &#x7b;&#xa;                cons &#x3d; match&#x5b;1&#x5d;.toLowerCase&#x28;&#x29;&#x3b;&#xa;            &#x7d;&#xa;            var types &#x3d; &#x5b;&#x22;boolean&#x22;, &#x22;number&#x22;, &#x22;string&#x22;, &#x22;array&#x22;&#x5d;&#x3b;&#xa;            for &#x28;key in types&#x29; &#x7b;&#xa;                if &#x28;cons &#x3d;&#x3d; types&#x5b;key&#x5d;&#x29; &#x7b;&#xa;                    type &#x3d; types&#x5b;key&#x5d;&#x3b;&#xa;                    break&#x3b;&#xa;                &#x7d;&#xa;            &#x7d;&#xa;        &#x7d;&#xa;        return type&#x3b;&#xa;    &#x7d;&#x3b;&#xa;    var type &#x3d; _getType&#x28;mixed_value&#x29;&#x3b;&#xa;    var val, ktype &#x3d; &#x27;&#x27;&#x3b;&#xa;&#xa;    switch &#x28;type&#x29; &#x7b;&#xa;        case &#x22;function&#x22;&#x3a; &#xa;            val &#x3d; &#x22;&#x22;&#x3b; &#xa;            break&#x3b;&#xa;        case &#x22;undefined&#x22;&#x3a;&#xa;            val &#x3d; &#x22;N&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;boolean&#x22;&#x3a;&#xa;            val &#x3d; &#x22;b&#x3a;&#x22; &#x2b; &#x28;mixed_value &#x3f; &#x22;1&#x22; &#x3a; &#x22;0&#x22;&#x29;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;number&#x22;&#x3a;&#xa;            val &#x3d; &#x28;Math.round&#x28;mixed_value&#x29; &#x3d;&#x3d; mixed_value &#x3f; &#x22;i&#x22; &#x3a; &#x22;d&#x22;&#x29; &#x2b; &#x22;&#x3a;&#x22; &#x2b; mixed_value&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;string&#x22;&#x3a;&#xa;            val &#x3d; &#x22;s&#x3a;&#x22; &#x2b; mixed_value.length &#x2b; &#x22;&#x3a;&#x5c;&#x22;&#x22; &#x2b; mixed_value &#x2b; &#x22;&#x5c;&#x22;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;array&#x22;&#x3a;&#xa;        case &#x22;object&#x22;&#x3a;&#xa;            val &#x3d; &#x22;a&#x22;&#x3b;&#xa;            &#x2f;&#x2a;&#xa;            if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;                var objname &#x3d; mixed_value.constructor.toString&#x28;&#x29;.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x5c;&#x29;&#x2f;&#x29;&#x3b;&#xa;                if &#x28;objname &#x3d;&#x3d; undefined&#x29; &#x7b;&#xa;                    return&#x3b;&#xa;                &#x7d;&#xa;                objname&#x5b;1&#x5d; &#x3d; serialize&#x28;objname&#x5b;1&#x5d;&#x29;&#x3b;&#xa;                val &#x3d; &#x22;O&#x22; &#x2b; objname&#x5b;1&#x5d;.substring&#x28;1, objname&#x5b;1&#x5d;.length - 1&#x29;&#x3b;&#xa;            &#x7d;&#xa;            &#x2a;&#x2f;&#xa;            var count &#x3d; 0&#x3b;&#xa;            var vals &#x3d; &#x22;&#x22;&#x3b;&#xa;            var okey&#x3b;&#xa;            var key&#x3b;&#xa;            for &#x28;key in mixed_value&#x29; &#x7b;&#xa;                ktype &#x3d; _getType&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                if &#x28;ktype &#x3d;&#x3d; &#x22;function&#x22;&#x29; &#x7b; &#xa;                    continue&#x3b; &#xa;                &#x7d;&#xa;&#xa;                okey &#x3d; &#x28;key.match&#x28;&#x2f;&#x5e;&#x5b;0-9&#x5d;&#x2b;&#x24;&#x2f;&#x29; &#x3f; parseInt&#x28;key&#x29; &#x3a; key&#x29;&#x3b;&#xa;                vals &#x2b;&#x3d; serialize&#x28;okey&#x29; &#x2b;&#xa;                        serialize&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                count&#x2b;&#x2b;&#x3b;&#xa;            &#x7d;&#xa;            val &#x2b;&#x3d; &#x22;&#x3a;&#x22; &#x2b; count &#x2b; &#x22;&#x3a;&#x7b;&#x22; &#x2b; vals &#x2b; &#x22;&#x7d;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;    &#x7d;&#xa;    if &#x28;type &#x21;&#x3d; &#x22;object&#x22; &#x26;&#x26; type &#x21;&#x3d; &#x22;array&#x22;&#x29; val &#x2b;&#x3d; &#x22;&#x3b;&#x22;&#x3b;&#xa;    return val&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>string</name>
         <rename>locale</rename>
         <type>String</type>
@@ -1370,118 +885,10 @@ function serialize( mixed_value ) {
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>var keys = oses.split(&apos;~~~&apos;);
-var values = os_sums.split(&apos;~~~&apos;);
-&#47;&#47; These two arrays are guaranteed to be the same length.
-if (keys.length != values.length) throw new Error(&quot;Key&#47;Value array size mismatch&quot;);
-
-var hash = {};
-for (var i = 0; i &lt; keys.length; i++) {
-	hash[keys[i]] = parseInt(values[i]);
-}
-
-var string = serialize(hash);</jsScript_script>
+        <jsScript_script>var keys &#x3d; oses.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;var values &#x3d; os_sums.split&#x28;&#x27;&#x7e;&#x7e;&#x7e;&#x27;&#x29;&#x3b;&#xa;&#x2f;&#x2f; These two arrays are guaranteed to be the same length.&#xa;if &#x28;keys.length &#x21;&#x3d; values.length&#x29; throw new Error&#x28;&#x22;Key&#x2f;Value array size mismatch&#x22;&#x29;&#x3b;&#xa;&#xa;var hash &#x3d; &#x7b;&#x7d;&#x3b;&#xa;for &#x28;var i &#x3d; 0&#x3b; i &#x3c; keys.length&#x3b; i&#x2b;&#x2b;&#x29; &#x7b;&#xa;	hash&#x5b;keys&#x5b;i&#x5d;&#x5d; &#x3d; parseInt&#x28;values&#x5b;i&#x5d;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;var string &#x3d; serialize&#x28;hash&#x29;&#x3b;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>JSON functions</jsScript_name>
-        <jsScript_script>function convert(string) {
-    &#47;&#47; Convert a string into a 1-element array serialized in the PHP format.
-    &#47;&#47; &gt;&gt;&gt; convert(&apos;foo&apos;);
-    &#47;&#47; &apos;a:1:{i:0;s:3:&quot;foo&quot;;}&apos;
-    return serialize([string]);
-}
-
-
-function serialize( mixed_value ) {
-    &#47;&#47; http:&#47;&#47;kevin.vanzonneveld.net
-    &#47;&#47; +   original by: Arpad Ray (mailto:arpad@php.net)
-    &#47;&#47; +   improved by: Dino
-    &#47;&#47; +   bugfixed by: Andrej Pavlovic
-    &#47;&#47; +   bugfixed by: Garagoth
-    &#47;&#47; %          note: We feel the main purpose of this function should be to ease the transport of data between php &amp; js
-    &#47;&#47; %          note: Aiming for PHP-compatibility, we have to translate objects to arrays
-    &#47;&#47; *     example 1: serialize([&apos;Kevin&apos;, &apos;van&apos;, &apos;Zonneveld&apos;]);
-    &#47;&#47; *     returns 1: &apos;a:3:{i:0;s:5:&quot;Kevin&quot;;i:1;s:3:&quot;van&quot;;i:2;s:9:&quot;Zonneveld&quot;;}&apos;
-    &#47;&#47; *     example 2: serialize({firstName: &apos;Kevin&apos;, midName: &apos;van&apos;, surName: &apos;Zonneveld&apos;});
-    &#47;&#47; *     returns 2: &apos;a:3:{s:9:&quot;firstName&quot;;s:5:&quot;Kevin&quot;;s:7:&quot;midName&quot;;s:3:&quot;van&quot;;s:7:&quot;surName&quot;;s:9:&quot;Zonneveld&quot;;}&apos;
-
-    var _getType = function( inp ) {
-        var type = typeof inp, match;
-        var key;
-        if (type == &apos;object&apos; &amp;&amp; !inp) {
-            return &apos;null&apos;;
-        }
-        if (type == &quot;object&quot;) {
-            if (!inp.constructor) {
-                return &apos;object&apos;;
-            }
-            var cons = inp.constructor.toString();
-            if (match = cons.match(&#47;(\w+)\(&#47;)) {
-                cons = match[1].toLowerCase();
-            }
-            var types = [&quot;boolean&quot;, &quot;number&quot;, &quot;string&quot;, &quot;array&quot;];
-            for (key in types) {
-                if (cons == types[key]) {
-                    type = types[key];
-                    break;
-                }
-            }
-        }
-        return type;
-    };
-    var type = _getType(mixed_value);
-    var val, ktype = &apos;&apos;;
-
-    switch (type) {
-        case &quot;function&quot;: 
-            val = &quot;&quot;; 
-            break;
-        case &quot;undefined&quot;:
-            val = &quot;N&quot;;
-            break;
-        case &quot;boolean&quot;:
-            val = &quot;b:&quot; + (mixed_value ? &quot;1&quot; : &quot;0&quot;);
-            break;
-        case &quot;number&quot;:
-            val = (Math.round(mixed_value) == mixed_value ? &quot;i&quot; : &quot;d&quot;) + &quot;:&quot; + mixed_value;
-            break;
-        case &quot;string&quot;:
-            val = &quot;s:&quot; + mixed_value.length + &quot;:\&quot;&quot; + mixed_value + &quot;\&quot;&quot;;
-            break;
-        case &quot;array&quot;:
-        case &quot;object&quot;:
-            val = &quot;a&quot;;
-            &#47;*
-            if (type == &quot;object&quot;) {
-                var objname = mixed_value.constructor.toString().match(&#47;(\w+)\(\)&#47;);
-                if (objname == undefined) {
-                    return;
-                }
-                objname[1] = serialize(objname[1]);
-                val = &quot;O&quot; + objname[1].substring(1, objname[1].length - 1);
-            }
-            *&#47;
-            var count = 0;
-            var vals = &quot;&quot;;
-            var okey;
-            var key;
-            for (key in mixed_value) {
-                ktype = _getType(mixed_value[key]);
-                if (ktype == &quot;function&quot;) { 
-                    continue; 
-                }
-
-                okey = (key.match(&#47;^[0-9]+$&#47;) ? parseInt(key) : key);
-                vals += serialize(okey) +
-                        serialize(mixed_value[key]);
-                count++;
-            }
-            val += &quot;:&quot; + count + &quot;:{&quot; + vals + &quot;}&quot;;
-            break;
-    }
-    if (type != &quot;object&quot; &amp;&amp; type != &quot;array&quot;) val += &quot;;&quot;;
-    return val;
-}
-</jsScript_script>
+        <jsScript_script>function convert&#x28;string&#x29; &#x7b;&#xa;    &#x2f;&#x2f; Convert a string into a 1-element array serialized in the PHP format.&#xa;    &#x2f;&#x2f; &#x3e;&#x3e;&#x3e; convert&#x28;&#x27;foo&#x27;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x27;a&#x3a;1&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;3&#x3a;&#x22;foo&#x22;&#x3b;&#x7d;&#x27;&#xa;    return serialize&#x28;&#x5b;string&#x5d;&#x29;&#x3b;&#xa;&#x7d;&#xa;&#xa;&#xa;function serialize&#x28; mixed_value &#x29; &#x7b;&#xa;    &#x2f;&#x2f; http&#x3a;&#x2f;&#x2f;kevin.vanzonneveld.net&#xa;    &#x2f;&#x2f; &#x2b;   original by&#x3a; Arpad Ray &#x28;mailto&#x3a;arpad&#x40;php.net&#x29;&#xa;    &#x2f;&#x2f; &#x2b;   improved by&#x3a; Dino&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Andrej Pavlovic&#xa;    &#x2f;&#x2f; &#x2b;   bugfixed by&#x3a; Garagoth&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; We feel the main purpose of this function should be to ease the transport of data between php &#x26; js&#xa;    &#x2f;&#x2f; &#x25;          note&#x3a; Aiming for PHP-compatibility, we have to translate objects to arrays&#xa;    &#x2f;&#x2f; &#x2a;     example 1&#x3a; serialize&#x28;&#x5b;&#x27;Kevin&#x27;, &#x27;van&#x27;, &#x27;Zonneveld&#x27;&#x5d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 1&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;i&#x3a;0&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;i&#x3a;1&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;i&#x3a;2&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;    &#x2f;&#x2f; &#x2a;     example 2&#x3a; serialize&#x28;&#x7b;firstName&#x3a; &#x27;Kevin&#x27;, midName&#x3a; &#x27;van&#x27;, surName&#x3a; &#x27;Zonneveld&#x27;&#x7d;&#x29;&#x3b;&#xa;    &#x2f;&#x2f; &#x2a;     returns 2&#x3a; &#x27;a&#x3a;3&#x3a;&#x7b;s&#x3a;9&#x3a;&#x22;firstName&#x22;&#x3b;s&#x3a;5&#x3a;&#x22;Kevin&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;midName&#x22;&#x3b;s&#x3a;3&#x3a;&#x22;van&#x22;&#x3b;s&#x3a;7&#x3a;&#x22;surName&#x22;&#x3b;s&#x3a;9&#x3a;&#x22;Zonneveld&#x22;&#x3b;&#x7d;&#x27;&#xa;&#xa;    var _getType &#x3d; function&#x28; inp &#x29; &#x7b;&#xa;        var type &#x3d; typeof inp, match&#x3b;&#xa;        var key&#x3b;&#xa;        if &#x28;type &#x3d;&#x3d; &#x27;object&#x27; &#x26;&#x26; &#x21;inp&#x29; &#x7b;&#xa;            return &#x27;null&#x27;&#x3b;&#xa;        &#x7d;&#xa;        if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;            if &#x28;&#x21;inp.constructor&#x29; &#x7b;&#xa;                return &#x27;object&#x27;&#x3b;&#xa;            &#x7d;&#xa;            var cons &#x3d; inp.constructor.toString&#x28;&#x29;&#x3b;&#xa;            if &#x28;match &#x3d; cons.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x2f;&#x29;&#x29; &#x7b;&#xa;                cons &#x3d; match&#x5b;1&#x5d;.toLowerCase&#x28;&#x29;&#x3b;&#xa;            &#x7d;&#xa;            var types &#x3d; &#x5b;&#x22;boolean&#x22;, &#x22;number&#x22;, &#x22;string&#x22;, &#x22;array&#x22;&#x5d;&#x3b;&#xa;            for &#x28;key in types&#x29; &#x7b;&#xa;                if &#x28;cons &#x3d;&#x3d; types&#x5b;key&#x5d;&#x29; &#x7b;&#xa;                    type &#x3d; types&#x5b;key&#x5d;&#x3b;&#xa;                    break&#x3b;&#xa;                &#x7d;&#xa;            &#x7d;&#xa;        &#x7d;&#xa;        return type&#x3b;&#xa;    &#x7d;&#x3b;&#xa;    var type &#x3d; _getType&#x28;mixed_value&#x29;&#x3b;&#xa;    var val, ktype &#x3d; &#x27;&#x27;&#x3b;&#xa;&#xa;    switch &#x28;type&#x29; &#x7b;&#xa;        case &#x22;function&#x22;&#x3a; &#xa;            val &#x3d; &#x22;&#x22;&#x3b; &#xa;            break&#x3b;&#xa;        case &#x22;undefined&#x22;&#x3a;&#xa;            val &#x3d; &#x22;N&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;boolean&#x22;&#x3a;&#xa;            val &#x3d; &#x22;b&#x3a;&#x22; &#x2b; &#x28;mixed_value &#x3f; &#x22;1&#x22; &#x3a; &#x22;0&#x22;&#x29;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;number&#x22;&#x3a;&#xa;            val &#x3d; &#x28;Math.round&#x28;mixed_value&#x29; &#x3d;&#x3d; mixed_value &#x3f; &#x22;i&#x22; &#x3a; &#x22;d&#x22;&#x29; &#x2b; &#x22;&#x3a;&#x22; &#x2b; mixed_value&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;string&#x22;&#x3a;&#xa;            val &#x3d; &#x22;s&#x3a;&#x22; &#x2b; mixed_value.length &#x2b; &#x22;&#x3a;&#x5c;&#x22;&#x22; &#x2b; mixed_value &#x2b; &#x22;&#x5c;&#x22;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;        case &#x22;array&#x22;&#x3a;&#xa;        case &#x22;object&#x22;&#x3a;&#xa;            val &#x3d; &#x22;a&#x22;&#x3b;&#xa;            &#x2f;&#x2a;&#xa;            if &#x28;type &#x3d;&#x3d; &#x22;object&#x22;&#x29; &#x7b;&#xa;                var objname &#x3d; mixed_value.constructor.toString&#x28;&#x29;.match&#x28;&#x2f;&#x28;&#x5c;w&#x2b;&#x29;&#x5c;&#x28;&#x5c;&#x29;&#x2f;&#x29;&#x3b;&#xa;                if &#x28;objname &#x3d;&#x3d; undefined&#x29; &#x7b;&#xa;                    return&#x3b;&#xa;                &#x7d;&#xa;                objname&#x5b;1&#x5d; &#x3d; serialize&#x28;objname&#x5b;1&#x5d;&#x29;&#x3b;&#xa;                val &#x3d; &#x22;O&#x22; &#x2b; objname&#x5b;1&#x5d;.substring&#x28;1, objname&#x5b;1&#x5d;.length - 1&#x29;&#x3b;&#xa;            &#x7d;&#xa;            &#x2a;&#x2f;&#xa;            var count &#x3d; 0&#x3b;&#xa;            var vals &#x3d; &#x22;&#x22;&#x3b;&#xa;            var okey&#x3b;&#xa;            var key&#x3b;&#xa;            for &#x28;key in mixed_value&#x29; &#x7b;&#xa;                ktype &#x3d; _getType&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                if &#x28;ktype &#x3d;&#x3d; &#x22;function&#x22;&#x29; &#x7b; &#xa;                    continue&#x3b; &#xa;                &#x7d;&#xa;&#xa;                okey &#x3d; &#x28;key.match&#x28;&#x2f;&#x5e;&#x5b;0-9&#x5d;&#x2b;&#x24;&#x2f;&#x29; &#x3f; parseInt&#x28;key&#x29; &#x3a; key&#x29;&#x3b;&#xa;                vals &#x2b;&#x3d; serialize&#x28;okey&#x29; &#x2b;&#xa;                        serialize&#x28;mixed_value&#x5b;key&#x5d;&#x29;&#x3b;&#xa;                count&#x2b;&#x2b;&#x3b;&#xa;            &#x7d;&#xa;            val &#x2b;&#x3d; &#x22;&#x3a;&#x22; &#x2b; count &#x2b; &#x22;&#x3a;&#x7b;&#x22; &#x2b; vals &#x2b; &#x22;&#x7d;&#x22;&#x3b;&#xa;            break&#x3b;&#xa;    &#x7d;&#xa;    if &#x28;type &#x21;&#x3d; &#x22;object&#x22; &#x26;&#x26; type &#x21;&#x3d; &#x22;array&#x22;&#x29; val &#x2b;&#x3d; &#x22;&#x3b;&#x22;&#x3b;&#xa;    return val&#x3b;&#xa;&#x7d;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>      <field>        <name>string</name>
         <rename>os</rename>
         <type>String</type>
@@ -1507,7 +914,7 @@ function serialize( mixed_value ) {
            <schema_name/>
            </partitioning>
        <formula><field_name>product_guid_x</field_name>
-<formula_string>(product_guid.matches(&quot;^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$&quot;) ? &quot;{&quot;+product_guid+&quot;}&quot; : product_guid)</formula_string>
+<formula_string>&#x28;product_guid.matches&#x28;&#x22;&#x5e;&#x5b;0-9a-f&#x5d;&#x7b;8&#x7d;-&#x5b;0-9a-f&#x5d;&#x7b;4&#x7d;-&#x5b;0-9a-f&#x5d;&#x7b;4&#x7d;-&#x5b;0-9a-f&#x5d;&#x7b;4&#x7d;-&#x5b;0-9a-f&#x5d;&#x7b;12&#x7d;&#x24;&#x22;&#x29; &#x3f; &#x22;&#x7b;&#x22;&#x2b;product_guid&#x2b;&#x22;&#x7d;&#x22; &#x3a; product_guid&#x29;</formula_string>
 <value_type>String</value_type>
 <value_length>36</value_length>
 <value_precision>-1</value_precision>
@@ -1516,14 +923,14 @@ function serialize( mixed_value ) {
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>550</xloc>
-      <yloc>50</yloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>aggregate addon_status</name>
-    <type>TableInput</type>
+    <name>aggregate_addon_version.dump</name>
+    <type>CubeInput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -1531,69 +938,22 @@ function serialize( mixed_value ) {
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>metrics</connection>
-    <sql>select
-  DATE(date)::TIMESTAMP as date
-, addon_id
-, CASE LEFT(addon_status, 4) WHEN &apos;user&apos; THEN REPLACE(addon_status, &apos;%2C&apos;,&apos;,&apos;) ELSE &apos;null&apos; END as addon_status
-, sum(requests) as addon_status_sum
-from versioncheck_requests_by_day vc
-join dates d on vc.utc_date_id = d.date_id
-WHERE DATE(date) ${DATE}
-and addon_id &lt;&gt; 0
-group by date, addon_id, addon_status
-order by date, addon_id</sql>
+    <file>
+      <name>aggregate_addon_version.dump</name>
+    </file>
     <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>150</xloc>
-      <yloc>50</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>aggregate addon_version</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>metrics</connection>
-    <sql>select
-  DATE(date)::TIMESTAMP as date
-, addon_id
-, COALESCE(REPLACE(addon_version, &apos;Unknown&apos;, &apos;null&apos;), &apos;null&apos;) as addon_version
-, sum(requests) as addon_version_sum
-from versioncheck_requests_by_day vc
-join dates d on vc.utc_date_id = d.date_id
-WHERE DATE(date) ${DATE}
-and addon_id &lt;&gt; 0
-group by 1, 2, 3
-order by 1, 2, 3</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <addfilenameresult>N</addfilenameresult>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
-      <yloc>50</yloc>
+      <yloc>5</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>aggregate product_guid_version</name>
-    <type>TableInput</type>
+    <name>aggregate_addon_status.dump</name>
+    <type>CubeInput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -1601,36 +961,22 @@ order by 1, 2, 3</sql>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>metrics</connection>
-    <sql>select
-  DATE(date)::TIMESTAMP as date
-, addon_id
-, REPLACE(product_guid, &apos;Unknown&apos;, &apos;null&apos;) as product_guid
-, REPLACE(product_version, &apos;Unknown&apos;, &apos;null&apos;) as product_version
-, sum(requests) as product_guid_version_sum
-from versioncheck_requests_by_day vc
-join dates d on vc.utc_date_id = d.date_id
-join products p on vc.product_id = p.product_id
-WHERE DATE(date) ${DATE}
-and addon_id &lt;&gt; 0
-group by date, addon_id, product_guid, product_version
-order by date, addon_id, product_guid</sql>
+    <file>
+      <name>aggregate_addon_status.dump</name>
+    </file>
     <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <addfilenameresult>N</addfilenameresult>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>450</xloc>
-      <yloc>50</yloc>
+      <xloc>150</xloc>
+      <yloc>82</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
 
   <step>
-    <name>aggregate product_locale</name>
-    <type>TableInput</type>
+    <name>aggregate product_os.dump</name>
+    <type>CubeInput</type>
     <description/>
     <distribute>Y</distribute>
     <copies>1</copies>
@@ -1638,62 +984,61 @@ order by date, addon_id, product_guid</sql>
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <connection>metrics</connection>
-    <sql>select
-  DATE(date)::TIMESTAMP as date
-, addon_id
-, REPLACE(product_locale, &apos;Unknown&apos;, &apos;null&apos;) as locale
-, sum(requests) as locale_sum
-from versioncheck_requests_by_day vc
-join dates d on vc.utc_date_id = d.date_id
-WHERE DATE(date) ${DATE}
-and addon_id &lt;&gt; 0
-group by date, addon_id, product_locale
-order by date, addon_id</sql>
+    <file>
+      <name>aggregate product_os.dump</name>
+    </file>
     <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>350</xloc>
-      <yloc>50</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>aggregate product_os</name>
-    <type>TableInput</type>
-    <description/>
-    <distribute>Y</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-    <connection>metrics</connection>
-    <sql>select
-  DATE(date)::TIMESTAMP as date
-, addon_id
-, DECODE(LEFT(product_os,1),&apos;0&apos;,&apos;null&apos;,&apos;1&apos;,&apos;null&apos;,&apos;2&apos;,&apos;null&apos;,REPLACE(product_os, &apos;Unknown&apos;, &apos;null&apos;)) AS os
-, sum(requests) as os_sum
-from versioncheck_requests_by_day vc
-join dates d on vc.utc_date_id = d.date_id
-WHERE DATE(date) ${DATE}
-and addon_id &lt;&gt; 0
-group by date, addon_id, product_os
-order by date, addon_id</sql>
-    <limit>0</limit>
-    <lookup/>
-    <execute_each_row>N</execute_each_row>
-    <variables_active>Y</variables_active>
-    <lazy_conversion_active>N</lazy_conversion_active>
+    <addfilenameresult>N</addfilenameresult>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>250</xloc>
-      <yloc>50</yloc>
+      <yloc>5</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>aggregate_product_locale.dump</name>
+    <type>CubeInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <file>
+      <name>aggregate_product_locale.dump</name>
+    </file>
+    <limit>0</limit>
+    <addfilenameresult>N</addfilenameresult>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>350</xloc>
+      <yloc>82</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>aggregate product_guid_version.dump</name>
+    <type>CubeInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+    <file>
+      <name>aggregate product_guid_version.dump</name>
+    </file>
+    <limit>0</limit>
+    <addfilenameresult>N</addfilenameresult>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>450</xloc>
+      <yloc>5</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
