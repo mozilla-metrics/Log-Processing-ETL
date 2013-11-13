@@ -19,24 +19,25 @@
     </parameters>
   <connection>
     <name>metrics</name>
-    <server>&#x24;&#x7b;VERTICA_HOST&#x7d;</server>
-    <type>VERTICA</type>
+    <server>&#x24;&#x7b;METRICS_VERTICA_HOST&#x7d;</server>
+    <type>GENERIC</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;VERTICA_DB&#x7d;</database>
-    <port>&#x24;&#x7b;VERTICA_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;VERTICA_USER&#x7d;</username>
-    <password>&#x24;&#x7b;VERTICA_PASS&#x7d;</password>
+    <database>&#x24;&#x7b;METRICS_VERTICA_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_VERTICA_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_VERTICA_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>com.vertica.jdbc.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;vertica&#x3a;&#x2f;&#x2f;&#x24;&#x7b;METRICS_VERTICA_HOST&#x7d;&#x3a;&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;&#x2f;&#x24;&#x7b;METRICS_VERTICA_DATABASE&#x7d;</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;VERTICA_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION &#xa;ISOLATION LEVEL READ COMMITTED</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
@@ -107,8 +108,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>50</xloc>
-      <yloc>50</yloc>
+      <xloc>57</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Run daily aggregates</name>
@@ -137,8 +138,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>650</xloc>
-      <yloc>50</yloc>
+      <xloc>1299</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Run Vertica GAH</name>
@@ -167,8 +168,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>870</xloc>
-      <yloc>50</yloc>
+      <xloc>1518</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Export to Socorro</name>
@@ -212,8 +213,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>989</xloc>
-      <yloc>50</yloc>
+      <xloc>1638</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>export_daily_amo_stats</name>
@@ -245,8 +246,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1351</xloc>
-      <yloc>50</yloc>
+      <xloc>2000</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Abort if error</name>
@@ -256,8 +257,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>650</xloc>
-      <yloc>250</yloc>
+      <xloc>1028</xloc>
+      <yloc>451</yloc>
       </entry>
     <entry>
       <name>Mail error condition</name>
@@ -296,8 +297,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>550</xloc>
-      <yloc>150</yloc>
+      <xloc>1028</xloc>
+      <yloc>219</yloc>
       </entry>
     <entry>
       <name>Set Successful flag for EOD</name>
@@ -312,8 +313,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>870</xloc>
-      <yloc>150</yloc>
+      <xloc>1516</xloc>
+      <yloc>237</yloc>
       </entry>
     <entry>
       <name>Set Failed flag for EOD</name>
@@ -328,8 +329,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>550</xloc>
-      <yloc>250</yloc>
+      <xloc>1028</xloc>
+      <yloc>347</yloc>
       </entry>
     <entry>
       <name>Set Running flag for EOD</name>
@@ -344,8 +345,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>150</yloc>
+      <xloc>390</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Already has successful eod&#x3f;</name>
@@ -364,8 +365,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>50</xloc>
-      <yloc>250</yloc>
+      <xloc>239</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Success 1</name>
@@ -374,8 +375,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>250</yloc>
+      <xloc>239</xloc>
+      <yloc>181</yloc>
       </entry>
     <entry>
       <name>audit_server_traffic</name>
@@ -407,8 +408,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>50</yloc>
+      <xloc>524</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Mail missing logs</name>
@@ -425,7 +426,7 @@
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
       <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;&#xa;These missing logs are currently preventing the End Of Day processing from succeeding.&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;&#xa;&#xa;</comment>
+      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;These missing timestamps are currently preventing the End Of Day processing from succeeding&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_TIMESTAMPS&#x7d;&#xa;&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;These are the regexps used to find the missing files&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_FILENAMESREGEX&#x7d;&#xa;</comment>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
@@ -447,8 +448,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>250</yloc>
+      <xloc>637</xloc>
+      <yloc>347</yloc>
       </entry>
     <entry>
       <name>Run dimension update</name>
@@ -477,8 +478,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>550</xloc>
-      <yloc>50</yloc>
+      <xloc>1172</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Mail success</name>
@@ -517,8 +518,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>869</xloc>
-      <yloc>250</yloc>
+      <xloc>1515</xloc>
+      <yloc>337</yloc>
       </entry>
     <entry>
       <name>Wait for no required</name>
@@ -540,8 +541,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>50</yloc>
+      <xloc>637</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Run product dimension update</name>
@@ -573,8 +574,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>450</xloc>
-      <yloc>50</yloc>
+      <xloc>1028</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Advance epoch</name>
@@ -589,8 +590,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>750</xloc>
-      <yloc>50</yloc>
+      <xloc>1400</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Get dates</name>
@@ -622,8 +623,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>50</xloc>
-      <yloc>150</yloc>
+      <xloc>134</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Export to Socorro Staging</name>
@@ -667,8 +668,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1227</xloc>
-      <yloc>50</yloc>
+      <xloc>1876</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Guard for race</name>
@@ -685,10 +686,10 @@
       <add_rows_result>N</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
-      <draw>Y</draw>
+      <draw>N</draw>
       <nr>0</nr>
-      <xloc>350</xloc>
-      <yloc>50</yloc>
+      <xloc>1162</xloc>
+      <yloc>545</yloc>
       </entry>
     <entry>
       <name>Wait for no required</name>
@@ -710,8 +711,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>1</nr>
-      <xloc>350</xloc>
-      <yloc>200</yloc>
+      <xloc>752</xloc>
+      <yloc>97</yloc>
       </entry>
     <entry>
       <name>Mail missing logs</name>
@@ -728,7 +729,7 @@
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
       <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;&#xa;These missing logs are currently preventing the End Of Day processing from succeeding.&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;&#xa;&#xa;</comment>
+      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;These missing timestamps are currently preventing the End Of Day processing from succeeding&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_TIMESTAMPS&#x7d;&#xa;&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;These are the regexps used to find the missing files&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_FILENAMESREGEX&#x7d;&#xa;</comment>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
@@ -750,8 +751,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>1</nr>
-      <xloc>350</xloc>
-      <yloc>250</yloc>
+      <xloc>752</xloc>
+      <yloc>347</yloc>
       </entry>
     <entry>
       <name>AMO error</name>
@@ -790,8 +791,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1351</xloc>
-      <yloc>150</yloc>
+      <xloc>2000</xloc>
+      <yloc>195</yloc>
       </entry>
     <entry>
       <name>Socorro prod error</name>
@@ -830,8 +831,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>989</xloc>
-      <yloc>150</yloc>
+      <xloc>1638</xloc>
+      <yloc>195</yloc>
       </entry>
     <entry>
       <name>Socorro stage error</name>
@@ -870,8 +871,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1227</xloc>
-      <yloc>150</yloc>
+      <xloc>1876</xloc>
+      <yloc>195</yloc>
       </entry>
     <entry>
       <name>Success 2</name>
@@ -880,8 +881,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1460</xloc>
-      <yloc>50</yloc>
+      <xloc>2109</xloc>
+      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Try to avoid a deadlock</name>
@@ -892,8 +893,94 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1095</xloc>
-      <yloc>50</yloc>
+      <xloc>1744</xloc>
+      <yloc>65</yloc>
+      </entry>
+    <entry>
+      <name>build mail info</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;set_audit_results.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>637</xloc>
+      <yloc>229</yloc>
+      </entry>
+    <entry>
+      <name>build mail info</name>
+      <description/>
+      <type>TRANS</type>
+      <specification_method>filename</specification_method>
+      <trans_object_id/>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;set_audit_results.ktr</filename>
+      <transname/>
+      <arg_from_previous>N</arg_from_previous>
+      <params_from_previous>N</params_from_previous>
+      <exec_per_row>N</exec_per_row>
+      <clear_rows>N</clear_rows>
+      <clear_files>N</clear_files>
+      <set_logfile>N</set_logfile>
+      <logfile/>
+      <logext/>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <loglevel>Basic</loglevel>
+      <cluster>N</cluster>
+      <slave_server_name/>
+      <set_append_logfile>N</set_append_logfile>
+      <wait_until_finished>Y</wait_until_finished>
+      <follow_abort_remote>N</follow_abort_remote>
+      <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
+      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
+      </parameters>      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>1</nr>
+      <xloc>752</xloc>
+      <yloc>229</yloc>
+      </entry>
+    <entry>
+      <name>Guard for race</name>
+      <description>Evaluate rows number in a table</description>
+      <type>EVAL_TABLE_CONTENT</type>
+      <connection>metrics mysql</connection>
+      <schemaname/>
+      <tablename/>
+      <success_condition>rows_count_equal</success_condition>
+      <limit>0</limit>
+      <is_custom_sql>Y</is_custom_sql>
+      <is_usevars>Y</is_usevars>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
+      <add_rows_result>N</add_rows_result>
+      <clear_result_rows>Y</clear_result_rows>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>1</nr>
+      <xloc>866</xloc>
+      <yloc>26</yloc>
       </entry>
   </entries>
   <hops>
@@ -979,24 +1066,6 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Wait for no required</from>
-      <to>Mail missing logs</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>audit_server_traffic</from>
-      <to>Mail error condition</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Set Running flag for EOD</from>
       <to>Mail error condition</to>
       <from_nr>0</from_nr>
@@ -1069,55 +1138,10 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Wait for no required</from>
-      <to>Guard for race</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Guard for race</from>
-      <to>Run product dimension update</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Mail missing logs</from>
       <to>Wait for no required</to>
       <from_nr>0</from_nr>
       <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Wait for no required</from>
-      <to>Mail missing logs</to>
-      <from_nr>1</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Wait for no required</from>
-      <to>Guard for race</to>
-      <from_nr>1</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Mail missing logs</from>
-      <to>Set Failed flag for EOD</to>
-      <from_nr>1</from_nr>
-      <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
@@ -1237,6 +1261,87 @@
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for no required</from>
+      <to>build mail info</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>build mail info</from>
+      <to>Mail missing logs</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for no required</from>
+      <to>build mail info</to>
+      <from_nr>1</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>build mail info</from>
+      <to>Mail missing logs</to>
+      <from_nr>1</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for no required</from>
+      <to>Guard for race</to>
+      <from_nr>0</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Guard for race</from>
+      <to>Run product dimension update</to>
+      <from_nr>1</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Mail missing logs</from>
+      <to>Set Failed flag for EOD</to>
+      <from_nr>1</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for no required</from>
+      <to>Guard for race</to>
+      <from_nr>1</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Guard for race</from>
+      <to>Mail error condition</to>
+      <from_nr>1</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
