@@ -22,8 +22,8 @@ for KETTLE_PID in $KETTLE_PROCESSES ; do
 		KETTLE_PPID=`ps -f -p $KETTLE_PID | awk '!/PPID/ {print $3}'`
 		echo "Parent (PID=$KETTLE_PPID) process tree:"
 		pstree -A -a -l $KETTLE_PPID | uniq 
-		echo -n Killing process $KETTLE_PID
-		echo kill
+		echo -n Killing -9 process $KETTLE_PID
+		kill -9 $KETTLE_PID
 		echo "  Done."
 		echo "========================================================================================================"
 		echo
