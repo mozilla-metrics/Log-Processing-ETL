@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <job>
   <name>process_site_logs</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2010&#47;03&#47;07 23:09:39.539</created_date>
+  <created_date>2010&#x2f;03&#x2f;07 23&#x3a;09&#x3a;39.539</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2010&#47;03&#47;07 23:09:39.539</modified_date>
+  <modified_date>2010&#x2f;03&#x2f;07 23&#x3a;09&#x3a;39.539</modified_date>
     <parameters>
         <parameter>
             <name>ONLY_REQUIRED</name>
@@ -26,28 +19,28 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         <parameter>
             <name>SITE_CONDITION</name>
             <default_value>xxx</default_value>
-            <description>Which site(s) to query and process</description>
+            <description>Which site&#x28;s&#x29; to query and process</description>
         </parameter>
         <parameter>
             <name>SITE_INIT_TRANS</name>
             <default_value>xxx</default_value>
-            <description>Run an optional transform to initialize (e.g. amo&#47;update_amo_addons_dimension.ktr)</description>
+            <description>Run an optional transform to initialize &#x28;e.g. amo&#x2f;update_amo_addons_dimension.ktr&#x29;</description>
         </parameter>
         <parameter>
             <name>SITE_TRANSFORMATION</name>
-            <default_value>&#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;amo&#47;parse_and_load_amo.ktr</default_value>
-            <description>Which transformation to execute for the site(s)</description>
+            <default_value>&#x2f;opt&#x2f;pentaho&#x2f;kettle&#x2f;etl&#x2f;logProcessing&#x2f;etl&#x2f;amo&#x2f;parse_and_load_amo.ktr</default_value>
+            <description>Which transformation to execute for the site&#x28;s&#x29;</description>
         </parameter>
     </parameters>
   <connection>
     <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
+    <server>&#x24;&#x7b;METRICS_MYSQL_HOST&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_MYSQL_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_MYSQL_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_MYSQL_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -60,7 +53,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
@@ -114,7 +107,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;get_filenames.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;get_filenames.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -133,6 +126,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -146,7 +140,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${SITE_TRANSFORMATION}</filename>
+      <filename>&#x24;&#x7b;SITE_TRANSFORMATION&#x7d;</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -165,6 +159,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <wait_until_finished>N</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -173,7 +168,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <yloc>150</yloc>
       </entry>
     <entry>
-      <name>Try alternate directory?</name>
+      <name>Try alternate directory&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics mysql</connection>
@@ -183,22 +178,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT
-  s.datacenter
-, s.site
-, s.server
-, timestamp
-, alt_basedir AS basedir
-, subdir_pattern
-, filename_prefix
-, filename_suffix
-FROM server_timestamps_to_process sttp
-JOIN servers s ON sttp.site = s.site AND sttp.server = s.server
-WHERE required = &apos;Y&apos;
-AND active = &apos;Y&apos;
-AND s.site ${SITE_CONDITION}
-AND timestamp = &apos;${TIMESTAMP}&apos;
-ORDER BY 4,1,2,3</custom_sql>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;, alt_basedir AS basedir&#xa;, subdir_pattern&#xa;, filename_prefix&#xa;, filename_suffix&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE required &#x3d; &#x27;Y&#x27;&#xa;AND active &#x3d; &#x27;Y&#x27;&#xa;AND s.site &#x24;&#x7b;SITE_CONDITION&#x7d;&#xa;AND timestamp &#x3d; &#x27;&#x24;&#x7b;TIMESTAMP&#x7d;&#x27;&#xa;ORDER BY 4,1,2,3</custom_sql>
       <add_rows_result>Y</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
@@ -213,7 +193,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;get_filenames.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;get_filenames.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -232,6 +212,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -245,7 +226,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${SITE_TRANSFORMATION}</filename>
+      <filename>&#x24;&#x7b;SITE_TRANSFORMATION&#x7d;</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -264,6 +245,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <wait_until_finished>N</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -277,7 +259,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;audit_server_traffic.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;audit_server_traffic.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -296,6 +278,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -304,7 +287,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <yloc>50</yloc>
       </entry>
     <entry>
-      <name>Process this site?</name>
+      <name>Process this site&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics mysql</connection>
@@ -314,21 +297,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT
-  s.datacenter
-, s.site
-, s.server
-, timestamp
-, basedir
-, subdir_pattern
-, filename_prefix
-, filename_suffix
-FROM server_timestamps_to_process sttp
-JOIN servers s ON sttp.site = s.site AND sttp.server = s.server
-WHERE required = &apos;${ONLY_REQUIRED}&apos;
-AND s.site ${SITE_CONDITION}
-AND timestamp = &apos;${TIMESTAMP}&apos;
-ORDER BY 4,1,2,3</custom_sql>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;, basedir&#xa;, subdir_pattern&#xa;, filename_prefix&#xa;, filename_suffix&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE required &#x3d; &#x27;&#x24;&#x7b;ONLY_REQUIRED&#x7d;&#x27;&#xa;AND s.site &#x24;&#x7b;SITE_CONDITION&#x7d;&#xa;AND timestamp &#x3d; &#x27;&#x24;&#x7b;TIMESTAMP&#x7d;&#x27;&#xa;ORDER BY 4,1,2,3</custom_sql>
       <add_rows_result>Y</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
@@ -343,7 +312,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${SITE_INIT_TRANS}</filename>
+      <filename>&#x24;&#x7b;SITE_INIT_TRANS&#x7d;</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -362,6 +331,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
@@ -375,7 +345,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <type>SIMPLE_EVAL</type>
       <valuetype>variable</valuetype>
       <fieldname/>
-      <variablename>${SITE_INIT_TRANS}</variablename>
+      <variablename>&#x24;&#x7b;SITE_INIT_TRANS&#x7d;</variablename>
       <fieldtype>string</fieldtype>
       <mask/>
       <comparevalue>.ktr</comparevalue>
@@ -402,7 +372,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <yloc>300</yloc>
       </entry>
     <entry>
-      <name>Process this site?</name>
+      <name>Process this site&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics mysql</connection>
@@ -412,21 +382,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT
-  s.datacenter
-, s.site
-, s.server
-, timestamp
-, basedir
-, subdir_pattern
-, filename_prefix
-, filename_suffix
-FROM server_timestamps_to_process sttp
-JOIN servers s ON sttp.site = s.site AND sttp.server = s.server
-WHERE required = &apos;${ONLY_REQUIRED}&apos;
-AND s.site ${SITE_CONDITION}
-AND timestamp = &apos;${TIMESTAMP}&apos;
-ORDER BY 4,1,2,3</custom_sql>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;, basedir&#xa;, subdir_pattern&#xa;, filename_prefix&#xa;, filename_suffix&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE required &#x3d; &#x27;&#x24;&#x7b;ONLY_REQUIRED&#x7d;&#x27;&#xa;AND s.site &#x24;&#x7b;SITE_CONDITION&#x7d;&#xa;AND timestamp &#x3d; &#x27;&#x24;&#x7b;TIMESTAMP&#x7d;&#x27;&#xa;ORDER BY 4,1,2,3</custom_sql>
       <add_rows_result>Y</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
@@ -447,7 +403,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Try alternate directory?</from>
+      <from>Try alternate directory&#x3f;</from>
       <to>Get filenames</to>
       <from_nr>0</from_nr>
       <to_nr>1</to_nr>
@@ -475,7 +431,7 @@ ORDER BY 4,1,2,3</custom_sql>
     </hop>
     <hop>
       <from>audit_server_traffic</from>
-      <to>Try alternate directory?</to>
+      <to>Try alternate directory&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -484,7 +440,7 @@ ORDER BY 4,1,2,3</custom_sql>
     </hop>
     <hop>
       <from>START</from>
-      <to>Process this site?</to>
+      <to>Process this site&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -492,7 +448,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Process this site?</from>
+      <from>Process this site&#x3f;</from>
       <to>Test for init trans</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -519,7 +475,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Process this site?</from>
+      <from>Process this site&#x3f;</from>
       <to>Okay</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -528,7 +484,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Try alternate directory?</from>
+      <from>Try alternate directory&#x3f;</from>
       <to>Okay</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -538,7 +494,7 @@ ORDER BY 4,1,2,3</custom_sql>
     </hop>
     <hop>
       <from>Run site initialization transform</from>
-      <to>Process this site?</to>
+      <to>Process this site&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>1</to_nr>
       <enabled>Y</enabled>
@@ -546,7 +502,7 @@ ORDER BY 4,1,2,3</custom_sql>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Process this site?</from>
+      <from>Process this site&#x3f;</from>
       <to>Get filenames</to>
       <from_nr>1</from_nr>
       <to_nr>0</to_nr>
@@ -566,8 +522,7 @@ ORDER BY 4,1,2,3</custom_sql>
   </hops>
   <notepads>
     <notepad>
-      <note>Must get rows
-again if init ran</note>
+      <note>Must get rows&#xa;again if init ran</note>
       <xloc>250</xloc>
       <yloc>200</yloc>
       <width>92</width>
@@ -586,6 +541,27 @@ again if init ran</note>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
       <drawshadow>N</drawshadow>
+    </notepad>
+    <notepad>
+      <note>This is disabled - there&#x27;s no alternate&#xa;directories.</note>
+      <xloc>348</xloc>
+      <yloc>2</yloc>
+      <width>180</width>
+      <heigth>32</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
 </job>
