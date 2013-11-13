@@ -1,22 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <job>
   <name>Process all sites</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <job_version/>
     <job_status>0</job_status>
-  <directory>&#47;</directory>
+  <directory>&#x2f;</directory>
   <created_user>-</created_user>
-  <created_date>2010&#47;03&#47;16 10:11:46.620</created_date>
+  <created_date>2010&#x2f;03&#x2f;16 10&#x3a;11&#x3a;46.620</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2010&#47;03&#47;16 10:11:46.620</modified_date>
+  <modified_date>2010&#x2f;03&#x2f;16 10&#x3a;11&#x3a;46.620</modified_date>
     <parameters>
         <parameter>
             <name>ONLY_REQUIRED</name>
@@ -36,13 +29,13 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </parameters>
   <connection>
     <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
+    <server>&#x24;&#x7b;METRICS_MYSQL_HOST&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_MYSQL_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_MYSQL_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_MYSQL_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -55,9 +48,10 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
@@ -101,7 +95,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>50</xloc>
-      <yloc>50</yloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
       <name>Process AMO</name>
@@ -109,7 +103,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;process_site_logs.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;process_site_logs.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -128,19 +122,19 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>SITE_CONDITION</name>
             <stream_name/>
-            <value>IN (&apos;amo&apos;, &apos;vamo&apos;)</value>
+            <value>IN &#x28;&#x27;amo&#x27;, &#x27;vamo&#x27;&#x29;</value>
             </parameter>            <parameter>            <name>SITE_TRANSFORMATION</name>
             <stream_name/>
-            <value>${Internal.Job.Filename.Directory}&#47;..&#47;amo&#47;parse_and_load_amo.ktr</value>
+            <value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;amo&#x2f;parse_and_load_amo.ktr</value>
             </parameter>            <parameter>            <name>SITE_INIT_TRANS</name>
             <stream_name/>
-            <value>${Internal.Job.Filename.Directory}&#47;..&#47;amo&#47;update_amo_addons_dimension.ktr</value>
+            <value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;amo&#x2f;update_amo_addons_dimension.ktr</value>
             </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>50</xloc>
-      <yloc>150</yloc>
+      <xloc>156</xloc>
+      <yloc>146</yloc>
       </entry>
     <entry>
       <name>Process DMO</name>
@@ -148,7 +142,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;process_site_logs.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;process_site_logs.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -167,16 +161,16 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>SITE_CONDITION</name>
             <stream_name/>
-            <value>= &apos;dmo&apos;</value>
+            <value>&#x3d; &#x27;dmo&#x27;</value>
             </parameter>            <parameter>            <name>SITE_TRANSFORMATION</name>
             <stream_name/>
-            <value>${Internal.Job.Filename.Directory}&#47;..&#47;downloads&#47;parse_and_load_download_requests.ktr</value>
+            <value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;downloads&#x2f;parse_and_load_download_requests.ktr</value>
             </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>50</xloc>
-      <yloc>250</yloc>
+      <xloc>156</xloc>
+      <yloc>238</yloc>
       </entry>
     <entry>
       <name>Process AUS</name>
@@ -184,7 +178,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <type>JOB</type>
       <specification_method>filename</specification_method>
       <job_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;process_site_logs.kjb</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;process_site_logs.kjb</filename>
       <jobname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -203,32 +197,32 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
             <parameter>            <name>SITE_CONDITION</name>
             <stream_name/>
-            <value>= &apos;aus&apos;</value>
+            <value>&#x3d; &#x27;aus&#x27;</value>
             </parameter>            <parameter>            <name>SITE_TRANSFORMATION</name>
             <stream_name/>
-            <value>${Internal.Job.Filename.Directory}&#47;..&#47;aus&#47;parse_and_load_aus_requests.ktr</value>
+            <value>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;aus&#x2f;parse_and_load_aus_requests.ktr</value>
             </parameter>      </parameters>      <set_append_logfile>N</set_append_logfile>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>50</xloc>
-      <yloc>350</yloc>
+      <xloc>156</xloc>
+      <yloc>356</yloc>
       </entry>
     <entry>
       <name>Log timestamp</name>
       <description>Write To Log</description>
       <type>WRITE_TO_LOG</type>
-      <logmessage>Running for timestamp ${TIMESTAMP}</logmessage>
+      <logmessage>Running for timestamp &#x24;&#x7b;TIMESTAMP&#x7d;</logmessage>
       <loglevel>Error</loglevel>
       <logsubject/>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>50</yloc>
+      <xloc>156</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
-      <name>Any required left?</name>
+      <name>Any required left&#x3f;</name>
       <description>Evaluate rows number in a table</description>
       <type>EVAL_TABLE_CONTENT</type>
       <connection>metrics mysql</connection>
@@ -238,25 +232,14 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT
-  s.datacenter
-, s.site
-, s.server
-, timestamp
-FROM server_timestamps_to_process sttp
-JOIN servers s ON sttp.site = s.site AND sttp.server = s.server
-WHERE required = &apos;Y&apos;
-AND &apos;${ONLY_REQUIRED}&apos; = &apos;Y&apos;
-AND active = &apos;Y&apos;
-AND timestamp = &apos;${TIMESTAMP}&apos;
-ORDER BY 1,2,3,4</custom_sql>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE required &#x3d; &#x27;Y&#x27;&#xa;AND &#x27;&#x24;&#x7b;ONLY_REQUIRED&#x7d;&#x27; &#x3d; &#x27;Y&#x27;&#xa;AND active &#x3d; &#x27;Y&#x27;&#xa;AND timestamp &#x3d; &#x27;&#x24;&#x7b;TIMESTAMP&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
       <add_rows_result>N</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>50</yloc>
+      <xloc>529</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
       <name>audit_server_traffic</name>
@@ -264,7 +247,7 @@ ORDER BY 1,2,3,4</custom_sql>
       <type>TRANS</type>
       <specification_method>filename</specification_method>
       <trans_object_id/>
-      <filename>${Internal.Job.Filename.Directory}&#47;audit_server_traffic.ktr</filename>
+      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;audit_server_traffic.ktr</filename>
       <transname/>
       <arg_from_previous>N</arg_from_previous>
       <params_from_previous>N</params_from_previous>
@@ -283,12 +266,13 @@ ORDER BY 1,2,3,4</custom_sql>
       <wait_until_finished>Y</wait_until_finished>
       <follow_abort_remote>N</follow_abort_remote>
       <create_parent_folder>N</create_parent_folder>
+      <logging_remote_work>N</logging_remote_work>
       <parameters>        <pass_all_parameters>Y</pass_all_parameters>
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>1</nr>
-      <xloc>150</xloc>
-      <yloc>150</yloc>
+      <xloc>422</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
       <name>Email unparsable_files</name>
@@ -296,15 +280,15 @@ ORDER BY 1,2,3,4</custom_sql>
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics log ETL processor</replytoname>
-      <subject>CRITICAL WARNING: unreadable log files found during processing</subject>
+      <subject>CRITICAL WARNING&#x3a; unreadable log files found during processing</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
       <comment>Processing for the following data is deferred until this problem is resolved.</comment>
       <include_files>Y</include_files>
       <zip_files>N</zip_files>
@@ -327,8 +311,8 @@ ORDER BY 1,2,3,4</custom_sql>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>450</xloc>
-      <yloc>50</yloc>
+      <xloc>293</xloc>
+      <yloc>176</yloc>
       </entry>
     <entry>
       <name>Checks if unparsable_files</name>
@@ -337,14 +321,14 @@ ORDER BY 1,2,3,4</custom_sql>
       <filename/>
       <fields>
         <field>
-          <name>${Internal.Job.Filename.Directory}&#47;..&#47;output&#47;unparsable_filenames.txt</name>
+          <name>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;output&#x2f;unparsable_filenames.txt</name>
         </field>
       </fields>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>350</xloc>
-      <yloc>50</yloc>
+      <xloc>294</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
       <name>Mail missing logs</name>
@@ -352,21 +336,16 @@ ORDER BY 1,2,3,4</custom_sql>
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics log ETL processor</replytoname>
       <subject>Missing logs alert</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find any log files for the following servers and times.
-Please check log file synchronization processes.  The processor will pick up new files on the next run.
-
-These files must be in place before 7:45 PM PST or the nightly reports will be delayed.
-
-${AUDIT_RESULTS}</comment>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
+      <comment>The ETL processor was unable to find any log files for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;&#xa;These files must be in place before 7&#x3a;45 PM PST or the nightly reports will be delayed.&#xa;&#xa;&#x24;&#x7b;AUDIT_RESULTS&#x7d;</comment>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
@@ -388,79 +367,30 @@ ${AUDIT_RESULTS}</comment>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>450</xloc>
-      <yloc>150</yloc>
+      <xloc>884</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
-      <name>Critical window?</name>
+      <name>Critical window&#x3f;</name>
       <description>JavaScript</description>
       <type>EVAL</type>
-      <script>var logTimestampTimeZone = java.util.TimeZone.getTimeZone(&quot;GMT-8:00&quot;);
-
-var sdf = new java.text.SimpleDateFormat(&quot;yyyy-MM-dd-HH&quot;);
-sdf.setTimeZone(logTimestampTimeZone);
-
-&#47;&#47; Get the current time truncated to hour of day
-var cal = java.util.Calendar.getInstance(logTimestampTimeZone);
-var now = cal.clone();
-
-cal.set(java.util.Calendar.HOUR, 19);
-cal.set(java.util.Calendar.MINUTE, 0);
-cal.set(java.util.Calendar.SECOND, 0);
-cal.set(java.util.Calendar.MILLISECOND, 0);
-
-
-cal.compareTo(now) &lt;= 0</script>
+      <script>var logTimestampTimeZone &#x3d; java.util.TimeZone.getTimeZone&#x28;&#x22;GMT-8&#x3a;00&#x22;&#x29;&#x3b;&#xa;&#xa;var sdf &#x3d; new java.text.SimpleDateFormat&#x28;&#x22;yyyy-MM-dd-HH&#x22;&#x29;&#x3b;&#xa;sdf.setTimeZone&#x28;logTimestampTimeZone&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; Get the current time truncated to hour of day&#xa;var cal &#x3d; java.util.Calendar.getInstance&#x28;logTimestampTimeZone&#x29;&#x3b;&#xa;var now &#x3d; cal.clone&#x28;&#x29;&#x3b;&#xa;&#xa;cal.set&#x28;java.util.Calendar.HOUR, 19&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.MINUTE, 0&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.SECOND, 0&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.MILLISECOND, 0&#x29;&#x3b;&#xa;&#xa;&#xa;cal.compareTo&#x28;now&#x29; &#x3c;&#x3d; 0</script>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>350</xloc>
-      <yloc>150</yloc>
+      <xloc>714</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
-      <name>End of hour?</name>
+      <name>End of hour&#x3f;</name>
       <description>JavaScript</description>
       <type>EVAL</type>
-      <script>var logTimestampTimeZone = java.util.TimeZone.getTimeZone(&quot;GMT-8:00&quot;);
-
-var sdf = new java.text.SimpleDateFormat(&quot;yyyy-MM-dd-HH&quot;);
-sdf.setTimeZone(logTimestampTimeZone);
-
-&#47;&#47; Get the current time truncated to hour of day
-var cal = java.util.Calendar.getInstance(logTimestampTimeZone);
-var now = cal.clone();
-
-cal.set(java.util.Calendar.MINUTE, 45);
-cal.set(java.util.Calendar.SECOND, 0);
-cal.set(java.util.Calendar.MILLISECOND, 0);
-
-
-cal.compareTo(now) &lt;= 0</script>
+      <script>var logTimestampTimeZone &#x3d; java.util.TimeZone.getTimeZone&#x28;&#x22;GMT-8&#x3a;00&#x22;&#x29;&#x3b;&#xa;&#xa;var sdf &#x3d; new java.text.SimpleDateFormat&#x28;&#x22;yyyy-MM-dd-HH&#x22;&#x29;&#x3b;&#xa;sdf.setTimeZone&#x28;logTimestampTimeZone&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; Get the current time truncated to hour of day&#xa;var cal &#x3d; java.util.Calendar.getInstance&#x28;logTimestampTimeZone&#x29;&#x3b;&#xa;var now &#x3d; cal.clone&#x28;&#x29;&#x3b;&#xa;&#xa;cal.set&#x28;java.util.Calendar.MINUTE, 30&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.SECOND, 0&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.MILLISECOND, 0&#x29;&#x3b;&#xa;&#xa;&#xa;cal.compareTo&#x28;now&#x29; &#x3c;&#x3d; 0</script>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>350</xloc>
-      <yloc>250</yloc>
-      </entry>
-    <entry>
-      <name>DUMMY 1</name>
-      <description>Special entries</description>
-      <type>SPECIAL</type>
-      <start>N</start>
-      <dummy>Y</dummy>
-      <repeat>N</repeat>
-      <schedulerType>0</schedulerType>
-      <intervalSeconds>0</intervalSeconds>
-      <intervalMinutes>60</intervalMinutes>
-      <hour>12</hour>
-      <minutes>0</minutes>
-      <weekDay>1</weekDay>
-      <DayOfMonth>1</DayOfMonth>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>150</yloc>
+      <xloc>714</xloc>
+      <yloc>176</yloc>
       </entry>
     <entry>
       <name>Mail missing logs</name>
@@ -468,21 +398,16 @@ cal.compareTo(now) &lt;= 0</script>
       <type>MAIL</type>
       <server>localhost</server>
       <port>25</port>
-      <destination>metrics-alerts@mozilla.org</destination>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
       <destinationCc/>
       <destinationBCc/>
-      <replyto>metrics-alerts@mozilla.org</replyto>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics log ETL processor</replytoname>
       <subject>Missing logs alert</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>(603) 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find any log files for the following servers and times.
-Please check log file synchronization processes.  The processor will pick up new files on the next run.
-
-These files must be in place before 7:45 PM PST or the nightly reports will be delayed.
-
-${AUDIT_RESULTS}</comment>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
+      <comment>The ETL processor was unable to find any log files for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;&#xa;These files must be in place before 7&#x3a;45 PM PST or the nightly reports will be delayed.&#xa;&#xa;&#x24;&#x7b;AUDIT_RESULTS&#x7d;</comment>
       <include_files>N</include_files>
       <zip_files>N</zip_files>
       <zip_name/>
@@ -504,18 +429,28 @@ ${AUDIT_RESULTS}</comment>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>1</nr>
-      <xloc>450</xloc>
-      <yloc>250</yloc>
+      <xloc>884</xloc>
+      <yloc>176</yloc>
       </entry>
     <entry>
-      <name>Success 1</name>
+      <name>Success</name>
       <description>Success</description>
       <type>SUCCESS</type>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>200</xloc>
-      <yloc>250</yloc>
+      <xloc>529</xloc>
+      <yloc>176</yloc>
+      </entry>
+    <entry>
+      <name>Success</name>
+      <description>Success</description>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>1</nr>
+      <xloc>714</xloc>
+      <yloc>335</yloc>
       </entry>
   </entries>
   <hops>
@@ -556,49 +491,13 @@ ${AUDIT_RESULTS}</comment>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Process AUS</from>
-      <to>audit_server_traffic</to>
-      <from_nr>0</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>audit_server_traffic</from>
-      <to>Any required left?</to>
+      <to>Any required left&#x3f;</to>
       <from_nr>1</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Any required left?</from>
-      <to>DUMMY 1</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>DUMMY 1</from>
-      <to>Checks if unparsable_files</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>DUMMY 1</from>
-      <to>Critical window?</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>Checks if unparsable_files</from>
@@ -610,7 +509,7 @@ ${AUDIT_RESULTS}</comment>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Critical window?</from>
+      <from>Critical window&#x3f;</from>
       <to>Mail missing logs</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
@@ -619,8 +518,8 @@ ${AUDIT_RESULTS}</comment>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Critical window?</from>
-      <to>End of hour?</to>
+      <from>Critical window&#x3f;</from>
+      <to>End of hour&#x3f;</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -628,7 +527,7 @@ ${AUDIT_RESULTS}</comment>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>End of hour?</from>
+      <from>End of hour&#x3f;</from>
       <to>Mail missing logs</to>
       <from_nr>0</from_nr>
       <to_nr>1</to_nr>
@@ -637,8 +536,8 @@ ${AUDIT_RESULTS}</comment>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>End of hour?</from>
-      <to>Success 1</to>
+      <from>Any required left&#x3f;</from>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -646,23 +545,79 @@ ${AUDIT_RESULTS}</comment>
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Any required left?</from>
-      <to>Success 1</to>
+      <from>End of hour&#x3f;</from>
+      <to>Success</to>
+      <from_nr>0</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Process AUS</from>
+      <to>Checks if unparsable_files</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Checks if unparsable_files</from>
+      <to>audit_server_traffic</to>
+      <from_nr>0</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
       <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Email unparsable_files</from>
+      <to>audit_server_traffic</to>
+      <from_nr>0</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Any required left&#x3f;</from>
+      <to>Critical window&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
     <notepad>
-      <note>E-mail if at end of day
-or once per hour</note>
-      <xloc>400</xloc>
-      <yloc>200</yloc>
+      <note>Only email once per hour&#x3a;&#xa;End of hour&#x3a;&#xa;Minutes&#x28;now&#x29; &#x3e;&#x3d; 30 &#x3f;</note>
+      <xloc>596</xloc>
+      <yloc>143</yloc>
       <width>129</width>
-      <heigth>36</heigth>
+      <heigth>43</heigth>
+      <fontname>Arial</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>N</drawshadow>
+    </notepad>
+    <notepad>
+      <note>critical window&#xa;now&#x28;&#x29; &#x3e;&#x3d; 19&#x3a;00 GMT-8&#x3a;00</note>
+      <xloc>594</xloc>
+      <yloc>0</yloc>
+      <width>129</width>
+      <heigth>32</heigth>
       <fontname/>
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
@@ -676,7 +631,7 @@ or once per hour</note>
       <bordercolorred>100</bordercolorred>
       <bordercolorgreen>100</bordercolorgreen>
       <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
+      <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
 </job>
