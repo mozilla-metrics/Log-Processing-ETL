@@ -133,8 +133,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>156</xloc>
-      <yloc>146</yloc>
+      <xloc>312</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
       <name>Process DMO</name>
@@ -169,8 +169,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>156</xloc>
-      <yloc>238</yloc>
+      <xloc>443</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
       <name>Process AUS</name>
@@ -205,8 +205,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>156</xloc>
-      <yloc>356</yloc>
+      <xloc>574</xloc>
+      <yloc>49</yloc>
       </entry>
     <entry>
       <name>Log timestamp</name>
@@ -218,219 +218,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>156</xloc>
+      <xloc>181</xloc>
       <yloc>49</yloc>
-      </entry>
-    <entry>
-      <name>Any required left&#x3f;</name>
-      <description>Evaluate rows number in a table</description>
-      <type>EVAL_TABLE_CONTENT</type>
-      <connection>metrics mysql</connection>
-      <schemaname/>
-      <tablename/>
-      <success_condition>rows_count_greater</success_condition>
-      <limit>0</limit>
-      <is_custom_sql>Y</is_custom_sql>
-      <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE required &#x3d; &#x27;Y&#x27;&#xa;AND &#x27;&#x24;&#x7b;ONLY_REQUIRED&#x7d;&#x27; &#x3d; &#x27;Y&#x27;&#xa;AND active &#x3d; &#x27;Y&#x27;&#xa;AND timestamp &#x3d; &#x27;&#x24;&#x7b;TIMESTAMP&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
-      <add_rows_result>N</add_rows_result>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>529</xloc>
-      <yloc>49</yloc>
-      </entry>
-    <entry>
-      <name>audit_server_traffic</name>
-      <description>Transformation</description>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;audit_server_traffic.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Nothing</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>1</nr>
-      <xloc>422</xloc>
-      <yloc>49</yloc>
-      </entry>
-    <entry>
-      <name>Email unparsable_files</name>
-      <description>Mail</description>
-      <type>MAIL</type>
-      <server>localhost</server>
-      <port>25</port>
-      <destination>metrics-alerts&#x40;mozilla.org</destination>
-      <destinationCc/>
-      <destinationBCc/>
-      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
-      <replytoname>Metrics log ETL processor</replytoname>
-      <subject>CRITICAL WARNING&#x3a; unreadable log files found during processing</subject>
-      <include_date>N</include_date>
-      <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
-      <comment>Processing for the following data is deferred until this problem is resolved.</comment>
-      <include_files>Y</include_files>
-      <zip_files>N</zip_files>
-      <zip_name/>
-      <use_auth>N</use_auth>
-      <use_secure_auth>N</use_secure_auth>
-      <auth_user/>
-      <auth_password>Encrypted </auth_password>
-      <only_comment>Y</only_comment>
-      <use_HTML>N</use_HTML>
-      <use_Priority>Y</use_Priority>
-      <encoding>UTF-8</encoding>
-      <priority>high</priority>
-      <importance>high</importance>
-      <secureconnectiontype>SSL</secureconnectiontype>
-      <replyToAddresses/>
-      <filetypes>        <filetype>ERROR</filetype>
-      </filetypes>      <embeddedimages>
-      </embeddedimages>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>293</xloc>
-      <yloc>176</yloc>
-      </entry>
-    <entry>
-      <name>Checks if unparsable_files</name>
-      <description>Checks if files exist</description>
-      <type>FILES_EXIST</type>
-      <filename/>
-      <fields>
-        <field>
-          <name>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;..&#x2f;output&#x2f;unparsable_filenames.txt</name>
-        </field>
-      </fields>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>294</xloc>
-      <yloc>49</yloc>
-      </entry>
-    <entry>
-      <name>Mail missing logs</name>
-      <description>Mail</description>
-      <type>MAIL</type>
-      <server>localhost</server>
-      <port>25</port>
-      <destination>metrics-alerts&#x40;mozilla.org</destination>
-      <destinationCc/>
-      <destinationBCc/>
-      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
-      <replytoname>Metrics log ETL processor</replytoname>
-      <subject>Missing logs alert</subject>
-      <include_date>N</include_date>
-      <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find any log files for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;&#xa;These files must be in place before 7&#x3a;45 PM PST or the nightly reports will be delayed.&#xa;&#xa;&#x24;&#x7b;AUDIT_RESULTS&#x7d;</comment>
-      <include_files>N</include_files>
-      <zip_files>N</zip_files>
-      <zip_name/>
-      <use_auth>N</use_auth>
-      <use_secure_auth>N</use_secure_auth>
-      <auth_user/>
-      <auth_password>Encrypted </auth_password>
-      <only_comment>Y</only_comment>
-      <use_HTML>N</use_HTML>
-      <use_Priority>Y</use_Priority>
-      <encoding>UTF-8</encoding>
-      <priority>high</priority>
-      <importance>high</importance>
-      <secureconnectiontype>SSL</secureconnectiontype>
-      <replyToAddresses/>
-      <filetypes>        <filetype>WARNING</filetype>
-      </filetypes>      <embeddedimages>
-      </embeddedimages>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>884</xloc>
-      <yloc>49</yloc>
-      </entry>
-    <entry>
-      <name>Critical window&#x3f;</name>
-      <description>JavaScript</description>
-      <type>EVAL</type>
-      <script>var logTimestampTimeZone &#x3d; java.util.TimeZone.getTimeZone&#x28;&#x22;GMT-8&#x3a;00&#x22;&#x29;&#x3b;&#xa;&#xa;var sdf &#x3d; new java.text.SimpleDateFormat&#x28;&#x22;yyyy-MM-dd-HH&#x22;&#x29;&#x3b;&#xa;sdf.setTimeZone&#x28;logTimestampTimeZone&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; Get the current time truncated to hour of day&#xa;var cal &#x3d; java.util.Calendar.getInstance&#x28;logTimestampTimeZone&#x29;&#x3b;&#xa;var now &#x3d; cal.clone&#x28;&#x29;&#x3b;&#xa;&#xa;cal.set&#x28;java.util.Calendar.HOUR, 19&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.MINUTE, 0&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.SECOND, 0&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.MILLISECOND, 0&#x29;&#x3b;&#xa;&#xa;&#xa;cal.compareTo&#x28;now&#x29; &#x3c;&#x3d; 0</script>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>714</xloc>
-      <yloc>49</yloc>
-      </entry>
-    <entry>
-      <name>End of hour&#x3f;</name>
-      <description>JavaScript</description>
-      <type>EVAL</type>
-      <script>var logTimestampTimeZone &#x3d; java.util.TimeZone.getTimeZone&#x28;&#x22;GMT-8&#x3a;00&#x22;&#x29;&#x3b;&#xa;&#xa;var sdf &#x3d; new java.text.SimpleDateFormat&#x28;&#x22;yyyy-MM-dd-HH&#x22;&#x29;&#x3b;&#xa;sdf.setTimeZone&#x28;logTimestampTimeZone&#x29;&#x3b;&#xa;&#xa;&#x2f;&#x2f; Get the current time truncated to hour of day&#xa;var cal &#x3d; java.util.Calendar.getInstance&#x28;logTimestampTimeZone&#x29;&#x3b;&#xa;var now &#x3d; cal.clone&#x28;&#x29;&#x3b;&#xa;&#xa;cal.set&#x28;java.util.Calendar.MINUTE, 30&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.SECOND, 0&#x29;&#x3b;&#xa;cal.set&#x28;java.util.Calendar.MILLISECOND, 0&#x29;&#x3b;&#xa;&#xa;&#xa;cal.compareTo&#x28;now&#x29; &#x3c;&#x3d; 0</script>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>714</xloc>
-      <yloc>176</yloc>
-      </entry>
-    <entry>
-      <name>Mail missing logs</name>
-      <description>Mail</description>
-      <type>MAIL</type>
-      <server>localhost</server>
-      <port>25</port>
-      <destination>metrics-alerts&#x40;mozilla.org</destination>
-      <destinationCc/>
-      <destinationBCc/>
-      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
-      <replytoname>Metrics log ETL processor</replytoname>
-      <subject>Missing logs alert</subject>
-      <include_date>N</include_date>
-      <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find any log files for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;&#xa;These files must be in place before 7&#x3a;45 PM PST or the nightly reports will be delayed.&#xa;&#xa;&#x24;&#x7b;AUDIT_RESULTS&#x7d;</comment>
-      <include_files>N</include_files>
-      <zip_files>N</zip_files>
-      <zip_name/>
-      <use_auth>N</use_auth>
-      <use_secure_auth>N</use_secure_auth>
-      <auth_user/>
-      <auth_password>Encrypted </auth_password>
-      <only_comment>Y</only_comment>
-      <use_HTML>N</use_HTML>
-      <use_Priority>Y</use_Priority>
-      <encoding>UTF-8</encoding>
-      <priority>high</priority>
-      <importance>high</importance>
-      <secureconnectiontype>SSL</secureconnectiontype>
-      <replyToAddresses/>
-      <filetypes>        <filetype>WARNING</filetype>
-      </filetypes>      <embeddedimages>
-      </embeddedimages>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>1</nr>
-      <xloc>884</xloc>
-      <yloc>176</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -439,18 +228,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>529</xloc>
-      <yloc>176</yloc>
-      </entry>
-    <entry>
-      <name>Success</name>
-      <description>Success</description>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>1</nr>
-      <xloc>714</xloc>
-      <yloc>335</yloc>
+      <xloc>705</xloc>
+      <yloc>49</yloc>
       </entry>
   </entries>
   <hops>
@@ -491,98 +270,8 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>audit_server_traffic</from>
-      <to>Any required left&#x3f;</to>
-      <from_nr>1</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Checks if unparsable_files</from>
-      <to>Email unparsable_files</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Critical window&#x3f;</from>
-      <to>Mail missing logs</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Critical window&#x3f;</from>
-      <to>End of hour&#x3f;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>End of hour&#x3f;</from>
-      <to>Mail missing logs</to>
-      <from_nr>0</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Any required left&#x3f;</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>End of hour&#x3f;</from>
-      <to>Success</to>
-      <from_nr>0</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Process AUS</from>
-      <to>Checks if unparsable_files</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Checks if unparsable_files</from>
-      <to>audit_server_traffic</to>
-      <from_nr>0</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Email unparsable_files</from>
-      <to>audit_server_traffic</to>
-      <from_nr>0</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Any required left&#x3f;</from>
-      <to>Critical window&#x3f;</to>
+      <to>Success</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -591,47 +280,5 @@
     </hop>
   </hops>
   <notepads>
-    <notepad>
-      <note>Only email once per hour&#x3a;&#xa;End of hour&#x3a;&#xa;Minutes&#x28;now&#x29; &#x3e;&#x3d; 30 &#x3f;</note>
-      <xloc>596</xloc>
-      <yloc>143</yloc>
-      <width>129</width>
-      <heigth>43</heigth>
-      <fontname>Arial</fontname>
-      <fontsize>10</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>165</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>N</drawshadow>
-    </notepad>
-    <notepad>
-      <note>critical window&#xa;now&#x28;&#x29; &#x3e;&#x3d; 19&#x3a;00 GMT-8&#x3a;00</note>
-      <xloc>594</xloc>
-      <yloc>0</yloc>
-      <width>129</width>
-      <heigth>32</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
-      <fontbold>N</fontbold>
-      <fontitalic>N</fontitalic>
-      <fontcolorred>0</fontcolorred>
-      <fontcolorgreen>0</fontcolorgreen>
-      <fontcolorblue>0</fontcolorblue>
-      <backgroundcolorred>255</backgroundcolorred>
-      <backgroundcolorgreen>165</backgroundcolorgreen>
-      <backgroundcolorblue>0</backgroundcolorblue>
-      <bordercolorred>100</bordercolorred>
-      <bordercolorgreen>100</bordercolorgreen>
-      <bordercolorblue>100</bordercolorblue>
-      <drawshadow>Y</drawshadow>
-    </notepad>
   </notepads>
 </job>
