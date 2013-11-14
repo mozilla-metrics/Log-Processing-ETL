@@ -176,11 +176,11 @@
            <schema_name/>
            </partitioning>
     <connection>metrics mysql</connection>
-    <sql>SELECT DISTINCT&#xa;   s.datacenter&#xa; , s.site&#xa; , s.server&#xa; , sttp.timestamp&#xa; , s.log_timestamp_timezone&#xa; , concat&#x28;s.basedir,&#x27;&#x2f;&#x27;,filename_prefix,&#x27;&#x3f;&#x3f;&#x3f;&#x3f;-&#x3f;&#x3f;-&#x3f;&#x3f;-&#x3f;&#x3f;&#x27;,filename_suffix&#x29; as filename_regex&#xa; FROM server_timestamps_to_process sttp&#xa; JOIN servers s ON &#x28;sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#x29;&#xa;-- WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa; WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;2013-11-12-15&#x27;&#xa; ORDER BY 1,2,3,4</sql>
+    <sql>SELECT DISTINCT&#xa;   s.datacenter&#xa; , s.site&#xa; , s.server&#xa; , sttp.timestamp&#xa; , s.log_timestamp_timezone&#xa; , concat&#x28;s.basedir,&#x27;&#x2f;&#x27;,filename_prefix,&#x27;&#x3f;&#x3f;&#x3f;&#x3f;-&#x3f;&#x3f;-&#x3f;&#x3f;-&#x3f;&#x3f;&#x27;,filename_suffix&#x29; as filename_regex&#xa; FROM server_timestamps_to_process sttp&#xa; JOIN servers s ON &#x28;sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#x29;&#xa; WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;-- WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;2013-11-13-15&#x27;&#xa; ORDER BY 1,2,3,4</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
-    <variables_active>N</variables_active>
+    <variables_active>Y</variables_active>
     <lazy_conversion_active>N</lazy_conversion_active>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
