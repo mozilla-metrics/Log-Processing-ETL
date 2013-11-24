@@ -18,7 +18,7 @@
     <log>
 <trans-log-table><connection/>
 <schema/>
-<table>log_trans</table>
+<table></table>
 <size_limit_lines>5000</size_limit_lines>
 <interval/>
 <timeout_days/>

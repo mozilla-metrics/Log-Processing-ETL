@@ -24,8 +24,8 @@ You can obtain one at http://mozilla.org/MPL/2.0/.
       <update/>
       <rejected>Data Validator</rejected>
       <connection/>
-      <table>log_trans</table>
-      <step_performance_table>log_trans_perf</step_performance_table>
+      <table></table>
+      <step_performance_table></step_performance_table>
       <use_batchid>Y</use_batchid>
       <use_logfield>N</use_logfield>
       <size_limit_lines/>

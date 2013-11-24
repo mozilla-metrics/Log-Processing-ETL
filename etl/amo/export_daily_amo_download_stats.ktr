@@ -25,7 +25,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <log>
 <trans-log-table><connection>metrics mysql</connection>
 <schema/>
-<table>log_trans</table>
+<table></table>
 <size_limit_lines/>
 <interval/>
 <timeout_days/>
