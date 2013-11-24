@@ -56,6 +56,7 @@
       <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
@@ -99,7 +100,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>50</xloc>
-      <yloc>50</yloc>
+      <yloc>45</yloc>
       </entry>
     <entry>
       <name>Get filenames</name>
@@ -131,8 +132,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>250</xloc>
-      <yloc>50</yloc>
+      <xloc>434</xloc>
+      <yloc>45</yloc>
       </entry>
     <entry>
       <name>Process site</name>
@@ -164,8 +165,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>350</xloc>
-      <yloc>150</yloc>
+      <xloc>434</xloc>
+      <yloc>140</yloc>
       </entry>
     <entry>
       <name>Try alternate directory&#x3f;</name>
@@ -184,8 +185,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>450</xloc>
-      <yloc>150</yloc>
+      <xloc>716</xloc>
+      <yloc>45</yloc>
       </entry>
     <entry>
       <name>Get filenames</name>
@@ -217,8 +218,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>1</nr>
-      <xloc>450</xloc>
-      <yloc>50</yloc>
+      <xloc>827</xloc>
+      <yloc>45</yloc>
       </entry>
     <entry>
       <name>Process site</name>
@@ -250,8 +251,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>1</nr>
-      <xloc>550</xloc>
-      <yloc>150</yloc>
+      <xloc>829</xloc>
+      <yloc>142</yloc>
       </entry>
     <entry>
       <name>audit_server_traffic</name>
@@ -283,8 +284,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>350</xloc>
-      <yloc>50</yloc>
+      <xloc>605</xloc>
+      <yloc>45</yloc>
       </entry>
     <entry>
       <name>Process this site&#x3f;</name>
@@ -303,8 +304,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>50</xloc>
-      <yloc>150</yloc>
+      <xloc>226</xloc>
+      <yloc>45</yloc>
       </entry>
     <entry>
       <name>Run site initialization transform</name>
@@ -336,8 +337,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>150</yloc>
+      <xloc>326</xloc>
+      <yloc>140</yloc>
       </entry>
     <entry>
       <name>Test for init trans</name>
@@ -358,18 +359,18 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>150</xloc>
-      <yloc>50</yloc>
+      <xloc>326</xloc>
+      <yloc>45</yloc>
       </entry>
     <entry>
-      <name>Okay</name>
+      <name>processing not required</name>
       <description>Success</description>
       <type>SUCCESS</type>
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>350</xloc>
-      <yloc>300</yloc>
+      <xloc>226</xloc>
+      <yloc>329</yloc>
       </entry>
     <entry>
       <name>Process this site&#x3f;</name>
@@ -388,8 +389,31 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>1</nr>
-      <xloc>250</xloc>
-      <yloc>150</yloc>
+      <xloc>327</xloc>
+      <yloc>286</yloc>
+      </entry>
+    <entry>
+      <name>Log site</name>
+      <description>Write To Log</description>
+      <type>WRITE_TO_LOG</type>
+      <logmessage>Running for site &#x24;&#x7b;SITE_CONDITION&#x7d;</logmessage>
+      <loglevel>Basic</loglevel>
+      <logsubject/>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>136</xloc>
+      <yloc>45</yloc>
+      </entry>
+    <entry>
+      <name>Okay</name>
+      <description>Success</description>
+      <type>SUCCESS</type>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>434</xloc>
+      <yloc>327</yloc>
       </entry>
   </entries>
   <hops>
@@ -421,15 +445,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Process site</from>
-      <to>audit_server_traffic</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>N</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>audit_server_traffic</from>
       <to>Try alternate directory&#x3f;</to>
       <from_nr>0</from_nr>
@@ -437,15 +452,6 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>START</from>
-      <to>Process this site&#x3f;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>Process this site&#x3f;</from>
@@ -476,16 +482,7 @@
     </hop>
     <hop>
       <from>Process this site&#x3f;</from>
-      <to>Okay</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Try alternate directory&#x3f;</from>
-      <to>Okay</to>
+      <to>processing not required</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -511,9 +508,36 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
+      <from>START</from>
+      <to>Log site</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Log site</from>
+      <to>Process this site&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Process this site&#x3f;</from>
+      <to>processing not required</to>
+      <from_nr>1</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
       <from>Process site</from>
       <to>Okay</to>
-      <from_nr>1</from_nr>
+      <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
@@ -523,8 +547,8 @@
   <notepads>
     <notepad>
       <note>Must get rows&#xa;again if init ran</note>
-      <xloc>250</xloc>
-      <yloc>200</yloc>
+      <xloc>274</xloc>
+      <yloc>220</yloc>
       <width>92</width>
       <heigth>36</heigth>
       <fontname/>
@@ -543,13 +567,13 @@
       <drawshadow>N</drawshadow>
     </notepad>
     <notepad>
-      <note>This is disabled - there&#x27;s no alternate&#xa;directories.</note>
-      <xloc>348</xloc>
-      <yloc>2</yloc>
-      <width>180</width>
+      <note>This is disabled - there are no alternate&#xa;directories.</note>
+      <xloc>605</xloc>
+      <yloc>0</yloc>
+      <width>191</width>
       <heigth>32</heigth>
-      <fontname/>
-      <fontsize>-1</fontsize>
+      <fontname>Arial</fontname>
+      <fontsize>10</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
