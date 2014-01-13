@@ -373,8 +373,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1620</xloc>
-      <yloc>163</yloc>
+      <xloc>1618</xloc>
+      <yloc>275</yloc>
       </entry>
     <entry>
       <name>Success</name>
@@ -478,6 +478,26 @@
       <nr>0</nr>
       <xloc>1742</xloc>
       <yloc>163</yloc>
+      </entry>
+    <entry>
+      <name>DUMMY</name>
+      <description/>
+      <type>SPECIAL</type>
+      <start>N</start>
+      <dummy>Y</dummy>
+      <repeat>N</repeat>
+      <schedulerType>0</schedulerType>
+      <intervalSeconds>0</intervalSeconds>
+      <intervalMinutes>60</intervalMinutes>
+      <hour>12</hour>
+      <minutes>0</minutes>
+      <weekDay>1</weekDay>
+      <DayOfMonth>1</DayOfMonth>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>1619</xloc>
+      <yloc>140</yloc>
       </entry>
   </entries>
   <hops>
@@ -599,15 +619,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Critical window&#x3f;</from>
-      <to>End of hour&#x3f;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Any required left&#x3f;</from>
       <to>Success</to>
       <from_nr>0</from_nr>
@@ -619,15 +630,6 @@
     <hop>
       <from>Checks if unparsable_files</from>
       <to>Email unparsable_files</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>End of hour&#x3f;</from>
-      <to>Mail missing logs</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -649,8 +651,26 @@
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Critical window&#x3f;</from>
+      <to>DUMMY</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
       <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY</from>
+      <to>Mail missing logs</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
     </hop>
   </hops>
   <notepads>
@@ -677,8 +697,8 @@
     </notepad>
     <notepad>
       <note>Only email once per hour&#x3a;&#xa;End of hour&#x3a;&#xa;Minutes&#x28;now&#x29; &#x3e;&#x3d; 30 &#x3f;</note>
-      <xloc>1506</xloc>
-      <yloc>133</yloc>
+      <xloc>1509</xloc>
+      <yloc>233</yloc>
       <width>129</width>
       <heigth>43</heigth>
       <fontname/>

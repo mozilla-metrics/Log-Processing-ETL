@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>parse_amo_versioncheck_requests</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>&#x2f;</directory>
     <parameters>
     </parameters>
     <log>
@@ -27,7 +20,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject>Mapping input specification</subject></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>Mapping output specification</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject>Lookup product_id</subject></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject>Data Validator</subject></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></trans-log-table>
 <perf-log-table><connection/>
 <schema/>
-<table></table>
+<table/>
 <interval/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
@@ -109,21 +102,21 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         </clusterschema>
     </clusterschemas>
   <created_user/>
-  <created_date>2012&#47;03&#47;26 15:45:01.480</created_date>
+  <created_date>2012&#x2f;03&#x2f;26 15&#x3a;45&#x3a;01.480</created_date>
   <modified_user>deinspanjer</modified_user>
-  <modified_date>2008&#47;08&#47;01 16:47:44.000</modified_date>
+  <modified_date>2008&#x2f;08&#x2f;01 16&#x3a;47&#x3a;44.000</modified_date>
   </info>
   <notepads>
   </notepads>
   <connection>
     <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
+    <server>&#x24;&#x7b;METRICS_MYSQL_HOST&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_MYSQL_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_MYSQL_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_MYSQL_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -136,7 +129,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
@@ -144,7 +137,32 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </attributes>
   </connection>
   <order>
-  <hop> <from>Mapping input specification</from><to>Filter malformed requests</to><enabled>Y</enabled> </hop>  <hop> <from>Filter malformed requests</from><to>Split URL params</to><enabled>Y</enabled> </hop>  <hop> <from>Filter malformed requests</from><to>Fix malformed requests</to><enabled>Y</enabled> </hop>  <hop> <from>Fix malformed requests</from><to>Split URL params</to><enabled>Y</enabled> </hop>  <hop> <from>Filter escaped addon_guid</from><to>Unescape addon_guid</to><enabled>Y</enabled> </hop>  <hop> <from>Split URL params</from><to>Filter escaped addon_guid</to><enabled>Y</enabled> </hop>  <hop> <from>Filter escaped addon_version</from><to>Unescape addon_version</to><enabled>Y</enabled> </hop>  <hop> <from>Unescape addon_guid</from><to>Filter escaped addon_version</to><enabled>Y</enabled> </hop>  <hop> <from>Filter escaped addon_guid</from><to>Filter escaped addon_version</to><enabled>Y</enabled> </hop>  <hop> <from>Filter escaped addon_version</from><to>Strip product_guid braces</to><enabled>Y</enabled> </hop>  <hop> <from>Unescape addon_version</from><to>Strip product_guid braces</to><enabled>Y</enabled> </hop>  <hop> <from>Capture application_version</from><to>Lookup product_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lowercase addon</from><to>Capture application_version</to><enabled>Y</enabled> </hop>  <hop> <from>NVL addon_name</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>  <hop> <from>Strip product_guid braces</from><to>Fixup product_locale</to><enabled>Y</enabled> </hop>  <hop> <from>Fixup product_locale</from><to>Data Validator</to><enabled>Y</enabled> </hop>  <hop> <from>Reservoir Sampling</from><to>Write to log</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Reservoir Sampling</to><enabled>Y</enabled> </hop>  <hop> <from>Data Validator</from><to>Filter rows</to><enabled>Y</enabled> </hop>  <hop> <from>Filter rows</from><to>Lowercase addon</to><enabled>Y</enabled> </hop>  <hop> <from>Get addon lookup info</from><to>Unique rows</to><enabled>Y</enabled> </hop>  <hop> <from>Unique rows</from><to>Lookup addon</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup product_id</from><to>Lookup addon</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup addon</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Mapping input specification</from><to>Filter malformed requests</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter malformed requests</from><to>Fix malformed requests</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter escaped addon_guid</from><to>Unescape addon_guid</to><enabled>Y</enabled> </hop>
+  <hop> <from>Split URL params</from><to>Filter escaped addon_guid</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter escaped addon_version</from><to>Unescape addon_version</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unescape addon_guid</from><to>Filter escaped addon_version</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter escaped addon_guid</from><to>Filter escaped addon_version</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter escaped addon_version</from><to>Strip product_guid braces</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unescape addon_version</from><to>Strip product_guid braces</to><enabled>Y</enabled> </hop>
+  <hop> <from>Capture application_version</from><to>Lookup product_id</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lowercase addon</from><to>Capture application_version</to><enabled>Y</enabled> </hop>
+  <hop> <from>NVL addon_name</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>
+  <hop> <from>Strip product_guid braces</from><to>Fixup product_locale</to><enabled>Y</enabled> </hop>
+  <hop> <from>Fixup product_locale</from><to>Data Validator</to><enabled>Y</enabled> </hop>
+  <hop> <from>Reservoir Sampling</from><to>Write to log</to><enabled>Y</enabled> </hop>
+  <hop> <from>Data Validator</from><to>Reservoir Sampling</to><enabled>Y</enabled> </hop>
+  <hop> <from>Data Validator</from><to>Filter rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter rows</from><to>Lowercase addon</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get addon lookup info</from><to>Unique rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Unique rows</from><to>Lookup addon</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup product_id</from><to>Lookup addon</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup addon</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter malformed requests</from><to>fixed requests</to><enabled>Y</enabled> </hop>
+  <hop> <from>fixed requests</from><to>Split URL params</to><enabled>Y</enabled> </hop>
+  <hop> <from>Fix malformed requests</from><to>fixed requests</to><enabled>Y</enabled> </hop>
+  </order>
   <step>
     <name>Capture application_version</name>
     <type>RegexEval</type>
@@ -324,7 +342,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
+<regular_expression_not_allowed>.&#x2a;&#x5c;&#x5c;.&#x2a;</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -350,7 +368,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
+<regular_expression_not_allowed>.&#x2a;&#x5c;&#x5c;.&#x2a;</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -376,7 +394,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
+<regular_expression_not_allowed>.&#x2a;&#x5c;&#x5c;.&#x2a;</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -402,7 +420,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
+<regular_expression_not_allowed>.&#x2a;&#x5c;&#x5c;.&#x2a;</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -428,7 +446,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
+<regular_expression_not_allowed>.&#x2a;&#x5c;&#x5c;.&#x2a;</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -454,7 +472,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
+<regular_expression_not_allowed>.&#x2a;&#x5c;&#x5c;.&#x2a;</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -480,7 +498,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <start_string_not_allowed/>
 <end_string_not_allowed/>
 <regular_expression/>
-<regular_expression_not_allowed>.*\\.*</regular_expression_not_allowed>
+<regular_expression_not_allowed>.&#x2a;&#x5c;&#x5c;.&#x2a;</regular_expression_not_allowed>
 <error_code/>
 <error_description/>
 <is_sourcing_values>N</is_sourcing_values>
@@ -543,7 +561,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
    <leftvalue>addon_guid_raw</leftvalue>
    <function>REGEXP</function>
    <rightvalue/>
-   <value><name>constant</name><type>String</type><text>(?:[^%]*+(?&gt;%[0-9a-fA-F]{2})?)++</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+   <value><name>constant</name><type>String</type><text>&#x28;&#x3f;&#x3a;&#x5b;&#x5e;&#x25;&#x5d;&#x2a;&#x2b;&#x28;&#x3f;&#x3e;&#x25;&#x5b;0-9a-fA-F&#x5d;&#x7b;2&#x7d;&#x29;&#x3f;&#x29;&#x2b;&#x2b;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   </conditions>
  </condition>
     </compare>
@@ -577,7 +595,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
    <leftvalue>addon_version_raw</leftvalue>
    <function>REGEXP</function>
    <rightvalue/>
-   <value><name>constant</name><type>String</type><text>(?:[^%]*+(?&gt;%[0-9a-fA-F]{2})?)++</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+   <value><name>constant</name><type>String</type><text>&#x28;&#x3f;&#x3a;&#x5b;&#x5e;&#x25;&#x5d;&#x2a;&#x2b;&#x28;&#x3f;&#x3e;&#x25;&#x5b;0-9a-fA-F&#x5d;&#x7b;2&#x7d;&#x29;&#x3f;&#x29;&#x2b;&#x2b;</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   </conditions>
  </condition>
     </compare>
@@ -599,7 +617,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Split URL params</send_true_to>
+<send_true_to>fixed requests</send_true_to>
 <send_false_to>Fix malformed requests</send_false_to>
     <compare>
 <condition>
@@ -610,21 +628,21 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
    <leftvalue>url</leftvalue>
    <function>CONTAINS</function>
    <rightvalue/>
-   <value><name>constant</name><type>String</type><text>&amp;appID</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+   <value><name>constant</name><type>String</type><text>&#x26;appID</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   <condition>
    <negated>N</negated>
    <operator>AND</operator>
    <leftvalue>url</leftvalue>
    <function>CONTAINS</function>
    <rightvalue/>
-   <value><name>constant</name><type>String</type><text>&amp;appVersion</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
+   <value><name>constant</name><type>String</type><text>&#x26;appVersion</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value>   </condition>
   </conditions>
  </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
-      <yloc>150</yloc>
+      <yloc>260</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -647,7 +665,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
  <leftvalue>update_type</leftvalue>
  <function>IN LIST</function>
  <rightvalue/>
- <value><name>constant</name><type>String</type><text>0;112</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+ <value><name>constant</name><type>String</type><text>0&#x3b;112</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -668,7 +686,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <schema_name/>
            </partitioning>
        <formula><field_name>x</field_name>
-<formula_string>url.replaceAll(&quot;([^&amp;])(appID|appVersion)&quot;, &quot;$1&amp;$2&quot;)</formula_string>
+<formula_string>url.replaceAll&#x28;&#x22;&#x28;&#x5b;&#x5e;&#x26;&#x5d;&#x29;&#x28;appID&#x7c;appVersion&#x29;&#x22;, &#x22;&#x24;1&#x26;&#x24;2&#x22;&#x29;</formula_string>
 <value_type>String</value_type>
 <value_length>1024</value_length>
 <value_precision>-1</value_precision>
@@ -676,8 +694,8 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 </formula>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>150</xloc>
-      <yloc>150</yloc>
+      <xloc>227</xloc>
+      <yloc>260</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -743,14 +761,7 @@ $]]></script>    <matcher>product_locale_raw</matcher>
            <schema_name/>
            </partitioning>
     <connection>metrics mysql</connection>
-    <sql>SELECT DISTINCT
-  LOWER(guid) AS guid
-, addon_id
-, english_name
-FROM amo_hosted_addons
-WHERE guid IS NOT NULL
-AND is_deleted IS NULL
-ORDER BY 1, 3 DESC, 2</sql>
+    <sql>SELECT DISTINCT&#xa;  LOWER&#x28;guid&#x29; AS guid&#xa;, addon_id&#xa;, english_name&#xa;FROM amo_hosted_addons&#xa;WHERE guid IS NOT NULL&#xa;AND is_deleted IS NULL&#xa;ORDER BY 1, 3 DESC, 2</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -818,7 +829,7 @@ ORDER BY 1, 3 DESC, 2</sql>
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;process_product_dimension.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;process_product_dimension.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -1031,15 +1042,15 @@ ORDER BY 1, 3 DESC, 2</sql>
     <type>FieldSplitter</type>
     <description/>
     <distribute>Y</distribute>
-    <copies>1</copies>
+    <copies>4</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
            </partitioning>
    <splitfield>url_params</splitfield>
-   <delimiter>&amp;</delimiter>
+   <delimiter>&#x26;</delimiter>
     <fields>      <field>        <name>addon_guid_raw</name>
-        <id>id=</id>
+        <id>id&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1047,11 +1058,11 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>255</length>
         <precision>-1</precision>
-        <nullif>%ITEM_ID%</nullif>
+        <nullif>&#x25;ITEM_ID&#x25;</nullif>
         <ifnull>Invalid</ifnull>
         <trimtype>none</trimtype>
       </field>      <field>        <name>addon_version_raw</name>
-        <id>version=</id>
+        <id>version&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1059,11 +1070,11 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>255</length>
         <precision>-1</precision>
-        <nullif>%ITEM_VERSION%</nullif>
+        <nullif>&#x25;ITEM_VERSION&#x25;</nullif>
         <ifnull>Invalid</ifnull>
         <trimtype>none</trimtype>
       </field>      <field>        <name>max_app_version</name>
-        <id>maxAppVersion=</id>
+        <id>maxAppVersion&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1071,11 +1082,11 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>15</length>
         <precision>-1</precision>
-        <nullif>%ITEM_MAXAPPVERSION%</nullif>
+        <nullif>&#x25;ITEM_MAXAPPVERSION&#x25;</nullif>
         <ifnull>Invalid</ifnull>
         <trimtype>none</trimtype>
       </field>      <field>        <name>addon_status</name>
-        <id>status=</id>
+        <id>status&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1083,11 +1094,11 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>50</length>
         <precision>-1</precision>
-        <nullif>%ITEM_STATUS%</nullif>
+        <nullif>&#x25;ITEM_STATUS&#x25;</nullif>
         <ifnull>Unknown</ifnull>
         <trimtype>none</trimtype>
       </field>      <field>        <name>product_guid_raw</name>
-        <id>appID=</id>
+        <id>appID&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1095,11 +1106,11 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>38</length>
         <precision>-1</precision>
-        <nullif>%APP_ID%</nullif>
+        <nullif>&#x25;APP_ID&#x25;</nullif>
         <ifnull>Invalid</ifnull>
         <trimtype>none</trimtype>
       </field>      <field>        <name>product_version_raw</name>
-        <id>appVersion=</id>
+        <id>appVersion&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1107,11 +1118,11 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>15</length>
         <precision>-1</precision>
-        <nullif>%APP_VERSION%</nullif>
+        <nullif>&#x25;APP_VERSION&#x25;</nullif>
         <ifnull>Invalid</ifnull>
         <trimtype>none</trimtype>
       </field>      <field>        <name>product_os</name>
-        <id>appOS=</id>
+        <id>appOS&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1119,11 +1130,11 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>10</length>
         <precision>-1</precision>
-        <nullif>%APP_OS%</nullif>
+        <nullif>&#x25;APP_OS&#x25;</nullif>
         <ifnull>Unknown</ifnull>
         <trimtype>none</trimtype>
       </field>      <field>        <name>product_build_target</name>
-        <id>appABI=</id>
+        <id>appABI&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1131,11 +1142,11 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>20</length>
         <precision>-1</precision>
-        <nullif>%APP_ABI%</nullif>
+        <nullif>&#x25;APP_ABI&#x25;</nullif>
         <ifnull>Unknown</ifnull>
         <trimtype>none</trimtype>
       </field>      <field>        <name>product_locale_raw</name>
-        <id>locale=</id>
+        <id>locale&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1143,11 +1154,11 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>15</length>
         <precision>-1</precision>
-        <nullif>%APP_LOCALE%</nullif>
+        <nullif>&#x25;APP_LOCALE&#x25;</nullif>
         <ifnull>Unknown</ifnull>
         <trimtype>none</trimtype>
       </field>      <field>        <name>update_type</name>
-        <id>updateType=</id>
+        <id>updateType&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -1155,7 +1166,7 @@ ORDER BY 1, 3 DESC, 2</sql>
         <decimal/>
         <length>3</length>
         <precision>-1</precision>
-        <nullif>%UPDATE_TYPE%</nullif>
+        <nullif>&#x25;UPDATE_TYPE&#x25;</nullif>
         <ifnull>0</ifnull>
         <trimtype>none</trimtype>
       </field>    </fields>     <cluster_schema/>
@@ -1221,7 +1232,7 @@ ORDER BY 1, 3 DESC, 2</sql>
            <schema_name/>
            </partitioning>
        <formula><field_name>addon_guid_x</field_name>
-<formula_string>java.net.URLDecoder.decode(addon_guid_raw)</formula_string>
+<formula_string>java.net.URLDecoder.decode&#x28;addon_guid_raw&#x29;</formula_string>
 <value_type>String</value_type>
 <value_length>255</value_length>
 <value_precision>-1</value_precision>
@@ -1246,7 +1257,7 @@ ORDER BY 1, 3 DESC, 2</sql>
            <schema_name/>
            </partitioning>
        <formula><field_name>addon_version_x</field_name>
-<formula_string>java.net.URLDecoder.decode(addon_version_raw)</formula_string>
+<formula_string>java.net.URLDecoder.decode&#x28;addon_version_raw&#x29;</formula_string>
 <value_type>String</value_type>
 <value_length>255</value_length>
 <value_precision>-1</value_precision>
@@ -1312,6 +1323,24 @@ ORDER BY 1, 3 DESC, 2</sql>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>550</xloc>
       <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>fixed requests</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>150</xloc>
+      <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
