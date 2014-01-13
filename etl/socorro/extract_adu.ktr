@@ -1,24 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>extract_adu</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>&#x2f;</directory>
     <parameters>
         <parameter>
             <name>DATE</name>
-            <default_value>= CURRENT_DATE</default_value>
+            <default_value>&#x3d; CURRENT_DATE</default_value>
             <description/>
         </parameter>
         <parameter>
@@ -99,45 +92,45 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <clusterschemas>
     </clusterschemas>
   <created_user/>
-  <created_date>2012&#47;03&#47;26 16:13:43.969</created_date>
+  <created_date>2012&#x2f;03&#x2f;26 16&#x3a;13&#x3a;43.969</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2009&#47;11&#47;04 15:01:21.111</modified_date>
+  <modified_date>2009&#x2f;11&#x2f;04 15&#x3a;01&#x3a;21.111</modified_date>
   </info>
   <notepads>
   </notepads>
   <connection>
     <name>metrics</name>
-    <server>${VERTICA_HOST}</server>
-    <type>VERTICA</type>
+    <server>&#x24;&#x7b;METRICS_VERTICA_HOST&#x7d;</server>
+    <type>GENERIC</type>
     <access>Native</access>
-    <database>${VERTICA_DB}</database>
-    <port>${VERTICA_PORT}</port>
-    <username>${VERTICA_USER}</username>
-    <password>${VERTICA_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_VERTICA_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_VERTICA_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_VERTICA_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>com.vertica.jdbc.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;vertica&#x3a;&#x2f;&#x2f;&#x24;&#x7b;METRICS_VERTICA_HOST&#x7d;&#x3a;&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;&#x2f;&#x24;&#x7b;METRICS_VERTICA_DATABASE&#x7d;</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${VERTICA_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION 
-ISOLATION LEVEL READ COMMITTED</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
     <name>socorro</name>
-    <server>${SOCORRO_DB_HOST}</server>
+    <server>&#x24;&#x7b;SOCORRO_DB_HOST&#x7d;</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>${SOCORRO_DB_NAME}</database>
-    <port>${SOCORRO_DB_PORT}</port>
-    <username>${SOCORRO_DB_USER}</username>
-    <password>${SOCORRO_DB_PASS}</password>
+    <database>&#x24;&#x7b;SOCORRO_DB_NAME&#x7d;</database>
+    <port>&#x24;&#x7b;SOCORRO_DB_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;SOCORRO_DB_USER&#x7d;</username>
+    <password>&#x24;&#x7b;SOCORRO_DB_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -145,14 +138,18 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${SOCORRO_DB_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;SOCORRO_DB_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Delete adu records</from><to>Log deletes</to><enabled>Y</enabled> </hop>  <hop> <from>Table output</from><to>Count inserts</to><enabled>Y</enabled> </hop>  <hop> <from>Table input</from><to>Table output</to><enabled>Y</enabled> </hop>  <hop> <from>Count inserts</from><to>Log insert results</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Delete adu records</from><to>Log deletes</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table output</from><to>Count inserts</to><enabled>Y</enabled> </hop>
+  <hop> <from>Table input</from><to>Table output</to><enabled>Y</enabled> </hop>
+  <hop> <from>Count inserts</from><to>Log insert results</to><enabled>Y</enabled> </hop>
+  </order>
   <step>
     <name>Count inserts</name>
     <type>GroupBy</type>
@@ -166,7 +163,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <all_rows>N</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -239,8 +236,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     <execute_each_row>N</execute_each_row>
     <single_statement>N</single_statement>
     <replace_variables>Y</replace_variables>
-    <sql>DELETE FROM raw_adu WHERE date ${DATE}
-</sql>
+    <sql>DELETE FROM raw_adu WHERE date &#x24;&#x7b;DATE&#x7d;&#xa;</sql>
     <insert_field/>
     <update_field/>
     <delete_field>num_records_deleted</delete_field>
@@ -269,8 +265,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>Script 1</jsScript_name>
-        <jsScript_script>writeToLog(&quot;m&quot;, &quot;Deleted &quot;+num_records_deleted+&quot; records from &quot;+getVariable(&quot;SOCORRO_DB_HOST&quot;,&quot;uninitialized&quot;)+&quot;.&quot;+getVariable(&quot;SOCORRO_DB_NAME&quot;,&quot;uninitialized&quot;)+&quot;.raw_adu for date &quot;+getVariable(&quot;DATE&quot;,&quot;uninitialized&quot;));
-</jsScript_script>
+        <jsScript_script>writeToLog&#x28;&#x22;m&#x22;, &#x22;Deleted &#x22;&#x2b;num_records_deleted&#x2b;&#x22; records from &#x22;&#x2b;getVariable&#x28;&#x22;SOCORRO_DB_HOST&#x22;,&#x22;uninitialized&#x22;&#x29;&#x2b;&#x22;.&#x22;&#x2b;getVariable&#x28;&#x22;SOCORRO_DB_NAME&#x22;,&#x22;uninitialized&#x22;&#x29;&#x2b;&#x22;.raw_adu for date &#x22;&#x2b;getVariable&#x28;&#x22;DATE&#x22;,&#x22;uninitialized&#x22;&#x29;&#x29;&#x3b;&#xa;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>350</xloc>
@@ -334,34 +329,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
            <schema_name/>
            </partitioning>
     <connection>metrics</connection>
-    <sql>SELECT
-  TO_DATE(date, &apos;yyyy-MM-dd&apos;)::TIMESTAMP AS &quot;date&quot;
-, product_guid
-, product_name
-, product_version
-, CASE
-	WHEN product_os_platform = &apos;Linux&apos; THEN &apos;Linux&apos;
-	WHEN product_os_platform = &apos;Darwin&apos; THEN &apos;Mac OS&#47;X&apos;
-	WHEN product_os_platform LIKE &apos;Windows_%&apos; THEN &apos;Windows&apos;
-	ELSE &apos;Other&apos; END AS product_os_platform
-, product_build_number
-, CASE
-	WHEN product_channel LIKE &apos;esr%&apos; THEN &apos;esr&apos;
-	WHEN product_channel LIKE &apos;nightly%&apos; THEN &apos;nightly&apos;
-	WHEN product_channel LIKE &apos;aurora%&apos; THEN &apos;aurora&apos;
-	WHEN product_channel LIKE &apos;beta%&apos; THEN &apos;beta&apos;
-	ELSE &apos;release&apos; END AS product_channel
-, SUM(requests) AS adu_count
-FROM blocklist_requests_by_day b
-JOIN dates d ON d.date_id = b.utc_date_id
-JOIN products p ON p.product_id = b.product_id
-JOIN operating_systems o ON o.os_id = b.os_id
-JOIN product_channels c ON b.product_channel_id = c.product_channel_id
-WHERE DATE(date) ${DATE}
-AND ((product_name IN (&apos;Firefox&apos;, &apos;Fennec&apos;, &apos;Thunderbird&apos;) AND product_version_major &gt;= 3) OR (product_name = &apos;SeaMonkey&apos; AND product_version_major &gt;= 2) OR product_name = &apos;WebappRuntime&apos; OR product_name = &apos;MetroBrowser&apos;)
-GROUP BY 1, 2, 3, 4, 5, 6, 7
-ORDER BY 1, 2, 3, 4, 5, 6, 7
-</sql>
+    <sql>SELECT&#xa;  TO_DATE&#x28;date, &#x27;yyyy-MM-dd&#x27;&#x29;&#x3a;&#x3a;TIMESTAMP AS &#x22;date&#x22;&#xa;, product_guid&#xa;, product_name&#xa;, product_version&#xa;, CASE&#xa;	WHEN product_os_platform &#x3d; &#x27;Linux&#x27; THEN &#x27;Linux&#x27;&#xa;	WHEN product_os_platform &#x3d; &#x27;Darwin&#x27; THEN &#x27;Mac OS&#x2f;X&#x27;&#xa;	WHEN product_os_platform LIKE &#x27;Windows_&#x25;&#x27; THEN &#x27;Windows&#x27;&#xa;	ELSE &#x27;Other&#x27; END AS product_os_platform&#xa;, product_build_number&#xa;, CASE&#xa;	WHEN product_channel LIKE &#x27;esr&#x25;&#x27; THEN &#x27;esr&#x27;&#xa;	WHEN product_channel LIKE &#x27;nightly&#x25;&#x27; THEN &#x27;nightly&#x27;&#xa;	WHEN product_channel LIKE &#x27;aurora&#x25;&#x27; THEN &#x27;aurora&#x27;&#xa;	WHEN product_channel LIKE &#x27;beta&#x25;&#x27; THEN &#x27;beta&#x27;&#xa;	ELSE &#x27;release&#x27; END AS product_channel&#xa;, SUM&#x28;requests&#x29; AS adu_count&#xa;FROM blocklist_requests_by_day b&#xa;JOIN dates d ON d.date_id &#x3d; b.utc_date_id&#xa;JOIN products p ON p.product_id &#x3d; b.product_id&#xa;JOIN operating_systems o ON o.os_id &#x3d; b.os_id&#xa;JOIN product_channels c ON b.product_channel_id &#x3d; c.product_channel_id&#xa;WHERE DATE&#x28;date&#x29; &#x24;&#x7b;DATE&#x7d;&#xa;AND &#x28;&#x28;product_name IN &#x28;&#x27;Firefox&#x27;, &#x27;Fennec&#x27;, &#x27;Thunderbird&#x27;&#x29; AND product_version_major &#x3e;&#x3d; 3&#x29; OR &#x28;product_name &#x3d; &#x27;SeaMonkey&#x27; AND product_version_major &#x3e;&#x3d; 2&#x29; OR product_name &#x3d; &#x27;WebappRuntime&#x27; OR product_name &#x3d; &#x27;MetroBrowser&#x27;&#x29;&#xa;GROUP BY 1, 2, 3, 4, 5, 6, 7&#xa;ORDER BY 1, 2, 3, 4, 5, 6, 7&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
@@ -391,7 +359,7 @@ ORDER BY 1, 2, 3, 4, 5, 6, 7
     <commit>5000</commit>
     <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
-    <use_batch>Y</use_batch>
+    <use_batch>N</use_batch>
     <specify_fields>Y</specify_fields>
     <partitioning_enabled>N</partitioning_enabled>
     <partitioning_field/>
@@ -434,6 +402,10 @@ ORDER BY 1, 2, 3, 4, 5, 6, 7
         <field>
           <column_name>adu_count</column_name>
           <stream_name>adu_count</stream_name>
+        </field>
+        <field>
+          <column_name>update_channel</column_name>
+          <stream_name>product_channel</stream_name>
         </field>
     </fields>
      <cluster_schema/>
