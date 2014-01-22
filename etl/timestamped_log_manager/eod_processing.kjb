@@ -376,7 +376,7 @@
       <draw>Y</draw>
       <nr>0</nr>
       <xloc>239</xloc>
-      <yloc>181</yloc>
+      <yloc>199</yloc>
       </entry>
     <entry>
       <name>audit_server_traffic</name>
@@ -408,48 +408,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>524</xloc>
-      <yloc>65</yloc>
-      </entry>
-    <entry>
-      <name>Mail missing logs</name>
-      <description>Mail</description>
-      <type>MAIL</type>
-      <server>localhost</server>
-      <port>25</port>
-      <destination>metrics-alerts&#x40;mozilla.org</destination>
-      <destinationCc/>
-      <destinationBCc/>
-      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
-      <replytoname>Metrics EOD processor</replytoname>
-      <subject>Missing logs alert</subject>
-      <include_date>N</include_date>
-      <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;These missing timestamps are currently preventing the End Of Day processing from succeeding&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_TIMESTAMPS&#x7d;&#xa;&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;These are the regexps used to find the missing files&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_FILENAMESREGEX&#x7d;&#xa;</comment>
-      <include_files>N</include_files>
-      <zip_files>N</zip_files>
-      <zip_name/>
-      <use_auth>N</use_auth>
-      <use_secure_auth>N</use_secure_auth>
-      <auth_user/>
-      <auth_password>Encrypted </auth_password>
-      <only_comment>Y</only_comment>
-      <use_HTML>N</use_HTML>
-      <use_Priority>Y</use_Priority>
-      <encoding>UTF-8</encoding>
-      <priority>high</priority>
-      <importance>high</importance>
-      <secureconnectiontype>SSL</secureconnectiontype>
-      <replyToAddresses/>
-      <filetypes>        <filetype>WARNING</filetype>
-      </filetypes>      <embeddedimages>
-      </embeddedimages>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>637</xloc>
-      <yloc>347</yloc>
+      <xloc>472</xloc>
+      <yloc>199</yloc>
       </entry>
     <entry>
       <name>Run dimension update</name>
@@ -520,29 +480,6 @@
       <nr>0</nr>
       <xloc>1515</xloc>
       <yloc>337</yloc>
-      </entry>
-    <entry>
-      <name>Wait for no required</name>
-      <description>Wait for SQL</description>
-      <type>WAIT_FOR_SQL</type>
-      <connection>metrics mysql</connection>
-      <schemaname/>
-      <tablename/>
-      <success_condition>rows_count_equal</success_condition>
-      <rows_count_value>0</rows_count_value>
-      <is_custom_sql>Y</is_custom_sql>
-      <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
-      <add_rows_result>N</add_rows_result>
-      <maximum_timeout>2700</maximum_timeout>
-      <check_cycle_time>300</check_cycle_time>
-      <success_on_timeout>N</success_on_timeout>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>637</xloc>
-      <yloc>65</yloc>
       </entry>
     <entry>
       <name>Run product dimension update</name>
@@ -692,69 +629,6 @@
       <yloc>545</yloc>
       </entry>
     <entry>
-      <name>Wait for no required</name>
-      <description>Wait for SQL</description>
-      <type>WAIT_FOR_SQL</type>
-      <connection>metrics mysql</connection>
-      <schemaname/>
-      <tablename/>
-      <success_condition>rows_count_equal</success_condition>
-      <rows_count_value>0</rows_count_value>
-      <is_custom_sql>Y</is_custom_sql>
-      <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
-      <add_rows_result>N</add_rows_result>
-      <maximum_timeout>2700</maximum_timeout>
-      <check_cycle_time>300</check_cycle_time>
-      <success_on_timeout>N</success_on_timeout>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>1</nr>
-      <xloc>752</xloc>
-      <yloc>97</yloc>
-      </entry>
-    <entry>
-      <name>Mail missing logs</name>
-      <description>Mail</description>
-      <type>MAIL</type>
-      <server>localhost</server>
-      <port>25</port>
-      <destination>metrics-alerts&#x40;mozilla.org</destination>
-      <destinationCc/>
-      <destinationBCc/>
-      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
-      <replytoname>Metrics EOD processor</replytoname>
-      <subject>Missing logs alert</subject>
-      <include_date>N</include_date>
-      <contact_person>Daniel Einspanjer</contact_person>
-      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
-      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;These missing timestamps are currently preventing the End Of Day processing from succeeding&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_TIMESTAMPS&#x7d;&#xa;&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;These are the regexps used to find the missing files&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_FILENAMESREGEX&#x7d;&#xa;</comment>
-      <include_files>N</include_files>
-      <zip_files>N</zip_files>
-      <zip_name/>
-      <use_auth>N</use_auth>
-      <use_secure_auth>N</use_secure_auth>
-      <auth_user/>
-      <auth_password>Encrypted </auth_password>
-      <only_comment>Y</only_comment>
-      <use_HTML>N</use_HTML>
-      <use_Priority>Y</use_Priority>
-      <encoding>UTF-8</encoding>
-      <priority>high</priority>
-      <importance>high</importance>
-      <secureconnectiontype>SSL</secureconnectiontype>
-      <replyToAddresses/>
-      <filetypes>        <filetype>WARNING</filetype>
-      </filetypes>      <embeddedimages>
-      </embeddedimages>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>1</nr>
-      <xloc>752</xloc>
-      <yloc>347</yloc>
-      </entry>
-    <entry>
       <name>AMO error</name>
       <description>Mail</description>
       <type>MAIL</type>
@@ -897,6 +771,147 @@
       <yloc>65</yloc>
       </entry>
     <entry>
+      <name>Guard for race</name>
+      <description>Evaluate rows number in a table</description>
+      <type>EVAL_TABLE_CONTENT</type>
+      <connection>metrics mysql</connection>
+      <schemaname/>
+      <tablename/>
+      <success_condition>rows_count_equal</success_condition>
+      <limit>0</limit>
+      <is_custom_sql>Y</is_custom_sql>
+      <is_usevars>Y</is_usevars>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
+      <add_rows_result>N</add_rows_result>
+      <clear_result_rows>Y</clear_result_rows>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>1</nr>
+      <xloc>875</xloc>
+      <yloc>64</yloc>
+      </entry>
+    <entry>
+      <name>should retry&#x3f;</name>
+      <description>Simple evaluation</description>
+      <type>SIMPLE_EVAL</type>
+      <valuetype>variable</valuetype>
+      <fieldname/>
+      <variablename>&#x24;&#x7b;current_attempt&#x7d;</variablename>
+      <fieldtype>string</fieldtype>
+      <mask/>
+      <comparevalue>&#x24;&#x7b;max_tries&#x7d;</comparevalue>
+      <minvalue/>
+      <maxvalue/>
+      <successcondition>different</successcondition>
+      <successnumbercondition>equal</successnumbercondition>
+      <successbooleancondition>true</successbooleancondition>
+      <successwhenvarset>N</successwhenvarset>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>590</xloc>
+      <yloc>451</yloc>
+      </entry>
+    <entry>
+      <name>Init loop</name>
+      <description>Set variables</description>
+      <type>SET_VARIABLES</type>
+      <replacevars>N</replacevars>
+      <filename/>
+      <file_variable_type>JVM</file_variable_type>
+      <fields>
+        <field>
+          <variable_name>max_tries</variable_name>
+          <variable_value>4</variable_value>
+          <variable_type>ROOT_JOB</variable_type>
+        </field>
+        <field>
+          <variable_name>current_attempt</variable_name>
+          <variable_value>1</variable_value>
+          <variable_type>ROOT_JOB</variable_type>
+        </field>
+      </fields>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>390</xloc>
+      <yloc>199</yloc>
+      </entry>
+    <entry>
+      <name>increase tries</name>
+      <description>JavaScript</description>
+      <type>EVAL</type>
+      <script>var attempt &#x3d; parseInt&#x28;parent_job.getVariable&#x28;&#x22;current_attempt&#x22;&#x29;, 10&#x29;&#x3b;&#xa;attempt&#x2b;&#x2b;&#x3b;&#xa;parent_job.setVariable&#x28;&#x22;current_attempt&#x22;, attempt&#x29;&#x3b;&#xa;&#xa;true&#x3b;&#xa;</script>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>472</xloc>
+      <yloc>451</yloc>
+      </entry>
+    <entry>
+      <name>Mail missing logs</name>
+      <description>Mail</description>
+      <type>MAIL</type>
+      <server>localhost</server>
+      <port>25</port>
+      <destination>metrics-alerts&#x40;mozilla.org</destination>
+      <destinationCc/>
+      <destinationBCc/>
+      <replyto>metrics-alerts&#x40;mozilla.org</replyto>
+      <replytoname>Metrics EOD processor</replytoname>
+      <subject>Missing logs alert</subject>
+      <include_date>N</include_date>
+      <contact_person>Daniel Einspanjer</contact_person>
+      <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
+      <comment>The ETL processor was unable to find log files with valid data for the following servers and times.&#xa;Please check log file synchronization processes.  The processor will pick up new files on the next run.&#xa;These missing timestamps are currently preventing the End Of Day processing from succeeding&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_TIMESTAMPS&#x7d;&#xa;&#xa;This will delay the nightly reports and the exports of data to the Socorro and AMO production sites.&#xa;These are the regexps used to find the missing files&#x3a;&#xa;&#xa;&#x24;&#x7b;MISSING_FILENAMESREGEX&#x7d;&#xa;</comment>
+      <include_files>N</include_files>
+      <zip_files>N</zip_files>
+      <zip_name/>
+      <use_auth>N</use_auth>
+      <use_secure_auth>N</use_secure_auth>
+      <auth_user/>
+      <auth_password>Encrypted </auth_password>
+      <only_comment>Y</only_comment>
+      <use_HTML>N</use_HTML>
+      <use_Priority>Y</use_Priority>
+      <encoding>UTF-8</encoding>
+      <priority>high</priority>
+      <importance>high</importance>
+      <secureconnectiontype>SSL</secureconnectiontype>
+      <replyToAddresses/>
+      <filetypes>        <filetype>WARNING</filetype>
+      </filetypes>      <embeddedimages>
+      </embeddedimages>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>590</xloc>
+      <yloc>362</yloc>
+      </entry>
+    <entry>
+      <name>Wait for no required</name>
+      <description>Wait for SQL</description>
+      <type>WAIT_FOR_SQL</type>
+      <connection>metrics mysql</connection>
+      <schemaname/>
+      <tablename/>
+      <success_condition>rows_count_equal</success_condition>
+      <rows_count_value>0</rows_count_value>
+      <is_custom_sql>Y</is_custom_sql>
+      <is_usevars>Y</is_usevars>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
+      <add_rows_result>N</add_rows_result>
+      <maximum_timeout>2700</maximum_timeout>
+      <check_cycle_time>300</check_cycle_time>
+      <success_on_timeout>N</success_on_timeout>
+      <clear_result_rows>Y</clear_result_rows>
+      <parallel>N</parallel>
+      <draw>Y</draw>
+      <nr>0</nr>
+      <xloc>590</xloc>
+      <yloc>199</yloc>
+      </entry>
+    <entry>
       <name>build mail info</name>
       <description/>
       <type>TRANS</type>
@@ -926,61 +941,8 @@
       </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>637</xloc>
-      <yloc>229</yloc>
-      </entry>
-    <entry>
-      <name>build mail info</name>
-      <description/>
-      <type>TRANS</type>
-      <specification_method>filename</specification_method>
-      <trans_object_id/>
-      <filename>&#x24;&#x7b;Internal.Job.Filename.Directory&#x7d;&#x2f;set_audit_results.ktr</filename>
-      <transname/>
-      <arg_from_previous>N</arg_from_previous>
-      <params_from_previous>N</params_from_previous>
-      <exec_per_row>N</exec_per_row>
-      <clear_rows>N</clear_rows>
-      <clear_files>N</clear_files>
-      <set_logfile>N</set_logfile>
-      <logfile/>
-      <logext/>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <loglevel>Basic</loglevel>
-      <cluster>N</cluster>
-      <slave_server_name/>
-      <set_append_logfile>N</set_append_logfile>
-      <wait_until_finished>Y</wait_until_finished>
-      <follow_abort_remote>N</follow_abort_remote>
-      <create_parent_folder>N</create_parent_folder>
-      <logging_remote_work>N</logging_remote_work>
-      <parameters>        <pass_all_parameters>Y</pass_all_parameters>
-      </parameters>      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>1</nr>
-      <xloc>752</xloc>
-      <yloc>229</yloc>
-      </entry>
-    <entry>
-      <name>Guard for race</name>
-      <description>Evaluate rows number in a table</description>
-      <type>EVAL_TABLE_CONTENT</type>
-      <connection>metrics mysql</connection>
-      <schemaname/>
-      <tablename/>
-      <success_condition>rows_count_equal</success_condition>
-      <limit>0</limit>
-      <is_custom_sql>Y</is_custom_sql>
-      <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE active &#x3d; &#x27;Y&#x27; AND timestamp &#x3c;&#x3d; &#x27;&#x24;&#x7b;EOD_LAST_HOUR&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
-      <add_rows_result>N</add_rows_result>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>1</nr>
-      <xloc>866</xloc>
-      <yloc>26</yloc>
+      <xloc>590</xloc>
+      <yloc>284</yloc>
       </entry>
   </entries>
   <hops>
@@ -1030,15 +992,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Set Running flag for EOD</from>
-      <to>audit_server_traffic</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Run daily aggregates</from>
       <to>Mail error condition</to>
       <from_nr>0</from_nr>
@@ -1072,15 +1025,6 @@
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>audit_server_traffic</from>
-      <to>Wait for no required</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
     <hop>
@@ -1136,15 +1080,6 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Mail missing logs</from>
-      <to>Wait for no required</to>
-      <from_nr>0</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>Y</unconditional>
     </hop>
     <hop>
       <from>export_daily_amo_stats</from>
@@ -1264,73 +1199,10 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Wait for no required</from>
-      <to>build mail info</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>build mail info</from>
-      <to>Mail missing logs</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Wait for no required</from>
-      <to>build mail info</to>
-      <from_nr>1</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>build mail info</from>
-      <to>Mail missing logs</to>
-      <from_nr>1</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Wait for no required</from>
-      <to>Guard for race</to>
-      <from_nr>0</from_nr>
-      <to_nr>1</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Guard for race</from>
       <to>Run product dimension update</to>
       <from_nr>1</from_nr>
       <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Mail missing logs</from>
-      <to>Set Failed flag for EOD</to>
-      <from_nr>1</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Wait for no required</from>
-      <to>Guard for race</to>
-      <from_nr>1</from_nr>
-      <to_nr>1</to_nr>
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
@@ -1344,7 +1216,118 @@
       <evaluation>N</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>Set Running flag for EOD</from>
+      <to>Init loop</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Init loop</from>
+      <to>audit_server_traffic</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>audit_server_traffic</from>
+      <to>Wait for no required</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for no required</from>
+      <to>build mail info</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>build mail info</from>
+      <to>Mail missing logs</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Mail missing logs</from>
+      <to>should retry&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>should retry&#x3f;</from>
+      <to>increase tries</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>increase tries</from>
+      <to>audit_server_traffic</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>should retry&#x3f;</from>
+      <to>Abort if error</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>Wait for no required</from>
+      <to>Guard for race</to>
+      <from_nr>0</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
+    <notepad>
+      <note>Wait 6x45m for late data.&#xa;Check every 5m.</note>
+      <xloc>422</xloc>
+      <yloc>148</yloc>
+      <width>126</width>
+      <heigth>32</heigth>
+      <fontname>Arial</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
 </job>
