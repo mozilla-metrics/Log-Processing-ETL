@@ -256,7 +256,7 @@
       <name>Write To Log Required&#x3d;Y</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage/>
+      <logmessage>Processing ONLY_REQUIRED&#x3d;YES</logmessage>
       <loglevel>Basic</loglevel>
       <logsubject>Processing ONLY_REQUIRED&#x3d;YES</logsubject>
       <parallel>N</parallel>
@@ -269,7 +269,7 @@
       <name>Write To Log Required&#x3d;N</name>
       <description/>
       <type>WRITE_TO_LOG</type>
-      <logmessage/>
+      <logmessage>Processing ONLY_REQUIRED&#x3d;NO</logmessage>
       <loglevel>Basic</loglevel>
       <logsubject>Processing ONLY_REQUIRED&#x3d;NO</logsubject>
       <parallel>N</parallel>
@@ -289,7 +289,7 @@
       <limit>0</limit>
       <is_custom_sql>Y</is_custom_sql>
       <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE required &#x3d; &#x27;Y&#x27;&#xa;AND &#x27;&#x24;&#x7b;ONLY_REQUIRED&#x7d;&#x27; &#x3d; &#x27;Y&#x27;&#xa;AND active &#x3d; &#x27;Y&#x27;&#xa;-- AND timestamp &#x3d; &#x27;&#x24;&#x7b;TIMESTAMP&#x7d;&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
+      <custom_sql>SELECT DISTINCT&#xa;  s.datacenter&#xa;, s.site&#xa;, s.server&#xa;, timestamp&#xa;FROM server_timestamps_to_process sttp&#xa;JOIN servers s ON sttp.site &#x3d; s.site AND sttp.server &#x3d; s.server&#xa;WHERE required &#x3d; &#x27;Y&#x27;&#xa;AND active &#x3d; &#x27;Y&#x27;&#xa;ORDER BY 1,2,3,4</custom_sql>
       <add_rows_result>N</add_rows_result>
       <clear_result_rows>Y</clear_result_rows>
       <parallel>N</parallel>
@@ -671,6 +671,42 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>Email unparsable_files</from>
+      <to>audit_server_traffic</to>
+      <from_nr>0</from_nr>
+      <to_nr>1</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>DUMMY</from>
+      <to>End of hour&#x3f;</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>Y</unconditional>
+    </hop>
+    <hop>
+      <from>End of hour&#x3f;</from>
+      <to>Mail missing logs</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>End of hour&#x3f;</from>
+      <to>Success 3</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>N</evaluation>
+      <unconditional>N</unconditional>
     </hop>
   </hops>
   <notepads>
