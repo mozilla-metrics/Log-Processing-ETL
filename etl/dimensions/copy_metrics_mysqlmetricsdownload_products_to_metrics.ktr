@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>Update download_products</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>&#x2f;</directory>
     <parameters>
     </parameters>
     <log>
-<trans-log-table><connection></connection>
+<trans-log-table><connection/>
 <schema/>
-<table></table>
+<table/>
 <size_limit_lines>100</size_limit_lines>
 <interval/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject>Insert &#47; Update to Vertica</subject></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject>Read new rows from MySQL</subject></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject>Insert &#47; Update to Vertica</subject></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
-<perf-log-table><connection></connection>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject/></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject>Insert &#x2f; Update to Vertica</subject></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject>Read new rows from MySQL</subject></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject>Insert &#x2f; Update to Vertica</subject></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<perf-log-table><connection/>
 <schema/>
 <table/>
 <interval/>
@@ -109,45 +102,45 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         </clusterschema>
     </clusterschemas>
   <created_user/>
-  <created_date>2012&#47;03&#47;26 16:05:31.055</created_date>
+  <created_date>2012&#x2f;03&#x2f;26 16&#x3a;05&#x3a;31.055</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2008&#47;08&#47;29 08:40:24.891</modified_date>
+  <modified_date>2008&#x2f;08&#x2f;29 08&#x3a;40&#x3a;24.891</modified_date>
   </info>
   <notepads>
   </notepads>
   <connection>
     <name>metrics</name>
-    <server>${VERTICA_HOST}</server>
-    <type>VERTICA</type>
+    <server>&#x24;&#x7b;METRICS_VERTICA_HOST&#x7d;</server>
+    <type>GENERIC</type>
     <access>Native</access>
-    <database>${VERTICA_DB}</database>
-    <port>${VERTICA_PORT}</port>
-    <username>${VERTICA_USER}</username>
-    <password>${VERTICA_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_VERTICA_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_VERTICA_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_VERTICA_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
+      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>com.vertica.jdbc.Driver</attribute></attribute>
+      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;vertica&#x3a;&#x2f;&#x2f;&#x24;&#x7b;METRICS_VERTICA_HOST&#x7d;&#x3a;&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;&#x2f;&#x24;&#x7b;METRICS_VERTICA_DATABASE&#x7d;</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${VERTICA_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION 
-ISOLATION LEVEL READ COMMITTED</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <connection>
     <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
+    <server>&#x24;&#x7b;METRICS_MYSQL_HOST&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_MYSQL_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_MYSQL_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_MYSQL_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -160,14 +153,17 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Read new rows from MySQL</from><to>Insert &#47; Update to Vertica</to><enabled>Y</enabled> </hop>  <hop> <from>Get System Info</from><to>Read new rows from MySQL</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Read new rows from MySQL</from><to>Insert &#x2f; Update to Vertica</to><enabled>N</enabled> </hop>
+  <hop> <from>Get System Info</from><to>Read new rows from MySQL</to><enabled>Y</enabled> </hop>
+  </order>
   <step>
     <name>Get System Info</name>
     <type>SystemInfo</type>
@@ -193,7 +189,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
     </step>
 
   <step>
-    <name>Insert &#47; Update to Vertica</name>
+    <name>Insert &#x2f; Update to Vertica</name>
     <type>InsertUpdate</type>
     <description/>
     <distribute>Y</distribute>
@@ -211,7 +207,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
       <key>
         <name>download_product_id</name>
         <field>download_product_id</field>
-        <condition>=</condition>
+        <condition>&#x3d;</condition>
         <name2/>
       </key>
       <value>
@@ -291,7 +287,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
   <step>
     <name>Read new rows from MySQL</name>
     <type>TableInput</type>
-    <description>Reads information from table [products] on database [metrics mysql]</description>
+    <description>Reads information from table &#x5b;products&#x5d; on database &#x5b;metrics mysql&#x5d;</description>
     <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
@@ -299,7 +295,7 @@ ISOLATION LEVEL READ COMMITTED</attribute></attribute>
            <schema_name/>
            </partitioning>
     <connection>metrics mysql</connection>
-    <sql>SELECT * FROM download_products WHERE updated_at &gt; ?</sql>
+    <sql>SELECT &#x2a; FROM download_products WHERE updated_at &#x3e; &#x3f;</sql>
     <limit>0</limit>
     <lookup>Get System Info</lookup>
     <execute_each_row>N</execute_each_row>
