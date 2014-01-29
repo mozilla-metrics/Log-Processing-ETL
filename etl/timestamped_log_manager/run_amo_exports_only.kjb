@@ -117,54 +117,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>482</xloc>
+      <xloc>338</xloc>
       <yloc>50</yloc>
-      </entry>
-    <entry>
-      <name>Set Successful flag for EOD</name>
-      <description>SQL</description>
-      <type>SQL</type>
-      <sql>REPLACE INTO eod_status SET &#x60;utc_date_string&#x60; &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;, &#x60;status&#x60; &#x3d; &#x27;Successful&#x27;, &#x60;audit_snapshot&#x60; &#x3d; &#x28;&#xa;	SELECT CONCAT&#x28;site,&#x27;&#x5c;t&#x27;,servers,&#x27;&#x5c;t&#x27;,timestamps&#x29; AS results&#xa;	FROM &#x28;&#xa;		SELECT&#xa;		  site&#xa;		, GROUP_CONCAT&#x28;server ORDER BY server SEPARATOR &#x27;, &#x27;&#x29; AS servers&#xa;		, timestamps&#xa;		FROM &#x28;&#xa;			SELECT&#xa;			  site&#xa;			, CONCAT&#x28;datacenter,&#x27;-&#x27;,server&#x29; AS server&#xa;			, GROUP_CONCAT&#x28;timestamp ORDER BY timestamp SEPARATOR &#x27;, &#x27;&#x29; AS timestamps&#xa;			FROM &#x60;server_timestamps_to_process&#x60;&#xa;			WHERE required &#x3d; &#x27;Y&#x27;&#xa;			GROUP BY 1,2&#xa;		&#x29; a&#xa;		GROUP BY 1,3&#xa;	&#x29; b&#xa;	ORDER BY site, timestamps&#xa;	LIMIT 1&#xa;&#x29;&#x3b;</sql>
-      <useVariableSubstitution>T</useVariableSubstitution>
-      <sqlfromfile>F</sqlfromfile>
-      <sqlfilename/>
-      <sendOneStatement>F</sendOneStatement>
-      <connection>metrics mysql</connection>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>626</xloc>
-      <yloc>50</yloc>
-      </entry>
-    <entry>
-      <name>Already has successful eod&#x3f;</name>
-      <description>Evaluate rows number in a table</description>
-      <type>EVAL_TABLE_CONTENT</type>
-      <connection>metrics mysql</connection>
-      <schemaname/>
-      <tablename>eod_status</tablename>
-      <success_condition>rows_count_greater</success_condition>
-      <limit>0</limit>
-      <is_custom_sql>Y</is_custom_sql>
-      <is_usevars>Y</is_usevars>
-      <custom_sql>SELECT &#x2a;&#xa;FROM eod_status&#xa;WHERE utc_date_string &#x3d; &#x27;&#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;&#x27;&#xa;AND status &#x3d; &#x27;Successful&#x27;</custom_sql>
-      <add_rows_result>N</add_rows_result>
-      <clear_result_rows>Y</clear_result_rows>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>319</xloc>
-      <yloc>50</yloc>
-      </entry>
-    <entry>
-      <name>Success 1</name>
-      <description>Success</description>
-      <type>SUCCESS</type>
-      <parallel>N</parallel>
-      <draw>Y</draw>
-      <nr>0</nr>
-      <xloc>319</xloc>
-      <yloc>242</yloc>
       </entry>
     <entry>
       <name>Mail success</name>
@@ -177,7 +131,7 @@
       <destinationBCc/>
       <replyto>metrics-alerts&#x40;mozilla.org</replyto>
       <replytoname>Metrics EOD processor</replytoname>
-      <subject>EOD processing succeeded for &#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;</subject>
+      <subject>EOD AMO manual export succeeded for &#x24;&#x7b;PREVIOUS_UTC_DATE&#x7d;</subject>
       <include_date>N</include_date>
       <contact_person>Daniel Einspanjer</contact_person>
       <contact_phone>&#x28;603&#x29; 438-5731</contact_phone>
@@ -203,7 +157,7 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>770</xloc>
+      <xloc>490</xloc>
       <yloc>50</yloc>
       </entry>
     <entry>
@@ -276,8 +230,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>482</xloc>
-      <yloc>153</yloc>
+      <xloc>338</xloc>
+      <yloc>144</yloc>
       </entry>
     <entry>
       <name>Success 2</name>
@@ -286,8 +240,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>766</xloc>
-      <yloc>242</yloc>
+      <xloc>486</xloc>
+      <yloc>251</yloc>
       </entry>
     <entry>
       <name>Abort job</name>
@@ -297,20 +251,11 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>482</xloc>
-      <yloc>242</yloc>
+      <xloc>338</xloc>
+      <yloc>251</yloc>
       </entry>
   </entries>
   <hops>
-    <hop>
-      <from>Set Successful flag for EOD</from>
-      <to>Mail success</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
     <hop>
       <from>export_daily_amo_stats</from>
       <to>AMO error</to>
@@ -328,15 +273,6 @@
       <enabled>Y</enabled>
       <evaluation>Y</evaluation>
       <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>export_daily_amo_stats</from>
-      <to>Set Successful flag for EOD</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Mail success</from>
@@ -357,30 +293,21 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Already has successful eod&#x3f;</from>
-      <to>Success 1</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>Get dates</from>
-      <to>Already has successful eod&#x3f;</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>Already has successful eod&#x3f;</from>
       <to>export_daily_amo_stats</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
-      <evaluation>N</evaluation>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
+    <hop>
+      <from>export_daily_amo_stats</from>
+      <to>Mail success</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
   </hops>

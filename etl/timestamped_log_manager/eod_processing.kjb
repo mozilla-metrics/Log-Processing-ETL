@@ -493,7 +493,7 @@
       <params_from_previous>N</params_from_previous>
       <exec_per_row>N</exec_per_row>
       <set_logfile>Y</set_logfile>
-      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_dimensions</logfile>
+      <logfile>&#x24;&#x7b;ETL_LOG_DIR&#x7d;&#x2f;eod_product_dimensions</logfile>
       <logext>log</logext>
       <add_date>Y</add_date>
       <add_time>Y</add_time>
