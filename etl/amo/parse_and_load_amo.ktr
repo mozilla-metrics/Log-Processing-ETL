@@ -21,16 +21,16 @@
         </parameter>
     </parameters>
     <log>
-<trans-log-table><connection></connection>
+<trans-log-table><connection/>
 <schema/>
-<table></table>
+<table/>
 <size_limit_lines>1000</size_limit_lines>
 <interval/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject>Regex amo requests</subject></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>Switch to processing module</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject>Text file input</subject></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject>land data</subject></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject>Postfilter and Date Parse</subject></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
-<perf-log-table><connection></connection>
+<perf-log-table><connection/>
 <schema/>
-<table></table>
+<table/>
 <interval/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
@@ -129,36 +129,7 @@
       <drawshadow>Y</drawshadow>
     </notepad>
   </notepads>
-  <connection>
-    <name>metrics mysql</name>
-    <server>&#x24;&#x7b;METRICS_MYSQL_HOST&#x7d;</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>&#x24;&#x7b;METRICS_MYSQL_DATABASE&#x7d;</database>
-    <port>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;METRICS_MYSQL_USER&#x7d;</username>
-    <password>&#x24;&#x7b;METRICS_MYSQL_PASS&#x7d;</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>UTF-8</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useServerPrepStmts</code><attribute>true</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useUnicode</code><attribute>true</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Discard duplicate downloads</from><to>Process amo_downloads</to><enabled>Y</enabled> </hop>
   <hop> <from>Spool versioncheck</from><to>Process versioncheck</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch to processing module</from><to>Abort on unknown</to><enabled>Y</enabled> </hop>
   <hop> <from>Spool blocklist</from><to>Process blocklist</to><enabled>Y</enabled> </hop>
@@ -168,7 +139,6 @@
   <hop> <from>Switch to processing module</from><to>Spool share</to><enabled>Y</enabled> </hop>
   <hop> <from>Spool FYF</from><to>Process collections</to><enabled>Y</enabled> </hop>
   <hop> <from>Switch to processing module</from><to>Spool FYF</to><enabled>Y</enabled> </hop>
-  <hop> <from>Switch to processing module</from><to>Discard duplicate downloads</to><enabled>Y</enabled> </hop>
   <hop> <from>Discard duplicate downloads</from><to>Spool collections</to><enabled>Y</enabled> </hop>
   <hop> <from>Spool collections</from><to>Process collections</to><enabled>Y</enabled> </hop>
   <hop> <from>Process versioncheck</from><to>Spool versioncheck 2</to><enabled>Y</enabled> </hop>
@@ -189,6 +159,9 @@
   <hop> <from>Merge multiple inputs</from><to>GeoIP &#x2f; location_id lookup</to><enabled>Y</enabled> </hop>
   <hop> <from>Text file input</from><to>spool lines</to><enabled>Y</enabled> </hop>
   <hop> <from>spool lines</from><to>Regex amo requests</to><enabled>Y</enabled> </hop>
+  <hop> <from>Switch to processing module</from><to>Spool amo_downloads</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool amo_downloads</from><to>Discard duplicate downloads</to><enabled>Y</enabled> </hop>
+  <hop> <from>Spool amo_downloads</from><to>Process amo_downloads</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Abort on unknown</name>
@@ -262,7 +235,7 @@
     <name>Discard duplicate downloads</name>
     <type>UniqueRowsByHashSet</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -275,8 +248,8 @@
         </field>      <field>        <name>url</name>
         </field>      </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>550</xloc>
-      <yloc>250</yloc>
+      <xloc>644</xloc>
+      <yloc>316</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -1136,7 +1109,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 </case><case><value>&#x2f;blocklist&#x2f;</value>
 <target_step>Spool blocklist</target_step>
 </case><case><value>&#x2f;downloads&#x2f;file&#x2f;</value>
-<target_step>Discard duplicate downloads</target_step>
+<target_step>Spool amo_downloads</target_step>
 </case><case><value>&#x2f;collections&#x2f;</value>
 <target_step>Spool FYF</target_step>
 </case><case><value>&#x2f;share</value>
@@ -1375,6 +1348,24 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>101</xloc>
       <yloc>210</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Spool amo_downloads</name>
+    <type>Dummy</type>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>550</xloc>
+      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
