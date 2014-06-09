@@ -552,7 +552,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
     <directory_path/>
     <mappings>
       <input>
-    <mapping>    <input_step>Discard duplicate downloads</input_step>
+    <mapping>    <input_step>Spool amo_downloads</input_step>
     <output_step>Mapping input specification</output_step>
     <main_path>Y</main_path>
     <rename_on_output>N</rename_on_output>
