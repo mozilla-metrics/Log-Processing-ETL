@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>parse_amo_download_requests</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>&#x2f;</directory>
     <parameters>
     </parameters>
     <log>
@@ -27,7 +20,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject>Mapping input specification</subject></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>Mapping output specification</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject>process_gecko_user_agent</subject></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></trans-log-table>
 <perf-log-table><connection/>
 <schema/>
-<table></table>
+<table/>
 <interval/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>SEQ_NR</id><enabled>Y</enabled><name>SEQ_NR</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>INPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>INPUT_BUFFER_ROWS</name></field><field><id>OUTPUT_BUFFER_ROWS</id><enabled>Y</enabled><name>OUTPUT_BUFFER_ROWS</name></field></perf-log-table>
@@ -109,21 +102,21 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         </clusterschema>
     </clusterschemas>
   <created_user/>
-  <created_date>2012&#47;03&#47;26 15:45:01.240</created_date>
+  <created_date>2012&#x2f;03&#x2f;26 15&#x3a;45&#x3a;01.240</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2008&#47;09&#47;29 13:44:50.351</modified_date>
+  <modified_date>2008&#x2f;09&#x2f;29 13&#x3a;44&#x3a;50.351</modified_date>
   </info>
   <notepads>
   </notepads>
   <connection>
     <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
+    <server>&#x24;&#x7b;METRICS_MYSQL_HOST&#x7d;</server>
     <type>MYSQL</type>
     <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
+    <database>&#x24;&#x7b;METRICS_MYSQL_DATABASE&#x7d;</database>
+    <port>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;METRICS_MYSQL_USER&#x7d;</username>
+    <password>&#x24;&#x7b;METRICS_MYSQL_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
@@ -136,14 +129,33 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_MYSQL_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
       <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
   <order>
-  <hop> <from>Regex download requests</from><to>Filter invalid rows</to><enabled>Y</enabled> </hop>  <hop> <from>process_gecko_user_agent</from><to>Lookup user_agent_browser_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_browser_id</from><to>Lookup user_agent_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_locale_id</from><to>Lookup user_agent_os_id</to><enabled>Y</enabled> </hop>  <hop> <from>Filter invalid rows</from><to>process_gecko_user_agent</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup user_agent_os_id</from><to>Lookup request_locale_id</to><enabled>Y</enabled> </hop>  <hop> <from>Mapping input specification</from><to>Regex download requests</to><enabled>Y</enabled> </hop>  <hop> <from>Rename locale_ids</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup request_locale_id</from><to>Lookup addon</to><enabled>Y</enabled> </hop>  <hop> <from>Lookup addon</from><to>Split url_params</to><enabled>Y</enabled> </hop>  <hop> <from>Split url_params</from><to>Filter null src</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null src</from><to>Validate src</to><enabled>Y</enabled> </hop>  <hop> <from>Filter null src</from><to>Add src constants</to><enabled>Y</enabled> </hop>  <hop> <from>Add src constants</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>  <hop> <from>Validate src</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>  <hop> <from>Validate src</from><to>Audit invalid src</to><enabled>Y</enabled> </hop>  <hop> <from>NVL addon_name</from><to>Rename locale_ids</to><enabled>Y</enabled> </hop>  <hop> <from>Audit invalid src</from><to>Write to log</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Regex download requests</from><to>Filter invalid rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>process_gecko_user_agent</from><to>Lookup user_agent_browser_id</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup user_agent_browser_id</from><to>Lookup user_agent_locale_id</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup user_agent_locale_id</from><to>Lookup user_agent_os_id</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter invalid rows</from><to>process_gecko_user_agent</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup user_agent_os_id</from><to>Lookup request_locale_id</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mapping input specification</from><to>Regex download requests</to><enabled>Y</enabled> </hop>
+  <hop> <from>Rename locale_ids</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup request_locale_id</from><to>Lookup addon</to><enabled>Y</enabled> </hop>
+  <hop> <from>Lookup addon</from><to>Split url_params</to><enabled>Y</enabled> </hop>
+  <hop> <from>Split url_params</from><to>Filter null src</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter null src</from><to>Validate src</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter null src</from><to>Add src constants</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add src constants</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>
+  <hop> <from>Validate src</from><to>NVL addon_name</to><enabled>Y</enabled> </hop>
+  <hop> <from>Validate src</from><to>Audit invalid src</to><enabled>Y</enabled> </hop>
+  <hop> <from>NVL addon_name</from><to>Rename locale_ids</to><enabled>Y</enabled> </hop>
+  <hop> <from>Audit invalid src</from><to>Write to log - invalid src</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter invalid rows</from><to>Write to log - invalid url</to><enabled>Y</enabled> </hop>
+  </order>
   <step>
     <name>Add src constants</name>
     <type>Constant</type>
@@ -202,7 +214,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <condition>
  <negated>N</negated>
  <leftvalue>src_parse_result</leftvalue>
- <function>=</function>
+ <function>&#x3d;</function>
  <rightvalue/>
  <value><name>constant</name><type>Boolean</type><text>N</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
@@ -224,13 +236,13 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to/>
-<send_false_to/>
+<send_true_to>process_gecko_user_agent</send_true_to>
+<send_false_to>Write to log - invalid url</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
  <leftvalue>downloads_url_result</leftvalue>
- <function>=</function>
+ <function>&#x3d;</function>
  <rightvalue/>
  <value><name>constant</name><type>Boolean</type><text>Y</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
     </compare>
@@ -293,7 +305,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <key>
         <name>file_id</name>
         <field>file_id</field>
-        <condition>=</condition>
+        <condition>&#x3d;</condition>
         <name2/>
       </key>
       <value>
@@ -560,7 +572,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            </partitioning>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>750</xloc>
+      <xloc>795</xloc>
       <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
@@ -608,7 +620,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <method>none</method>
            <schema_name/>
            </partitioning>
-    <script><![CDATA[^(?>/([a-z]{2,3}(?:-[A-Za-z]{2}(?:-[A-Za-z]{3,8})?)?))?/(?:([a-z]+))?/downloads/file/(\d+)/([^\s]+).*]]></script>    <matcher>url</matcher>
+    <script><![CDATA[^/()(?:([a-z]+))?/downloads/file/(\d+)/([^\s]+).*]]></script>    <matcher>url</matcher>
     <resultfieldname>downloads_url_result</resultfieldname>
     <usevar>N</usevar>
     <allowcapturegroups>Y</allowcapturegroups>
@@ -715,7 +727,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         <storage_type/>
       </meta>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>750</xloc>
+      <xloc>795</xloc>
       <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
@@ -732,9 +744,9 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <schema_name/>
            </partitioning>
    <splitfield>url_params</splitfield>
-   <delimiter>&amp;</delimiter>
+   <delimiter>&#x26;</delimiter>
     <fields>      <field>        <name>raw_src</name>
-        <id>src=</id>
+        <id>src&#x3d;</id>
         <idrem>Y</idrem>
         <type>String</type>
         <format/>
@@ -798,7 +810,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </step>
 
   <step>
-    <name>Write to log</name>
+    <name>Write to log - invalid src</name>
     <type>WriteToLog</type>
     <description/>
     <distribute>Y</distribute>
@@ -809,7 +821,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            </partitioning>
       <loglevel>log_level_minimal</loglevel>
       <displayHeader>N</displayHeader>
-      <logmessage/>
+      <logmessage>Invalid src.</logmessage>
     <fields>
       <field>
         <name>url</name>
@@ -836,7 +848,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <specification_method>filename</specification_method>
     <trans_object_id/>
     <trans_name/>
-    <filename>${Internal.Transformation.Filename.Directory}&#47;process_gecko_only_user_agent_string.ktr</filename>
+    <filename>&#x24;&#x7b;Internal.Transformation.Filename.Directory&#x7d;&#x2f;process_gecko_only_user_agent_string.ktr</filename>
     <directory_path/>
     <mappings>
       <input>
@@ -864,6 +876,32 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>200</xloc>
       <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Write to log - invalid url</name>
+    <type>WriteToLog</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+      <loglevel>log_level_minimal</loglevel>
+      <displayHeader>N</displayHeader>
+      <logmessage>Invalid url.</logmessage>
+    <fields>
+      <field>
+        <name>url</name>
+        </field>
+      </fields>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>339</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
