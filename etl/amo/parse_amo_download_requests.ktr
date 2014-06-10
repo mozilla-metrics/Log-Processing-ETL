@@ -142,7 +142,6 @@
   <hop> <from>Lookup user_agent_locale_id</from><to>Lookup user_agent_os_id</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter invalid rows</from><to>process_gecko_user_agent</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup user_agent_os_id</from><to>Lookup request_locale_id</to><enabled>Y</enabled> </hop>
-  <hop> <from>Mapping input specification</from><to>Regex download requests</to><enabled>Y</enabled> </hop>
   <hop> <from>Rename locale_ids</from><to>Mapping output specification</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup request_locale_id</from><to>Lookup addon</to><enabled>Y</enabled> </hop>
   <hop> <from>Lookup addon</from><to>Split url_params</to><enabled>Y</enabled> </hop>
@@ -155,6 +154,8 @@
   <hop> <from>NVL addon_name</from><to>Rename locale_ids</to><enabled>Y</enabled> </hop>
   <hop> <from>Audit invalid src</from><to>Write to log - invalid src</to><enabled>Y</enabled> </hop>
   <hop> <from>Filter invalid rows</from><to>Write to log - invalid url</to><enabled>Y</enabled> </hop>
+  <hop> <from>Mapping input specification</from><to>Filter http request &#x3d; GET</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter http request &#x3d; GET</from><to>Regex download requests</to><enabled>Y</enabled> </hop>
   </order>
   <step>
     <name>Add src constants</name>
@@ -249,7 +250,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
-      <yloc>250</yloc>
+      <yloc>338</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -533,6 +534,12 @@
            </partitioning>
     <fields>
       <field>
+        <name>http_request_method</name>
+        <type>String</type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>url</name>
         <type>String</type>
         <length>1024</length>
@@ -685,7 +692,7 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
-      <yloc>150</yloc>
+      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -901,7 +908,35 @@
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
-      <yloc>339</yloc>
+      <yloc>427</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Filter http request &#x3d; GET</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+<send_true_to/>
+<send_false_to/>
+    <compare>
+<condition>
+ <negated>N</negated>
+ <leftvalue>http_request_method</leftvalue>
+ <function>&#x3d;</function>
+ <rightvalue/>
+ <value><name>constant</name><type>String</type><text>GET</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask/></value> </condition>
+    </compare>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>150</yloc>
       <draw>Y</draw>
       </GUI>
     </step>

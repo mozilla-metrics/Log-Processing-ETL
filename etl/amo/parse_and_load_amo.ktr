@@ -800,7 +800,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
 \s(?>[^\s]+)                           # auth field
 \s\[?(\d{2}/\w{3}/\d{4}                # request date dd/MMM/yyyy
 :\d{2}:\d{2}:\d{2}\s[-+ ]\d{4})\]?     # request time :HH:mm:ss -0800
-\s"(?>[A-Z]+)\s                        # HTTP request type
+\s"(?>([A-Z]+))\s                        # HTTP request type
 )
                                        # Look-ahead to ensure URL is "interesting"
 (?=/(?:update/VersionCheck.php\?reqVersion|blocklist/[123]/|(?:(?!downloads|addon|collections)[-A-Za-z]*/){1,2}(?:downloads/file/|addon/(?>\d+/)?share|collections/(?>success|\d+)\?i=)))
@@ -842,6 +842,18 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       </field>
       <field>
         <name>date</name>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>http_request_method</name>
         <type>String</type>
         <format/>
         <group/>
@@ -910,6 +922,24 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>800</xloc>
+      <yloc>250</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Spool amo_downloads</name>
+    <type>Dummy</type>
+    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
+    <distribute>N</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>550</xloc>
       <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
@@ -1348,24 +1378,6 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>101</xloc>
       <yloc>210</yloc>
-      <draw>Y</draw>
-      </GUI>
-    </step>
-
-  <step>
-    <name>Spool amo_downloads</name>
-    <type>Dummy</type>
-    <description>Spooling because filter has multiple&#xa;copies and that is incompatible with&#xa;a mapping.</description>
-    <distribute>N</distribute>
-    <copies>1</copies>
-         <partitioning>
-           <method>none</method>
-           <schema_name/>
-           </partitioning>
-     <cluster_schema/>
- <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>550</xloc>
-      <yloc>250</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
