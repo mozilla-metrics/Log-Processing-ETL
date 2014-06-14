@@ -1,31 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- The contents of this file are subject to the terms of the Mozilla Public
-   - License, v. 2.0. If a copy of the MPL was not distributed with this file,
-   - You can obtain one at http://mozilla.org/MPL/2.0/.  -->
 <transformation>
   <info>
     <name>get_filenames</name>
     <description/>
-    <extended_description>
-The contents of this file are subject to the terms of the Mozilla Public
-License, v. 2.0. If a copy of the MPL was not distributed with this file,
-You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
-    </extended_description>
+    <extended_description>&#xa;The contents of this file are subject to the terms of the Mozilla Public&#xa;License, v. 2.0. If a copy of the MPL was not distributed with this file,&#xa;You can obtain one at http&#x3a;&#x2f;&#x2f;mozilla.org&#x2f;MPL&#x2f;2.0&#x2f;.&#xa;    </extended_description>
     <trans_version/>
     <trans_type>Normal</trans_type>
     <trans_status>0</trans_status>
-    <directory>&#47;</directory>
+    <directory>&#x2f;</directory>
     <parameters>
     </parameters>
     <log>
-<trans-log-table><connection></connection>
+<trans-log-table><connection/>
 <schema/>
-<table></table>
+<table/>
 <size_limit_lines>1000</size_limit_lines>
 <interval/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject>Get rows from result</subject></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>Get File Names</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject>Filter out good files</subject></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
-<perf-log-table><connection></connection>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject>Get rows from result</subject></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>old Get File Names</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject/></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject/></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject/></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject>Filter out good files</subject></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
+<perf-log-table><connection/>
 <schema/>
 <table/>
 <interval/>
@@ -69,41 +62,60 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <clusterschemas>
     </clusterschemas>
   <created_user/>
-  <created_date>2012&#47;03&#47;26 16:16:12.317</created_date>
+  <created_date>2012&#x2f;03&#x2f;26 16&#x3a;16&#x3a;12.317</created_date>
   <modified_user>-</modified_user>
-  <modified_date>2010&#47;01&#47;27 11:52:30.640</modified_date>
+  <modified_date>2010&#x2f;01&#x2f;27 11&#x3a;52&#x3a;30.640</modified_date>
   </info>
   <notepads>
+    <notepad>
+      <note>Replaced this step by a UDJC because it&#x27;s very slow on NFS.&#xa;The reason is that this step gets each file details &#x28;size, isFolder, etc&#x29; before&#xa;filtering by regexps. The UDJC first filters and then gets the file details.</note>
+      <xloc>312</xloc>
+      <yloc>179</yloc>
+      <width>356</width>
+      <heigth>43</heigth>
+      <fontname>Arial</fontname>
+      <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
   </notepads>
-  <connection>
-    <name>metrics mysql</name>
-    <server>${METRICS_MYSQL_HOST}</server>
-    <type>MYSQL</type>
-    <access>Native</access>
-    <database>${METRICS_MYSQL_DATABASE}</database>
-    <port>${METRICS_MYSQL_PORT}</port>
-    <username>${METRICS_MYSQL_USER}</username>
-    <password>${METRICS_MYSQL_PASS}</password>
-    <servername/>
-    <data_tablespace/>
-    <index_tablespace/>
-    <attributes>
-      <attribute><code>EXTRA_OPTION_MYSQL.characterEncoding</code><attribute>UTF-8</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.defaultFetchSize</code><attribute>500</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useCursorFetch</code><attribute>true</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useServerPrepStmts</code><attribute>true</attribute></attribute>
-      <attribute><code>EXTRA_OPTION_MYSQL.useUnicode</code><attribute>true</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
-      <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>${METRICS_MYSQL_PORT}</attribute></attribute>
-      <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>STREAM_RESULTS</code><attribute>N</attribute></attribute>
-      <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
-    </attributes>
-  </connection>
   <order>
-  <hop> <from>Get subfolders</from><to>Rename directory</to><enabled>Y</enabled> </hop>  <hop> <from>Concat wildcard</from><to>Special case subdirs</to><enabled>Y</enabled> </hop>  <hop> <from>Special case subdirs</from><to>Get subfolders</to><enabled>Y</enabled> </hop>  <hop> <from>Special case subdirs</from><to>Clean fields 2</to><enabled>Y</enabled> </hop>  <hop> <from>Get rows from result</from><to>Concat wildcard</to><enabled>Y</enabled> </hop>  <hop> <from>Build test cmd</from><to>Execute a process</to><enabled>Y</enabled> </hop>  <hop> <from>Execute a process</from><to>Filter bad files</to><enabled>Y</enabled> </hop>  <hop> <from>Filter bad files</from><to>Add okay=1</to><enabled>Y</enabled> </hop>  <hop> <from>Filter bad files</from><to>Add okay=0</to><enabled>Y</enabled> </hop>  <hop> <from>Add okay=1</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Add okay=0</from><to>Sort rows</to><enabled>Y</enabled> </hop>  <hop> <from>Sort rows</from><to>Calc all_okay_to_process</to><enabled>Y</enabled> </hop>  <hop> <from>Output unparsable_files</from><to>Set files in result</to><enabled>Y</enabled> </hop>  <hop> <from>Calc all_okay_to_process</from><to>Filter servers with bad files</to><enabled>Y</enabled> </hop>  <hop> <from>Add filename</from><to>Output unparsable_files</to><enabled>Y</enabled> </hop>  <hop> <from>Get File Names</from><to>Log filenames</to><enabled>Y</enabled> </hop>  <hop> <from>Log filenames</from><to>Build test cmd</to><enabled>Y</enabled> </hop>  <hop> <from>Select filenames</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>  <hop> <from>Filter servers with bad files</from><to>Sort by size</to><enabled>Y</enabled> </hop>  <hop> <from>Sort by size</from><to>Select filenames</to><enabled>Y</enabled> </hop>  <hop> <from>Filter servers with bad files</from><to>Filter out good files</to><enabled>Y</enabled> </hop>  <hop> <from>Filter out good files</from><to>Add filename</to><enabled>Y</enabled> </hop>  <hop> <from>Clean fields 2</from><to>Log patterns</to><enabled>Y</enabled> </hop>  <hop> <from>Log patterns</from><to>Get File Names</to><enabled>Y</enabled> </hop>  <hop> <from>Rename directory</from><to>Log patterns</to><enabled>Y</enabled> </hop>  <hop> <from>Log patterns</from><to>Get File Names</to><enabled>Y</enabled> </hop>  </order>
+  <hop> <from>Get subfolders</from><to>Rename directory</to><enabled>Y</enabled> </hop>
+  <hop> <from>Concat wildcard</from><to>Special case subdirs</to><enabled>Y</enabled> </hop>
+  <hop> <from>Special case subdirs</from><to>Get subfolders</to><enabled>Y</enabled> </hop>
+  <hop> <from>Special case subdirs</from><to>Clean fields 2</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get rows from result</from><to>Concat wildcard</to><enabled>Y</enabled> </hop>
+  <hop> <from>Build test cmd</from><to>Execute a process</to><enabled>Y</enabled> </hop>
+  <hop> <from>Execute a process</from><to>Filter bad files</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter bad files</from><to>Add okay&#x3d;1</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter bad files</from><to>Add okay&#x3d;0</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add okay&#x3d;1</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add okay&#x3d;0</from><to>Sort rows</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort rows</from><to>Calc all_okay_to_process</to><enabled>Y</enabled> </hop>
+  <hop> <from>Output unparsable_files</from><to>Set files in result</to><enabled>Y</enabled> </hop>
+  <hop> <from>Calc all_okay_to_process</from><to>Filter servers with bad files</to><enabled>Y</enabled> </hop>
+  <hop> <from>Add filename</from><to>Output unparsable_files</to><enabled>Y</enabled> </hop>
+  <hop> <from>Log filenames</from><to>Build test cmd</to><enabled>Y</enabled> </hop>
+  <hop> <from>Select filenames</from><to>Copy rows to result</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter servers with bad files</from><to>Sort by size</to><enabled>Y</enabled> </hop>
+  <hop> <from>Sort by size</from><to>Select filenames</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter servers with bad files</from><to>Filter out good files</to><enabled>Y</enabled> </hop>
+  <hop> <from>Filter out good files</from><to>Add filename</to><enabled>Y</enabled> </hop>
+  <hop> <from>Clean fields 2</from><to>Log patterns</to><enabled>Y</enabled> </hop>
+  <hop> <from>Rename directory</from><to>Log patterns</to><enabled>Y</enabled> </hop>
+  <hop> <from>Log patterns</from><to>Get File Names</to><enabled>Y</enabled> </hop>
+  <hop> <from>Get File Names</from><to>Log filenames</to><enabled>Y</enabled> </hop>
+  </order>
   <step>
     <name>Add filename</name>
     <type>Constant</type>
@@ -122,7 +134,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
         <currency/>
         <decimal/>
         <group/>
-        <nullif>&#47;opt&#47;pentaho&#47;kettle&#47;etl&#47;logProcessing&#47;etl&#47;output&#47;unparsable_filenames.txt</nullif>
+        <nullif>&#x2f;opt&#x2f;pentaho&#x2f;kettle&#x2f;etl&#x2f;logProcessing&#x2f;etl&#x2f;output&#x2f;unparsable_filenames.txt</nullif>
         <length>-1</length>
         <precision>-1</precision>
       </field>
@@ -136,7 +148,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </step>
 
   <step>
-    <name>Add okay=0</name>
+    <name>Add okay&#x3d;0</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -167,7 +179,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </step>
 
   <step>
-    <name>Add okay=1</name>
+    <name>Add okay&#x3d;1</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -256,7 +268,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <all_rows>Y</all_rows>
       <ignore_aggregate>N</ignore_aggregate>
       <field_ignore/>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>grp</prefix>
       <add_linenr>N</add_linenr>
       <linenr_fieldname/>
@@ -389,7 +401,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <type>ExecProcess</type>
     <description/>
     <distribute>Y</distribute>
-    <copies>1</copies>
+    <copies>4</copies>
          <partitioning>
            <method>none</method>
            <schema_name/>
@@ -417,8 +429,8 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <method>none</method>
            <schema_name/>
            </partitioning>
-<send_true_to>Add okay=1</send_true_to>
-<send_false_to>Add okay=0</send_false_to>
+<send_true_to>Add okay&#x3d;1</send_true_to>
+<send_false_to>Add okay&#x3d;0</send_false_to>
     <compare>
 <condition>
  <negated>N</negated>
@@ -447,7 +459,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            </partitioning>
 <validate_all>N</validate_all>
 <concat_errors>N</concat_errors>
-<concat_separator>|</concat_separator>
+<concat_separator>&#x7c;</concat_separator>
        <validator_field><name>okay_to_process</name>
 <validation_name>No errors</validation_name>
 <max_length>-1</max_length>
@@ -499,9 +511,9 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
 <condition>
  <negated>N</negated>
  <leftvalue>all_okay_to_process</leftvalue>
- <function>=</function>
+ <function>&#x3d;</function>
  <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>#;-#</mask></value> </condition>
+ <value><name>constant</name><type>Integer</type><text>1</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
@@ -512,7 +524,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     </step>
 
   <step>
-    <name>Get File Names</name>
+    <name>old Get File Names</name>
     <type>GetFileNames</type>
     <description/>
     <distribute>Y</distribute>
@@ -538,13 +550,13 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
       <name/>
       <filemask/>
       <exclude_filemask/>
-      <file_required/>
-      <include_subfolders/>
+      <file_required>N</file_required>
+      <include_subfolders>N</include_subfolders>
     </file>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
-      <xloc>50</xloc>
-      <yloc>350</yloc>
+      <xloc>388</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
@@ -651,15 +663,13 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>ConcatFilenames</jsScript_name>
-        <jsScript_script>stringToLog += rpad(datacenter, &quot; &quot;, 3) + &quot; - &quot; + rpad(site, &quot; &quot;, 10) + &quot; - &quot; + rpad(server, &quot; &quot;, 20) + &quot; - &quot; + rpad(filename, &quot; &quot;, 122) + &quot; - &quot; + lpad(size, &quot; &quot;, 10) + &quot;\n&quot;;
-</jsScript_script>
+        <jsScript_script>stringToLog &#x2b;&#x3d; rpad&#x28;datacenter, &#x22; &#x22;, 3&#x29; &#x2b; &#x22; - &#x22; &#x2b; rpad&#x28;site, &#x22; &#x22;, 10&#x29; &#x2b; &#x22; - &#x22; &#x2b; rpad&#x28;server, &#x22; &#x22;, 20&#x29; &#x2b; &#x22; - &#x22; &#x2b; rpad&#x28;filename, &#x22; &#x22;, 122&#x29; &#x2b; &#x22; - &#x22; &#x2b; lpad&#x28;size, &#x22; &#x22;, 10&#x29; &#x2b; &#x22;&#x5c;n&#x22;&#x3b;&#xa;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>InitVariable</jsScript_name>
-        <jsScript_script>var stringToLog = &quot;\n&quot;;
-</jsScript_script>
+        <jsScript_script>var stringToLog &#x3d; &#x22;&#x5c;n&#x22;&#x3b;&#xa;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>2</jsScript_type>
         <jsScript_name>LogOutput</jsScript_name>
-        <jsScript_script>writeToLog(&quot;m&quot;,stringToLog);</jsScript_script>
+        <jsScript_script>writeToLog&#x28;&#x22;m&#x22;,stringToLog&#x29;&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
@@ -682,14 +692,13 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
     <optimizationLevel/>
     <jsScripts>      <jsScript>        <jsScript_type>0</jsScript_type>
         <jsScript_name>ConcatFilenames</jsScript_name>
-        <jsScript_script>stringToLog += directory + &quot;&#47;&quot; + filename_pattern + &quot;\n&quot;;</jsScript_script>
+        <jsScript_script>stringToLog &#x2b;&#x3d; directory &#x2b; &#x22;&#x2f;&#x22; &#x2b; filename_pattern &#x2b; &#x22;&#x5c;n&#x22;&#x3b;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>1</jsScript_type>
         <jsScript_name>InitVariable</jsScript_name>
-        <jsScript_script>var stringToLog = &quot;\n&quot;;
-</jsScript_script>
+        <jsScript_script>var stringToLog &#x3d; &#x22;&#x5c;n&#x22;&#x3b;&#xa;</jsScript_script>
       </jsScript>      <jsScript>        <jsScript_type>2</jsScript_type>
         <jsScript_name>LogOutput</jsScript_name>
-        <jsScript_script>writeToLog(&quot;m&quot;,stringToLog);</jsScript_script>
+        <jsScript_script>writeToLog&#x28;&#x22;m&#x22;,stringToLog&#x29;&#x3b;</jsScript_script>
       </jsScript>    </jsScripts>    <fields>    </fields>     <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>50</xloc>
@@ -933,7 +942,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>out</prefix>
       <sort_size/>
       <free_memory>25</free_memory>
@@ -965,7 +974,7 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
            <method>none</method>
            <schema_name/>
            </partitioning>
-      <directory>%%java.io.tmpdir%%</directory>
+      <directory>&#x25;&#x25;java.io.tmpdir&#x25;&#x25;</directory>
       <prefix>out</prefix>
       <sort_size/>
       <free_memory>25</free_memory>
@@ -1031,6 +1040,126 @@ You can obtain one at http:&#47;&#47;mozilla.org&#47;MPL&#47;2.0&#47;.
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
       <xloc>100</xloc>
       <yloc>50</yloc>
+      <draw>Y</draw>
+      </GUI>
+    </step>
+
+  <step>
+    <name>Get File Names</name>
+    <type>UserDefinedJavaClass</type>
+    <description/>
+    <distribute>Y</distribute>
+    <copies>1</copies>
+         <partitioning>
+           <method>none</method>
+           <schema_name/>
+           </partitioning>
+
+    <definitions>
+        <definition>
+        <class_type>TRANSFORM_CLASS</class_type>
+
+        <class_name>Processor</class_name>
+
+        <class_source><![CDATA[import java.io.File;
+import java.util.ArrayList;
+	
+
+
+	static public ArrayList listFilesForFolder(String folderName, String regexpFilter) {
+		File folder = new File(folderName);
+		ArrayList fileList = new ArrayList();
+		File[] files = folder.listFiles();
+		
+		if (files != null) {
+			if (files.length == 0) {
+				System.out.println("No files for "+folderName);
+			}
+			for (int i = 0; i < files.length; i++) {
+				File file = files[i];
+				String fileName = file.getName();
+				if (fileName.matches(regexpFilter) && file.isDirectory()==false) {
+					fileList.add(file);
+				}
+			}
+			if (fileList.size()==0) {
+				System.out.println("No files matched "+folderName+"/" + regexpFilter);
+			}
+		} else {
+			System.out.println("Not a folder: "+folderName);
+		}
+		return fileList;
+	}
+	
+	public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws KettleException
+	{
+		Object[] r = getRow();
+		if (r == null) {
+			setOutputDone();
+			return false;
+		}
+
+	    if (first)
+	    {
+	        first = false;
+	    }
+	    
+	    String folderName  = get(Fields.In, "directory").getString(r);
+	    String filterRegex = get(Fields.In, "filename_pattern").getString(r);
+	    
+		ArrayList fileList = listFilesForFolder(folderName, filterRegex);
+		for (int i = 0; i < fileList.size(); i++) {
+			r = createOutputRow(r, data.outputRowMeta.size());
+			String fileName = ((File) fileList.get(i)).getName();
+			long fileSize = ((File) fileList.get(i)).length();
+			get(Fields.Out, "short_filename").setValue(r, fileName);
+			get(Fields.Out, "fileName").setValue(r, folderName+"/"+fileName);
+			get(Fields.Out, "size").setValue(r, fileSize);
+			putRow(data.outputRowMeta, r);
+		}
+
+		return true;
+	}
+	
+]]></class_source>
+        </definition>
+    </definitions>
+    <fields>
+        <field>
+        <field_name>short_filename</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>filename</field_name>
+
+        <field_type>String</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+        <field>
+        <field_name>size</field_name>
+
+        <field_type>Integer</field_type>
+
+        <field_length>-1</field_length>
+
+        <field_precision>-1</field_precision>
+
+        </field>
+    </fields><clear_result_fields>N</clear_result_fields>
+<info_steps></info_steps><target_steps></target_steps><usage_parameters></usage_parameters>     <cluster_schema/>
+ <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
+      <xloc>50</xloc>
+      <yloc>350</yloc>
       <draw>Y</draw>
       </GUI>
     </step>
