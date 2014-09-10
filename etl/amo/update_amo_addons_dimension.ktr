@@ -17,7 +17,7 @@
 <size_limit_lines>1000</size_limit_lines>
 <interval/>
 <timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>Get existing addon records</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject>Update</subject></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject>Get updated addon records</subject></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject>Table output</subject></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field><field><id>EXECUTING_SERVER</id><enabled>N</enabled><name>EXECUTING_SERVER</name></field><field><id>EXECUTING_USER</id><enabled>N</enabled><name>EXECUTING_USER</name></field><field><id>CLIENT</id><enabled>N</enabled><name>CLIENT</name></field></trans-log-table>
+<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>N</enabled><name>CHANNEL_ID</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STATUS</id><enabled>Y</enabled><name>STATUS</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name><subject/></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name><subject>Get existing addon records</subject></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name><subject>Update</subject></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name><subject>Get updated addon records</subject></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name><subject>Table output</subject></field><field><id>LINES_REJECTED</id><enabled>N</enabled><name>LINES_REJECTED</name><subject/></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>STARTDATE</id><enabled>Y</enabled><name>STARTDATE</name></field><field><id>ENDDATE</id><enabled>Y</enabled><name>ENDDATE</name></field><field><id>LOGDATE</id><enabled>Y</enabled><name>LOGDATE</name></field><field><id>DEPDATE</id><enabled>Y</enabled><name>DEPDATE</name></field><field><id>REPLAYDATE</id><enabled>Y</enabled><name>REPLAYDATE</name></field><field><id>LOG_FIELD</id><enabled>Y</enabled><name>LOG_FIELD</name></field></trans-log-table>
 <perf-log-table><connection/>
 <schema/>
 <table/>
@@ -34,11 +34,6 @@
 <table/>
 <timeout_days/>
 <field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>TRANSNAME</id><enabled>Y</enabled><name>TRANSNAME</name></field><field><id>STEPNAME</id><enabled>Y</enabled><name>STEPNAME</name></field><field><id>STEP_COPY</id><enabled>Y</enabled><name>STEP_COPY</name></field><field><id>LINES_READ</id><enabled>Y</enabled><name>LINES_READ</name></field><field><id>LINES_WRITTEN</id><enabled>Y</enabled><name>LINES_WRITTEN</name></field><field><id>LINES_UPDATED</id><enabled>Y</enabled><name>LINES_UPDATED</name></field><field><id>LINES_INPUT</id><enabled>Y</enabled><name>LINES_INPUT</name></field><field><id>LINES_OUTPUT</id><enabled>Y</enabled><name>LINES_OUTPUT</name></field><field><id>LINES_REJECTED</id><enabled>Y</enabled><name>LINES_REJECTED</name></field><field><id>ERRORS</id><enabled>Y</enabled><name>ERRORS</name></field><field><id>LOG_FIELD</id><enabled>N</enabled><name>LOG_FIELD</name></field></step-log-table>
-<metrics-log-table><connection/>
-<schema/>
-<table/>
-<timeout_days/>
-<field><id>ID_BATCH</id><enabled>Y</enabled><name>ID_BATCH</name></field><field><id>CHANNEL_ID</id><enabled>Y</enabled><name>CHANNEL_ID</name></field><field><id>LOG_DATE</id><enabled>Y</enabled><name>LOG_DATE</name></field><field><id>METRICS_DATE</id><enabled>Y</enabled><name>METRICS_DATE</name></field><field><id>METRICS_CODE</id><enabled>Y</enabled><name>METRICS_CODE</name></field><field><id>METRICS_DESCRIPTION</id><enabled>Y</enabled><name>METRICS_DESCRIPTION</name></field><field><id>METRICS_SUBJECT</id><enabled>Y</enabled><name>METRICS_SUBJECT</name></field><field><id>METRICS_TYPE</id><enabled>Y</enabled><name>METRICS_TYPE</name></field><field><id>METRICS_VALUE</id><enabled>Y</enabled><name>METRICS_VALUE</name></field></metrics-log-table>
     </log>
     <maxdate>
       <connection/>
@@ -166,7 +161,6 @@
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -183,7 +177,6 @@
         <nullif>Y</nullif>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
     </fields>
      <cluster_schema/>
@@ -199,7 +192,6 @@
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -246,7 +238,6 @@
     <type>Calculator</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -293,7 +284,6 @@
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -310,7 +300,6 @@
         <nullif/>
         <length>-1</length>
         <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
       </field>
     </fields>
      <cluster_schema/>
@@ -326,7 +315,6 @@
     <type>MergeRows</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -358,7 +346,6 @@
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -387,7 +374,6 @@
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -413,7 +399,6 @@
     <type>TableInput</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -439,7 +424,6 @@
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -491,7 +475,6 @@
     <type>SwitchCase</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -523,7 +506,6 @@
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -593,7 +575,6 @@
     <type>Update</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -664,7 +645,6 @@
     <type>Update</type>
     <description/>
     <distribute>Y</distribute>
-    <custom_distribution/>
     <copies>1</copies>
          <partitioning>
            <method>none</method>
@@ -715,5 +695,4 @@
    <slave-step-copy-partition-distribution>
 </slave-step-copy-partition-distribution>
    <slave_transformation>N</slave_transformation>
-
 </transformation>
