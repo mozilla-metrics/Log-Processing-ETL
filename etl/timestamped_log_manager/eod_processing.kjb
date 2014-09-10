@@ -19,25 +19,24 @@
     </parameters>
   <connection>
     <name>metrics</name>
-    <server>&#x24;&#x7b;METRICS_VERTICA_HOST&#x7d;</server>
-    <type>GENERIC</type>
+    <server>&#x24;&#x7b;VERTICA_HOST&#x7d;</server>
+    <type>VERTICA</type>
     <access>Native</access>
-    <database>&#x24;&#x7b;METRICS_VERTICA_DATABASE&#x7d;</database>
-    <port>&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;</port>
-    <username>&#x24;&#x7b;METRICS_VERTICA_USER&#x7d;</username>
-    <password>&#x24;&#x7b;METRICS_VERTICA_PASS&#x7d;</password>
+    <database>&#x24;&#x7b;VERTICA_DB&#x7d;</database>
+    <port>&#x24;&#x7b;VERTICA_PORT&#x7d;</port>
+    <username>&#x24;&#x7b;VERTICA_USER&#x7d;</username>
+    <password>&#x24;&#x7b;VERTICA_PASS&#x7d;</password>
     <servername/>
     <data_tablespace/>
     <index_tablespace/>
     <attributes>
-      <attribute><code>CUSTOM_DRIVER_CLASS</code><attribute>com.vertica.jdbc.Driver</attribute></attribute>
-      <attribute><code>CUSTOM_URL</code><attribute>jdbc&#x3a;vertica&#x3a;&#x2f;&#x2f;&#x24;&#x7b;METRICS_VERTICA_HOST&#x7d;&#x3a;&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;&#x2f;&#x24;&#x7b;METRICS_VERTICA_DATABASE&#x7d;</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_LOWERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>FORCE_IDENTIFIERS_TO_UPPERCASE</code><attribute>N</attribute></attribute>
       <attribute><code>IS_CLUSTERED</code><attribute>N</attribute></attribute>
-      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;METRICS_VERTICA_PORT&#x7d;</attribute></attribute>
+      <attribute><code>PORT_NUMBER</code><attribute>&#x24;&#x7b;VERTICA_PORT&#x7d;</attribute></attribute>
       <attribute><code>QUOTE_ALL_FIELDS</code><attribute>N</attribute></attribute>
-      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>Y</attribute></attribute>
+      <attribute><code>SQL_CONNECT</code><attribute>SET SESSION CHARACTERISTICS AS TRANSACTION &#xa;ISOLATION LEVEL READ COMMITTED</attribute></attribute>
+      <attribute><code>SUPPORTS_BOOLEAN_DATA_TYPE</code><attribute>N</attribute></attribute>
       <attribute><code>USE_POOLING</code><attribute>N</attribute></attribute>
     </attributes>
   </connection>
@@ -213,8 +212,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1638</xloc>
-      <yloc>65</yloc>
+      <xloc>1707</xloc>
+      <yloc>383</yloc>
       </entry>
     <entry>
       <name>export_daily_amo_stats</name>
@@ -605,8 +604,8 @@
             </parameter>      </parameters>      <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1876</xloc>
-      <yloc>65</yloc>
+      <xloc>1945</xloc>
+      <yloc>383</yloc>
       </entry>
     <entry>
       <name>Guard for race</name>
@@ -705,8 +704,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1638</xloc>
-      <yloc>195</yloc>
+      <xloc>1707</xloc>
+      <yloc>513</yloc>
       </entry>
     <entry>
       <name>Socorro stage error</name>
@@ -745,8 +744,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1876</xloc>
-      <yloc>195</yloc>
+      <xloc>1945</xloc>
+      <yloc>513</yloc>
       </entry>
     <entry>
       <name>Success 2</name>
@@ -767,8 +766,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>1744</xloc>
-      <yloc>65</yloc>
+      <xloc>1813</xloc>
+      <yloc>383</yloc>
       </entry>
     <entry>
       <name>Guard for race</name>
@@ -1145,15 +1144,6 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>Export to Socorro Staging</from>
-      <to>export_daily_amo_stats</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
       <from>export_daily_amo_stats</from>
       <to>Success 2</to>
       <from_nr>0</from_nr>
@@ -1163,15 +1153,6 @@
       <unconditional>N</unconditional>
     </hop>
     <hop>
-      <from>Socorro stage error</from>
-      <to>export_daily_amo_stats</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>AMO error</from>
       <to>Success 2</to>
       <from_nr>0</from_nr>
@@ -1179,15 +1160,6 @@
       <enabled>Y</enabled>
       <evaluation>N</evaluation>
       <unconditional>Y</unconditional>
-    </hop>
-    <hop>
-      <from>Run Vertica GAH</from>
-      <to>Export to Socorro</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
     </hop>
     <hop>
       <from>Run Vertica GAH</from>
@@ -1306,6 +1278,15 @@
       <evaluation>Y</evaluation>
       <unconditional>N</unconditional>
     </hop>
+    <hop>
+      <from>Run Vertica GAH</from>
+      <to>export_daily_amo_stats</to>
+      <from_nr>0</from_nr>
+      <to_nr>0</to_nr>
+      <enabled>Y</enabled>
+      <evaluation>Y</evaluation>
+      <unconditional>N</unconditional>
+    </hop>
   </hops>
   <notepads>
     <notepad>
@@ -1316,6 +1297,27 @@
       <heigth>32</heigth>
       <fontname>Arial</fontname>
       <fontsize>10</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Disabled 2014-09-10</note>
+      <xloc>1771</xloc>
+      <yloc>328</yloc>
+      <width>107</width>
+      <heigth>21</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
       <fontitalic>N</fontitalic>
       <fontcolorred>0</fontcolorred>
