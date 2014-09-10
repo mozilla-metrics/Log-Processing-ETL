@@ -405,7 +405,7 @@
            <schema_name/>
            </partitioning>
     <connection>Live addons slave</connection>
-    <sql>SELECT&#xa;  IFNULL&#x28;f.id,0&#x29; AS file_id&#xa;, IFNULL&#x28;v.id,0&#x29; AS version_id&#xa;, a.id AS addon_id&#xa;, guid&#xa;, LOWER&#x28;version&#x29; AS version&#xa;, IFNULL&#x28;LEFT&#x28;t1.localized_string, 255&#x29;, LEFT&#x28;t2.localized_string, 255&#x29;&#x29; AS raw_name&#xa;, LEFT&#x28;t2.localized_string, 255&#x29; AS native_name&#xa;, &#x27;--&#x27; as addon_type&#xa;FROM addons a&#xa;LEFT JOIN versions v ON a.id &#x3d; v.addon_id&#xa;LEFT JOIN files f ON v.id &#x3d; f.version_id&#xa;LEFT JOIN translations t1 ON a.name &#x3d; t1.id AND t1.locale &#x3d; &#x27;en-US&#x27;&#xa;LEFT JOIN translations t2 ON a.name &#x3d; t2.id AND t2.locale &#x3d; a.defaultlocale&#xa;LEFT JOIN translations t3 ON at.name &#x3d; t3.id AND t3.locale &#x3d; &#x27;en-US&#x27;&#xa;ORDER BY a.id, v.id, f.id&#xa;</sql>
+    <sql>SELECT&#xa;  IFNULL&#x28;f.id,0&#x29; AS file_id&#xa;, IFNULL&#x28;v.id,0&#x29; AS version_id&#xa;, a.id AS addon_id&#xa;, guid&#xa;, LOWER&#x28;version&#x29; AS version&#xa;, IFNULL&#x28;LEFT&#x28;t1.localized_string, 255&#x29;, LEFT&#x28;t2.localized_string, 255&#x29;&#x29; AS raw_name&#xa;, LEFT&#x28;t2.localized_string, 255&#x29; AS native_name&#xa;, &#x27;--&#x27; as addon_type&#xa;FROM addons a&#xa;LEFT JOIN versions v ON a.id &#x3d; v.addon_id&#xa;LEFT JOIN files f ON v.id &#x3d; f.version_id&#xa;LEFT JOIN translations t1 ON a.name &#x3d; t1.id AND t1.locale &#x3d; &#x27;en-US&#x27;&#xa;LEFT JOIN translations t2 ON a.name &#x3d; t2.id AND t2.locale &#x3d; a.defaultlocale&#xa;ORDER BY a.id, v.id, f.id&#xa;&#xa;</sql>
     <limit>0</limit>
     <lookup/>
     <execute_each_row>N</execute_each_row>
