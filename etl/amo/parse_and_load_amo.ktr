@@ -891,7 +891,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
       </field>
       <field>
         <name>http_response_code</name>
-        <type>Integer</type>
+        <type>String</type>
         <format/>
         <group/>
         <decimal/>
@@ -1395,7 +1395,7 @@ public boolean processRow(StepMetaInterface smi, StepDataInterface sdi) throws K
  <leftvalue>http_response_code</leftvalue>
  <function>&#x3d;</function>
  <rightvalue/>
- <value><name>constant</name><type>Integer</type><text>200</text><length>-1</length><precision>0</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
+ <value><name>constant</name><type>String</type><text>200</text><length>-1</length><precision>-1</precision><isnull>N</isnull><mask>&#x23;&#x3b;-&#x23;</mask></value> </condition>
     </compare>
      <cluster_schema/>
  <remotesteps>   <input>   </input>   <output>   </output> </remotesteps>    <GUI>
