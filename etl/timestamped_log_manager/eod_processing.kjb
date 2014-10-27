@@ -245,8 +245,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>2000</xloc>
-      <yloc>65</yloc>
+      <xloc>1542</xloc>
+      <yloc>567</yloc>
       </entry>
     <entry>
       <name>Abort if error</name>
@@ -664,8 +664,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>2000</xloc>
-      <yloc>195</yloc>
+      <xloc>1542</xloc>
+      <yloc>697</yloc>
       </entry>
     <entry>
       <name>Socorro prod error</name>
@@ -754,8 +754,8 @@
       <parallel>N</parallel>
       <draw>Y</draw>
       <nr>0</nr>
-      <xloc>2109</xloc>
-      <yloc>65</yloc>
+      <xloc>1663</xloc>
+      <yloc>69</yloc>
       </entry>
     <entry>
       <name>Try to avoid a deadlock</name>
@@ -1144,24 +1144,6 @@
       <unconditional>Y</unconditional>
     </hop>
     <hop>
-      <from>export_daily_amo_stats</from>
-      <to>Success 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>Y</evaluation>
-      <unconditional>N</unconditional>
-    </hop>
-    <hop>
-      <from>AMO error</from>
-      <to>Success 2</to>
-      <from_nr>0</from_nr>
-      <to_nr>0</to_nr>
-      <enabled>Y</enabled>
-      <evaluation>N</evaluation>
-      <unconditional>Y</unconditional>
-    </hop>
-    <hop>
       <from>Run Vertica GAH</from>
       <to>Set Successful flag for EOD</to>
       <from_nr>0</from_nr>
@@ -1280,7 +1262,7 @@
     </hop>
     <hop>
       <from>Run Vertica GAH</from>
-      <to>export_daily_amo_stats</to>
+      <to>Success 2</to>
       <from_nr>0</from_nr>
       <to_nr>0</to_nr>
       <enabled>Y</enabled>
@@ -1314,8 +1296,29 @@
       <note>Disabled 2014-09-10</note>
       <xloc>1771</xloc>
       <yloc>328</yloc>
-      <width>107</width>
-      <heigth>21</heigth>
+      <width>118</width>
+      <heigth>22</heigth>
+      <fontname/>
+      <fontsize>-1</fontsize>
+      <fontbold>N</fontbold>
+      <fontitalic>N</fontitalic>
+      <fontcolorred>0</fontcolorred>
+      <fontcolorgreen>0</fontcolorgreen>
+      <fontcolorblue>0</fontcolorblue>
+      <backgroundcolorred>255</backgroundcolorred>
+      <backgroundcolorgreen>165</backgroundcolorgreen>
+      <backgroundcolorblue>0</backgroundcolorblue>
+      <bordercolorred>100</bordercolorred>
+      <bordercolorgreen>100</bordercolorgreen>
+      <bordercolorblue>100</bordercolorblue>
+      <drawshadow>Y</drawshadow>
+    </notepad>
+    <notepad>
+      <note>Disabled 27-10-2014</note>
+      <xloc>1481</xloc>
+      <yloc>524</yloc>
+      <width>118</width>
+      <heigth>22</heigth>
       <fontname/>
       <fontsize>-1</fontsize>
       <fontbold>N</fontbold>
